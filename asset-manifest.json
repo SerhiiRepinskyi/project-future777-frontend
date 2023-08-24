@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/project-future777-frontend/static/css/main.7acaea2f.css",
+    "main.css": "/project-future777-frontend/static/css/main.b5320759.css",
     "main.js": "/project-future777-frontend/static/js/main.07d3183d.js",
     "index.html": "/project-future777-frontend/index.html",
-    "main.7acaea2f.css.map": "/project-future777-frontend/static/css/main.7acaea2f.css.map",
+    "main.b5320759.css.map": "/project-future777-frontend/static/css/main.b5320759.css.map",
     "main.07d3183d.js.map": "/project-future777-frontend/static/js/main.07d3183d.js.map"
   },
   "entrypoints": [
-    "static/css/main.7acaea2f.css",
+    "static/css/main.b5320759.css",
     "static/js/main.07d3183d.js"
   ]
 }
