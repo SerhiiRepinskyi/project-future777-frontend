@@ -92,8 +92,21 @@
             </path>
         </symbol>
         <symbol id="icon-filter" viewBox="0 0 32 32">
-            <path fill="none" stroke="#fff" stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="4"
+            <path fill="none" stroke="#fff" stroke-linecap="round" stroke-miterlimit="4"
                 stroke-width="3" d="M29.334 4h-26.668l10.668 12.614v8.72l5.334 2.666v-11.386l10.666-12.614z"></path>
+        </symbol>
+        <symbol id="icon-eye" viewBox="0 0 32 32">
+            <path fill="none" stroke="#fff" stroke-linejoin="round"
+                stroke-linecap="round" stroke-miterlimit="4" stroke-width="2.3111"
+                d="M1.333 16s5.333-10.667 14.667-10.667 14.667 10.667 14.667 10.667-5.333 10.667-14.667 10.667-14.667-10.667-14.667-10.667z">
+            </path>
+            <path fill="none" stroke="#fff" stroke-linejoin="round"
+                stroke-linecap="round" stroke-miterlimit="4" stroke-width="2.3111"
+                d="M16 20c2.209 0 4-1.791 4-4s-1.791-4-4-4v0c-2.209 0-4 1.791-4 4s1.791 4 4 4v0z"></path>
+        </symbol>
+        <symbol id="icon-x-close" viewBox="0 0 32 32">
+            <path fill="none" stroke="#fff" stroke-linejoin="round"
+                stroke-linecap="round" stroke-miterlimit="4" stroke-width="2.6667" d="M24 8l-16 16M8 8l16 16"></path>
         </symbol>
     </defs>
 </svg>
