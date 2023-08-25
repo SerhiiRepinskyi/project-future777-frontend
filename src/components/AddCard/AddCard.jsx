@@ -61,7 +61,7 @@ const AddCard = () => {
         <TextareaStyled
           id="description"
           name="description"
-          component="textarea"
+          type="textarea"
           placeholder="Description"
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
@@ -84,7 +84,6 @@ const AddCard = () => {
         </SubWrapper>
 
         <ButtonWithIcon
-          sx={{ width: '300px' }}
           title={'Add'}
         />
       </FormStyled>

@@ -32,7 +32,7 @@ export const InputStyled = styled.input`
   }
 `;
 
-export const TextareaStyled = styled.input`
+export const TextareaStyled = styled.textarea`
   display: flex;
   min-height: 155px;
   color: #ffffff;
