@@ -5,6 +5,7 @@ import AddIcon from '@mui/icons-material/Add';
 export const ButtonWithIcon = ({ title, onClick }) => {
   return (
     <Button
+      onClick={onClick}
       variant="contained"
       disableElevation
       sx={{
@@ -41,6 +42,7 @@ export const ButtonWithIcon = ({ title, onClick }) => {
 export const ButtonWithoutIcon = ({ title, onClick }) => {
   return (
     <Button
+      onClick={onClick}
       disableElevation
       sx={{
         display: 'flex',
@@ -71,6 +73,7 @@ export const ButtonWithoutIcon = ({ title, onClick }) => {
 export const ButtonsAdd = ({ onClick }) => {
   return (
     <Button
+      onClick={onClick}
       variant="contained"
       disableElevation
       sx={{
