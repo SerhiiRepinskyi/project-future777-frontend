@@ -23,10 +23,10 @@ const titleStyles = {
   marginBottom: 24 / 8,
 };
 
-const ModalPopup = ({title, open, handleClose, children }) => {
-//   const [open, setOpen] = useState(false);
-//   const handleOpen = () => setOpen(true);
-//   const handleClose = () => setOpen(false);
+const ModalLayout = ({ title, open, handleClose, children }) => {
+  //   const [open, setOpen] = useState(false);
+  //   const handleOpen = () => setOpen(true);
+  //   const handleClose = () => setOpen(false);
 
   return (
     <>
@@ -47,4 +47,4 @@ const ModalPopup = ({title, open, handleClose, children }) => {
   );
 };
 
-export default ModalPopup;
+export default ModalLayout;
