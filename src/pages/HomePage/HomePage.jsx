@@ -3,7 +3,7 @@ import { Tytle } from './HomePage.styled';
 const HomePage = () => {
   return (
     <section>
-      <Tytle>Welcome to PhoneBook App</Tytle>
+      <Tytle>HomePage</Tytle>
 
       {/* твій код */}
     </section>
