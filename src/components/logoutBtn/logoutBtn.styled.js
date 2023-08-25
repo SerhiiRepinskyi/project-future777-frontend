@@ -37,5 +37,3 @@ export const Icon = styled.svg`
     stroke: #9dc888;
   }
 `;
-
-
