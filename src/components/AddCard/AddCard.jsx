@@ -9,7 +9,7 @@ import {
   SubTitle,
   InputStyled,
 } from './AddCard.styled';
-import { Formik, useFormik, Field, Form } from 'formik';
+import { useFormik } from 'formik';
 import ColorRadioButtons from 'components/ColorRadioButtons/ColorRadioButtons';
 import { format } from 'date-fns';
 import sprite from '../../assets/images/sprite.svg';
@@ -18,7 +18,7 @@ import * as Yup from 'yup';
 
 const AddCard = () => {
   const [date, setDate] = useState('');
-  
+
   const handleSubmit = (title, description) => {
     console.log('Title => ', title);
     console.log('Description => ', description);
@@ -82,9 +82,7 @@ const AddCard = () => {
           </DateWrapper>
         </SubWrapper>
 
-        <ButtonWithIcon
-          title={'Add'}
-        />
+        <ButtonWithIcon title={'Add'} />
       </FormStyled>
     </ComponentWrapper>
   );
