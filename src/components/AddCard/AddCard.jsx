@@ -18,10 +18,18 @@ import * as Yup from 'yup';
 
 const AddCard = () => {
   const [date, setDate] = useState('');
+  const [color, setColor] = useState('grey');
 
-  const handleSubmit = (title, description) => {
+  const onColorChange = value => {
+    console.log('value :>> ', value);
+    setColor(value);
+  };
+
+  const handleSubmit = (title, description, color) => {
     console.log('Title => ', title);
     console.log('Description => ', description);
+    console.log('Color :>> ', color);
+    console.log('Date :>> ', date);
     formik.handleReset();
   };
   const validationSchema = Yup.object({
@@ -33,11 +41,13 @@ const AddCard = () => {
         'Title may contain only letters, apostrophe, dash and spaces.'
       ),
     description: Yup.string(),
+    color: Yup.string(),
   });
 
   const formik = useFormik({
     initialValues: { title: '', description: '' },
-    onSubmit: ({ title, description }) => handleSubmit(title, description),
+    onSubmit: ({ title, description }) =>
+      handleSubmit(title, description, color, date),
     validationSchema,
   });
 
@@ -69,7 +79,9 @@ const AddCard = () => {
 
         <SubWrapper>
           <SubTitle>Label color</SubTitle>
-          <ColorRadioButtons />
+          <ColorRadioButtons
+            onColorChange={onColorChange}
+          />
         </SubWrapper>
 
         <SubWrapper>
