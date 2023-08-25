@@ -1,12 +1,12 @@
-const ScreenPage = () => {
+const ScreensPage = () => {
     return (
       <section>
-        <h1>ScreenPage</h1>
+        <h1>ScreensPage</h1>
   
         {/* твій код */}
       </section>
     );
   };
   
-  export default ScreenPage;
+  export default ScreensPage;
   

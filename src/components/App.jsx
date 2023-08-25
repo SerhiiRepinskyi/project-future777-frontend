@@ -5,7 +5,7 @@ import { Route, Routes } from 'react-router-dom';
 const WelcomePage = lazy(() => import('../pages/WelcomePage/WelcomePage'));
 const HomePage = lazy(() => import ('../pages/HomePage/HomePage'));
 const AuthPage = lazy(() => import('../pages/AuthPage/AuthPage'));
-const ScreenPage = lazy(() => import ('../pages/ScreenPage/ScreenPage'));
+const ScreensPage = lazy(() => import ('../pages/ScreensPage/ScreensPage'));
 
 
 export const App = () => {
@@ -24,7 +24,7 @@ export const App = () => {
           />
           <Route
             path="/home/:boardName"
-            element={/*<PrivateRoute>*/ <ScreenPage /> /*<PrivateRoute>*/}
+            element={/*<PrivateRoute>*/ <ScreensPage /> /*<PrivateRoute>*/}
           />
           <Route path="*" element={<NotFound />} />
         </Routes>
