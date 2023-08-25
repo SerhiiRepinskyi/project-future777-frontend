@@ -1,11 +1,11 @@
-const AuthPage = () => {
-  return (
-    <section>
-      <h1>AuthPage</h1>
+// const AuthPage = () => {
+//   return (
+//     <section>
+//       <h1>AuthPage</h1>
 
-      {/* твій код */}
-    </section>
-  );
-};
+//       {/* твій код */}
+//     </section>
+//   );
+// };
 
-export default AuthPage;
+// export default AuthPage;
