@@ -2,9 +2,10 @@ import * as React from 'react';
 import Button from '@mui/material/Button';
 import AddIcon from '@mui/icons-material/Add';
 
-export const ButtonWithIcon = ({ title }) => {
+export const ButtonWithIcon = ({ title, onClick }) => {
   return (
     <Button
+      onClick={onClick}
       variant="contained"
       disableElevation
       sx={{
@@ -38,9 +39,10 @@ export const ButtonWithIcon = ({ title }) => {
   );
 };
 
-export const ButtonWithoutIcon = ({ title }) => {
+export const ButtonWithoutIcon = ({ title, onClick }) => {
   return (
     <Button
+      onClick={onClick}
       disableElevation
       sx={{
         display: 'flex',
@@ -68,9 +70,10 @@ export const ButtonWithoutIcon = ({ title }) => {
   );
 };
 
-export const ButtonsAdd = () => {
+export const ButtonsAdd = ({ onClick }) => {
   return (
     <Button
+      onClick={onClick}
       variant="contained"
       disableElevation
       sx={{
