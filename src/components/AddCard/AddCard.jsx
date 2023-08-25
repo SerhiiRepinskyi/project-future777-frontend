@@ -61,7 +61,6 @@ const AddCard = () => {
         <TextareaStyled
           id="description"
           name="description"
-          type="textarea"
           placeholder="Description"
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
