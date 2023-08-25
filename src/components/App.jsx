@@ -4,7 +4,7 @@ import { Route, Routes } from 'react-router-dom';
 
 const WelcomePage = lazy(() => import('../pages/WelcomePage/WelcomePage'));
 const HomePage = lazy(() => import ('../pages/HomePage/HomePage'));
-const AuthPage = lazy(() => import('../pages/AuthPage/AuthPage'));
+const AuthPage = lazy(() => import('../pages/AuthPage'));
 const ScreensPage = lazy(() => import ('../pages/ScreensPage/ScreensPage'));
 
 
