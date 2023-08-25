@@ -8,15 +8,14 @@ export const ComponentWrapper = styled.div`
   flex-direction: column;
 `;
 
-export const FormikStyled = styled(Form)`
+export const FormStyled = styled.form`
   display: flex;
   flex-direction: column;
   gap: 14px;
   margin-bottom: 24px;
-
 `;
 
-export const InputStyled = styled(Field)`
+export const InputStyled = styled.input`
   resize: none;
   color: #ffffff;
   padding: 14px 14px;
@@ -33,7 +32,8 @@ export const InputStyled = styled(Field)`
   }
 `;
 
-export const TextareaStyled = styled(Field)`
+export const TextareaStyled = styled.input`
+  display: flex;
   min-height: 155px;
   color: #ffffff;
   resize: none;
@@ -41,6 +41,7 @@ export const TextareaStyled = styled(Field)`
   background-color: transparent;
   border: 1px solid #bedbb0;
   border-radius: 8px;
+  text-align: top;
   :focus {
     border: 2px solid #bedbb0;
     outline: none;
