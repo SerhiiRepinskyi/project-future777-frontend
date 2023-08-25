@@ -2,9 +2,11 @@ import * as React from 'react';
 import Button from '@mui/material/Button';
 import AddIcon from '@mui/icons-material/Add';
 
-export const ButtonWithIcon = ({ title, onClick }) => {
+// Кнопка для модалок с иконкой
+export const ButtonWithIcon = ({ title, onClick, type }) => {
   return (
     <Button
+      type={type}
       onClick={onClick}
       variant="contained"
       disableElevation
@@ -22,7 +24,7 @@ export const ButtonWithIcon = ({ title, onClick }) => {
         lineHeight: '21px',
         fontWeight: '500',
         fontStyle: 'normal',
-        width: '334px',
+        width: '100%',
         height: '56px',
         '&:hover': {
           background: '#BEDBB0',
@@ -38,10 +40,11 @@ export const ButtonWithIcon = ({ title, onClick }) => {
     </Button>
   );
 };
-
-export const ButtonWithoutIcon = ({ title, onClick }) => {
+// Кнопка для модалок без иконки
+export const ButtonWithoutIcon = ({ title, onClick, type }) => {
   return (
     <Button
+      type={type}
       onClick={onClick}
       disableElevation
       sx={{
@@ -58,7 +61,7 @@ export const ButtonWithoutIcon = ({ title, onClick }) => {
         lineHeight: '21px',
         fontWeight: '500',
         fontStyle: 'normal',
-        width: '334px',
+        width: '100%',
         height: '56px',
         '&:hover': {
           background: '#BEDBB0',
@@ -69,7 +72,7 @@ export const ButtonWithoutIcon = ({ title, onClick }) => {
     </Button>
   );
 };
-
+// Кнопка для добавления колонки
 export const ButtonsAdd = ({ onClick }) => {
   return (
     <Button
@@ -104,5 +107,38 @@ export const ButtonsAdd = ({ onClick }) => {
     >
       Add another column
     </Button>
+  );
+};
+
+//Кнопка для Sidebar
+export const ButtonSidebar = ({ onClick }) => {
+  return (
+    <IconButton
+      onClick={onClick}
+      sx={{
+        width: '40px',
+        height: '36px',
+        color: '#161616',
+        fontFamily: 'Poppins, sans-serif',
+        borderRadius: '6px',
+        background: '#BEDBB0',
+        fontSize: '14px',
+        background: '#BEDBB0',
+        lineHeight: '21px',
+        fontWeight: '500',
+        fontStyle: 'normal',
+        '&:hover': {
+          background: '#9DC888',
+        },
+      }}
+    >
+      <AddIcon
+        sx={{
+          color: 'black',
+          width: '20px',
+          height: '20px',
+        }}
+      />
+    </IconButton>
   );
 };
