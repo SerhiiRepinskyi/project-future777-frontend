@@ -6,18 +6,18 @@ import AddIcon from '@mui/icons-material/Add';
 export const ButtonWithIcon = ({ title, onClick, type }) => {
   return (
     <Button
-      type={type}
       onClick={onClick}
+      type={type}
       variant="contained"
       disableElevation
       sx={{
         display: 'flex',
+        gap: '8px',
         color: '#161616',
         fontFamily: 'Poppins, sans-serif',
         alignItems: 'center',
         textTransform: 'none',
         borderRadius: '8px',
-        marginTop: '40px',
         letterSpacing: '-0.02em',
         fontSize: '14px',
         background: '#BEDBB0',
@@ -27,15 +27,29 @@ export const ButtonWithIcon = ({ title, onClick, type }) => {
         width: '100%',
         height: '56px',
         '&:hover': {
-          background: '#BEDBB0',
+          background: '#9DC888',
         },
       }}
-      startIcon={
-        <AddIcon
-          sx={{ background: '#161616', borderRadius: '6px', color: 'white' }}
-        />
-      }
     >
+      <Box
+        sx={{
+          width: '28px',
+          height: '28px',
+          background: '#161616',
+          borderRadius: '6px',
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+        }}
+      >
+        <AddIcon
+          sx={{
+            color: 'white',
+            width: '14px',
+            height: '14px',
+          }}
+        />
+      </Box>
       {title}
     </Button>
   );
@@ -73,7 +87,7 @@ export const ButtonWithoutIcon = ({ title, onClick, type }) => {
   );
 };
 // Кнопка для добавления колонки
-export const ButtonsAdd = ({ onClick }) => {
+export const ButtonAdd = ({ onClick }) => {
   return (
     <Button
       onClick={onClick}
@@ -81,6 +95,7 @@ export const ButtonsAdd = ({ onClick }) => {
       disableElevation
       sx={{
         display: 'flex',
+        gap: '8px',
         color: '#FFFFFF',
         fontFamily: 'Poppins, sans-serif',
         alignItems: 'center',
@@ -99,17 +114,32 @@ export const ButtonsAdd = ({ onClick }) => {
           background: '#121212',
         },
       }}
-      startIcon={
-        <AddIcon
-          sx={{ background: '#FFFFFF', borderRadius: '6px', color: '#121212' }}
-        />
-      }
     >
+      <Box
+        sx={{
+          width: '28px',
+          height: '28px',
+          background: 'white',
+          borderRadius: '6px',
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+        }}
+      >
+        <AddIcon
+          sx={{
+            background: '#FFFFFF',
+            borderRadius: '6px',
+            color: '#121212',
+            width: '14px',
+            height: '14px',
+          }}
+        />
+      </Box>
       Add another column
     </Button>
   );
 };
-
 //Кнопка для Sidebar
 export const ButtonSidebar = ({ onClick }) => {
   return (
@@ -134,7 +164,7 @@ export const ButtonSidebar = ({ onClick }) => {
     >
       <AddIcon
         sx={{
-          color: 'black',
+          color: '#121212',
           width: '20px',
           height: '20px',
         }}
