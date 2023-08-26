@@ -19,10 +19,17 @@ export const RegisterForm = () => {
       setShowPassword(!showPassword);
     };
 
-  const handleSubmit = (value, { resetForm }) => {
+  const handleSubmit = async (value, { resetForm }) => {
+    try {
     const {name, email, password} = value
-    console.log(name.trim());
+      console.log(name.trim());
+      console.log(email.trim());
+       console.log(password.trim());
        resetForm();
+    } catch (error) {
+          console.error('Error submitting form:', error);
+  }
+    
 
   };
 

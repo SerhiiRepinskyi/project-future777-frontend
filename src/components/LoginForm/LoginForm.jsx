@@ -16,9 +16,14 @@ export const LoginForm = () => {
     setShowPassword(!showPassword);
   };
 
-  const handleSubmit = (value, { resetForm }) => {
-    console.log(value);
-    resetForm();
+  const handleSubmit = async (value, { resetForm }) => {
+    try{  console.log('Form submitted:', value);
+      resetForm();
+    }
+    catch (error) {
+      console.error('Error submitting form:', error);
+    }
+   
   };
 
   return (
