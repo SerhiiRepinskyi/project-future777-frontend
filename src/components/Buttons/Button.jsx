@@ -1,6 +1,7 @@
 import * as React from 'react';
 import Button from '@mui/material/Button';
 import AddIcon from '@mui/icons-material/Add';
+import { Box, IconButton } from '@mui/material';
 
 // Кнопка для модалок с иконкой
 export const ButtonWithIcon = ({ title, onClick, type }) => {
@@ -151,7 +152,7 @@ export const ButtonSidebar = ({ onClick }) => {
         color: '#161616',
         fontFamily: 'Poppins, sans-serif',
         borderRadius: '6px',
-        background: '#BEDBB0',
+
         fontSize: '14px',
         background: '#BEDBB0',
         lineHeight: '21px',
