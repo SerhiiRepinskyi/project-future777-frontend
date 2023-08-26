@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 import { Form, Field, ErrorMessage } from 'formik';
 import { NavLink } from 'react-router-dom';
-import Sprite from '../../assets/images/sprite.svg';
 
 export const Container = styled.div`
   //   min-height: 100%;

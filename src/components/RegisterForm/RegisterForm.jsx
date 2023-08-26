@@ -10,27 +10,37 @@ import {
 
 } from './RegisterForm.styled';
 import { useState } from 'react';
+// import { useRegisterMutation } from 'redux/auth/authApi';
 
 
 export const RegisterForm = () => {
     const [showPassword, setShowPassword] = useState(false);
-
     const togglePassword = () => {
       setShowPassword(!showPassword);
     };
+  
+  // const [register] = useRegisterMutation();
 
-  const handleSubmit = async (value, { resetForm }) => {
-    try {
-    const {name, email, password} = value
-      console.log(name.trim());
-      console.log(email.trim());
-       console.log(password.trim());
-       resetForm();
-    } catch (error) {
-          console.error('Error submitting form:', error);
-  }
+
+  const handleSubmit = async (values, { resetForm }) => {
+    console.log(values)
+    resetForm()
+
     
+    // try {
+    //   const response = await register({
+    //     name: values.name,
+    //     email: values.email,
+    //     password: values.password,
+    //   })
+     
 
+   
+    //   resetForm();
+    // } catch (error) {
+    //   console.log(error)
+
+    // }
   };
 
   return (

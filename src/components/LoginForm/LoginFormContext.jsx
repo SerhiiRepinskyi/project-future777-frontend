@@ -14,8 +14,6 @@ import {
 export const LoginFormContext = ({ showPassword, togglePassword }) => {
   const {
     values,
-    handleChange,
-    handleBlur,
     dirty,
     handleSubmit,
   } = useFormikContext();
