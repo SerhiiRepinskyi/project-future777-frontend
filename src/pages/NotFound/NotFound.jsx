@@ -9,3 +9,5 @@ export const NotFound = () => {
     </Title>
   );
 };
+
+export default NotFound;
