@@ -1,23 +1,27 @@
-// import { useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import sprite from '../../assets/images/sprite.svg';
 import { Icon, LogOutBtnStyled, SpanStyled } from '../logoutBtn/logoutBtn.styled';
-// import { setToken, useLogoutMutation} from "redux/authSlice"
-// import { getToken } from 'redux/selectors';
+import { useLogOutMutation } from 'redux/auth/authApi';
+import { logout, setError, setIsLoggedIn } from 'redux/auth/authSlice';
 
 const LogoutBtn = () => {
-  // const dispatch = useDispatch();
-  // const token = useSelector(getToken);
-  // const [logOut] = useLogoutMutation();
+   const dispatch = useDispatch();
+   const [logOut] = useLogOutMutation();
 
-  const handleLogout = () => {
-    console.log('LogoutBtn clicked');
-    // dispatch(setToken(''));
-  };
+   const handleLogOut = async () => {
+     try {
+       await logOut().unwrap();
+       dispatch(logout());
+       dispatch(setIsLoggedIn(false));
+     } catch (error) {
+       dispatch(setError(error));
+     }
+   };
 
   return (
     <>
       {/* <LogOutBtnStyled onClick={() => dispatch(logOut())}> */}
-      <LogOutBtnStyled onClick={handleLogout}>
+      <LogOutBtnStyled onClick={handleLogOut}>
         <Icon width="32px" height="32px">
           <use href={`${sprite}#icon-logout`} />
         </Icon>

@@ -1,14 +1,31 @@
-import { Suspense, lazy } from 'react';
+import { Suspense, lazy, useEffect } from 'react';
 import { Route, Routes, Navigate } from 'react-router-dom';
 import Loader from './Loader/Loader';
+import { useDispatch, useSelector } from 'react-redux';
+import { useGetCurrentUserQuery } from 'redux/auth/authApi';
+import { setUserRefresh } from 'redux/auth/authSlice';
 
 const WelcomePage = lazy(() => import('../pages/WelcomePage/WelcomePage'));
-const HomePage = lazy(() => import ('../pages/HomePage/HomePage'));
+const HomePage = lazy(() => import('../pages/HomePage/HomePage'));
 const AuthPage = lazy(() => import('../pages/AuthPage'));
-const ScreensPage = lazy(() => import ('../pages/ScreensPage/ScreensPage'));
+const ScreensPage = lazy(() => import('../pages/ScreensPage/ScreensPage'));
 const NotFound = lazy(() => import('../pages/NotFound/NotFound'));
 
 export const App = () => {
+  const token = useSelector(state => state.auth.token);
+
+  const dispatch = useDispatch();
+
+  const { data: currentUser } = useGetCurrentUserQuery({
+    skip: token === null,
+  });
+
+  useEffect(() => {
+    if (token && currentUser) {
+      dispatch(setUserRefresh(currentUser));
+    }
+  }, [ token, currentUser, dispatch]);
+
   return (
     <div>
       <Suspense fallback={<Loader />}>
@@ -34,6 +51,3 @@ export const App = () => {
     </div>
   );
 };
-
-
-
