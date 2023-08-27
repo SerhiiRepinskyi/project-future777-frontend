@@ -20,8 +20,8 @@ const WelcomePage = () => {
         Supercharge your productivity and take control of your tasks with Task
         Pro - Don't wait, start achieving your goals now!
       </WelcomeTitle>
-      <RegistrationLink>Registration</RegistrationLink>
-      <Loginlink>Log In</Loginlink>
+      <RegistrationLink to="/auth/register">Registration</RegistrationLink>
+      <Loginlink to="/auth/login">Log In</Loginlink>
     </Container>
   );
 };

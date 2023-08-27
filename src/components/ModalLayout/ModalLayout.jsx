@@ -1,4 +1,7 @@
 import { Modal, Box, Typography } from '@mui/material';
+import sprite from '../../assets/images/sprite.svg';
+import { ButtonClose } from 'components/ModalBoard/ModalBoard.styled';
+
 // import { useState } from 'react';
 
 const ModalStyles = {
@@ -40,6 +43,11 @@ const ModalLayout = ({ title, open, handleClose, children }) => {
           <Typography variant="h2" sx={titleStyles}>
             {title}
           </Typography>
+          <ButtonClose type="button" onClick={handleClose}>
+            <svg stroke="#BEDBB0" width="18" height="18">
+              <use href={sprite + '#icon-x-close'} />
+            </svg>
+          </ButtonClose>
           {children}
         </Box>
       </Modal>
