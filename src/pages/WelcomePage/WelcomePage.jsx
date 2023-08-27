@@ -1,10 +1,9 @@
-import Logo from './Logo';
+import { StartPageLogo } from 'components/Logo/Logo';
 import {
   Container,
   Loginlink,
   RegistrationLink,
   WelcomeImage,
-  WelcomeLogo,
   WelcomeTitle,
 } from './WelcomePage.styled';
 
@@ -12,10 +11,7 @@ const WelcomePage = () => {
   return (
     <Container>
       <WelcomeImage />
-      <WelcomeLogo>
-        <Logo />
-        Task Pro
-      </WelcomeLogo>
+      <StartPageLogo />
       <WelcomeTitle>
         Supercharge your productivity and take control of your tasks with Task
         Pro - Don't wait, start achieving your goals now!

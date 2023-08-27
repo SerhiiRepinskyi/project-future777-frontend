@@ -2,13 +2,20 @@ import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 
 export const Container = styled.div`
-  background: linear-gradient(#c4c4c4, #bedbb0);
+  background: linear-gradient(
+    rgba(196, 196, 196, 0) 25%,
+    rgba(190, 219, 176, 1) 100%
+  );
   height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   padding: 0px 20px;
+
+  @media screen and (min-width: 768px) {
+    padding: 0px 148px;
+  }
 `;
 
 export const WelcomeImage = styled.div`
@@ -16,6 +23,11 @@ export const WelcomeImage = styled.div`
   height: 124px;
   background-color: black;
   margin-bottom: 24px;
+
+  @media screen and (min-width: 768px) {
+    width: 162px;
+    height: 162px;
+  }
 `;
 
 export const WelcomeLogo = styled.span`
@@ -42,6 +54,9 @@ export const WelcomeTitle = styled.p`
   text-align: center;
   margin-bottom: 48px;
   max-width: 335px;
+  @media screen and (min-width: 768px) {
+    max-width: 473px;
+  }
 `;
 
 const Link = styled(NavLink)`
@@ -56,6 +71,9 @@ const Link = styled(NavLink)`
   text-decoration: none;
   max-width: 335px;
   width: 100%;
+  @media screen and (min-width: 768px) {
+    max-width: 344px;
+  }
 `;
 
 export const RegistrationLink = styled(Link)`
