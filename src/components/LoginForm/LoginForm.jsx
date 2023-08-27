@@ -8,22 +8,36 @@ import {
   StyledLink,
 } from '../RegisterForm/RegisterForm.styled';
 import { useState } from 'react';
+import { useLogInMutation } from 'redux/auth/authApi';
+import { useDispatch } from 'react-redux';
+import { setCredentials } from 'redux/auth/authSlice';
+import Loader from 'components/Loader/Loader';
+
 
 export const LoginForm = () => {
   const [showPassword, setShowPassword] = useState(false);
-
   const togglePassword = () => {
     setShowPassword(!showPassword);
   };
+  const [login, { isLoading }] = useLogInMutation();
+  const dispatch = useDispatch();
 
-  const handleSubmit = async (value, { resetForm }) => {
-    try{  console.log('Form submitted:', value);
+  const handleSubmit = async (values, { resetForm }) => {
+    try {
+      const response = await login({
+        email: values.email,
+        password: values.password,
+      });
+
+      console.log(response);
+      if (response.token) {
+        dispatch(setCredentials(response));
+      }
+    
       resetForm();
-    }
-    catch (error) {
+    } catch (error) {
       console.error('Error submitting form:', error);
     }
-   
   };
 
   return (
@@ -42,6 +56,7 @@ export const LoginForm = () => {
         >
           {() => (
             <>
+              {isLoading && <Loader />}
               <LoginFormContext
                 showPassword={showPassword}
                 togglePassword={togglePassword}
