@@ -12,11 +12,7 @@ import {
 } from '../RegisterForm/RegisterForm.styled';
 
 export const LoginFormContext = ({ showPassword, togglePassword }) => {
-  const {
-    values,
-    dirty,
-    handleSubmit,
-  } = useFormikContext();
+  const { values, dirty, handleSubmit } = useFormikContext();
 
   return (
     <FormikForm onSubmit={handleSubmit}>
@@ -39,7 +35,12 @@ export const LoginFormContext = ({ showPassword, togglePassword }) => {
             placeholder="Confirm a password"
             value={values.password}
           />{' '}
-          <IconBtn type="button" onClick={togglePassword}>
+          <IconBtn
+            type="button"
+            onClick={togglePassword}
+            active={showPassword}
+            className={showPassword ? 'active' : ''}
+          >
             <Icon>
               <use href={`${Sprite}#icon-eye`}></use>
             </Icon>

@@ -72,7 +72,12 @@ export const RegisterFormContext = ({ showPassword, togglePassword }) => {
             pattern="^[a-zA-Z0-9@$!%*?& -_#+=]*$"
             title="Password must contain at least one letter and at least one number"
           />{' '}
-          <IconBtn type="button" onClick={togglePassword}>
+          <IconBtn
+            type="button"
+            onClick={togglePassword}
+            active={showPassword}
+            className={showPassword ? 'active' : ''}
+          >
             <Icon>
               <use href={`${Sprite}#icon-eye`}></use>
             </Icon>

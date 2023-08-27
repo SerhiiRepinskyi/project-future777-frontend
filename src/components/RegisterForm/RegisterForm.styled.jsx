@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { Form, Field, ErrorMessage } from 'formik';
 import { NavLink } from 'react-router-dom';
 
@@ -45,7 +45,7 @@ export const StyledLink = styled(NavLink)`
   display: inline-block;
   color: rgba(255, 255, 255, 0.3);
   font-size: 18px;
-  font-weight: medium;
+  font-weight: 500;
   letter-spacing: -0.36px;
   text-decoration: none;
   &.active {
@@ -119,9 +119,11 @@ export const Wrap = styled.div`
 export const Icon = styled.svg`
   width: 18px;
   height: 18px;
- 
+  stroke: #fff;
+  fill:none;
+  display: block;
 `;
-export const IconBtn = styled.button`
+export const IconBtn = styled(({ active, ...rest }) => <button {...rest} />)`
   position: absolute;
   right: 12px;
   top: 50%;
@@ -130,11 +132,18 @@ export const IconBtn = styled.button`
   transform: translateY(-50%);
   cursor: pointer;
   opacity: 0.4;
-  &:hover * {
-    svg  {
-      fill: rgba(190, 219, 176, 1); 
-    }
+
+  &:focus {
+    outline: none;
   }
+  ${props =>
+    props.active &&
+    css`
+      opacity: 1;
+      svg {
+        stroke: rgba(190, 219, 176, 1);
+      }
+    `}
 `;
 
 export const Button = styled.button`
@@ -166,7 +175,7 @@ export const Button = styled.button`
     }
 `;
 export const Error = styled(ErrorMessage)`
-  font-family: "Roboto";
+  font-family: 'Roboto';
   color: red;
   font-size: 14px;
   margin-top: 5px;
