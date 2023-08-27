@@ -5,6 +5,7 @@
 //   persistStore,
 //   persistReducer,
 // } from 'redux-persist';
+// import { boardsApi } from "./boards/boardSlice";
 
 
 
@@ -24,6 +25,7 @@
 //   reducer: {
 //     [authApi.reducerPath]: authApi.reducer,
 //     auth: persistedReducer,
+//   [boardsApi.reducerPath]: boardsApi.reducer,
 //   },
 
 //   middleware: getDefaultMiddleware =>
