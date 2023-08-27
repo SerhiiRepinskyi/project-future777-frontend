@@ -130,8 +130,8 @@ export const IconBtn = styled.button`
   transform: translateY(-50%);
   cursor: pointer;
   opacity: 0.4;
-  &:hover {
-    svg {
+  &:hover * {
+    svg  {
       fill: rgba(190, 219, 176, 1); 
     }
   }

@@ -1,46 +1,42 @@
 import { Formik } from 'formik';
 import { validationSchema } from 'validationSchemas/validationSchema';
 import { RegisterFormContext } from './RegisterFormContext';
-
 import {
   Container,
   FormWrap,
   Navigation,
   StyledLink,
-
 } from './RegisterForm.styled';
 import { useState } from 'react';
-// import { useRegisterMutation } from 'redux/auth/authApi';
-
-
+import { useRegisterMutation } from 'redux/auth/authApi';
+import { useDispatch } from 'react-redux';
+import { setCredentials } from 'redux/auth/authSlice';
+import Loader from 'components/Loader/Loader';
 export const RegisterForm = () => {
-    const [showPassword, setShowPassword] = useState(false);
-    const togglePassword = () => {
-      setShowPassword(!showPassword);
-    };
-  
-  // const [register] = useRegisterMutation();
-
+  const [showPassword, setShowPassword] = useState(false);
+  const togglePassword = () => {
+    setShowPassword(!showPassword);
+  };
+  const dispatch = useDispatch();
+  const [register, { isLoading }] = useRegisterMutation();
 
   const handleSubmit = async (values, { resetForm }) => {
-    console.log(values)
-    resetForm()
+    try {
+      const response = await register({
+        name: values.name,
+        email: values.email,
+        password: values.password,
+      });
 
-    
-    // try {
-    //   const response = await register({
-    //     name: values.name,
-    //     email: values.email,
-    //     password: values.password,
-    //   })
-     
+      console.log(response);
+      if (response.token) {
+        dispatch(setCredentials(response));
+      }
 
-   
-    //   resetForm();
-    // } catch (error) {
-    //   console.log(error)
-
-    // }
+      resetForm();
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -61,6 +57,7 @@ export const RegisterForm = () => {
         >
           {() => (
             <>
+              {isLoading && <Loader />}
               <RegisterFormContext
                 showPassword={showPassword}
                 togglePassword={togglePassword}
@@ -72,5 +69,3 @@ export const RegisterForm = () => {
     </Container>
   );
 };
-
-
