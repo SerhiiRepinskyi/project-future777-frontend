@@ -55,6 +55,7 @@ export const ButtonWithIcon = ({ title, onClick, type }) => {
     </Button>
   );
 };
+
 // Кнопка для модалок без иконки
 export const ButtonWithoutIcon = ({ title, onClick, type }) => {
   return (
@@ -87,6 +88,7 @@ export const ButtonWithoutIcon = ({ title, onClick, type }) => {
     </Button>
   );
 };
+
 // Кнопка для добавления колонки
 export const ButtonAdd = ({ onClick }) => {
   return (
@@ -141,6 +143,7 @@ export const ButtonAdd = ({ onClick }) => {
     </Button>
   );
 };
+
 //Кнопка для Sidebar
 export const ButtonSidebar = ({ onClick }) => {
   return (
@@ -149,15 +152,9 @@ export const ButtonSidebar = ({ onClick }) => {
       sx={{
         width: '40px',
         height: '36px',
-        color: '#161616',
-        fontFamily: 'Poppins, sans-serif',
         borderRadius: '6px',
-
-        fontSize: '14px',
         background: '#BEDBB0',
-        lineHeight: '21px',
-        fontWeight: '500',
-        fontStyle: 'normal',
+
         '&:hover': {
           background: '#9DC888',
         },
