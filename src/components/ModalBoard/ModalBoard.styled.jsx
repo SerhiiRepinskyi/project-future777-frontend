@@ -40,11 +40,24 @@ export const TransparentSVG = styled.svg`
 
 export const UlStyled = styled.ul`
   display: flex;
+  flex-wrap: wrap;
   gap: 8px;
   margin: 0;
   padding: 0;
   list-style: none;
    margin-bottom: 14px;
+ 
+  }`;
+
+  export const UlBgStyled = styled.ul`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+   margin-bottom: 14px;
+ width: 270px;
   }`;
 
   export const LiStyled = styled.li`

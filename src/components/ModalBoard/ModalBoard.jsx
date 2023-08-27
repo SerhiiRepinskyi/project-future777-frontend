@@ -6,12 +6,15 @@ import {
   TransparentSVG,
   UlStyled,
   LiStyled,
+  UlBgStyled,
 } from './ModalBoard.styled';
 import sprite from '../../assets/images/sprite.svg';
-
 import * as Yup from 'yup';
 import { ButtonWithIcon } from 'components/Buttons/Button';
 import ModalLayout from 'components/ModalLayout/ModalLayout';
+import { useState } from 'react';
+import { arrIcons } from './data';
+import { backgroundImg } from './data';
 
 const titleStyle = {
   color: '#FFF',
@@ -23,13 +26,18 @@ const titleStyle = {
   // marginBottom: 24 / 8,
 };
 
+
 const ModalBoard = ({ open, handleClose }) => {
-  // const [open, setOpen] = useState(false);
-  // const handleOpen = () => setOpen(true);
-  // const handleClose = () => setOpen(false);
+  const [titleInputText, setTitleInputText] = useState('');
+  const [iconIndex, setIconIndex] = useState(null)
+    const [bgImgIndex, setBgImgIndex] = useState(null);
+
+
+  console.log('data =>', titleInputText, iconIndex, bgImgIndex);
 
   const handleSubmit = title => {
-    console.log('Title => ', title);
+    // console.log('Title => ', title);
+    setTitleInputText(title);
     formik.handleReset();
   };
 
@@ -52,11 +60,7 @@ const ModalBoard = ({ open, handleClose }) => {
 
   return (
     <>
-      <ModalLayout
-        title={'New board'}
-        open={open}
-        handleClose={handleClose}
-      >
+      <ModalLayout title={'New board'} open={open} handleClose={handleClose}>
         <FormStyled onSubmit={formik.handleSubmit}>
           <InputStyled
             id="title"
@@ -70,106 +74,35 @@ const ModalBoard = ({ open, handleClose }) => {
             Icons
           </Typography>
           <UlStyled>
-            <li>
-              <TransparentSVG>
-                <use href={sprite + '#icon-Project'} />
-              </TransparentSVG>
-            </li>
-            <li>
-              <TransparentSVG>
-                <use href={sprite + '#icon-star'} />
-              </TransparentSVG>
-            </li>
-            <li>
-              <TransparentSVG>
-                <use href={sprite + '#icon-loading'} />
-              </TransparentSVG>
-            </li>
-            <li>
-              <TransparentSVG>
-                <use href={sprite + '#icon-puzzle'} />
-              </TransparentSVG>
-            </li>
-            <li>
-              <TransparentSVG>
-                <use href={sprite + '#icon-container'} />
-              </TransparentSVG>
-            </li>
-            <li>
-              <TransparentSVG>
-                <use href={sprite + '#icon-lightning'} />
-              </TransparentSVG>
-            </li>
-            <li>
-              <TransparentSVG>
-                <use href={sprite + '#icon-colors'} />
-              </TransparentSVG>
-            </li>
-            <li>
-              <TransparentSVG>
-                <use href={sprite + '#icon-hexagon'} />
-              </TransparentSVG>
-            </li>
+            {arrIcons.map((el, index) => {
+              return (
+                <li key={index + 1} onClick={() => setIconIndex(index + 1)}>
+                  <TransparentSVG>
+                    <use href={sprite + el} />
+                  </TransparentSVG>
+                </li>
+              );
+            })}
           </UlStyled>
 
           <Typography variant="h2" sx={titleStyle}>
             Background
           </Typography>
-          <UlStyled>
-            <LiStyled>
-              <img
-                src="../../assets/images/bcgCompressed/bcg-desktop-1-1.jpg"
-                alt=""
-                // width="24px"
-                // height="24px"
-              />
+          <UlBgStyled>
+            <LiStyled >
+            
             </LiStyled>
-            <LiStyled>
-              <img src="" alt="" />
-            </LiStyled>
-            <LiStyled>
-              <img src="" alt="" />
-            </LiStyled>
-            <LiStyled>
-              <img src="" alt="" />
-            </LiStyled>
-            <LiStyled>
-              <img src="" alt="" />
-            </LiStyled>
-            <LiStyled>
-              <img src="" alt="" />
-            </LiStyled>
-            <LiStyled>
-              <img src="" alt="" />
-            </LiStyled>
-            <LiStyled>
-              <img src="" alt="" />
-            </LiStyled>
-            <LiStyled>
-              <img src="" alt="" />
-            </LiStyled>
-            <LiStyled>
-              <img src="" alt="" />
-            </LiStyled>
-            <LiStyled>
-              <img src="" alt="" />
-            </LiStyled>
-            <LiStyled>
-              <img src="" alt="" />
-            </LiStyled>
-            <LiStyled>
-              <img src="" alt="" />
-            </LiStyled>
-            <LiStyled>
-              <img src="" alt="" />
-            </LiStyled>
-            <LiStyled>
-              <img src="" alt="" />
-            </LiStyled>
-            <LiStyled>
-              <img src="" alt="" />
-            </LiStyled>
-          </UlStyled>
+            {backgroundImg.map((el, index) => {
+              return (
+                <LiStyled
+                  key={index + 1}
+                  onClick={() => setBgImgIndex(index + 1)}
+                >
+                  <img src={el} alt="" width="24px" height="24px" />
+                </LiStyled>
+              );
+            })}
+          </UlBgStyled>
 
           <ButtonWithIcon
             title={'Create'}
