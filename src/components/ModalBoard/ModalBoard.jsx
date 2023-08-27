@@ -1,25 +1,24 @@
-import { ButtonWithIcon } from "../Button";
-import ModalLayout from "../ModalLayout";
-import { useState } from "react";
-import { useFormik } from "formik";
-import { Typography, List, ListItemIcon } from "@mui/material";
+import { useFormik } from 'formik';
+import { Typography } from '@mui/material';
 import {
   FormStyled,
   InputStyled,
   TransparentSVG,
   UlStyled,
   LiStyled,
-} from "./ModalBoard.styled";
-import sprite from "../../assets/images/sprite.svg";
+} from './ModalBoard.styled';
+import sprite from '../../assets/images/sprite.svg';
 
-import * as Yup from "yup";
+import * as Yup from 'yup';
+import { ButtonWithIcon } from 'components/Buttons/Button';
+import ModalLayout from 'components/ModalLayout/ModalLayout';
 
 const titleStyle = {
-  color: "#FFF",
+  color: '#FFF',
   fontSize: 14,
-  fontStyle: "normal",
+  fontStyle: 'normal',
   fontWeight: 500,
-  lineHeight: "normal",
+  lineHeight: 'normal',
   letterSpacing: -0.36,
   // marginBottom: 24 / 8,
 };
@@ -29,24 +28,24 @@ const ModalBoard = ({ open, handleClose }) => {
   // const handleOpen = () => setOpen(true);
   // const handleClose = () => setOpen(false);
 
-  const handleSubmit = (title) => {
-    console.log("Title => ", title);
+  const handleSubmit = title => {
+    console.log('Title => ', title);
     formik.handleReset();
   };
 
   const validationSchema = Yup.object({
     title: Yup.string()
-      .min(2, "Must be more then 2 symbols")
-      .required("Title is required")
+      .min(2, 'Must be more then 2 symbols')
+      .required('Title is required')
       .matches(
         /^(\w*)$/,
-        "Title may contain only letters, apostrophe, dash and spaces."
+        'Title may contain only letters, apostrophe, dash and spaces.'
       ),
     description: Yup.string(),
   });
 
   const formik = useFormik({
-    initialValues: { title: "" },
+    initialValues: { title: '' },
     onSubmit: ({ title }) => handleSubmit(title),
     validationSchema,
   });
@@ -54,8 +53,8 @@ const ModalBoard = ({ open, handleClose }) => {
   return (
     <>
       <ModalLayout
-        title={"New board"}
-        openModal={open}
+        title={'New board'}
+        open={open}
         handleClose={handleClose}
       >
         <FormStyled onSubmit={formik.handleSubmit}>
@@ -73,42 +72,42 @@ const ModalBoard = ({ open, handleClose }) => {
           <UlStyled>
             <li>
               <TransparentSVG>
-                <use href={sprite + "#icon-Project"} />
+                <use href={sprite + '#icon-Project'} />
               </TransparentSVG>
             </li>
             <li>
               <TransparentSVG>
-                <use href={sprite + "#icon-star"} />
+                <use href={sprite + '#icon-star'} />
               </TransparentSVG>
             </li>
             <li>
               <TransparentSVG>
-                <use href={sprite + "#icon-loading"} />
+                <use href={sprite + '#icon-loading'} />
               </TransparentSVG>
             </li>
             <li>
               <TransparentSVG>
-                <use href={sprite + "#icon-puzzle"} />
+                <use href={sprite + '#icon-puzzle'} />
               </TransparentSVG>
             </li>
             <li>
               <TransparentSVG>
-                <use href={sprite + "#icon-container"} />
+                <use href={sprite + '#icon-container'} />
               </TransparentSVG>
             </li>
             <li>
               <TransparentSVG>
-                <use href={sprite + "#icon-lightning"} />
+                <use href={sprite + '#icon-lightning'} />
               </TransparentSVG>
             </li>
             <li>
               <TransparentSVG>
-                <use href={sprite + "#icon-colors"} />
+                <use href={sprite + '#icon-colors'} />
               </TransparentSVG>
             </li>
             <li>
               <TransparentSVG>
-                <use href={sprite + "#icon-hexagon"} />
+                <use href={sprite + '#icon-hexagon'} />
               </TransparentSVG>
             </li>
           </UlStyled>
@@ -173,8 +172,8 @@ const ModalBoard = ({ open, handleClose }) => {
           </UlStyled>
 
           <ButtonWithIcon
-            title={"Create"}
-            type={"submit"}
+            title={'Create'}
+            type={'submit'}
             // onClick={handleClose}
           />
         </FormStyled>

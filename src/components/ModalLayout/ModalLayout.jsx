@@ -1,6 +1,7 @@
 import { Modal, Box, Typography } from '@mui/material';
-import sprite from '../../src/assets/images/sprite.svg';
-import { ButtonClose } from './ModalBoard/ModalBoard.styled';
+import sprite from '../../assets/images/sprite.svg';
+import { ButtonClose } from 'components/ModalBoard/ModalBoard.styled';
+
 // import { useState } from 'react';
 
 const ModalStyles = {
