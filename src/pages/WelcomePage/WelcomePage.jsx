@@ -1,5 +1,5 @@
 import { NavLink } from 'react-router-dom';
-
+import TaskCard from 'components/TaskCard/TaskCard';
 const WelcomePage = () => {
   return (
     <>
@@ -10,6 +10,7 @@ const WelcomePage = () => {
       <button>
         <NavLink to="/auth/login">Log In</NavLink>
       </button>
+      <TaskCard />
     </>
   );
 };
