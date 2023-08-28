@@ -1,7 +1,7 @@
 import React from 'react';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
-import { ComponentWrapper, FormStyled, InputStyled } from './AddCard.styled';
+import { ComponentWrapper, FormStyled, InputStyled } from '../AddCard/AddCard.styled';
 import { ButtonWithIcon } from 'components/Buttons/Button';
 
 const AddColumn = () => {

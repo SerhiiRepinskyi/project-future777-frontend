@@ -41,9 +41,10 @@ export const App = () => {
             path="/home"
             element={/*<PrivateRoute>*/ <HomePage /> /*<PrivateRoute>*/}
           />
-          <Route
-            path="/home/boardName"
-            element={/*<PrivateRoute>*/ <ScreensPage /> /*<PrivateRoute>*/}
+          <Route path="/home/boardName" element={(
+            <Suspense fallback={<Loader />}>
+              <ScreensPage />
+            </Suspense>)}
           />
           <Route path="*" element={<NotFound />} />
         </Routes>
