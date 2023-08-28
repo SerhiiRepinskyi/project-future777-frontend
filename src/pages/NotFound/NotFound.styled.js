@@ -21,7 +21,8 @@ height: 100vh;
 export const Title = styled.h1`
   text-align: center;
   font-size:16px;
-  margin-bottom: 0;
+  margin-top: 20px;
+  margin-bottom:0;
 
 @media screen and (min-width: 768px) {
   font-size: 28px;
@@ -34,7 +35,7 @@ export const Title = styled.h1`
 export const Text = styled.p`
   text-align: center;
   font-size:12px;
-  margin-bottom: 0;
+  margin: 0;
 
 @media screen and (min-width: 768px) {
   font-size: 20px;
