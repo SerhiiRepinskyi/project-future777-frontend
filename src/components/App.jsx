@@ -42,7 +42,7 @@ export const App = () => {
             element={/*<PrivateRoute>*/ <HomePage /> /*<PrivateRoute>*/}
           />
           <Route
-            path="/home/:boardName"
+            path="/home/boardName"
             element={/*<PrivateRoute>*/ <ScreensPage /> /*<PrivateRoute>*/}
           />
           <Route path="*" element={<NotFound />} />
