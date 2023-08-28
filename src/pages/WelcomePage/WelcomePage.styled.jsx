@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
+import WelcomePageImage from 'components/WelcomePageImage/WelcomePageImage';
 
 export const Container = styled.div`
   background: linear-gradient(
@@ -18,7 +19,7 @@ export const Container = styled.div`
   }
 `;
 
-export const WelcomeImage = styled.div`
+export const WelcomeImage = styled(WelcomePageImage)`
   width: 124px;
   height: 124px;
   background-color: black;
