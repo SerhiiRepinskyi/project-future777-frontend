@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useGetCurrentUserQuery } from 'redux/auth/authApi';
 import { setUserRefresh } from 'redux/auth/authSlice';
 import { PrivateRoute } from 'routes/PrivateRoute';
+import GlobalStyles from './GlobalStyles';
 
 const WelcomePage = lazy(() => import('../pages/WelcomePage/WelcomePage'));
 const HomePage = lazy(() => import('../pages/HomePage/HomePage'));
@@ -49,6 +50,7 @@ export const App = () => {
           <Route path="*" element={<NotFound />} />
         </Routes>
       </Suspense>
+      <GlobalStyles/>
     </div>
   );
 };
