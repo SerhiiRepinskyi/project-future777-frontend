@@ -1,4 +1,5 @@
 import { Box, Drawer } from '@mui/material';
+
 import { SidebarContent } from './SidebarContent';
 import { SIDEBARMOBILEWIDTH, SIDEBARWIDTH } from './SidebarCONSTANTS';
 
@@ -18,14 +19,13 @@ export const Sidebar = ({ ...props }) => {
         variant="temporary"
         open={isMobileSidebar}
         onClose={handleSidebarToggle}
-        ModalProps={{
-          keepMounted: true,
-        }}
+        ModalProps={{ keepMounted: true }}
         sx={{
           display: { 0: 'block', 1440: 'none' },
           '& .MuiDrawer-paper': {
             boxSizing: 'border-box',
             boxShadow: 'none',
+            overflowX: 'hidden',
             width: {
               0: 192,
               320: '60vw',
@@ -40,7 +40,7 @@ export const Sidebar = ({ ...props }) => {
           },
         }}
       >
-        <SidebarContent />
+        <SidebarContent isSidebarShown={isMobileSidebar} />
       </Drawer>
 
       <Drawer
@@ -51,13 +51,14 @@ export const Sidebar = ({ ...props }) => {
           '& .MuiDrawer-paper': {
             boxSizing: 'border-box',
             boxShadow: 'none',
+            overflowX: 'hidden',
             width: SIDEBARWIDTH,
             backgroundColor: '#121212',
             p: 3,
           },
         }}
       >
-        <SidebarContent />
+        <SidebarContent isSidebarShown={true} />
       </Drawer>
     </Box>
   );

@@ -79,9 +79,7 @@ const AddCard = () => {
 
         <SubWrapper>
           <SubTitle>Label color</SubTitle>
-          <ColorRadioButtons
-            onColorChange={onColorChange}
-          />
+          <ColorRadioButtons onColorChange={onColorChange} />
         </SubWrapper>
 
         <SubWrapper>
@@ -94,7 +92,7 @@ const AddCard = () => {
           </DateWrapper>
         </SubWrapper>
 
-        <ButtonWithIcon title={'Add'} />
+        <ButtonWithIcon title={'Add'} type={'submit'} />
       </FormStyled>
     </ComponentWrapper>
   );
