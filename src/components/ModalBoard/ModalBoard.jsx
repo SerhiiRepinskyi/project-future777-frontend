@@ -15,6 +15,7 @@ import ModalLayout from 'components/ModalLayout/ModalLayout';
 import { useState } from 'react';
 import { arrIcons } from './data';
 import { backgroundImg } from './data';
+// import { useAddBoardsMutation } from 'redux/boards/boardSlice';
 
 const titleStyle = {
   color: '#FFF',
@@ -30,14 +31,29 @@ const titleStyle = {
 const ModalBoard = ({ open, handleClose }) => {
   const [titleInputText, setTitleInputText] = useState('');
   const [iconIndex, setIconIndex] = useState(null)
-    const [bgImgIndex, setBgImgIndex] = useState(null);
+  const [bgImgIndex, setBgImgIndex] = useState(null);
+  // const [addBoards] = useAddBoardsMutation()
 
 
   console.log('data =>', titleInputText, iconIndex, bgImgIndex);
 
-  const handleSubmit = title => {
-    // console.log('Title => ', title);
+  const handleSubmit = async title => {
     setTitleInputText(title);
+
+    // try {
+    //   await addBoards({
+    //     boardsData: {
+    //       titleInputText,
+    //       iconIndex,
+    //       bgImgIndex,
+    //     },
+    //   })
+      
+    // } catch (error) {
+    //   console.log(error);
+    // }
+
+      // console.log('Title => ', title);
     formik.handleReset();
   };
 

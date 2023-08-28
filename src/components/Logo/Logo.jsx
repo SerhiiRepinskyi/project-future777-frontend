@@ -1,5 +1,4 @@
 import {
-  SidebarLogoLink,
   SidebarLogoIconWrap,
   SidebarLogoIcon,
   SidebarLogoText,
@@ -7,24 +6,22 @@ import {
   StartPageLogoIconWrap,
   StartPageLogoIcon,
   StartPageLogoText,
-} from "./Logo-styled";
-import sprite from '../../assets/images/sprite.svg'
+  SidebarLogoWrap,
+} from './Logo-styled';
+import sprite from '../../assets/images/sprite.svg';
 
-export const SidebarLogo = ({ style }) => {
+export const SidebarLogo = ({ style, isSidebarShown }) => {
   return (
     <>
-      <SidebarLogoLink
-        href="https://serhiirepinskyi.github.io/project-future777-frontend/home"
-        style={style}
-      >
+      <SidebarLogoWrap style={style} isSidebarShown={isSidebarShown}>
         <SidebarLogoIconWrap>
           <SidebarLogoIcon>
-            <use href={sprite + "#icon-logo-lightning"}></use>
+            <use href={sprite + '#icon-logo-lightning'}></use>
           </SidebarLogoIcon>
         </SidebarLogoIconWrap>
 
         <SidebarLogoText>Task Pro</SidebarLogoText>
-      </SidebarLogoLink>
+      </SidebarLogoWrap>
     </>
   );
 };
@@ -39,7 +36,7 @@ export const StartPageLogo = ({ style }) => {
           <StartPageLogoIcon
             sx={{ width: { 0: 15, 768: 18 }, height: { 0: 20, 768: 24 } }}
           >
-            <use href={sprite + "#icon-logo-lightning"}></use>
+            <use href={sprite + '#icon-logo-lightning'}></use>
           </StartPageLogoIcon>
         </StartPageLogoIconWrap>
 

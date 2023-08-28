@@ -104,11 +104,11 @@
                 d="M29.334 4h-26.668l10.668 12.614v8.72l5.334 2.666v-11.386l10.666-12.614z"></path>
         </symbol>
         <symbol id="icon-eye" viewBox="0 0 32 32">
-            <path fill="none" stroke="#fff" stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="4"
+            <path fill="" stroke="" stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="4"
                 stroke-width="2.3111"
                 d="M1.333 16s5.333-10.667 14.667-10.667 14.667 10.667 14.667 10.667-5.333 10.667-14.667 10.667-14.667-10.667-14.667-10.667z">
             </path>
-            <path fill="none" stroke="#fff" stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="4"
+            <path fill="" stroke="" stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="4"
                 stroke-width="2.3111" d="M16 20c2.209 0 4-1.791 4-4s-1.791-4-4-4v0c-2.209 0-4 1.791-4 4s1.791 4 4 4v0z">
             </path>
         </symbol>

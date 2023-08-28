@@ -10,7 +10,7 @@ import {
 import { useState } from 'react';
 import { useRegisterMutation } from 'redux/auth/authApi';
 import { useDispatch } from 'react-redux';
-import { setCredentials } from 'redux/auth/authSlice';
+import { setCredentials, setError } from 'redux/auth/authSlice';
 import Loader from 'components/Loader/Loader';
 export const RegisterForm = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -28,14 +28,13 @@ export const RegisterForm = () => {
         password: values.password,
       });
 
-      console.log(response);
-      if (response.token) {
-        dispatch(setCredentials(response));
+      if (response.data.token) {
+        dispatch(setCredentials(response.data));
       }
 
       resetForm();
     } catch (error) {
-      console.log(error);
+      dispatch(setError(error));
     }
   };
 
