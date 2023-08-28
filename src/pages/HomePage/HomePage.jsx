@@ -1,9 +1,9 @@
-import { Typography, Toolbar, AppBar, Box, IconButton } from '@mui/material';
-import MenuIcon from '@mui/icons-material/Menu';
+import { Typography, Toolbar, AppBar, Box } from '@mui/material';
 
 import { useState } from 'react';
 import { SIDEBARWIDTH } from 'components/Sidebar/SidebarCONSTANTS';
 import { Sidebar } from 'components/Sidebar/Sidebar';
+import { Header } from 'components/Header/Header';
 
 const HomePage = () => {
   const [isMobileSidebar, setIsMobileSidebar] = useState(false);
@@ -21,17 +21,8 @@ const HomePage = () => {
           backgroundColor: '#161616',
         }}
       >
-        <Toolbar sx={{ minHeight: 60, pl: 4, pr: 4 }}>
-          <IconButton
-            color="inherit"
-            aria-label="open sidebar options"
-            edge="start"
-            onClick={handleSidebarToggle}
-            sx={{ width: 32, height: 32, display: { 1440: 'none' } }}
-          >
-            <MenuIcon />
-          </IconButton>
-        </Toolbar>
+        <Header handleSidebarToggle={handleSidebarToggle} />
+        
       </AppBar>
 
       <Sidebar

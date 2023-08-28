@@ -1,7 +1,9 @@
 import * as React from 'react';
 import Button from '@mui/material/Button';
-import AddIcon from '@mui/icons-material/Add';
+
 import { Box, IconButton } from '@mui/material';
+
+import sprite from '../../assets/images/sprite.svg';
 
 // Кнопка для модалок с иконкой
 export const ButtonWithIcon = ({ title, onClick, type }) => {
@@ -43,13 +45,9 @@ export const ButtonWithIcon = ({ title, onClick, type }) => {
           alignItems: 'center',
         }}
       >
-        <AddIcon
-          sx={{
-            color: 'white',
-            width: '14px',
-            height: '14px',
-          }}
-        />
+        <svg width="14" height="14" stroke="#ffffff">
+          <use href={sprite + '#icon-add'}></use>
+        </svg>
       </Box>
       {title}
     </Button>
@@ -129,15 +127,9 @@ export const ButtonAdd = ({ onClick }) => {
           alignItems: 'center',
         }}
       >
-        <AddIcon
-          sx={{
-            background: '#FFFFFF',
-            borderRadius: '6px',
-            color: '#121212',
-            width: '14px',
-            height: '14px',
-          }}
-        />
+        <svg width="14" height="14" stroke="#121212">
+          <use href={sprite + '#icon-add'}></use>
+        </svg>
       </Box>
       Add another column
     </Button>
@@ -148,6 +140,7 @@ export const ButtonAdd = ({ onClick }) => {
 export const ButtonSidebar = ({ onClick }) => {
   return (
     <IconButton
+      type="button"
       onClick={onClick}
       sx={{
         width: '40px',
@@ -160,13 +153,10 @@ export const ButtonSidebar = ({ onClick }) => {
         },
       }}
     >
-      <AddIcon
-        sx={{
-          color: '#121212',
-          width: '20px',
-          height: '20px',
-        }}
-      />
+      <svg width="20" height="20" stroke="#121212">
+        <use href={sprite + '#icon-add'}></use>
+      </svg>
     </IconButton>
   );
 };
+
