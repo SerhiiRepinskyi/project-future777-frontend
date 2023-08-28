@@ -1,3 +1,4 @@
+
 import { StartPageLogo } from 'components/Logo/Logo';
 import {
   Container,

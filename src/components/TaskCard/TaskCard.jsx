@@ -10,6 +10,8 @@ import Menu from '@mui/material/Menu';
 import Box from '@mui/material/Box';
 import sprite from '../../assets/images/sprite.svg';
 import { styled } from '@mui/material';
+import { useSelector } from 'react-redux';
+import { useDeleteCardMutation, useUpdateCardMutation } from './cardsApi';
 import {
   CardStyles,
   TypographyStylesTitle,
@@ -43,17 +45,11 @@ const ListMenuStyles = styled(MenuItem)`
     transition: stroke 0.3s;
   }
 `;
-const TaskCard = ({
-  title,
-  description,
-  priority,
-  deadline,
-  moveCard,
-  deleteCard,
-  editCard,
-}) => {
+function TaskCard({ title, description, priority, deadline, moveCard, id }) {
   const [anchorEl, setAnchorEl] = useState(null);
-
+  const [deleteCard] = useDeleteCardMutation();
+  const [updateCard] = useUpdateCardMutation();
+  const token = useSelector(state => state.auth.token);
   const handleOpenMenu = event => {
     setAnchorEl(event.currentTarget);
   };
@@ -66,6 +62,30 @@ const TaskCard = ({
     handleCloseMenu();
     moveCard(newColumn);
   };
+  const handleDeleteCard = async () => {
+    try {
+      await deleteCard({ id, token });
+    } catch (error) {
+      console.error('Error deleting card:', error);
+    }
+  };
+
+  const handleUpdateCard = async () => {
+    try {
+      const updatedData = {
+        title,
+        description,
+        priority,
+        deadline,
+
+        /* об'єкт з оновленими даними картки */
+      };
+      await updateCard({ id, updatedData, token });
+    } catch (error) {
+      console.error('Error updating card:', error);
+    }
+  };
+
   return (
     <Card sx={CardStyles}>
       <CardContent sx={CardContentStyles}>
@@ -73,7 +93,7 @@ const TaskCard = ({
           Заголовок картки {title}
         </Typography>
         <Typography sx={TypographyStylesDescription} variant="body2">
-          Текст або вміст картки буде тут. {description}
+          Текст або вміст картки буде тут.{description}
         </Typography>
       </CardContent>
       <CardActions>
@@ -90,12 +110,12 @@ const TaskCard = ({
             <use href={sprite + '#icon-active'} />
           </svg>
         </StyledIconButton>
-        <StyledIconButton onClick={editCard} aria-label="edit">
+        <StyledIconButton onClick={handleUpdateCard} aria-label="edit">
           <svg stroke="#fff" strokeOpacity="0.5" width="16" height="16">
             <use href={sprite + '#icon-pencil'} />
           </svg>
         </StyledIconButton>
-        <StyledIconButton onClick={deleteCard} aria-label="remove">
+        <StyledIconButton onClick={handleDeleteCard} aria-label="remove">
           <svg stroke="#fff" strokeOpacity="0.5" width="16" height="16">
             <use href={sprite + '#icon-trash'} />
           </svg>
@@ -135,6 +155,6 @@ const TaskCard = ({
       </Menu>
     </Card>
   );
-};
+}
 
 export default TaskCard;
