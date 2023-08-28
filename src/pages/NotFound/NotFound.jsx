@@ -9,8 +9,8 @@ export const NotFound = () => {
       <Title>Page is not found</Title>
       <Text>
         go to{' '}
-        <Link to="/home" style={{ marginLeft: '4px' }}>
-          HomePage
+        <Link to="/welcome" style={{ marginLeft: '4px' }}>
+        Exit
         </Link>
       </Text>
     </Container>

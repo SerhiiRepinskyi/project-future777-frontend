@@ -4,6 +4,7 @@ import Loader from './Loader/Loader';
 import { useDispatch, useSelector } from 'react-redux';
 import { useGetCurrentUserQuery } from 'redux/auth/authApi';
 import { setUserRefresh } from 'redux/auth/authSlice';
+import { PrivateRoute } from 'routes/PrivateRoute';
 
 const WelcomePage = lazy(() => import('../pages/WelcomePage/WelcomePage'));
 const HomePage = lazy(() => import('../pages/HomePage/HomePage'));
@@ -39,11 +40,11 @@ export const App = () => {
           />
           <Route
             path="/home"
-            element={/*<PrivateRoute>*/ <HomePage /> /*<PrivateRoute>*/}
+            element={ <PrivateRoute> <HomePage /> </PrivateRoute>}
           />
           <Route
             path="/home/:boardName"
-            element={/*<PrivateRoute>*/ <ScreensPage /> /*<PrivateRoute>*/}
+            element={ <PrivateRoute>  <ScreensPage /> </PrivateRoute>}
           />
           <Route path="*" element={<NotFound />} />
         </Routes>
