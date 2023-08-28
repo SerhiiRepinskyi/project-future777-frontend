@@ -2,24 +2,11 @@ import { Box, Drawer } from '@mui/material';
 
 import { SidebarContent } from './SidebarContent';
 import { SIDEBARMOBILEWIDTH, SIDEBARWIDTH } from './SidebarCONSTANTS';
-import { useEffect, useState } from 'react';
 
 export const Sidebar = ({ ...props }) => {
   const { window, isMobileSidebar, handleSidebarToggle } = props;
   const container =
     window !== undefined ? () => window().document.body : undefined;
-
-  const [isDesktopSidebar, setIsDesktopSidebar] = useState(false);
-
-  useEffect(() => {
-    const { clientWidth } = document.documentElement;
-
-    if (clientWidth >= 1440) {
-      setIsDesktopSidebar(true);
-    } else {
-      setIsDesktopSidebar(false);
-    }
-  }, []);
 
   return (
     <Box
@@ -71,7 +58,7 @@ export const Sidebar = ({ ...props }) => {
           },
         }}
       >
-        <SidebarContent isSidebarShown={isDesktopSidebar} />
+        <SidebarContent isSidebarShown={true} />
       </Drawer>
     </Box>
   );
