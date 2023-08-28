@@ -4,8 +4,7 @@ import Loader from './Loader/Loader';
 import { useDispatch, useSelector } from 'react-redux';
 import { useGetCurrentUserQuery } from 'redux/auth/authApi';
 import { setUserRefresh } from 'redux/auth/authSlice';
-// import { PrivateRoute } from 'routes/PrivateRoute';
-// import {RestrictedRoute} from "routes/restrictedRoute";
+
 
 const WelcomePage = lazy(() => import('../pages/WelcomePage/WelcomePage'));
 const HomePage = lazy(() => import('../pages/HomePage/HomePage'));
