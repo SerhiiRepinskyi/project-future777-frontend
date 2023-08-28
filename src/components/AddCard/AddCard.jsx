@@ -12,13 +12,30 @@ import {
 import { useFormik } from 'formik';
 import ColorRadioButtons from 'components/ColorRadioButtons/ColorRadioButtons';
 import { format } from 'date-fns';
-import sprite from '../../assets/images/sprite.svg';
+
 import { ButtonWithIcon } from 'components/Buttons/Button';
 import * as Yup from 'yup';
+import DropDownIcon from 'components/Icons/DropDownIcon/DropDownIcon';
+import Popup from 'components/Popup/Popup';
+import DatePickerCmponent from 'components/DatePicker/DatePicker';
 
 const AddCard = () => {
   const [date, setDate] = useState('');
   const [color, setColor] = useState('grey');
+  const [anchorEl, setAnchorEl] = useState(null);
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
+
+  const handleDateClick = e => {
+    const DatePicked = e.currentTarget;
+    setAnchorEl(e.currentTarget);
+    setIsPopupOpen(true);
+  };
+  const onDateChange = e => {
+    console.log('e :>> ', e);
+    const dateFns = format(e, 'LLLL d');
+    setDate(dateFns);
+    setIsPopupOpen(false);
+  };
 
   const onColorChange = value => {
     console.log('value :>> ', value);
@@ -79,22 +96,25 @@ const AddCard = () => {
 
         <SubWrapper>
           <SubTitle>Label color</SubTitle>
-          <ColorRadioButtons
-            onColorChange={onColorChange}
-          />
+          <ColorRadioButtons onColorChange={onColorChange} />
         </SubWrapper>
 
         <SubWrapper>
           <SubTitle>Deadline</SubTitle>
           <DateWrapper>
             <DateText>{date}</DateText>
-            <svg stroke="#BEDBB0" width="18" height="18">
-              <use href={sprite + '#icon-drop-down'} />
-            </svg>
+            <DropDownIcon onClick={handleDateClick} />
+            <Popup
+              anchorEl={anchorEl}
+              open={isPopupOpen}
+              onClose={handleDateClick}
+            >
+              <DatePickerCmponent onChange={onDateChange} />
+            </Popup>
           </DateWrapper>
         </SubWrapper>
 
-        <ButtonWithIcon title={'Add'} />
+        <ButtonWithIcon title={'Add'} type={'submit'} />
       </FormStyled>
     </ComponentWrapper>
   );
