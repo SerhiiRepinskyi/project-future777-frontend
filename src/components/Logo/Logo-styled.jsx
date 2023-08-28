@@ -15,7 +15,6 @@ const slideToRight = keyframes`
   100% {transform: translateY(0px)}
 `;
 
-
 export const SidebarLogoIcon = styled('svg')({
   fill: '#ffffff',
   width: '12px',
@@ -80,7 +79,7 @@ export const StartPageLogoIcon = styled('svg')({
 
 export const StartPageLogoText = styled('p')({
   margin: '0px',
-  color: '#ffffff',
+  color: '#161616',
   fontFamily: 'Poppins',
   fontWeight: 600,
   letterSpacing: '-0.64px',

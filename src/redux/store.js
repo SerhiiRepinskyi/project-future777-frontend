@@ -1,16 +1,16 @@
-import { configureStore } from "@reduxjs/toolkit";
-import storage from "redux-persist/lib/storage";
-import { persistStore, persistReducer } from "redux-persist";
-import { boardsApi } from "./boards/boardSlice";
+import { configureStore } from '@reduxjs/toolkit';
+import storage from 'redux-persist/lib/storage';
+import { persistStore, persistReducer } from 'redux-persist';
+import { boardsApi } from './boards/boardSlice';
 
-import { authApi } from "./auth/authApi";
-import { authReducer } from "./auth/index";
-import { setupListeners } from "@reduxjs/toolkit/dist/query";
+import { authApi } from './auth/authApi';
+import { authReducer } from './auth/index';
+import { setupListeners } from '@reduxjs/toolkit/dist/query';
 
 const authPersistConfig = {
-  key: "auth",
+  key: 'auth',
   storage,
-  whitelist: ["token"],
+  whitelist: ['token'],
 };
 
 const persistedReducer = persistReducer(authPersistConfig, authReducer);
@@ -22,8 +22,10 @@ export const store = configureStore({
     [boardsApi.reducerPath]: boardsApi.reducer,
   },
 
-  middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware({}).concat([authApi.middleware]),
+  middleware: getDefaultMiddleware =>
+    getDefaultMiddleware({})
+      .concat([authApi.middleware])
+      .concat([boardsApi.middleware]),
 });
 
 setupListeners(store.dispatch);

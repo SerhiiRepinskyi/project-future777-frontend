@@ -44,11 +44,14 @@ export const App = () => {
             element={ /*<PrivateRoute>*/ <HomePage /> /*</PrivateRoute>*/}
           />
 
-          <Route path="/home/boardName" element={
+          <Route
+            path="/home/:boardName"
+            element={ /*<PrivateRoute>*/  <ScreensPage /> /*</PrivateRoute>*/}/>
+
+          <Route path="/home/boardName" element={(
             <Suspense fallback={<Loader />}>
               <ScreensPage />
-            </Suspense>} />
-          
+            </Suspense>)} />
           <Route path="*" element={<NotFound />} />
         </Routes>
 
