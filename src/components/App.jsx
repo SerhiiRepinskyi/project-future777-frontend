@@ -14,6 +14,7 @@ const NotFound = lazy(() => import('../pages/NotFound/NotFound'));
 export const App = () => {
   const token = useSelector(state => state.auth.token);
 
+
   const dispatch = useDispatch();
 
   const { data: currentUser } = useGetCurrentUserQuery({
