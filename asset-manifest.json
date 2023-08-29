@@ -1,10 +1,10 @@
 {
   "files": {
     "main.css": "/project-future777-frontend/static/css/main.d6b35adc.css",
-    "main.js": "/project-future777-frontend/static/js/main.4f9b77ab.js",
-    "static/js/445.8bd60fd6.chunk.js": "/project-future777-frontend/static/js/445.8bd60fd6.chunk.js",
-    "static/js/645.48af3a23.chunk.js": "/project-future777-frontend/static/js/645.48af3a23.chunk.js",
-    "static/js/559.6857eb7f.chunk.js": "/project-future777-frontend/static/js/559.6857eb7f.chunk.js",
+    "main.js": "/project-future777-frontend/static/js/main.f2dcb028.js",
+    "static/js/445.400182f6.chunk.js": "/project-future777-frontend/static/js/445.400182f6.chunk.js",
+    "static/js/645.139308b8.chunk.js": "/project-future777-frontend/static/js/645.139308b8.chunk.js",
+    "static/js/559.222f232b.chunk.js": "/project-future777-frontend/static/js/559.222f232b.chunk.js",
     "static/js/244.7c587970.chunk.js": "/project-future777-frontend/static/js/244.7c587970.chunk.js",
     "static/js/323.6d9bb947.chunk.js": "/project-future777-frontend/static/js/323.6d9bb947.chunk.js",
     "static/js/568.29984e4c.chunk.js": "/project-future777-frontend/static/js/568.29984e4c.chunk.js",
@@ -12,7 +12,7 @@
     "static/js/147.1c2b4466.chunk.js": "/project-future777-frontend/static/js/147.1c2b4466.chunk.js",
     "static/js/295.e17e692b.chunk.js": "/project-future777-frontend/static/js/295.e17e692b.chunk.js",
     "static/js/4.49bd0175.chunk.js": "/project-future777-frontend/static/js/4.49bd0175.chunk.js",
-    "static/js/311.82d1e412.chunk.js": "/project-future777-frontend/static/js/311.82d1e412.chunk.js",
+    "static/js/311.7bd418c1.chunk.js": "/project-future777-frontend/static/js/311.7bd418c1.chunk.js",
     "static/media/Poppins-Regular.otf": "/project-future777-frontend/static/media/Poppins-Regular.dd0aadcb7cace4308e2f.otf",
     "static/media/Poppins-SemiBold.otf": "/project-future777-frontend/static/media/Poppins-SemiBold.52811c4614895f51378b.otf",
     "static/media/Poppins-Medium.otf": "/project-future777-frontend/static/media/Poppins-Medium.1f357d7bde3b8bb7c2c0.otf",
@@ -23,14 +23,14 @@
     "static/media/Poppins-Regular.woff2": "/project-future777-frontend/static/media/Poppins-Regular.5a6c15af2151cfa27e76.woff2",
     "static/media/Poppins-Medium.woff2": "/project-future777-frontend/static/media/Poppins-Medium.a19883c1cd77faacd63d.woff2",
     "static/media/Poppins-SemiBold.woff2": "/project-future777-frontend/static/media/Poppins-SemiBold.810728e0001e1f7c0a71.woff2",
-    "static/media/sprite.svg": "/project-future777-frontend/static/media/sprite.fe82ebcab5c83969e73284802bf189ef.svg",
+    "static/media/sprite.svg": "/project-future777-frontend/static/media/sprite.40f6c55da21d2dfbe1a1c8fecb30e8ef.svg",
     "static/media/404.jpg": "/project-future777-frontend/static/media/404.6f8c26e976232930a64f.jpg",
     "index.html": "/project-future777-frontend/index.html",
     "main.d6b35adc.css.map": "/project-future777-frontend/static/css/main.d6b35adc.css.map",
-    "main.4f9b77ab.js.map": "/project-future777-frontend/static/js/main.4f9b77ab.js.map",
-    "445.8bd60fd6.chunk.js.map": "/project-future777-frontend/static/js/445.8bd60fd6.chunk.js.map",
-    "645.48af3a23.chunk.js.map": "/project-future777-frontend/static/js/645.48af3a23.chunk.js.map",
-    "559.6857eb7f.chunk.js.map": "/project-future777-frontend/static/js/559.6857eb7f.chunk.js.map",
+    "main.f2dcb028.js.map": "/project-future777-frontend/static/js/main.f2dcb028.js.map",
+    "445.400182f6.chunk.js.map": "/project-future777-frontend/static/js/445.400182f6.chunk.js.map",
+    "645.139308b8.chunk.js.map": "/project-future777-frontend/static/js/645.139308b8.chunk.js.map",
+    "559.222f232b.chunk.js.map": "/project-future777-frontend/static/js/559.222f232b.chunk.js.map",
     "244.7c587970.chunk.js.map": "/project-future777-frontend/static/js/244.7c587970.chunk.js.map",
     "323.6d9bb947.chunk.js.map": "/project-future777-frontend/static/js/323.6d9bb947.chunk.js.map",
     "568.29984e4c.chunk.js.map": "/project-future777-frontend/static/js/568.29984e4c.chunk.js.map",
@@ -38,10 +38,10 @@
     "147.1c2b4466.chunk.js.map": "/project-future777-frontend/static/js/147.1c2b4466.chunk.js.map",
     "295.e17e692b.chunk.js.map": "/project-future777-frontend/static/js/295.e17e692b.chunk.js.map",
     "4.49bd0175.chunk.js.map": "/project-future777-frontend/static/js/4.49bd0175.chunk.js.map",
-    "311.82d1e412.chunk.js.map": "/project-future777-frontend/static/js/311.82d1e412.chunk.js.map"
+    "311.7bd418c1.chunk.js.map": "/project-future777-frontend/static/js/311.7bd418c1.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.d6b35adc.css",
-    "static/js/main.4f9b77ab.js"
+    "static/js/main.f2dcb028.js"
   ]
 }
