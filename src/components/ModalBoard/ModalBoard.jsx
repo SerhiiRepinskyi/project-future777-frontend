@@ -39,7 +39,7 @@ const ModalBoard = ({ open, handleClose }) => {
   const [addBoards] = useAddBoardsMutation();
   console.log(token);
 
-  // console.log('data =>', titleInputText, iconIndex, bgImgIndex);
+  // console.log('data =>', iconIndex, bgImgIndex);
 
   const handleSubmit = async (title) => {
     console.log("Title => ", title, iconIndex, bgImgIndex);
@@ -97,7 +97,7 @@ const ModalBoard = ({ open, handleClose }) => {
               return (
                 <LiIconsStyled
                   key={index + 1}
-                  onCLiIconsStyledck={() => setIconIndex(index + 1)}
+                  onClick={() => setIconIndex(index + 1)}
                 >
                   <TransparentSVG>
                     <use href={sprite + el} />
