@@ -120,7 +120,7 @@ export const Icon = styled.svg`
   width: 18px;
   height: 18px;
   stroke: #fff;
-  fill:none;
+  fill: none;
   display: block;
 `;
 export const IconBtn = styled(({ active, ...rest }) => <button {...rest} />)`
@@ -176,7 +176,8 @@ export const Button = styled.button`
 `;
 export const Error = styled(ErrorMessage)`
   font-family: 'Roboto';
-  color: red;
+  opacity: 0.5;
+  color: #fff;
   font-size: 14px;
   margin-top: 5px;
   padding-left: 5px;
