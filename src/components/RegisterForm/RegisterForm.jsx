@@ -12,6 +12,7 @@ import { useRegisterMutation } from 'redux/auth/authApi';
 import { useDispatch } from 'react-redux';
 import { setCredentials, setError } from 'redux/auth/authSlice';
 import Loader from 'components/Loader/Loader';
+import { useNavigate } from 'react-router-dom';
 export const RegisterForm = () => {
   const [showPassword, setShowPassword] = useState(false);
   const togglePassword = () => {
@@ -20,6 +21,7 @@ export const RegisterForm = () => {
 
   const dispatch = useDispatch();
   const [register, { isLoading }] = useRegisterMutation();
+  const navigate = useNavigate();
 
   const handleSubmit = async (values, { resetForm }) => {
     try {
@@ -28,11 +30,10 @@ export const RegisterForm = () => {
         email: values.email,
         password: values.password,
       }).unwrap();
-      console.log(response)
-      
 
       if (response && response.token) {
         dispatch(setCredentials(response));
+         navigate('/home');
       }
 
       resetForm();
@@ -41,7 +42,7 @@ export const RegisterForm = () => {
         console.log('Email is already in use');
       } else if (error.status === 400) {
         console.log('Name field must be filled in');
-         dispatch(setError(error));
+        dispatch(setError(error));
       } else {
         console.log('An error occurred:', error.data.message);
         dispatch(setError(error));
