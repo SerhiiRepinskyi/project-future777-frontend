@@ -1,15 +1,19 @@
-import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import baseQuery from '../API_Helper/APIHelper'
+import { createApi } from '@reduxjs/toolkit/query/react';
+import  baseQuery  from '../API_Helper/APIHelper';
+
+
+
 
 export const boardsAPI = createApi({
     reducerPath: 'api',
-    baseQuery: fetchBaseQuery({ baseQuery }),
+    baseQuery,
     endpoints: (builder) => ({
         getBoards: builder.query({
             query: () => ({
                 url: "boards",
             }),
             providesTags: ["boards"],
+        
         }),
 
 

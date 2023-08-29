@@ -1,5 +1,5 @@
 import { renderHook, act } from '@testing-library/react-hooks';
-import { API } from '../API'; 
+import { API } from '../../../API'; 
 
 describe('useRegisterUserMutation', () => {
   it('registers a user successfully', async () => {

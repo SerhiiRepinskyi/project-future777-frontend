@@ -16,7 +16,7 @@ import { useRegisterUserMutation,
   useAddCardMutation,
   useUpdateCardByIdMutation,
   useDeleteCardByIdMutation,
-  useUpdateCardColumnByIdMutation } from './API_Component/index';
+  useUpdateCardColumnByIdMutation } from './src/Services/API_Component/index';
 
 export const API = {
    useRegisterUserMutation,

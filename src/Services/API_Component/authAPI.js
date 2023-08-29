@@ -1,9 +1,15 @@
-import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import baseQuery from '../API_Helper/APIHelper'
+import { createApi} from '@reduxjs/toolkit/query/react';
+import  baseQuery from '../API_Helper/APIHelper';
+
+
+// const token = selectToken();
+// const baseQuery = createBaseQueryWithToken(token);
+// console.log(token);
+
 
 export const authAPI = createApi({
     reducerPath: 'api',
-    baseQuery: fetchBaseQuery({ baseQuery }),
+    baseQuery: baseQuery,
     endpoints: (builder) => ({
         registerUser: builder.mutation({
             query: credentials => ({
