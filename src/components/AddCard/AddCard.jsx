@@ -26,7 +26,6 @@ const AddCard = () => {
   const [isPopupOpen, setIsPopupOpen] = useState(false);
 
   const handleDateClick = e => {
-    const DatePicked = e.currentTarget;
     setAnchorEl(e.currentTarget);
     setIsPopupOpen(true);
   };
