@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Box } from '@mui/material';
 import { SIDEBARWIDTH } from 'components/Sidebar/SidebarCONSTANTS';
 import { ButtonAdd } from 'components/Buttons/Button';
-import ModalLayout from '../../components/ModalLayout/ModalLayout'
+import ModalLayout from '../../components/ModalLayout/ModalLayout';
 import AddColumn from 'components/AddColumn/AddColumn';
 // import sprite from '../../assets/images/sprite.svg';
 
@@ -27,14 +27,13 @@ const ScreensPage = () => {
     <Box
       component="main"
       sx={{
-        flexGrow: 1,
-        p: 3,
-        width: {
-          1440: `calc(100vw - ${SIDEBARWIDTH}px)`,
-          height: '100vh',
-          backgroundColor: '#2e2e2e',
-        },
+        pt: {0: 9.25, 768: 11, 1440: 9.75},
+        pb: {0: 3, 768: 4, 1440: 1},
+        pl: {0: 2.5, 768: 4, 1440: 3},
+        pr: {0: 2.5, 768: 4, 1440: 3},
+        width: { 0: '100vw', 1440: `calc(100vw - ${SIDEBARWIDTH}px)` },
         height: '100vh',
+        backgroundColor: '#2e2e2e',
       }}
     >
       {/* <Typography
