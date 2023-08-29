@@ -58,7 +58,7 @@ const HomePage = () => {
           lorem. Velit sed ullamcorper morbi tincidunt. Lorem donec massa sapien
           faucibus et molestie ac.
         </Typography> */}
-        <ScreensPage/>
+        <ScreensPage />
       </Box>
     </Box>
   );
