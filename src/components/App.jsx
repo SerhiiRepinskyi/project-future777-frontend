@@ -1,5 +1,7 @@
 import { Suspense, lazy, useEffect } from 'react';
 import { Route, Routes, Navigate } from 'react-router-dom';
+import { LocalizationProvider } from '@mui/x-date-pickers';
+import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import Loader from './Loader/Loader';
 import { useDispatch, useSelector } from 'react-redux';
 import { useGetCurrentUserQuery } from 'redux/auth/authApi';
@@ -27,35 +29,39 @@ export const App = () => {
     if (token && currentUser) {
       dispatch(setUserRefresh(currentUser));
     }
-  }, [ token, currentUser, dispatch]);
+  }, [token, currentUser, dispatch]);
 
   return (
     <div>
-      <Suspense fallback={<Loader />}>
-        <Routes>
-          {/* default route to /welcome */}
-          <Route path="/" element={<Navigate to="/welcome" />} />
-          <Route path="/welcome" element={<WelcomePage />} />
-          <Route
-            path="/auth/:id"
-            element={/*<RestrictedRoute>*/ <AuthPage /> /*<RestrictedRoute>*/}
-          />
-          <Route
-            path="/home"
-            element={ /*<PrivateRoute>*/ <HomePage /> /*</PrivateRoute>*/}
-          />
+      <LocalizationProvider dateAdapter={AdapterDateFns}>
+        <Suspense fallback={<Loader />}>
+          <Routes>
+            {/* default route to /welcome */}
+            <Route path="/" element={<Navigate to="/welcome" />} />
+            <Route path="/welcome" element={<WelcomePage />} />
+            <Route
+              path="/auth/:id"
+              element={/*<RestrictedRoute>*/ <AuthPage /> /*<RestrictedRoute>*/}
+            />
+            <Route
+              path="/home"
+              element={/*<PrivateRoute>*/ <HomePage /> /*</PrivateRoute>*/}
+            />
 
-          <Route path="/home/boardName" element={(
-            <Suspense fallback={<Loader />}>
-              <ScreensPage />
-            </Suspense>)}/>
+            <Route
+              path="/home/boardName"
+              element={
+                <Suspense fallback={<Loader />}>
+                  <ScreensPage />
+                </Suspense>
+              }
+            />
 
-         
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-
-      </Suspense>
-      <GlobalStyles/>
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </Suspense>
+        <GlobalStyles />
+      </LocalizationProvider>
     </div>
   );
 };

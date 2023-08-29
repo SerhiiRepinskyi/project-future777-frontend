@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Typography, Toolbar, Box, IconButton } from '@mui/material';
+import { Typography, Box, IconButton } from '@mui/material';
 import { SIDEBARWIDTH } from 'components/Sidebar/SidebarCONSTANTS';
 import { ButtonAdd } from 'components/Buttons/Button';
 import ModalLayout from '../../components/ModalLayout/ModalLayout'
@@ -8,7 +8,6 @@ import sprite from '../../assets/images/sprite.svg';
 
 import Column from '../../components/Column/Column';
 import styled from '@emotion/styled';
-import AddCard from '../../components/AddCard/AddCard';
 
 const ColumnsWrapper = styled.div`
   display: grid;

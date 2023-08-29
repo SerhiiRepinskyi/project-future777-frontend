@@ -1,4 +1,4 @@
-import { Typography, Toolbar, AppBar, Box } from '@mui/material';
+import { Toolbar, AppBar, Box } from '@mui/material';
 
 import { useState } from 'react';
 import { SIDEBARWIDTH } from 'components/Sidebar/SidebarCONSTANTS';
