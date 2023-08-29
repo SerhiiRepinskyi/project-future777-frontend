@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import { Typography, Box, IconButton } from '@mui/material';
+import { Box } from '@mui/material';
 import { SIDEBARWIDTH } from 'components/Sidebar/SidebarCONSTANTS';
 import { ButtonAdd } from 'components/Buttons/Button';
 import ModalLayout from '../../components/ModalLayout/ModalLayout'
 import AddColumn from 'components/AddColumn/AddColumn';
-import sprite from '../../assets/images/sprite.svg';
+// import sprite from '../../assets/images/sprite.svg';
 
 import Column from '../../components/Column/Column';
 import styled from '@emotion/styled';
