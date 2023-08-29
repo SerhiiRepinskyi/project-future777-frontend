@@ -11,7 +11,7 @@ import Box from '@mui/material/Box';
 import sprite from '../../assets/images/sprite.svg';
 import { styled } from '@mui/material';
 import { useSelector } from 'react-redux';
-import { useDeleteCardMutation, useUpdateCardMutation } from './cardsApi';
+import { useDeleteCardMutation, useUpdateCardMutation } from '../../redux/tasks/cardSlice';
 import {
   CardStyles,
   TypographyStylesTitle,

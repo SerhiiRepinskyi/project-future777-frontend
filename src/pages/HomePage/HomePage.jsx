@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { SIDEBARWIDTH } from 'components/Sidebar/SidebarCONSTANTS';
 import { Sidebar } from 'components/Sidebar/Sidebar';
 import { Header } from 'components/Header/Header';
+import ScreensPage from 'pages/ScreensPage';
 
 const HomePage = () => {
   const [isMobileSidebar, setIsMobileSidebar] = useState(false);
@@ -43,7 +44,7 @@ const HomePage = () => {
         }}
       >
         <Toolbar />
-        <Typography paragraph sx={{ color: '#ffffff' }}>
+        {/* <Typography paragraph sx={{ color: '#ffffff' }}>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
           eiusmod tempor incididunt ut labore et dolore magna aliqua. Rhoncus
           dolor purus non enim praesent elementum facilisis leo vel. Risus at
@@ -57,7 +58,8 @@ const HomePage = () => {
           vivamus at augue. At augue eget arcu dictum varius duis at consectetur
           lorem. Velit sed ullamcorper morbi tincidunt. Lorem donec massa sapien
           faucibus et molestie ac.
-        </Typography>
+        </Typography> */}
+        <ScreensPage/>
       </Box>
     </Box>
   );
