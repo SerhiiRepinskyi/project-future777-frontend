@@ -7,7 +7,9 @@ import {
   UlStyled,
   LiStyled,
   UlBgStyled,
-} from "./ModalBoard.styled";
+  ImgStyled,
+  LiIconsStyled,
+} from './ModalBoard.styled';
 import sprite from "../../assets/images/sprite.svg";
 import * as Yup from "yup";
 import { ButtonWithIcon } from "components/Buttons/Button";
@@ -93,11 +95,14 @@ const ModalBoard = ({ open, handleClose }) => {
           <UlStyled>
             {arrIcons.map((el, index) => {
               return (
-                <li key={index + 1} onClick={() => setIconIndex(index + 1)}>
+                <LiIconsStyled
+                  key={index + 1}
+                  onCLiIconsStyledck={() => setIconIndex(index + 1)}
+                >
                   <TransparentSVG>
                     <use href={sprite + el} />
                   </TransparentSVG>
-                </li>
+                </LiIconsStyled>
               );
             })}
           </UlStyled>
@@ -113,7 +118,10 @@ const ModalBoard = ({ open, handleClose }) => {
                   key={index + 1}
                   onClick={() => setBgImgIndex(index + 1)}
                 >
-                  <img src={el} alt="" width="24px" height="24px" />
+                  <ImgStyled
+                    src={el}
+                    alt=""
+                  />
                 </LiStyled>
               );
             })}
