@@ -13,8 +13,6 @@ const AddColumn = () => {
         /^(\w*)$/,
         'Title may contain only letters, apostrophe, dash and spaces.'
       ),
-    description: Yup.string(),
-    color: Yup.string(),
   });
 
   const formik = useFormik({

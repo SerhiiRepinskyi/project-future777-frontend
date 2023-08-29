@@ -22,7 +22,6 @@ const HomePage = () => {
         }}
       >
         <Header handleSidebarToggle={handleSidebarToggle} />
-        
       </AppBar>
 
       <Sidebar
