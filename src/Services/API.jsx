@@ -1,80 +1,35 @@
-import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+import { API as authAPI } from './API_Component/authAPI';
+import { API as userAPI } from './API_Component/userAPI';
+import { API as boardsAPI } from './API_Component/boardsAPI';
+import { API as columnsAPI } from './API_Component/columnsAPI';
+import { API as cardsAPI } from './API_Component/cardsAPI';
 
-const baseQuery = fetchBaseQuery({
-  baseUrl: 'https://project-future777-backend.onrender.com/api/',
-  prepareHeaders: (headers, { getState }) => {
-    const token = getState().auth.token;
-    if (token) {
-      headers.set('authorization', `Bearer ${token}`);
-    }
-    return headers;
-  },
-});
 
-export const api = createApi({
-  reducerPath: 'api',
-  baseQuery: fetchBaseQuery({baseQuery}),
-  endpoints: (builder) => ({
-    redisterUser: builder.mutation({
-      query: (name, email, password) => ({
-        url: "auth/register",
-        method: "POST",
-        body: {
-          name: name,
-          email: email,
-          password: password
-        },
-        skipToken:true,
-      })
-    }),
-  
-        loginUser: builder.mutation({
-            query:( email, password) => ({
-                url: "auth/login",
-                method: "POST",
-                body: {
-                    email: email,
-                    password: password
-                },    
-          })
-        }),
+// список всіх ендпонтів які можна використовувати:
+//  useRegisterUserMutation,
+//   useLoginUserMutation,
+//   useLogoutUserMutation,
+//   useCurrentUserQuery,
+//   useThemeUserMutation,
+//   useAvatarUserMutation,
+//   useHelpUserMutation,
+//   useGetBoardsQuery,
+//   useGetBoardByIdQuery,
+//   useAddBoardsMutation,
+//   useDeleteBoardByIdMutation,
+//   useUpdateBoardByIdMutation,
+//   useAddColumnMutation,
+//   useUpdateColumnByIdMutation,
+//   useDeleteColumnByIdMutation,
+//   useAddCardMutation,
+//   useUpdateCardByIdMutation,
+//   useDeleteCardByIdMutation,
+//   useUpdateCardColumnByIdMutation/------
 
-        logoutUser:builder.mutation({
-            query:(token) => ({
-                url: "auth/logout",
-                method: "POST",
-            headers: {
-              authorization: token
-            }
-          })
-        }),
-
-      currentUser: builder.query({
-        query: (token) => ({
-          url: "user/current",
-          headers: {
-              authorization: token
-            }
-          })
-      }),
-
-      themeUser:builder.mutation({
-            query:(theme, token) => ({
-                url: "user/theme",
-                method: "PATCH",
-            headers: {
-              authorization: token
-          },
-            body: {
-              theme : theme,
-            }
-          })
-        }),
-      
-
-    
-
-  }),
-});
-
-export const { } = api;
+export const API = {
+  ...authAPI,
+  ...userAPI,
+  ...boardsAPI,
+  ...columnsAPI,
+  ...cardsAPI,
+};
