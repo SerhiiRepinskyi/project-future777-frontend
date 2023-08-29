@@ -42,25 +42,27 @@ export const BoardItemTitleWrap = styled('div')({
   whiteSpace: 'nowrap',
 });
 
-export const BoardItemTitle = styled('p')(({ titleWidth, current, width }) => {
-  const slideText = keyframes`
+export const BoardItemTitle = styled('p')(
+  ({ titleWidth, titleWrapWidth, current }) => {
+    const slideText = keyframes`
     0% { transform: translateX(0px); }
-    100% { transform: translateX(${145 - titleWidth}px); }
+    100% { transform: translateX(${titleWrapWidth - titleWidth}px); }
   `;
 
-  return {
-    margin: '0px',
-    color: '#ffffff',
-    fontFamily: 'Poppins',
-    fontSize: '14px',
-    fontStyle: 'normal',
-    fontWeight: '500',
-    letterSpacing: '-0.28px',
+    return {
+      margin: '0px',
+      color: '#ffffff',
+      fontFamily: 'Poppins',
+      fontSize: '14px',
+      fontStyle: 'normal',
+      fontWeight: '500',
+      letterSpacing: '-0.28px',
 
-    animationName: titleWidth >= 150 && current ? slideText : 'none',
-    animationDuration: `${titleWidth * 30}ms`,
-    animationTimingFunction: 'linear',
-    animationIterationCount: 'infinite',
-    animationDirection: 'alternate',
-  };
-});
+      animationName: titleWidth >= titleWrapWidth && current ? slideText : 'none',
+      animationDuration: `${titleWidth * 30}ms`,
+      animationTimingFunction: 'linear',
+      animationIterationCount: 'infinite',
+      animationDirection: 'alternate',
+    };
+  }
+);
