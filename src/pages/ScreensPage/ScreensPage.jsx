@@ -8,6 +8,7 @@ import sprite from '../../assets/images/sprite.svg';
 
 import Column from '../../components/Column/Column';
 import styled from '@emotion/styled';
+import { HeaderDashboard } from 'components/HeaderDashboard/HeaderDashboard';
 
 const ColumnsWrapper = styled.div`
   display: grid;
@@ -36,7 +37,7 @@ const ScreensPage = () => {
         height: '100vh',
       }}
     >
-      <Typography
+      {/* <Typography
         paragraph
         sx={{
           color: '#ffffff',
@@ -71,7 +72,9 @@ const ScreensPage = () => {
           <use href={sprite + '#icon-filter'} />
         </svg>
         Filter
-      </IconButton>
+      </IconButton> */}
+      <HeaderDashboard />
+
       <ColumnsWrapper>
         <Column />
         <ButtonAdd onClick={openAddColumn}></ButtonAdd>
