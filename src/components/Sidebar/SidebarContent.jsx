@@ -15,7 +15,7 @@ import sprite from '../../assets/images/sprite.svg';
 
 import { useState } from 'react';
 import { SidebarLogo } from 'components/Logo/Logo';
-import LogoutBtn from 'components/LogoutBtn/LogoutBtn';
+import LogoutBtn from 'components/logoutBtn/logoutBtn';
 import { ButtonSidebar } from 'components/Buttons/Button';
 import ModalBoard from 'components/ModalBoard/ModalBoard';
 import { SidebarBoardList } from './SidebarBoardList';
