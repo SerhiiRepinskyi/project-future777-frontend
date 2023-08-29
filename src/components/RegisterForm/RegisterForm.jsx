@@ -17,6 +17,7 @@ export const RegisterForm = () => {
   const togglePassword = () => {
     setShowPassword(!showPassword);
   };
+
   const dispatch = useDispatch();
   const [register, { isLoading }] = useRegisterMutation();
 
@@ -26,45 +27,57 @@ export const RegisterForm = () => {
         name: values.name,
         email: values.email,
         password: values.password,
-      });
+      }).unwrap();
+      console.log(response)
+      
 
-      if (response.data.token) {
-        dispatch(setCredentials(response.data));
+      if (response && response.token) {
+        dispatch(setCredentials(response));
       }
 
       resetForm();
     } catch (error) {
-      dispatch(setError(error));
+      if (error.status === 409) {
+        console.log('Email is already in use');
+      } else if (error.status === 400) {
+        console.log('Name field must be filled in');
+         dispatch(setError(error));
+      } else {
+        console.log('An error occurred:', error.data.message);
+        dispatch(setError(error));
+      }
     }
   };
 
   return (
-    <Container>
-      <FormWrap>
-        <Navigation>
-          <StyledLink to="/auth/register">Registration</StyledLink>
-          <StyledLink to="/auth/login">Log In</StyledLink>
-        </Navigation>
-        <Formik
-          initialValues={{
-            name: '',
-            email: '',
-            password: '',
-          }}
-          validationSchema={validationSchema}
-          onSubmit={handleSubmit}
-        >
-          {() => (
-            <>
-              {isLoading && <Loader />}
-              <RegisterFormContext
-                showPassword={showPassword}
-                togglePassword={togglePassword}
-              />
-            </>
-          )}
-        </Formik>
-      </FormWrap>
-    </Container>
+    <>
+      <Container>
+        <FormWrap>
+          <Navigation>
+            <StyledLink to="/auth/register">Registration</StyledLink>
+            <StyledLink to="/auth/login">Log In</StyledLink>
+          </Navigation>
+          <Formik
+            initialValues={{
+              name: '',
+              email: '',
+              password: '',
+            }}
+            validationSchema={validationSchema}
+            onSubmit={handleSubmit}
+          >
+            {() => (
+              <>
+                {isLoading && <Loader />}
+                <RegisterFormContext
+                  showPassword={showPassword}
+                  togglePassword={togglePassword}
+                />
+              </>
+            )}
+          </Formik>
+        </FormWrap>
+      </Container>
+    </>
   );
 };
