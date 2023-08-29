@@ -16,7 +16,6 @@ const slideToDown = keyframes`
   100% {transform: translateY(0px)}
 `;
 
-
 export const Subtitle = styled('p')(({ isSidebarShown }) => ({
   margin: '0px',
   color: 'rgba(255, 255, 255, 0.5)',
@@ -74,7 +73,7 @@ export const HelpBox = styled('div')({
   overflow: 'hidden',
 });
 
-export const Image = styled('img')(({ isSidebarShown })=> ({
+export const Image = styled('img')(({ isSidebarShown }) => ({
   width: '54px',
   height: '78px',
   marginBottom: '14px',
@@ -103,7 +102,7 @@ export const HelpText = styled('p')(({ isSidebarShown }) => ({
   animationFillMode: 'forwards',
 }));
 
-export const HelpButton = styled('button')(({ isSidebarShown })=>({
+export const HelpButton = styled('button')(({ isSidebarShown }) => ({
   padding: 0,
   width: '94px',
   height: '20px',
