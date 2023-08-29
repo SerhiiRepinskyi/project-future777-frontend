@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import {baseQuery} from '../API_Helper/APIHelper'
+import baseQuery from '../API_Helper/APIHelper'
 
 export const authAPI = createApi({
     reducerPath: 'api',
