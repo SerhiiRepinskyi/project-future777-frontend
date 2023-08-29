@@ -34,12 +34,9 @@ const titleStyle = {
 const ModalBoard = ({ open, handleClose }) => {
   const token = useSelector((state) => state.auth.token);
   // const [titleInputText, setTitleInputText] = useState('');
-  const [iconIndex, setIconIndex] = useState(null);
-  const [bgImgIndex, setBgImgIndex] = useState(null);
+  const [iconIndex, setIconIndex] = useState(0);
+  const [bgImgIndex, setBgImgIndex] = useState(0);
   const [addBoards] = useAddBoardsMutation();
-  console.log(token);
-
-  // console.log('data =>', iconIndex, bgImgIndex);
 
   const handleSubmit = async (title) => {
     console.log("Title => ", title, iconIndex, bgImgIndex);
