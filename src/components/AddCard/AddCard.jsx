@@ -22,13 +22,14 @@ import DatePickerCmponent from 'components/DatePicker/DatePicker';
 const AddCard = () => {
   const [date, setDate] = useState('');
   const [color, setColor] = useState('grey');
-  const [anchorEl, setAnchorEl] = useState(null);
+  const [anchorEl, setAnchorEl] = useState(<DropDownIcon />);
   const [isPopupOpen, setIsPopupOpen] = useState(false);
 
   const handleDateClick = e => {
-    const DatePicked = e.currentTarget;
+    
+      console.log('e.currentTarget :>> ', e.currentTarget);
     setAnchorEl(e.currentTarget);
-    setIsPopupOpen(true);
+    setIsPopupOpen(!isPopupOpen);
   };
   const onDateChange = e => {
     console.log('e :>> ', e);

@@ -1,13 +1,18 @@
-
 import * as yup from 'yup';
 export const validationSchema = yup.object().shape({
   name: yup
     .string()
     .min(2, 'Name must be at least 2 characters')
     .max(32, 'Name must be at most 32 characters')
-    .matches(/^[a-zA-Z0-9@$!%*?& -]*$/, 'Only Latin letters are allowed')
-    .trim()
-    .required('Name is required'),
+    .matches(/^[a-zA-Z0-9@$!%*?& -]*$/, 'Only Latin letters are allowed'),
+    // .trim(),
+    // .test('notEmpty', 'Name is required', value => {
+    //   if (value && value.trim() !== '') {
+    //     return true
+    //   }
+    //   return false
+    // }),
+
   email: yup
     .string()
     .trim()

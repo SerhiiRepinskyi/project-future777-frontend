@@ -1,4 +1,3 @@
-
 import { useFormikContext } from 'formik';
 
 import Sprite from '../../assets/images/sprite.svg';
@@ -13,7 +12,10 @@ import {
   Error,
 } from './RegisterForm.styled';
 
-export const RegisterFormContext = ({ showPassword, togglePassword }) => {
+export const RegisterFormContext = ({
+  showPassword,
+  togglePassword,
+}) => {
   const {
     values,
     handleChange,
@@ -39,7 +41,9 @@ export const RegisterFormContext = ({ showPassword, togglePassword }) => {
           pattern="^[a-zA-Z0-9@$!%*?& -]*$"
           title="Only letters, digits, and certain symbols are allowed."
         />
-        {touched.name && errors.name && <Error>{errors.name}</Error>}
+        {touched.name && errors.name && (
+          <Error>{errors.name}</Error>
+        )}
         <Error name="name" component="div" />
       </Label>
 

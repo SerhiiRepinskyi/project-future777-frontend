@@ -8,6 +8,8 @@ export const Sidebar = ({ ...props }) => {
   const container =
     window !== undefined ? () => window().document.body : undefined;
 
+
+
   return (
     <Box
       component="nav"
@@ -34,8 +36,6 @@ export const Sidebar = ({ ...props }) => {
             },
             backgroundColor: '#121212',
             pb: 3,
-            pl: { 0: 1.75, 768: 3 },
-            pr: { 0: 1.75, 768: 3 },
             pt: { 0: 1.75, 768: 3 },
           },
         }}
@@ -54,7 +54,8 @@ export const Sidebar = ({ ...props }) => {
             overflowX: 'hidden',
             width: SIDEBARWIDTH,
             backgroundColor: '#121212',
-            p: 3,
+            pb: 3,
+            pt: 3,
           },
         }}
       >

@@ -13,15 +13,14 @@ import { persistor, store } from 'redux/store';
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <Provider store={store}>
-    <PersistGate loading={null} persistor={persistor}>
-    <ThemeProvider theme={breakpointsTheme}>
-      <CssBaseline />
-      <BrowserRouter basename="/project-future777-frontend">
-        <App />
-      </BrowserRouter>
-    </ThemeProvider>
-    </PersistGate>
+      <PersistGate loading={null} persistor={persistor}>
+        <ThemeProvider theme={breakpointsTheme}>
+          <CssBaseline />
+          <BrowserRouter basename="/project-future777-frontend">
+            <App />
+          </BrowserRouter>
+        </ThemeProvider>
+      </PersistGate>
     </Provider>
   </React.StrictMode>
 );
-

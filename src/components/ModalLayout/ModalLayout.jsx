@@ -13,7 +13,7 @@ const ModalStyles = {
   borderRadius: 8 / 4,
   border: '1px solid rgba(190, 219, 176, 0.50)',
   background: '#151515',
-  padding: 14 / 8,
+  padding: 24/8,
 };
 
 const titleStyles = {
@@ -44,7 +44,7 @@ const ModalLayout = ({ title, open, handleClose, children }) => {
             {title}
           </Typography>
           <ButtonClose type="button" onClick={handleClose}>
-            <svg stroke="#BEDBB0" width="18" height="18">
+            <svg style={{ stroke: '#BEDBB0' }} width="18" height="18">
               <use href={sprite + '#icon-x-close'} />
             </svg>
           </ButtonClose>

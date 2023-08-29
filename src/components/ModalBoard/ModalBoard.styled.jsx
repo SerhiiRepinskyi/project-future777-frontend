@@ -1,11 +1,19 @@
-import styled from "@emotion/styled";
+import styled from '@emotion/styled';
 
 export const ButtonClose = styled.button`
   position: absolute;
-  right: 0;
-  top: 14px;
+  padding: 1px;
+  right: 10px;
+  top: 10px;
   background-color: transparent;
-  border: none;
+  border: transparent;
+  cursor: pointer;
+
+  &:hover,
+  &:focus {
+    border: 1px solid #fff;
+    border-radius: 4px;
+  }
 `;
 
 export const FormStyled = styled.form`
@@ -36,7 +44,16 @@ export const InputStyled = styled.input`
 export const TransparentSVG = styled.svg`
   width: 18px;
   height: 18px;
-  }`;
+  stroke: rgba(255, 255, 255, 0.5);
+  cursor: pointer;
+
+  &:hover,
+  &:focus {
+    // width: 24px;
+    // height: 24px;
+    stroke: #bedbb0;
+  }
+`;
 
 export const UlStyled = styled.ul`
   display: flex;
@@ -45,23 +62,43 @@ export const UlStyled = styled.ul`
   margin: 0;
   padding: 0;
   list-style: none;
-   margin-bottom: 14px;
- 
-  }`;
+  margin-bottom: 14px;
+`;
 
-  export const UlBgStyled = styled.ul`
+export const UlBgStyled = styled.ul`
   display: flex;
   flex-wrap: wrap;
   gap: 4px;
   margin: 0;
   padding: 0;
   list-style: none;
-   margin-bottom: 14px;
- width: 270px;
-  }`;
+  margin-bottom: 14px;
+  width: 270px;
+`;
 
-  export const LiStyled = styled.li`
-  display: block;
+export const LiStyled = styled.li`
+  display: flex;
   width: 28px;
   height: 28px;
-  }`;
+  border-radius: 14px;
+`;
+
+export const ImgStyled = styled.img`
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 5px;
+  cursor: pointer;
+
+  &:hover,
+  &:focus {
+    border: 1px solid #bedbb0;
+  }
+`;
+
+export const LiIconsStyled = styled.li`
+  display: flex;
+  width: 18px;
+  height: 18px;
+`;

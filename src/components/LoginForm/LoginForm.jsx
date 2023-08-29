@@ -10,10 +10,12 @@ import {
 import { useState } from 'react';
 import { useLogInMutation } from 'redux/auth/authApi';
 import { useDispatch } from 'react-redux';
-import { setCredentials, setError, setIsLoggedIn } from 'redux/auth/authSlice';
+import { setError, setIsLoggedIn, setCredentials } from 'redux/auth/authSlice';
 import Loader from 'components/Loader/Loader';
+import { useNavigate } from 'react-router-dom';
 
 export const LoginForm = () => {
+  const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
   const togglePassword = () => {
     setShowPassword(!showPassword);
@@ -28,15 +30,22 @@ export const LoginForm = () => {
         password: values.password,
       });
 
-      if (response.data.token) {
+      if (response.data && response.data.token) {
         dispatch(setCredentials(response.data));
         dispatch(setIsLoggedIn(true));
+        resetForm();
       }
 
-      resetForm();
+      if (response.error) {
+        if (response.error.status === 401 || response.error.status === 400) {
+          console.log('Email or password is wrong');
+        }
+        dispatch(setError(response.error));
+      }
+navigate('/home');
+     
     } catch (error) {
       dispatch(setError(error));
-     
     }
   };
 

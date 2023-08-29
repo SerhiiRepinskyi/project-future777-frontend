@@ -1,9 +1,17 @@
 import { Popover } from '@mui/material';
 import React from 'react';
 
+const PopupStyles = {
+  '.css-3bmhjh-MuiPaper-root-MuiPopover-paper': {
+    backgroundColor: '#1F1F1F',
+    borderRadius: '8px',
+  },
+};
+
 const Popup = ({ anchorEl, open, onClose, children }) => {
   return (
     <Popover
+      sx={PopupStyles}
       anchorEl={anchorEl}
       open={open}
       onClose={onClose}

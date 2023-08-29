@@ -1,22 +1,22 @@
-import { useDispatch } from "react-redux";
+import { useDispatch } from 'react-redux';
 import sprite from '../../assets/images/sprite.svg';
-import { Icon, LogOutBtnStyled, SpanStyled } from '../logoutBtn/logoutBtn.styled';
+import { Icon, LogOutBtnStyled, SpanStyled } from './logoutBtn.styled';
 import { useLogOutMutation } from 'redux/auth/authApi';
 import { logout, setError, setIsLoggedIn } from 'redux/auth/authSlice';
 
 const LogoutBtn = () => {
-   const dispatch = useDispatch();
-   const [logOut] = useLogOutMutation();
+  const dispatch = useDispatch();
+  const [logOut] = useLogOutMutation();
 
-   const handleLogOut = async () => {
-     try {
-       await logOut().unwrap();
-       dispatch(logout());
-       dispatch(setIsLoggedIn(false));
-     } catch (error) {
-       dispatch(setError(error));
-     }
-   };
+  const handleLogOut = async () => {
+    try {
+      await logOut().unwrap();
+      dispatch(logout());
+      dispatch(setIsLoggedIn(false));
+    } catch (error) {
+      dispatch(setError(error));
+    }
+  };
 
   return (
     <>
