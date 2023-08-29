@@ -117,10 +117,12 @@
                 stroke-width="2.3111" d="M16 20c2.209 0 4-1.791 4-4s-1.791-4-4-4v0c-2.209 0-4 1.791-4 4s1.791 4 4 4v0z">
             </path>
         </symbol>
+
         <symbol id="icon-x-close" viewBox="0 0 32 32">
-            <path fill="none" stroke="#fff" stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="4"
-                stroke-width="2.6667" d="M24 8l-16 16M8 8l16 16"></path>
-        </symbol>
+<path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="4" stroke-width="2.6667" d="M24 8l-16 16"></path>
+<path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="4" stroke-width="2.6667" d="M8 8l16 16"></path>
+</symbol>
+
         <symbol id="icon-drop-down" viewBox="0 0 30 32">
             <path fill="none" stroke-linejoin="round"
                 stroke-linecap="round" stroke-miterlimit="4" stroke-width="3.3684"
