@@ -11,7 +11,7 @@ export const ButtonClose = styled.button`
 
   &:hover,
   &:focus {
-    border: 1px solid #FFF;
+    border: 1px solid #fff;
     border-radius: 4px;
   }
 `;
@@ -45,15 +45,15 @@ export const TransparentSVG = styled.svg`
   width: 18px;
   height: 18px;
   stroke: rgba(255, 255, 255, 0.5);
-   cursor: pointer;
+  cursor: pointer;
 
-   &:hover,
-   &:focus {
+  &:hover,
+  &:focus {
     // width: 24px;
     // height: 24px;
     stroke: #bedbb0;
   }
-  }`;
+`;
 
 export const UlStyled = styled.ul`
   display: flex;
@@ -63,8 +63,7 @@ export const UlStyled = styled.ul`
   padding: 0;
   list-style: none;
   margin-bottom: 14px;
-
-  }`;
+`;
 
 export const UlBgStyled = styled.ul`
   display: flex;
@@ -73,16 +72,16 @@ export const UlBgStyled = styled.ul`
   margin: 0;
   padding: 0;
   list-style: none;
-   margin-bottom: 14px;
- width: 270px;
-  }`;
+  margin-bottom: 14px;
+  width: 270px;
+`;
 
 export const LiStyled = styled.li`
   display: flex;
   width: 28px;
   height: 28px;
   border-radius: 14px;
-  }`;
+`;
 
 export const ImgStyled = styled.img`
   width: 100%;
@@ -102,6 +101,4 @@ export const LiIconsStyled = styled.li`
   display: flex;
   width: 18px;
   height: 18px;
-
-
-  }`;
+`;
