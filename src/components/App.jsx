@@ -6,8 +6,12 @@ import Loader from './Loader/Loader';
 import { useDispatch, useSelector } from 'react-redux';
 import { useGetCurrentUserQuery } from 'redux/auth/authApi';
 import { setUserRefresh } from 'redux/auth/authSlice';
-// import { PrivateRoute } from 'routes/PrivateRoute';
+
 import GlobalStyles from './GlobalStyles';
+
+import { LoginForm } from './LoginForm/LoginForm';
+import { RegisterForm } from './RegisterForm/RegisterForm';
+import { PrivateRoute } from 'routes/PrivateRoute';
 
 const WelcomePage = lazy(() => import('../pages/WelcomePage/WelcomePage'));
 const HomePage = lazy(() => import('../pages/HomePage/HomePage'));
@@ -35,20 +39,25 @@ export const App = () => {
       <LocalizationProvider dateAdapter={AdapterDateFns}>
         <Suspense fallback={<Loader />}>
           <Routes>
-            {/* default route to /welcome */}
             <Route path="/" element={<Navigate to="/welcome" />} />
             <Route path="/welcome" element={<WelcomePage />} />
-            <Route
-              path="/auth/:id"
-              element={/*<RestrictedRoute>*/ <AuthPage /> /*<RestrictedRoute>*/}
-            />
-            <Route
-              path="/home"
-              element={/*<PrivateRoute>*/ <HomePage /> /*</PrivateRoute>*/}
-            />
 
             <Route
-              path="/home/boardName"
+              path="/home"
+              element={
+                <PrivateRoute>
+                  <HomePage />
+                </PrivateRoute>
+              }
+            />
+
+            <Route path="/auth/:id" element={<AuthPage />}>
+              <Route path="login" element={<LoginForm />} />
+              <Route path="register" element={<RegisterForm />} />
+            </Route>
+
+            <Route
+              path="/home/:boardName"
               element={
                 <Suspense fallback={<Loader />}>
                   <ScreensPage />

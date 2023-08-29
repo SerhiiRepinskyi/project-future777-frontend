@@ -12,8 +12,10 @@ import { useLogInMutation } from 'redux/auth/authApi';
 import { useDispatch } from 'react-redux';
 import { setError, setIsLoggedIn, setCredentials } from 'redux/auth/authSlice';
 import Loader from 'components/Loader/Loader';
+import { useNavigate } from 'react-router-dom';
 
 export const LoginForm = () => {
+  const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
   const togglePassword = () => {
     setShowPassword(!showPassword);
@@ -40,7 +42,7 @@ export const LoginForm = () => {
         }
         dispatch(setError(response.error));
       }
-
+navigate('/home');
      
     } catch (error) {
       dispatch(setError(error));
