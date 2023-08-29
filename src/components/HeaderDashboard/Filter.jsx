@@ -1,11 +1,12 @@
 import { Radio, Typography } from '@mui/material';
-import { LiStyled, UlBgStyled } from 'components/ModalLayout/Modal.styled';
+// import { LiStyled, UlBgStyled } from 'components/ModalLayout/Modal.styled';
 import ModalLayout from 'components/ModalLayout/ModalLayout';
 import { Form, Formik } from 'formik';
 import { useState } from 'react';
 
 import { backgroundImg } from '../ModalBoard/data';
 import { Button, Div, Label, LabelGroup, RadioWrap } from './Filter.styled';
+import { LiStyled, UlBgStyled } from 'components/ModalBoard/ModalBoard.styled';
 
 const titleStyle = {
   color: '#FFF',
@@ -50,7 +51,7 @@ export const Filter = ({ open, onClose }) => {
       setIsShowAllActive(false);
     }
   };
-  console.log(currentPrority);
+  // console.log(currentPrority);
   console.log(bgImgIndex);
 
   return (
