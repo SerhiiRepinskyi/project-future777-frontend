@@ -44,7 +44,7 @@ const ModalLayout = ({ title, open, handleClose, children }) => {
             {title}
           </Typography>
           <ButtonClose type="button" onClick={handleClose}>
-            <svg style={{ stroke: '#BEDBB0' }} width="18" height="18">
+            <svg style={{ stroke: 'currentcolor' }} width="18" height="18">
               <use href={sprite + '#icon-x-close'} />
             </svg>
           </ButtonClose>

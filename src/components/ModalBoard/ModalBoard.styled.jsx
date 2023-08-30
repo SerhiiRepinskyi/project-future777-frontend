@@ -1,18 +1,27 @@
 import styled from '@emotion/styled';
 
 export const ButtonClose = styled.button`
+  margin: 0;
+  padding: 0;
   position: absolute;
-  padding: 1px;
   right: 10px;
   top: 10px;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: rgba(255, 255, 255, 0.5);
+
   background-color: transparent;
-  border: transparent;
+  border: none;
+  border-radius: 5px;
   cursor: pointer;
 
   &:hover,
   &:focus {
-    border: 1px solid #fff;
-    border-radius: 4px;
+    border: 1px solid #ffffff;
+    color: rgba(255, 255, 255, 1);
   }
 `;
 
@@ -28,11 +37,11 @@ export const InputStyled = styled.input`
   color: #ffffff;
   padding: 14px 14px;
   background-color: transparent;
-  border: 1px solid #bedbb0;
+  border: 1px solid rgba(190, 219, 176, 0.4);
   border-radius: 8px;
   margin-bottom: 10px;
   :focus {
-    border: 2px solid #bedbb0;
+    border: 1px solid #bedbb0;
     outline: none;
   }
   ::placeholder {
