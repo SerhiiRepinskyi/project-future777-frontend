@@ -4,6 +4,7 @@ export const Container = styled.div`
   justify-content: space-between;
   align-items: center;
   width: 100%;
+  padding-bottom: 15px;
   // padding: 14px 24px;
   // background: #1f1f1f;
   font-family: Poppins;

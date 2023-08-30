@@ -32,9 +32,9 @@ const ColumnsWrapper = styled.div`
   ::-webkit-scrollbar-thumb:hover {
     background: #9dc888;
   }
-  @media screen and (min-width: 769px) {
+  @media screen and (min-width: 767px) {
     overflow-x: ${props => {
-      if (props.cols < 5) {
+      if (props.cols < 2) {
         return `hidden`;
       }
       return `scroll`;
@@ -46,7 +46,12 @@ const ColumnsWrapper = styled.div`
   }
   @media screen and (min-width: 1400px) {
     display: grid;
-    grid-template-columns: 334px 334px;
+    overflow-x: ${props => {
+      if (props.cols < 4) {
+        return `hidden`;
+      }
+      return `scroll`;
+    }};
   }
 `;
 
