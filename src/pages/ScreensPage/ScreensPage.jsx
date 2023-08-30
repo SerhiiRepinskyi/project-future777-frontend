@@ -57,8 +57,8 @@ const ScreensPage = () => {
   const { data } = useGetBoardByIdQuery({ boardId, token });
 
   const columns = data?.columns;
-  console.log('data :>> ', data);
-  console.log('columns :>> ', columns);
+  // console.log('data :>> ', data);
+  // console.log('columns :>> ', columns);
   const openAddColumn = () => setIsAddColumnOpen(true);
   const closeAddColumn = () => setIsAddColumnOpen(false);
  

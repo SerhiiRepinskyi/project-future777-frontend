@@ -9,7 +9,7 @@ export const arrIcons = [
   '#icon-hexagon',
 ];
 
-export const backgroundImg = [
+export const arrBG = [
   'https://res.cloudinary.com/dpurp913m/image/upload/v1693060747/teamProject/bcg-laptop-22_w6d1ix.jpg',
   'https://res.cloudinary.com/dpurp913m/image/upload/v1693060747/teamProject/bcg-laptop-21_lhyxtz.jpg',
   'https://res.cloudinary.com/dpurp913m/image/upload/v1693060747/teamProject/bcg-laptop-23_nvf3nr.jpg',
