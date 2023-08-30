@@ -2,7 +2,7 @@ import styled from '@emotion/styled';
 import RadioButtonIcon from '@mui/material/Radio';
 
 export const ComponentWrapper = styled.div`
-  padding: 24px;
+  padding: 0px;
   display: flex;
   flex-direction: column;
 `;
@@ -11,7 +11,7 @@ export const FormStyled = styled.form`
   display: flex;
   flex-direction: column;
   gap: 14px;
-  margin-bottom: 24px;
+  margin-bottom: 0px;
 `;
 
 export const InputStyled = styled.input`

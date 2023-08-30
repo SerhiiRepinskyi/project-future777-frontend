@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { SIDEBARWIDTH } from 'components/Sidebar/SidebarCONSTANTS';
 import { Sidebar } from 'components/Sidebar/Sidebar';
 import { Header } from 'components/Header/Header';
-import ScreensPage from 'pages/ScreensPage';
+import { Outlet } from 'react-router-dom';
 
 const HomePage = () => {
   const [isMobileSidebar, setIsMobileSidebar] = useState(false);
@@ -30,7 +30,7 @@ const HomePage = () => {
         handleSidebarToggle={handleSidebarToggle}
       />
 
-      <ScreensPage />
+      <Outlet/>  
     </Box>
   );
 };

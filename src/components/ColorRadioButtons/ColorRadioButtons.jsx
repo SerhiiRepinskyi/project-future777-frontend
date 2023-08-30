@@ -2,7 +2,7 @@ import * as React from 'react';
 import Radio from '@mui/material/Radio';
 
 export default function ColorRadioButtons({ onColorChange, value }) {
-  const [selectedValue, setSelectedValue] = React.useState('4');
+  const [selectedValue, setSelectedValue] = React.useState('0');
 
   const handleChange = event => {
     setSelectedValue(event.target.value);
@@ -30,7 +30,7 @@ export default function ColorRadioButtons({ onColorChange, value }) {
         sx={{ color: '#BEDBB0', '&.Mui-checked': { color: '#BEDBB0' } }}
       />
       <Radio
-        {...controlProps('4')}
+        {...controlProps('0')}
         sx={{ color: 'grey', '&.Mui-checked': { color: 'grey' } }}
       />
     </div>

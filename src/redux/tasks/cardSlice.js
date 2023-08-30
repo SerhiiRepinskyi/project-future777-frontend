@@ -7,8 +7,8 @@ export const cardsApi = createApi({
   tagTypes: ['cards'],
   endpoints: builder => ({
     getCards: builder.query({
-      query: token => ({
-        url: 'cards',
+      query: ({ columnId, token }) => ({
+        url: `columns/${columnId}/cards`,
         headers: {
           Authorization: `Bearer ${token}`,
         },

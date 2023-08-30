@@ -1,19 +1,23 @@
-import styled from "@emotion/styled";
-import React, { useState } from "react";
+import styled from '@emotion/styled';
+import React, { useState } from 'react';
 import sprite from '../../assets/images/sprite.svg';
-import { IconButton } from "@mui/material";
-import data from "./db-tasks.cards.json";
-import TaskCard from "../TaskCard/TaskCard";
-import { ButtonWithIcon } from "../Buttons/Button";
-import ModalLayout from "../ModalLayout/ModalLayout";
-import AddCard from "../AddCard/AddCard";
+import { IconButton } from '@mui/material';
+import TaskCard from '../TaskCard/TaskCard';
+import { ButtonWithIcon } from '../Buttons/Button';
+import ModalLayout from '../ModalLayout/ModalLayout';
+import AddCard from '../AddCard/AddCard';
+import { useGetCardsQuery } from 'redux/tasks/cardSlice';
+import { useSelector } from 'react-redux';
 
-const ColumnWrapper = styled.div`
+const ColumnWrapper = styled.li`
   display: grid;
   grid-template-rows: 56px auto 56px;
+  align-items: left;
   gap: 14px;
-  width: 334px;
+  width: 346px;
   max-height: 80vh;
+  padding-right: 12px;
+  padding-bottom: 14px;
   margin-right: 14px;
 `;
 
@@ -24,35 +28,32 @@ const ColumnHeader = styled.div`
   align-items: center;
   max-width: 334px;
   height: 56px;
-  background-color: #161616;
+  background-color: #121212;
   color: #ffffff;
   padding: 20px;
-  /* padding-right: 20px; */
   border-radius: 8px;
 `;
 
 const ColumnTitle = styled.h2`
   display: flex;
-  font-family: "Poppins";
+  font-family: 'Poppins';
   font-weight: 600;
   font-size: 14px;
   margin: 0;
 `;
 
-const CardsList = styled.div`
+const CardsList = styled.ul`
   display: grid;
-  width: 348px;
+  width: 346px;
   height: 100%;
   gap: 8px;
   border-radius: 8px;
   padding-right: 8px;
-  /* overflow: hidden; */
+  overflow-x: hidden;
   overflow-y: scroll;
   ::-webkit-scrollbar {
-    position: absolute;
     border-radius: 5px;
     margin-left: 4px;
-    transform: translateY(50px);
     width: 8px;
     background-color: rgba(255, 255, 255, 0.2);
   }
@@ -77,56 +78,65 @@ const StyledIconButton = styled(IconButton)`
   }
 `;
 
-const Column = ({ id, title, cards }) => {
+const AddCardButton = styled(ButtonWithIcon)`
+  width: 334px;
+`;
+
+const Column = ({ columnTitle, columnId }) => {
+  const token = useSelector(state => state.auth.token);
   const [isAddCardOpen, setIsAddCardOpen] = useState(false);
+  const { data: cards } = useGetCardsQuery({ columnId, token });
+  
   const closeAddCard = () => setIsAddCardOpen(false);
-    const handleClick = () => setIsAddCardOpen(true);
+  const handleClick = () => setIsAddCardOpen(true);
+  
   const handleUpdateColumn = () => {
-    console.log("Column updated");
+    console.log('Column updated');
   };
   const handleDeleteColumn = () => {
-    console.log("Column deleted");
+    console.log('Column deleted');
   };
+
   return (
     <ColumnWrapper>
       <ColumnHeader>
-        <ColumnTitle>Column Name</ColumnTitle>
+        <ColumnTitle>{columnTitle}</ColumnTitle>
         <div>
           <StyledIconButton onClick={handleUpdateColumn} aria-label="edit">
             <svg stroke="#fff" strokeOpacity="0.5" width="16" height="16">
-              <use href={sprite + "#icon-pencil"} />
+              <use href={sprite + '#icon-pencil'} />
             </svg>
           </StyledIconButton>
           <StyledIconButton onClick={handleDeleteColumn} aria-label="remove">
             <svg stroke="#fff" strokeOpacity="0.5" width="16" height="16">
-              <use href={sprite + "#icon-trash"} />
+              <use href={sprite + '#icon-trash'} />
             </svg>
           </StyledIconButton>
         </div>
       </ColumnHeader>
       <CardsList>
-        {data.map(({ title, description, priority, deadline, _id: id }) => {
-          return (
-            <TaskCard
-              title={title}
-              description={description}
-              priority={priority}
-              deadline={deadline}
-              id={id}
-            />
-          );
-        })}
+        {cards?.map(
+          ({ title, description, priority, deadline, _id: id }, index) => {
+            return (
+              <TaskCard
+                title={title}
+                description={description}
+                priority={priority}
+                deadline={deadline}
+                id={id}
+              />
+            );
+          }
+        )}
       </CardsList>
-      {data ? (
-        <ButtonWithIcon
-          onClick={handleClick}
-          title={"Add card"}
-          type={"submit"}
-        />
-      ) : (
-        <></>
-      )}
-      <ModalLayout open={isAddCardOpen} handleClose={closeAddCard}>
+
+      <AddCardButton onClick={handleClick} title={'Add card'} />
+
+      <ModalLayout
+        title={'Add card'}
+        open={isAddCardOpen}
+        handleClose={closeAddCard}
+      >
         <AddCard close={closeAddCard} />
       </ModalLayout>
     </ColumnWrapper>

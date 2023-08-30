@@ -6,6 +6,8 @@ import { boardsApi } from './boards/boardSlice';
 import { authApi } from './auth/authApi';
 import { authReducer } from './auth/index';
 import { setupListeners } from '@reduxjs/toolkit/dist/query';
+import { cardsApi } from './tasks/cardSlice';
+import { columnsApi } from './columns/columnSlice';
 
 const authPersistConfig = {
   key: 'auth',
@@ -20,12 +22,16 @@ export const store = configureStore({
     [authApi.reducerPath]: authApi.reducer,
     auth: persistedReducer,
     [boardsApi.reducerPath]: boardsApi.reducer,
+    [columnsApi.reducerPath]: columnsApi.reducer,
+    [cardsApi.reducerPath]: cardsApi.reducer,
   },
 
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({})
       .concat([authApi.middleware])
-      .concat([boardsApi.middleware]),
+      .concat([boardsApi.middleware])
+      .concat([columnsApi.middleware])
+      .concat([cardsApi.middleware]),
 });
 
 setupListeners(store.dispatch);

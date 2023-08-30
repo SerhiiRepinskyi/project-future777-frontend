@@ -7,13 +7,13 @@ export const columnsApi = createApi({
   tagTypes: ['columns'],
   endpoints: builder => ({
     addColumn: builder.mutation({
-      query: ({ id, columnData, token }) => ({
+      query: ({ id, title, token }) => ({
         url: `boards/${id}/columns`,
         method: 'POST',
         headers: {
           Authorization: `Bearer ${token}`,
         },
-        body: columnData,
+        body: title,
       }),
       invalidatesTags: ['columns'],
     }),
