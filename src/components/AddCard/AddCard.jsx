@@ -18,10 +18,10 @@ import DropDownIcon from 'components/Icons/DropDownIcon/DropDownIcon';
 import Popup from 'components/Popup/Popup';
 import DatePickerCmponent from 'components/DatePicker/DatePicker';
 // import { useAddCardToColumnMutation } from 'redux/tasks/cardSlice';
-import { useSelector } from 'react-redux';
+// import { useSelector } from 'react-redux';
 
 const AddCard = ({close}) => {
-  const token = useSelector(state => state.auth.token);
+  // const token = useSelector(state => state.auth.token);
   const [date, setDate] = useState('');
   const [dateValue, setDateValue] = useState('');
   const [color, setColor] = useState('0');
@@ -48,7 +48,7 @@ const AddCard = ({close}) => {
   };
 
   const handleSubmit = async (title, description, color) => {
-    const dateFns = format(date, 'yyyy-MM-dd');
+    // const dateFns = format(date, 'yyyy-MM-dd');
     // try {
     //   await addCards({
     //     cardsData: {
