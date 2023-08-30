@@ -54,7 +54,9 @@ export const App = () => {
                 path="/home/:boardId"
                 element={
                   <Suspense fallback={<Loader />}>
+                    <PrivateRoute>
                     <ScreensPage />
+                    </PrivateRoute>                    
                   </Suspense>
                 }
               />
