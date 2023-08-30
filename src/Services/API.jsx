@@ -1,54 +1,35 @@
-import { useRegisterMutation,
-
+import {
+  useRegisterMutation,
   useLogInMutation,
- 
   useLogOutMutation,
- 
   useGetCurrentUserQuery,
-
   useUpdateUserMutation,
- 
   useThemeUserMutation,
- 
   useAvatarUserMutation,
- 
   useHelpUserMutation,
- 
   useGetBoardsQuery,
- 
   useGetBoardByIdQuery,
-  
   useAddBoardsMutation,
-  
   useDeleteBoardByIdMutation,
- 
   useUpdateBoardByIdMutation,
- 
   useAddColumnMutation,
-  
   useUpdateColumnByIdMutation,
- 
   useDeleteColumnByIdMutation,
-  
   useAddCardMutation,
- 
   useUpdateCardByIdMutation,
-  
   useDeleteCardByIdMutation,
-  
   useUpdateCardColumnByIdMutation,
-
 } from './API_Component';
 
 export const API = {
-   useRegisterMutation,
+  useRegisterMutation,
   useLogInMutation,
   useLogOutMutation,
-    useAvatarUserMutation,
-    useGetCurrentUserQuery,
-    useHelpUserMutation,
-    useThemeUserMutation,
-    useUpdateUserMutation,
+  useAvatarUserMutation,
+  useGetCurrentUserQuery,
+  useHelpUserMutation,
+  useThemeUserMutation,
+  useUpdateUserMutation,
   useGetBoardsQuery,
   useGetBoardByIdQuery,
   useAddBoardsMutation,
@@ -61,5 +42,4 @@ export const API = {
   useUpdateCardByIdMutation,
   useDeleteCardByIdMutation,
   useUpdateCardColumnByIdMutation,
-
 };
