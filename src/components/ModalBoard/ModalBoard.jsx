@@ -18,10 +18,10 @@ import ModalLayout from "components/ModalLayout/ModalLayout";
 import { useState } from "react";
 import { arrIcons } from "./data";
 import { arrBG } from './data';
-import { useDispatch } from "react-redux";
+// import { useDispatch } from "react-redux";
 // import { selectIsLoggedIn } from 'redux/auth/authSelectors';
-import { useAddBoardsMutation } from "Services/API_Component/boardsAPI";
-import {setBoardResponse} from "redux/boards/boardsAPISlice"
+import { useAddBoardsMutation } from "redux/boards/boardSlice";
+// import {setBoardResponse} from "redux/boards/boardsAPISlice"
 
 
 
@@ -36,7 +36,7 @@ const titleStyle = {
 
 const ModalBoard = ({ open, handleClose }) => {
   // const [titleInputText, setTitleInputText] = useState('');
- const dispatch = useDispatch()
+//  const dispatch = useDispatch()
   const [iconId, setIconId] = useState(arrIcons[0]);
   const [iconIndex, setIconIndex] = useState(0);
 
@@ -55,7 +55,7 @@ const ModalBoard = ({ open, handleClose }) => {
           backgroundURL,
       });
       console.log(response); 
-      dispatch(setBoardResponse(response))
+      // dispatch(setBoardResponse(response))
     } catch (error) {
       console.log(error);
     }
