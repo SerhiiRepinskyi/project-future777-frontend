@@ -1,6 +1,6 @@
 import React, { useRef, useEffect } from 'react';
 
-const MeasureTextWidth = ({ text, setTitleWidth }) => {
+const MeasureTitleWidth = ({ title, setTitleWidth }) => {
   const measureRef = useRef(null);
 
   useEffect(() => {
@@ -36,9 +36,9 @@ const MeasureTextWidth = ({ text, setTitleWidth }) => {
         whiteSpace: 'nowrap',
       }}
     >
-      {text}
+      {title}
     </span>
   );
 };
 
-export default MeasureTextWidth;
+export default MeasureTitleWidth;

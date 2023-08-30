@@ -11,6 +11,8 @@ export const SidebarBoardList = () => {
   const token = useSelector(state => state.auth.token);
   const { data: boards } = useGetBoardsQuery(token);
 
+
+
   // const boards = [
   //   { _id: 1, title: 'Are you ready to code all night?', icon: 'icon-help' },
   //   { _id: 2, title: 'What are you doing', icon: 'icon-hexagon' },
@@ -40,8 +42,9 @@ export const SidebarBoardList = () => {
               }}
             >
               <SidebarBoardItem
-                icon={board.icon}
-                text={board.title}
+                iconId={board.iconId}
+                title={board.title}
+                id={board._id}
                 current={currentItemIndex === index}
               />
             </ListItemButton>

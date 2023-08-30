@@ -4,7 +4,7 @@ import ModalLayout from 'components/ModalLayout/ModalLayout';
 import { Form, Formik } from 'formik';
 import { useState } from 'react';
 
-import { backgroundImg } from '../ModalBoard/data';
+import { arrBackgrounds } from '../ModalBoard/data';
 import { Button, Div, Label, LabelGroup, RadioWrap } from './Filter.styled';
 import { LiStyled, UlBgStyled } from 'components/ModalBoard/ModalBoard.styled';
 
@@ -60,7 +60,7 @@ export const Filter = ({ open, onClose }) => {
         <Form onChange={handleChange}>
           <UlBgStyled>
             <LiStyled></LiStyled>
-            {backgroundImg.map((el, index) => {
+            {arrBackgrounds.map((el, index) => {
               return (
                 <LiStyled
                   key={index + 1}

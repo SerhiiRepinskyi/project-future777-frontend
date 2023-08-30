@@ -11,27 +11,30 @@ const HomePage = () => {
   const handleSidebarToggle = () => setIsMobileSidebar(!isMobileSidebar);
 
   return (
-    <Box sx={{ display: 'flex' }}>
-      <AppBar
-        position="fixed"
-        sx={{
-          width: { 1440: `calc(100% - ${SIDEBARWIDTH}px)` },
-          height: { 768: 68 },
-          ml: { 1440: `${SIDEBARWIDTH}px` },
-          boxShadow: 'none',
-          backgroundColor: '#161616',
-        }}
-      >
-        <Header handleSidebarToggle={handleSidebarToggle} />
-      </AppBar>
+    <>
+      
+      <Box sx={{ display: 'flex' }}>
+        <AppBar
+          position="fixed"
+          sx={{
+            width: { 1440: `calc(100% - ${SIDEBARWIDTH}px)` },
+            height: { 768: 68 },
+            ml: { 1440: `${SIDEBARWIDTH}px` },
+            boxShadow: 'none',
+            backgroundColor: '#161616',
+          }}
+        >
+          <Header handleSidebarToggle={handleSidebarToggle} />
+        </AppBar>
 
-      <Sidebar
-        isMobileSidebar={isMobileSidebar}
-        handleSidebarToggle={handleSidebarToggle}
-      />
+        <Sidebar
+          isMobileSidebar={isMobileSidebar}
+          handleSidebarToggle={handleSidebarToggle}
+        />
 
-      <ScreensPage />
-    </Box>
+        <ScreensPage />
+      </Box>
+    </>
   );
 };
 

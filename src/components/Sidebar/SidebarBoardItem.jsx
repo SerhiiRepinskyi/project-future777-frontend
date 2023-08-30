@@ -11,13 +11,21 @@ import { debounce } from 'lodash';
 import sprite from '../../assets/images/sprite.svg';
 import { Box, List, ListItem, ListItemButton } from '@mui/material';
 import { useEffect, useState } from 'react';
-import MeasureTextWidth from './MeasureTextWidth';
+import MeasureTitleWidth from './MeasureTitleWidth';
+import { useSelector } from 'react-redux';
+import { useDeleteBoardsMutation } from 'redux/boards/boardSlice';
 
-export const SidebarBoardItem = ({ text, icon, current }) => {
+export const SidebarBoardItem = ({ title, iconId, id, current }) => {
   const [isHovered, setIsHovered] = useState(false);
   const [titleWidth, setTitleWidth] = useState(0);
-  const [titleWrapWidth, setTitleWrapWidth] = useState(85);
+  const [titleWrapWidth, setTitleWrapWidth] = useState(0);
   const [screenWidth, setScreenWidth] = useState(window.innerWidth);
+
+  const token = useSelector(state => state.auth.token);
+  const [deleteBoard] = useDeleteBoardsMutation();
+
+  // console.log(deleteBoard);
+  // console.log(data);
 
   const handleResize = debounce(() => {
     setScreenWidth(window.innerWidth);
@@ -36,7 +44,7 @@ export const SidebarBoardItem = ({ text, icon, current }) => {
     } else if (screenWidth <= 768) {
       setTitleWrapWidth(120);
     } else setTitleWrapWidth(130);
-  }, [screenWidth, text]);
+  }, [screenWidth, title]);
 
   const handleEditClick = event => {
     event.stopPropagation();
@@ -44,11 +52,12 @@ export const SidebarBoardItem = ({ text, icon, current }) => {
 
   const handleDeleteClick = event => {
     event.stopPropagation();
+    deleteBoard({ id, token });
   };
 
   return (
     <>
-      <MeasureTextWidth text={text} setTitleWidth={setTitleWidth} />
+      <MeasureTitleWidth title={title} setTitleWidth={setTitleWidth} />
 
       <BoardItemWrap
         onMouseEnter={() => setIsHovered(true)}
@@ -68,7 +77,7 @@ export const SidebarBoardItem = ({ text, icon, current }) => {
           }}
         >
           <BoardItemIcon sx={{ opacity: current ? 1 : 0.5 }}>
-            <use href={sprite + `#${icon}`}></use>
+            <use href={sprite + iconId}></use>
           </BoardItemIcon>
 
           <BoardItemTitleWrap
@@ -84,7 +93,7 @@ export const SidebarBoardItem = ({ text, icon, current }) => {
               titleWrapWidth={titleWrapWidth}
               current={current}
             >
-              {text}
+              {title}
             </BoardItemTitle>
           </BoardItemTitleWrap>
         </Box>
