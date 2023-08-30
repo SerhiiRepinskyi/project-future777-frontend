@@ -18,7 +18,7 @@ const boardsAPISlice = createSlice({
       
     },
 
-      setBoardResponse: (state, action) => {
+    setBoardResponse: (state, action) => {
       state.boards.push(action.payload); 
     },
 
