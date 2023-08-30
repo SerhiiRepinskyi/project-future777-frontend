@@ -79,7 +79,7 @@ export const SidebarContent = ({ isSidebarShown }) => {
               resources or reach out to our customer support team.
             </HelpText>
             <HelpButton type="button" isSidebarShown={isSidebarShown}>
-              <svg width="20" height="20" stroke="#ffffff">
+              <svg width="20" height="20" stroke="var(--sidebar-primary-text-color)">
                 <use href={sprite + '#icon-help'}></use>
               </svg>
               Need help?

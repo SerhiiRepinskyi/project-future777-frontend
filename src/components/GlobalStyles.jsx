@@ -57,27 +57,31 @@ export const GlobalStyles = () => {
         .dark {
           --primary-text-color: rgba(255, 255, 255, 1); //white
           --secondary-text-color: rgba(255, 255, 255, 0.5); //white
-         
-          --primary-bg-color: rgba(31, 31, 31, 1);  //black
-          --secondary-bg-color: rgba(18, 18, 18, 1);  //black
-                   
-          --sidebar-icon-logo-bg-color: rgba(31, 31, 31, 1);  //black
-          --sidebar-icon-logo-color: rgba(255, 255, 255, 1); //white
-          --sidebar-icon-plus-bg-color: rgba(190, 219, 176, 1); //light green
-          --sidebar-icon-plus-color: rgba(18, 18, 18, 1); //black
-          --sidebar-icon-logout-color: rgba(190, 219, 176, 1); //light green
 
-          --sidebar-primary-bg-color: rgba(18, 18, 18, 1);  //black
-          --sidebar-secondary-bg-color: rgba(31, 31, 31, 1);  //black
+          --primary-bg-color: rgba(31, 31, 31, 1); //black
+          --secondary-bg-color: rgba(18, 18, 18, 1); //black
 
-          --sidebar-border-color: rgba(255, 255, 255, 0.1); //white
-         
+          /* DO NOT TOUCH THIS VARIABLES OR I WILL FIND YOU!!!! */
+          --sidebar-icon-logo-bg-color: rgba(31, 31, 31, 1);
+          --sidebar-icon-logo-color: rgba(255, 255, 255, 1);
+          --sidebar-primary-bg-color: rgba(18, 18, 18, 1);
+          --sidebar-secondary-bg-color: rgba(31, 31, 31, 1);
+          --sidebar-primary-text-color: rgba(255, 255, 255, 1);
+          --sidebar-secondary-text-color: rgba(255, 255, 255, 0.5);
+          --sidebar-border-color: rgba(255, 255, 255, 0.1);
+          --sidebar-icon-logout-color: rgba(190, 219, 176, 1);
+          --sidebar-icon-logout-color-HOVER-FOCUS: #9dc888;
+          --sidebar-icon-plus-bg-color: rgba(190, 219, 176, 1);
+          --sidebar-icon-plus-bg-color-HOVER-FOCUS: #9dc888;
+          --sidebar-icon-plus-color: rgba(18, 18, 18, 1);
+          /* DO NOT TOUCH THIS VARIABLES OR I WILL FIND YOU!!!! */
+
           --header-theme-color: rgba(255, 255, 255, 0.8); //white
-          --header-bg-color: rgba(22, 22, 22, 1);  //black
+          --header-bg-color: rgba(22, 22, 22, 1); //black
 
-          --button-bg-color: rgba(190, 219, 176, 1);  //light green
-          --icon-plus-color: rgba(255, 255, 255, 1);  //white
-          --icon-plus-bg-color: rgba(22, 22, 22, 1);  //black
+          --button-bg-color: rgba(190, 219, 176, 1); //light green
+          --icon-plus-color: rgba(255, 255, 255, 1); //white
+          --icon-plus-bg-color: rgba(22, 22, 22, 1); //black
 
           --modal-bg-color: rgba(21, 21, 21, 1); //black
         }
@@ -85,27 +89,31 @@ export const GlobalStyles = () => {
         .light {
           --primary-text-color: rgba(22, 22, 22, 1); //black
           --secondary-text-color: rgba(22, 22, 22, 0.7); //black
-         
-          --primary-bg-color: rgba(246, 246, 247, 1);  //light gray
-          --secondary-bg-color: rgba(255, 255, 255, 1);  //white
-                   
-          --sidebar-icon-logo-bg-color: rgba(31, 31, 31, 1);  //black
-          --sidebar-icon-logo-color: rgba(255, 255, 255, 1); //white
-          --sidebar-icon-plus-bg-color: rgba(190, 219, 176, 1); //light green
-          --sidebar-icon-plus-color: rgba(18, 18, 18, 1); //black
-          --sidebar-icon-logout-color: rgba(190, 219, 176, 1); //light green
 
-          --sidebar-primary-bg-color: rgba(255, 255, 255, 1);  //white
-          --sidebar-secondary-bg-color: rgba(246, 246, 247, 1);  //light gray
+          --primary-bg-color: rgba(246, 246, 247, 1); //light gray
+          --secondary-bg-color: rgba(255, 255, 255, 1); //white
 
-          --sidebar-border-color: rgba(22, 22, 22, 0.1); //light gray
-         
+          /* DO NOT TOUCH THIS VARIABLES OR I WILL FIND YOU!!!! */
+          --sidebar-icon-logo-bg-color: rgba(31, 31, 31, 1);
+          --sidebar-icon-logo-color: rgba(255, 255, 255, 1);
+          --sidebar-primary-bg-color: rgba(255, 255, 255, 1);
+          --sidebar-secondary-bg-color: rgba(246, 246, 247, 1);
+          --sidebar-primary-text-color: rgba(22, 22, 22, 1);
+          --sidebar-secondary-text-color: rgba(22, 22, 22, 0.5);
+          --sidebar-border-color: rgba(22, 22, 22, 0.1);
+          --sidebar-icon-logout-color: rgba(190, 219, 176, 1);
+          --sidebar-icon-logout-color-HOVER-FOCUS: #9dc888;
+          --sidebar-icon-plus-bg-color: rgba(190, 219, 176, 1);
+          --sidebar-icon-plus-bg-color-HOVER-FOCUS: #9dc888;
+          --sidebar-icon-plus-color: rgba(18, 18, 18, 1);
+          /* DO NOT TOUCH THIS VARIABLES OR I WILL FIND YOU!!!! */
+
           --header-theme-color: rgba(22, 22, 22, 0.8); //black
-          --header-bg-color: rgba(252, 252, 252, 1);  //white
+          --header-bg-color: rgba(252, 252, 252, 1); //white
 
-          --button-bg-color: rgba(190, 219, 176, 1);  //light green
-          --icon-plus-color: rgba(255, 255, 255, 1);  //white
-          --icon-plus-bg-color: rgba(22, 22, 22, 1);  //black
+          --button-bg-color: rgba(190, 219, 176, 1); //light green
+          --icon-plus-color: rgba(255, 255, 255, 1); //white
+          --icon-plus-bg-color: rgba(22, 22, 22, 1); //black
 
           --modal-bg-color: rgba(252, 252, 252, 1); //white
         }
@@ -113,27 +121,31 @@ export const GlobalStyles = () => {
         .violet {
           --primary-text-color: rgba(22, 22, 22, 1); //black
           --secondary-text-color: rgba(22, 22, 22, 0.7); //black
-         
-          --primary-bg-color: rgba(236, 237, 253, 1);  //light violet
-          --secondary-bg-color: rgba(255, 255, 255, 1);  //white
-                   
-          --sidebar-icon-logo-bg-color: rgba(236, 237, 253, 1);  //light violet
-          --sidebar-icon-logo-color: rgba(82, 85, 188, 1);  //violet
-          --sidebar-icon-plus-bg-color: rgba(184, 188, 253, 1); //light violet
-          --sidebar-icon-plus-color: rgba(255, 255, 255, 1); //white
-          --sidebar-icon-logout-color: rgba(255, 255, 255, 1); //white
 
-          --sidebar-primary-bg-color: rgba(82, 85, 188, 1);  //blue
-          --sidebar-secondary-bg-color: rgba(236, 237, 253, 0.4);  //light violet
+          --primary-bg-color: rgba(236, 237, 253, 1); //light violet
+          --secondary-bg-color: rgba(255, 255, 255, 1); //white
 
-          --sidebar-border-color: rgba(255, 255, 255, 0.1); //light gray
-         
+          /* DO NOT TOUCH THIS VARIABLES OR I WILL FIND YOU!!!! */
+          --sidebar-primary-bg-color: rgba(82, 85, 188, 1);
+          --sidebar-secondary-bg-color: rgba(236, 237, 253, 0.4);
+          --sidebar-primary-text-color: rgba(255, 255, 255, 1);
+          --sidebar-secondary-text-color: rgba(255, 255, 255, 0.5);
+          --sidebar-icon-logo-bg-color: rgba(236, 237, 253, 1);
+          --sidebar-icon-logo-color: rgba(82, 85, 188, 1);
+          --sidebar-border-color: rgba(255, 255, 255, 0.1);
+          --sidebar-icon-logout-color: rgba(255, 255, 255, 1);
+          --sidebar-icon-logout-color-HOVER-FOCUS: #b8bcfd;
+          --sidebar-icon-plus-bg-color: rgba(184, 188, 253, 1);
+          --sidebar-icon-plus-bg-color-HOVER-FOCUS: #979cea;
+          --sidebar-icon-plus-color: rgba(255, 255, 255, 1);
+          /* DO NOT TOUCH THIS VARIABLES OR I WILL FIND YOU!!!! */
+
           --header-theme-color: rgba(22, 22, 22, 0.8); //black
-          --header-bg-color: rgba(255, 255, 255, 1);  //white
+          --header-bg-color: rgba(255, 255, 255, 1); //white
 
-          --button-bg-color: rgba(82, 85, 188, 1);  //blue
-          --icon-plus-color: rgba(22, 22, 22, 1);  //black
-          --icon-plus-bg-color: rgba(255, 255, 255, 1);  //white
+          --button-bg-color: rgba(82, 85, 188, 1); //blue
+          --icon-plus-color: rgba(22, 22, 22, 1); //black
+          --icon-plus-bg-color: rgba(255, 255, 255, 1); //white
 
           --modal-bg-color: rgba(252, 252, 252, 1); //white
         }

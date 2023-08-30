@@ -18,7 +18,7 @@ const slideToDown = keyframes`
 
 export const Subtitle = styled('p')(({ isSidebarShown }) => ({
   margin: '0px',
-  color: 'rgba(255, 255, 255, 0.5)',
+  color: 'var(--sidebar-secondary-text-color)',
   fontFamily: 'Poppins',
   fontSize: '12px',
   fontWeight: 400,
@@ -34,8 +34,8 @@ export const Subtitle = styled('p')(({ isSidebarShown }) => ({
 export const CreateBoardWrap = styled('div')({
   paddingBottom: '14px',
   paddingTop: '14px',
-  borderTop: '1px solid rgba(255, 255, 255, 0.1)',
-  borderBottom: '1px solid rgba(255, 255, 255, 0.1)',
+  borderTop: '1px solid var(--sidebar-border-color)',
+  borderBottom: '1px solid var(--sidebar-border-color)',
   display: 'flex',
   justifyContent: 'space-between',
   alignItems: 'center',
@@ -44,7 +44,7 @@ export const CreateBoardWrap = styled('div')({
 
 export const TitleCreate = styled('p')(({ isSidebarShown }) => ({
   margin: '0px',
-  color: '#ffffff',
+  color: 'var(--sidebar-primary-text-color)',
   fontFamily: 'Poppins',
   fontSize: '14px',
   fontWeight: 500,
@@ -57,19 +57,12 @@ export const TitleCreate = styled('p')(({ isSidebarShown }) => ({
   animationFillMode: 'forwards',
 }));
 
-export const DivideLine = styled('div')({
-  backgroundColor: 'rgba(255, 255, 255, 0.1)',
-  width: '100%',
-  minHeight: '1px',
-  height: '1px',
-});
-
 export const HelpBox = styled('div')({
   borderRadius: '8px',
   display: 'flex',
   flexDirection: 'column',
   justifyContent: 'left',
-  backgroundColor: '#1f1f1f',
+  backgroundColor: 'var(--sidebar-secondary-bg-color)',
   overflow: 'hidden',
 });
 
@@ -87,12 +80,12 @@ export const Image = styled('img')(({ isSidebarShown }) => ({
 
 export const HelpText = styled('p')(({ isSidebarShown }) => ({
   margin: '0px',
-  color: '#ffffff',
+  color: 'var(--sidebar-primary-text-color)',
   fontFamily: 'Poppins',
   fontWeight: 400,
   letterSpacing: -0.15,
   '& span': {
-    color: '#bedbb0',
+    color: 'var(--button-bg-color)',
   },
 
   transform: 'translateX(-250px)',
@@ -110,7 +103,7 @@ export const HelpButton = styled('button')(({ isSidebarShown }) => ({
   gap: '8px',
   justifyContent: 'space-between',
   alignItems: 'center',
-  color: '#ffffff',
+  color: 'var(--sidebar-primary-text-color)',
   backgroundColor: 'transparent',
   fontFamily: 'Poppins',
   fontSize: '12px',
