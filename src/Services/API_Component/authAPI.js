@@ -11,7 +11,7 @@ export const authAPI = createApi({
     reducerPath: 'authAPI',
     baseQuery: baseQuery,
     endpoints: (builder) => ({
-        registerUser: builder.mutation({
+        register: builder.mutation({
             query: credentials => ({
                 url: "auth/register",
                 method: "POST",
@@ -21,28 +21,32 @@ export const authAPI = createApi({
         }),
   
     
-        loginUser: builder.mutation({
+        logIn: builder.mutation({
             query: credentials => ({
                 url: "auth/login",
                 method: "POST",
                 body: credentials,
-                providesTags: ['User'],
-            })
+               
+            }),
+            providesTags: ['User'],
         }),
 
     
-        logoutUser: builder.mutation({
+        logOut: builder.mutation({
             query: () => ({
                 url: "auth/logout",
                 method: "POST",
-                invalidatesTags: ['User'],
-            })
+                
+            }),
+            invalidatesTags: ['User'],
         }),
     })
 });
 
 export const {
-  useRegisterUserMutation,
-  useLoginUserMutation,
-  useLogoutUserMutation,
+  useRegisterMutation,
+  useLogInMutation,
+  useLogOutMutation,
 } = authAPI;
+
+export default authAPI;

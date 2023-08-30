@@ -1,10 +1,10 @@
-import { useRegisterUserMutation,
+import { useRegisterMutation,
 
-  useLoginUserMutation,
+  useLogInMutation,
  
-  useLogoutUserMutation,
+  useLogOutMutation,
  
-  useCurrentUserQuery,
+  useGetCurrentUserQuery,
 
   useUpdateUserMutation,
  
@@ -37,20 +37,18 @@ import { useRegisterUserMutation,
   useDeleteCardByIdMutation,
   
   useUpdateCardColumnByIdMutation,
-
-  authAPI, boardsAPI, cardsAPI, columnsAPI, userAPI
 
 } from './API_Component';
 
 export const API = {
-   useRegisterUserMutation,
-  useLoginUserMutation,
-  useLogoutUserMutation,
-  useCurrentUserQuery,
-  useUpdateUserMutation,
-  useThemeUserMutation,
-  useAvatarUserMutation,
-  useHelpUserMutation,
+   useRegisterMutation,
+  useLogInMutation,
+  useLogOutMutation,
+    useAvatarUserMutation,
+    useGetCurrentUserQuery,
+    useHelpUserMutation,
+    useThemeUserMutation,
+    useUpdateUserMutation,
   useGetBoardsQuery,
   useGetBoardByIdQuery,
   useAddBoardsMutation,
@@ -63,6 +61,5 @@ export const API = {
   useUpdateCardByIdMutation,
   useDeleteCardByIdMutation,
   useUpdateCardColumnByIdMutation,
-  authAPI, boardsAPI, cardsAPI, columnsAPI, userAPI
 
 };

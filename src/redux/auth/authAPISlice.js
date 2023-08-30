@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { API } from 'Services/API';
+// import { API } from 'Services/API';
 
 const initialState = {
   user: null,
@@ -36,49 +36,49 @@ const authAPISlice = createSlice({
       state.isLoggedIn = true;
     },
   },
-  extraReducers: (builder) => {
-    builder
-      // Обробка реєстрації користувача
-      .addMatcher(API.useRegisterUserMutation.matchPending, (state) => {
-        state.loading = true;
-        state.error = null;
-      })
-      .addMatcher(API.useRegisterUserMutation.matchFulfilled, (state, action) => {
-        state.loading = false;
-        state.user = action.payload; // Зберігаємо дані користувача
-      })
-      .addMatcher(API.useRegisterUserMutation.matchRejected, (state, action) => {
-        state.loading = false;
-        state.error = action.error; // Зберігаємо об'єкт помилки
-      })
-      // Обробка входу користувача
-      .addMatcher(API.useLoginUserMutation.matchPending, (state) => {
-        state.loading = true;
-        state.error = null;
-      })
-      .addMatcher(API.useLoginUserMutation.matchFulfilled, (state, action) => {
-        state.loading = false;
-        state.user = action.payload; // Зберігаємо дані користувача
-      })
-      .addMatcher(API.useLoginUserMutation.matchRejected, (state, action) => {
-        state.loading = false;
-        state.error = action.error; // Зберігаємо об'єкт помилки
-      })
-      // Обробка виходу користувача
-      .addMatcher(API.useLogoutUserMutation.matchPending, (state) => {
-        state.loading = true;
-        state.error = null;
-      })
-      .addMatcher(API.useLogoutUserMutation.matchFulfilled, (state) => {
-        state.loading = false;
-        state.user = null; // Обнуляємо дані користувача
-      })
-      .addMatcher(API.useLogoutUserMutation.matchRejected, (state, action) => {
-        state.loading = false;
-        state.error = action.error; // Зберігаємо об'єкт помилки
-      });
+  // extraReducers: (builder) => {
+  //   builder
+  //     // Обробка реєстрації користувача
+  //     .addMatcher(API.useRegisterMutation.matchPending, (state) => {
+  //       state.loading = true;
+  //       state.error = null;
+  //     })
+  //     .addMatcher(API.useRegisterMutation.matchFulfilled, (state, action) => {
+  //       state.loading = false;
+  //       state.user = action.payload; // Зберігаємо дані користувача
+  //     })
+  //     .addMatcher(API.useRegisterMutation.matchRejected, (state, action) => {
+  //       state.loading = false;
+  //       state.error = action.error; // Зберігаємо об'єкт помилки
+  //     })
+  //     // Обробка входу користувача
+  //     .addMatcher(API.useLogInMutation.matchPending, (state) => {
+  //       state.loading = true;
+  //       state.error = null;
+  //     })
+  //     .addMatcher(API.useLogInMutation.matchFulfilled, (state, action) => {
+  //       state.loading = false;
+  //       state.user = action.payload; // Зберігаємо дані користувача
+  //     })
+  //     .addMatcher(API.useLogInMutation.matchRejected, (state, action) => {
+  //       state.loading = false;
+  //       state.error = action.error; // Зберігаємо об'єкт помилки
+  //     })
+  //     // Обробка виходу користувача
+  //     .addMatcher(API.useLogOutMutation.matchPending, (state) => {
+  //       state.loading = true;
+  //       state.error = null;
+  //     })
+  //     .addMatcher(API.useLogOutMutation.matchFulfilled, (state) => {
+  //       state.loading = false;
+  //       state.user = null; // Обнуляємо дані користувача
+  //     })
+  //     .addMatcher(API.useLogOutMutation.matchRejected, (state, action) => {
+  //       state.loading = false;
+  //       state.error = action.error; // Зберігаємо об'єкт помилки
+  //     });
     
-  },
+  // },
 });
  
 export const {
@@ -89,4 +89,4 @@ export const {
   setUserRefresh,
 } = authAPISlice.actions;
 
-export default authAPISlice;
+export default authAPISlice.reducer;

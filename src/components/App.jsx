@@ -4,8 +4,8 @@ import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import Loader from './Loader/Loader';
 import { useDispatch, useSelector } from 'react-redux';
-import { useGetCurrentUserQuery } from 'redux/auth/authApi';
-import { setUserRefresh } from 'redux/auth/authSlice';
+import { useGetCurrentUserQuery } from 'Services/API_Component/userAPI';
+import { setUserRefresh } from 'redux/auth/authAPISlice';
 
 import GlobalStyles from './GlobalStyles';
 

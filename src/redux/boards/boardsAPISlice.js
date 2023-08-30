@@ -18,6 +18,10 @@ const boardsAPISlice = createSlice({
       
     },
 
+      setBoardResponse: (state, action) => {
+      state.boards.push(action.payload); 
+    },
+
     setBoardId: (state, action) => {
       const { id } = action.payload;
       state.id = id;
@@ -43,9 +47,9 @@ const boardsAPISlice = createSlice({
   extraReducers: {},
 });
 
-export const { setError, clearError } = boardsAPISlice.actions;
+export const { setError, clearError, setBoardData, setAllBoards, setBoardId, setBoardResponse } = boardsAPISlice.actions;
 
-export default boardsAPISlice;
+export default boardsAPISlice.reducer;
 
 
 

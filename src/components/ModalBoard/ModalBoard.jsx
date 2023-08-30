@@ -17,9 +17,10 @@ import ModalLayout from "components/ModalLayout/ModalLayout";
 import { useState } from "react";
 import { arrIcons } from "./data";
 import { backgroundImg } from "./data";
-import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 // import { selectIsLoggedIn } from 'redux/auth/authSelectors';
-import { useAddBoardsMutation } from "redux/boards/boardSlice";
+import { useAddBoardsMutation } from "Services/API_Component/boardsAPI";
+import {setBoardResponse} from "redux/boards/boardsAPISlice"
 
 const titleStyle = {
   color: "#FFF",
@@ -32,24 +33,26 @@ const titleStyle = {
 };
 
 const ModalBoard = ({ open, handleClose }) => {
-  const token = useSelector((state) => state.auth.token);
+  const dispatch = useDispatch()
+ 
   // const [titleInputText, setTitleInputText] = useState('');
   const [iconIndex, setIconIndex] = useState(0);
   const [bgImgIndex, setBgImgIndex] = useState(0);
   const [addBoards] = useAddBoardsMutation();
 
   const handleSubmit = async (title) => {
-    console.log("Title => ", title, iconIndex, bgImgIndex);
-
+    console.log("Title => ", title, iconIndex, bgImgIndex,);
+     
+    
     try {
-      await addBoards({
-        boardsData: {
-          title: title,
-          icon: iconIndex,
-          background: bgImgIndex,
-        },
-        token,
+       const response = await addBoards({
+        title: title,
+        icon: iconIndex,
+        background: bgImgIndex,
       });
+      console.log(response); 
+
+      dispatch(setBoardResponse(response))
     } catch (error) {
       console.log(error);
     }
