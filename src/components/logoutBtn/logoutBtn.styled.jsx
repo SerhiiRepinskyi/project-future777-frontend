@@ -12,17 +12,17 @@ export const LogOutBtnStyled = styled.button`
   background-color: transparent;
   cursor: pointer;
 
-  color: #bedbb0;
+  color: var(--sidebar-icon-logout-color);
   &:hover,
   &:focus {
-    color: #9dc888;
+    color: var(--sidebar-icon-logout-color-HOVER-FOCUS);
   }
 `;
 
 export const SpanStyled = styled.span`
   font-size: 14px;
   font-weight: 500;
-  color: #ffffff;
+  color: var(--sidebar-primary-text-color);
   font-family: 'Poppins';
   @media screen and (min-width: 768px) {
     font-size: 16px;

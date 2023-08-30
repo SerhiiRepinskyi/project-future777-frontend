@@ -32,7 +32,7 @@ export const Sidebar = ({ ...props }) => {
               375: SIDEBARMOBILEWIDTH,
               768: SIDEBARWIDTH,
             },
-            backgroundColor: '#121212',
+            backgroundColor: "var(--sidebar-primary-bg-color)",
           },
         }}
       >
@@ -49,7 +49,7 @@ export const Sidebar = ({ ...props }) => {
             boxShadow: 'none',
             overflowX: 'hidden',
             width: SIDEBARWIDTH,
-            backgroundColor: '#121212',
+            backgroundColor: "var(--sidebar-primary-bg-color)",
           },
         }}
       >

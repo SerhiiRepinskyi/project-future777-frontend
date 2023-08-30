@@ -78,8 +78,8 @@ export const SidebarBoardItem = ({ title, icon, id, current }) => {
           <BoardItemTitleWrap
             sx={{
               width: current
-                ? { 0: 85, 320: '27vw', 375: 120, 768: 130 }
-                : { 0: 135, 320: '42vw', 375: 170, 768: 180 },
+                ? { 0: 85, 320: "calc(60vw - 105px)", 375: 120, 768: 130 }
+                : { 0: 135, 320: "calc(60vw - 55px)", 375: 170, 768: 180 },
             }}
           >
             <BoardItemTitle
