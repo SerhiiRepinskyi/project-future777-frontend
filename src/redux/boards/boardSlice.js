@@ -29,7 +29,7 @@ export const boardsApi = createApi({
     }),
     deleteBoards: builder.mutation({
       query: ({ id, token }) => ({
-        url: `boards/:${id}`,
+        url: `boards/${id}`,
         method: 'DELETE',
         headers: {
           Authorization: `Bearer ${token}`,
@@ -39,7 +39,7 @@ export const boardsApi = createApi({
     }),
     updateBoards: builder.mutation({
       query: ({ boardsData, id, token }) => ({
-        url: `boards/:${id}`,
+        url: `boards/${id}`,
         method: 'PATCH',
         headers: {
           Authorization: `Bearer ${token}`,
