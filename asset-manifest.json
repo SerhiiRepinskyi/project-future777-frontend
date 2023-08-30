@@ -1,15 +1,16 @@
 {
   "files": {
     "main.css": "/project-future777-frontend/static/css/main.d6b35adc.css",
-    "main.js": "/project-future777-frontend/static/js/main.22676a17.js",
-    "static/js/445.84ca7622.chunk.js": "/project-future777-frontend/static/js/445.84ca7622.chunk.js",
-    "static/css/140.67ff7196.chunk.css": "/project-future777-frontend/static/css/140.67ff7196.chunk.css",
-    "static/js/140.5c857cb6.chunk.js": "/project-future777-frontend/static/js/140.5c857cb6.chunk.js",
+    "main.js": "/project-future777-frontend/static/js/main.23f46a47.js",
+    "static/js/853.176755c7.chunk.js": "/project-future777-frontend/static/js/853.176755c7.chunk.js",
+    "static/css/445.f3330edc.chunk.css": "/project-future777-frontend/static/css/445.f3330edc.chunk.css",
+    "static/js/445.0ac0f999.chunk.js": "/project-future777-frontend/static/js/445.0ac0f999.chunk.js",
     "static/js/422.e588e01e.chunk.js": "/project-future777-frontend/static/js/422.e588e01e.chunk.js",
-    "static/js/275.a274eb84.chunk.js": "/project-future777-frontend/static/js/275.a274eb84.chunk.js",
+    "static/js/614.0118b297.chunk.js": "/project-future777-frontend/static/js/614.0118b297.chunk.js",
     "static/js/323.6d9bb947.chunk.js": "/project-future777-frontend/static/js/323.6d9bb947.chunk.js",
     "static/js/630.f568e0a9.chunk.js": "/project-future777-frontend/static/js/630.f568e0a9.chunk.js",
-    "static/js/191.49cf4a4e.chunk.js": "/project-future777-frontend/static/js/191.49cf4a4e.chunk.js",
+    "static/js/375.7c1c21b6.chunk.js": "/project-future777-frontend/static/js/375.7c1c21b6.chunk.js",
+    "static/js/388.48095fcb.chunk.js": "/project-future777-frontend/static/js/388.48095fcb.chunk.js",
     "static/js/420.6e1affa8.chunk.js": "/project-future777-frontend/static/js/420.6e1affa8.chunk.js",
     "static/media/Poppins-Regular.otf": "/project-future777-frontend/static/media/Poppins-Regular.dd0aadcb7cace4308e2f.otf",
     "static/media/Poppins-SemiBold.otf": "/project-future777-frontend/static/media/Poppins-SemiBold.52811c4614895f51378b.otf",
@@ -25,19 +26,20 @@
     "static/media/404.jpg": "/project-future777-frontend/static/media/404.6f8c26e976232930a64f.jpg",
     "index.html": "/project-future777-frontend/index.html",
     "main.d6b35adc.css.map": "/project-future777-frontend/static/css/main.d6b35adc.css.map",
-    "main.22676a17.js.map": "/project-future777-frontend/static/js/main.22676a17.js.map",
-    "445.84ca7622.chunk.js.map": "/project-future777-frontend/static/js/445.84ca7622.chunk.js.map",
-    "140.67ff7196.chunk.css.map": "/project-future777-frontend/static/css/140.67ff7196.chunk.css.map",
-    "140.5c857cb6.chunk.js.map": "/project-future777-frontend/static/js/140.5c857cb6.chunk.js.map",
+    "main.23f46a47.js.map": "/project-future777-frontend/static/js/main.23f46a47.js.map",
+    "853.176755c7.chunk.js.map": "/project-future777-frontend/static/js/853.176755c7.chunk.js.map",
+    "445.f3330edc.chunk.css.map": "/project-future777-frontend/static/css/445.f3330edc.chunk.css.map",
+    "445.0ac0f999.chunk.js.map": "/project-future777-frontend/static/js/445.0ac0f999.chunk.js.map",
     "422.e588e01e.chunk.js.map": "/project-future777-frontend/static/js/422.e588e01e.chunk.js.map",
-    "275.a274eb84.chunk.js.map": "/project-future777-frontend/static/js/275.a274eb84.chunk.js.map",
+    "614.0118b297.chunk.js.map": "/project-future777-frontend/static/js/614.0118b297.chunk.js.map",
     "323.6d9bb947.chunk.js.map": "/project-future777-frontend/static/js/323.6d9bb947.chunk.js.map",
     "630.f568e0a9.chunk.js.map": "/project-future777-frontend/static/js/630.f568e0a9.chunk.js.map",
-    "191.49cf4a4e.chunk.js.map": "/project-future777-frontend/static/js/191.49cf4a4e.chunk.js.map",
+    "375.7c1c21b6.chunk.js.map": "/project-future777-frontend/static/js/375.7c1c21b6.chunk.js.map",
+    "388.48095fcb.chunk.js.map": "/project-future777-frontend/static/js/388.48095fcb.chunk.js.map",
     "420.6e1affa8.chunk.js.map": "/project-future777-frontend/static/js/420.6e1affa8.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.d6b35adc.css",
-    "static/js/main.22676a17.js"
+    "static/js/main.23f46a47.js"
   ]
 }
