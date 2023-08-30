@@ -1,28 +1,53 @@
 import { useRegisterUserMutation,
+
   useLoginUserMutation,
+ 
   useLogoutUserMutation,
+ 
   useCurrentUserQuery,
+
+  useUpdateUserMutation,
+ 
   useThemeUserMutation,
+ 
   useAvatarUserMutation,
+ 
   useHelpUserMutation,
+ 
   useGetBoardsQuery,
+ 
   useGetBoardByIdQuery,
+  
   useAddBoardsMutation,
+  
   useDeleteBoardByIdMutation,
+ 
   useUpdateBoardByIdMutation,
+ 
   useAddColumnMutation,
+  
   useUpdateColumnByIdMutation,
+ 
   useDeleteColumnByIdMutation,
+  
   useAddCardMutation,
+ 
   useUpdateCardByIdMutation,
+  
   useDeleteCardByIdMutation,
-  useUpdateCardColumnByIdMutation } from './src/Services/API_Component/index';
+  
+  useUpdateCardColumnByIdMutation,
+
+  authAPI, boardsAPI, cardsAPI, columnsAPI, userAPI
+
+} from './API_Component';
 
 export const API = {
    useRegisterUserMutation,
   useLoginUserMutation,
   useLogoutUserMutation,
   useCurrentUserQuery,
+  useUpdateUserMutation,
   useThemeUserMutation,
   useAvatarUserMutation,
   useHelpUserMutation,
@@ -37,5 +62,7 @@ export const API = {
   useAddCardMutation,
   useUpdateCardByIdMutation,
   useDeleteCardByIdMutation,
-  useUpdateCardColumnByIdMutation 
+  useUpdateCardColumnByIdMutation,
+  authAPI, boardsAPI, cardsAPI, columnsAPI, userAPI
+
 };

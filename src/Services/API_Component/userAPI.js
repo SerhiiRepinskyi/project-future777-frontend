@@ -2,8 +2,9 @@ import { createApi} from '@reduxjs/toolkit/query/react';
 import baseQuery from '../API_Helper/APIHelper'
 
 export const userAPI = createApi({
-    reducerPath: 'api',
+    reducerPath: 'userAPI',
     baseQuery,
+    providesTags: ['User'],
     endpoints: (builder) => ({
         currentUser: builder.query({
             query: () => ({
@@ -12,6 +13,13 @@ export const userAPI = createApi({
             })
         }),
 
+        updateUser: builder.mutation({
+            query: (userData) => ({
+                url: "user/",
+                method: "PATCH",
+                body: userData,
+            })
+        }),
       
         themeUser: builder.mutation({
             query: (themeData) => ({
@@ -45,6 +53,7 @@ export const {
   useCurrentUserQuery,
   useThemeUserMutation,
   useAvatarUserMutation,
-  useHelpUserMutation
+  useHelpUserMutation,
+  useUpdateUserMutation,
 } = userAPI;
 

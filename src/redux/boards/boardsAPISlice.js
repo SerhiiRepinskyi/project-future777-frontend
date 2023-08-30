@@ -1,28 +1,73 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-const initialState = {
-  boards: null,
-  id: null,
-  boardData: null,
-  FormData:null,
+export const initialState = {
+  boards: [],
+  boardconfig: null,
+  boardId: null,
+  boardData: {},
   error: null,
 };
 
-const boardsSlice = createSlice({
+const boardsAPISlice = createSlice({
   name: 'boards',
   initialState,
   reducers: {
-    setBoardsList: (state, action) => {
-      const { user, token } = action.payload;
-      state.user = user;
-      state.token = token;
+    
+    setAllBoards: (state, action) => {
+      state.boards = action.payload;
+      
     },
+
+    setBoardId: (state, action) => {
+      const { id } = action.payload;
+      state.id = id;
+    },
+
     setBoardData: (state, action) => {
-      const { boardData } = action.payload;
-      state.boardData = boardData;
+      state.boardData = { ...state.boardData, ...action.payload };
+    },
+
+    deleteBoard: (state, action) => {
+      const { id } = action.payload;
+      state.boards = state.boards.filter(board => board.id !== id);
+    },
+
+    setError: (state, action) => {
+      state.error = action.payload;
+    },
+
+    clearError: (state) => {
+      state.error = null;
     },
   },
-  extraRedusers: {},
+  extraReducers: {},
 });
 
-export default boardsSlice.reducer;
+export const { setError, clearError } = boardsAPISlice.actions;
+
+export default boardsAPISlice;
+
+
+
+
+
+
+
+// const addColumn = async (req, res) => {
+//   const { id: owner } = req.params;
+//   // Додамо перевірку на власника
+//   if (owner !== req.user._id) {
+//     return res.status(403).json({ message: 'Access denied' });
+//   }
+
+//   const result = await Column.create({ ...req.body, owner });
+//   if (!result) {
+//     throw HttpError(404, ERR_NOT_FOUND(id));
+//   }
+//   const { _id: columnId, title: columnTitle } = result;
+//   const board = await Board.findById(owner);
+
+//   board.columns.push({ columnId, columnTitle });
+//   await board.save();
+//   res.status(201).json(result);
+// };

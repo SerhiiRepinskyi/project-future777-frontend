@@ -8,7 +8,7 @@ import  baseQuery from '../API_Helper/APIHelper';
 
 
 export const authAPI = createApi({
-    reducerPath: 'api',
+    reducerPath: 'authAPI',
     baseQuery: baseQuery,
     endpoints: (builder) => ({
         registerUser: builder.mutation({
@@ -44,5 +44,5 @@ export const authAPI = createApi({
 export const {
   useRegisterUserMutation,
   useLoginUserMutation,
-  useLogoutUserMutation
+  useLogoutUserMutation,
 } = authAPI;

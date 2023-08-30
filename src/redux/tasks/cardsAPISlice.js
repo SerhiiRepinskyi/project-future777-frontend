@@ -1,18 +1,26 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-  cards: [],      // Масив карток
-  selectedCardId: null,  // ID вибраної картки
-  selectedColumnId: null, // ID колонки, до якої належить вибрана картка
-  error: null,    // Об'єкт помилки
+  cards: [],
+  cardData:{},
+  selectedCardId: null,  
+  selectedColumnId: null, 
+  error: null,  
 };
 
-const cardsSlice = createSlice({
+const cardsAPISlice = createSlice({
   name: 'cards',
   initialState,
   reducers: {
     setCards: (state, action) => {
       state.cards = action.payload;
+    },
+    deleteCard:(state, action) => {
+      const { id } = action.payload;
+      state.cards = state.cards.filter(card => card.id!== id);
+    },
+    setCardData: (state, action) => {
+      state.cardData = { ...state.cardData, ...action.cardData };
     },
     setSelectedCardId: (state, action) => {
       state.selectedCardId = action.payload;
@@ -23,16 +31,18 @@ const cardsSlice = createSlice({
     setError: (state, action) => {
       state.error = action.payload;
     },
+
+
   },
 });
 
 export const {
   setCards,
-  setSelectedCardId,
+  setCardData,
   setSelectedColumnId,
   setError,
-} = cardsSlice.actions;
+} = cardsAPISlice.actions;
 
-export default cardsSlice.reducer;
+export default cardsAPISlice;
 
 

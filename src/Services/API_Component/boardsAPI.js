@@ -5,7 +5,7 @@ import  baseQuery  from '../API_Helper/APIHelper';
 
 
 export const boardsAPI = createApi({
-    reducerPath: 'api',
+    reducerPath: 'boardsAPI',
     baseQuery,
     endpoints: (builder) => ({
         getBoards: builder.query({

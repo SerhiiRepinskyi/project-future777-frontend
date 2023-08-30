@@ -1,9 +1,10 @@
-import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+import { createApi } from '@reduxjs/toolkit/query/react';
 import baseQuery from '../API_Helper/APIHelper'
 
 export const columnsAPI = createApi({
-    reducerPath: 'api',
-    baseQuery: fetchBaseQuery({ baseQuery }),
+    reducerPath: 'columnsAPI',
+    baseQuery,
+    tagTypes: ['columns'],
     endpoints: (builder) => ({
         addColumn: builder.mutation({
             query: (boardId, title) => ({
