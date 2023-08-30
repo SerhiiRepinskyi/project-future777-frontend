@@ -25,7 +25,7 @@ export const Subtitle = styled('p')(({ isSidebarShown }) => ({
   letterSpacing: '-0.24px',
 
   transform: 'translateX(250px)',
-  animation: isSidebarShown ? `${slideToLeft} 300ms` : 'none',
+  animation: isSidebarShown ? `${slideToLeft} 400ms` : 'none',
   animationTimingFunction: 'ease',
 
   animationFillMode: 'forwards',
@@ -51,7 +51,7 @@ export const TitleCreate = styled('p')(({ isSidebarShown }) => ({
   letterSpacing: '-0.28px',
 
   transform: 'translateX(-250px)',
-  animation: isSidebarShown ? `${slideToRight} 300ms` : 'none',
+  animation: isSidebarShown ? `${slideToRight} 400ms` : 'none',
   animationTimingFunction: 'ease',
 
   animationFillMode: 'forwards',
@@ -79,7 +79,7 @@ export const Image = styled('img')(({ isSidebarShown }) => ({
   marginBottom: '14px',
 
   transform: 'translateY(250px)',
-  animation: isSidebarShown ? `${slideToDown} 300ms` : 'none',
+  animation: isSidebarShown ? `${slideToDown} 400ms` : 'none',
   animationTimingFunction: 'ease',
 
   animationFillMode: 'forwards',
@@ -96,7 +96,7 @@ export const HelpText = styled('p')(({ isSidebarShown }) => ({
   },
 
   transform: 'translateX(-250px)',
-  animation: isSidebarShown ? `${slideToRight} 300ms` : 'none',
+  animation: isSidebarShown ? `${slideToRight} 400ms` : 'none',
   animationTimingFunction: 'ease',
 
   animationFillMode: 'forwards',
@@ -125,7 +125,7 @@ export const HelpButton = styled('button')(({ isSidebarShown }) => ({
   },
 
   transform: 'translateX(250px)',
-  animation: isSidebarShown ? `${slideToLeft} 300ms` : 'none',
+  animation: isSidebarShown ? `${slideToLeft} 400ms` : 'none',
   animationTimingFunction: 'ease',
   animationFillMode: 'forwards',
 }));

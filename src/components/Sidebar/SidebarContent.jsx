@@ -28,29 +28,38 @@ export const SidebarContent = ({ isSidebarShown }) => {
 
   return (
     <>
-      <Box className={styles.container} sx={{ overflowX: 'hidden' }}>
-        <Box sx={{ pl: { 0: 1.75, 768: 3 }, pr: { 0: 1.75, 768: 3 } }}>
-          <SidebarLogo
-            style={{ marginBottom: '60px' }}
-            isSidebarShown={isSidebarShown}
-          />
+      <Box
+        className={styles.container}
+        sx={{
+          overflowX: 'hidden',
+          pt: 3,
+          pb: 3,
+          display: 'flex',
+          flexGrow: 1,
+          flexDirection: 'column',
+          justifyContent: 'space-between',
+        }}
+      >
+        <Box>
+          <Box sx={{ pl: { 0: 1.75, 768: 3 }, pr: { 0: 1.75, 768: 3 } }}>
+            <SidebarLogo sx={{ mb: 7.5 }} isSidebarShown={isSidebarShown} />
 
-          <Subtitle sx={{ mb: 1 }} isSidebarShown={isSidebarShown}>
-            My boards
-          </Subtitle>
+            <Subtitle sx={{ mb: 1 }} isSidebarShown={isSidebarShown}>
+              My boards
+            </Subtitle>
 
-          <CreateBoardWrap sx={{ mb: 5 }}>
-            <TitleCreate isSidebarShown={isSidebarShown}>
-              Create a <br /> new board
-            </TitleCreate>
-            <ButtonSidebar onClick={modalStateChange} />
-          </CreateBoardWrap>
+            <CreateBoardWrap sx={{ mb: 5 }}>
+              <TitleCreate isSidebarShown={isSidebarShown}>
+                Create a <br /> new board
+              </TitleCreate>
+              <ButtonSidebar onClick={modalStateChange} />
+            </CreateBoardWrap>
+          </Box>
+          <SidebarBoardList />
         </Box>
 
-        <SidebarBoardList />
-
         <Box
-          sx={{ mt: 'auto', pl: { 0: 1.75, 768: 3 }, pr: { 0: 1.75, 768: 3 } }}
+          sx={{ pl: { 0: 1.75, 768: 3 }, pr: { 0: 1.75, 768: 3 } }}
         >
           <HelpBox sx={{ p: { 0: 1.75, 768: 2.5 }, mb: 3 }}>
             <Image
@@ -76,7 +85,6 @@ export const SidebarContent = ({ isSidebarShown }) => {
               Need help?
             </HelpButton>
           </HelpBox>
-
           <LogoutBtn />
         </Box>
       </Box>

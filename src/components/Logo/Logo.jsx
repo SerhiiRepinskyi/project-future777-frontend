@@ -10,10 +10,10 @@ import {
 } from './Logo-styled';
 import sprite from '../../assets/images/sprite.svg';
 
-export const SidebarLogo = ({ style, isSidebarShown }) => {
+export const SidebarLogo = ({ sx, isSidebarShown }) => {
   return (
     <>
-      <SidebarLogoWrap style={style} isSidebarShown={isSidebarShown}>
+      <SidebarLogoWrap sx={sx} isSidebarShown={isSidebarShown}>
         <SidebarLogoIconWrap>
           <SidebarLogoIcon>
             <use href={sprite + '#icon-logo-lightning'}></use>

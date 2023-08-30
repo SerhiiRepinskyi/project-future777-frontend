@@ -13,16 +13,15 @@ import { Box, List, ListItem, ListItemButton } from '@mui/material';
 import { useEffect, useState } from 'react';
 import MeasureTextWidth from './MeasureTextWidth';
 
-export const SidebarBoardItem = ({ text, index, current }) => {
+export const SidebarBoardItem = ({ text, icon, current }) => {
   const [isHovered, setIsHovered] = useState(false);
   const [titleWidth, setTitleWidth] = useState(0);
-  const [maxTitleItemWidth, setMaxTitleItemWidth] = useState(175);
-  const [truncatedText, setTruncatedText] = useState(text);
+  const [titleWrapWidth, setTitleWrapWidth] = useState(85);
   const [screenWidth, setScreenWidth] = useState(window.innerWidth);
 
   const handleResize = debounce(() => {
     setScreenWidth(window.innerWidth);
-  }, 200); 
+  }, 200);
 
   useEffect(() => {
     window.addEventListener('resize', handleResize);
@@ -31,17 +30,12 @@ export const SidebarBoardItem = ({ text, index, current }) => {
     };
   }, [handleResize]);
 
-  
   useEffect(() => {
-    if (screenWidth < 768) {
-      setMaxTitleItemWidth(175);
-      const truncatedText = text.substring(0, 22).trim() + '...';
-      setTruncatedText(truncatedText);
-    } else {
-      setMaxTitleItemWidth(186);
-      const truncatedText = text.substring(0, 26).trim() + '...';
-      setTruncatedText(truncatedText);
-    }
+    if (screenWidth <= 320) {
+      setTitleWrapWidth(85);
+    } else if (screenWidth <= 768) {
+      setTitleWrapWidth(120);
+    } else setTitleWrapWidth(130);
   }, [screenWidth, text]);
 
   const handleEditClick = event => {
@@ -74,21 +68,23 @@ export const SidebarBoardItem = ({ text, index, current }) => {
           }}
         >
           <BoardItemIcon sx={{ opacity: current ? 1 : 0.5 }}>
-            <use href={sprite + '#icon-help'}></use>
+            <use href={sprite + `#${icon}`}></use>
           </BoardItemIcon>
+
           <BoardItemTitleWrap
             sx={{
               width: current
-                ? { 0: '125px', 768: '135px' }
-                : { 0: '175px', 768: '186px' },
+                ? { 0: 85, 320: '27vw', 375: 120, 768: 130 }
+                : { 0: 135, 320: '42vw', 375: 170, 768: 180 },
             }}
           >
             <BoardItemTitle
               sx={{ opacity: current ? 1 : 0.5 }}
               titleWidth={titleWidth}
+              titleWrapWidth={titleWrapWidth}
               current={current}
             >
-              {titleWidth > maxTitleItemWidth && !current ? truncatedText : text}
+              {text}
             </BoardItemTitle>
           </BoardItemTitleWrap>
         </Box>
@@ -128,6 +124,7 @@ export const SidebarBoardItem = ({ text, index, current }) => {
               flexDirection: 'row',
               gap: 1,
               alignItems: 'center',
+              justifyContent: 'center',
             }}
           >
             <ListItem disablePadding>
