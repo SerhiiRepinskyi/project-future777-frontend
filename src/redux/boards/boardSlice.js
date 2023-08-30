@@ -1,34 +1,59 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
-
 export const boardsApi = createApi({
-  reducerPath: "boardsApi",
+  reducerPath: 'boardsApi',
   baseQuery: fetchBaseQuery({
-    baseUrl: "https://project-future777-backend.onrender.com/api/",
+    baseUrl: 'https://project-future777-backend.onrender.com/api/',
   }),
-  tagTypes: ["boards"],
-  endpoints: (builder) => ({
+  tagTypes: ['boards'],
+  endpoints: builder => ({
     getBoards: builder.query({
-      query: (token) => ({
-        url: "boards",
+      query: token => ({
+        url: 'boards',
         headers: {
           Authorization: `Bearer ${token}`,
         },
       }),
-      providesTags: ["boards"],
+      providesTags: ['boards'],
     }),
     addBoards: builder.mutation({
       query: ({ boardsData, token }) => ({
-        url: "boards",
-        method: "POST",
+        url: 'boards',
+        method: 'POST',
         headers: {
           Authorization: `Bearer ${token}`,
         },
         body: boardsData,
       }),
-      invalidatesTags: ["boards"],
+      invalidatesTags: ['boards'],
+    }),
+    deleteBoards: builder.mutation({
+      query: ({ id, token }) => ({
+        url: `boards/:${id}`,
+        method: 'DELETE',
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }),
+      invalidatesTags: ['boards'],
+    }),
+    updateBoards: builder.mutation({
+      query: ({ boardsData, id, token }) => ({
+        url: `boards/:${id}`,
+        method: 'PATCH',
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+        body: boardsData,
+      }),
+      invalidatesTags: ['boards'],
     }),
   }),
 });
 
-export const { useGetBoardsQuery, useAddBoardsMutation } = boardsApi;
+export const {
+  useGetBoardsQuery,
+  useAddBoardsMutation,
+  useDeleteBoardsMutation,
+  useUpdateBoardsMutation,
+} = boardsApi;
