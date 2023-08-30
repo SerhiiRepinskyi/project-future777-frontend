@@ -57,6 +57,10 @@ const DatePickerStyles = {
     backgroundColor: '#BEDBB0',
     color: '#1F1F1F',
   },
+  '.MuiPickersYear-yearButton:hover': {
+    backgroundColor: '#BEDBB0',
+    color: '#1F1F1F',
+  },
   '.MuiPickersDay-today': {
     backgroundColor: '#BEDBB0',
     color: '#1F1F1F',
@@ -94,9 +98,9 @@ const DatePickerCmponent = ({ onChange }) => {
       {/* <ThemeProvider theme={theme}> */}
       <DateCalendarStyled
         sx={DatePickerStyles}
-        disablePast
         onChange={onChange}
         format="LL"
+        disablePast
         showDaysOutsideCurrentMonth
       />
       {/* </ThemeProvider> */}

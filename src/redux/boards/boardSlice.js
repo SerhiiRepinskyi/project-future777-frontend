@@ -48,6 +48,15 @@ export const boardsApi = createApi({
       }),
       invalidatesTags: ['boards'],
     }),
+    getBoardById: builder.query({
+      query: ({ boardId, token }) => ({
+        url: `boards/${boardId}`,
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }),
+      providesTags: ['boards'],
+    }),
   }),
 });
 
@@ -56,4 +65,5 @@ export const {
   useAddBoardsMutation,
   useDeleteBoardsMutation,
   useUpdateBoardsMutation,
+  useGetBoardByIdQuery
 } = boardsApi;

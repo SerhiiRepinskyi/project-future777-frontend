@@ -11,7 +11,10 @@ import Box from '@mui/material/Box';
 import sprite from '../../assets/images/sprite.svg';
 import { styled } from '@mui/material';
 import { useSelector } from 'react-redux';
-import { useDeleteCardMutation, useUpdateCardMutation } from '../../redux/tasks/cardSlice';
+import {
+  useDeleteCardMutation,
+  useUpdateCardMutation,
+} from '../../redux/tasks/cardSlice';
 import {
   CardStyles,
   TypographyStylesTitle,
@@ -45,7 +48,14 @@ const ListMenuStyles = styled(MenuItem)`
     transition: stroke 0.3s;
   }
 `;
-function TaskCard({ title, description, priority, deadline, moveCard, id }) {
+function TaskCard({
+  title,
+  description,
+  priority,
+  deadline,
+  moveCard,
+  id,
+}) {
   const [anchorEl, setAnchorEl] = useState(null);
   const [deleteCard] = useDeleteCardMutation();
   const [updateCard] = useUpdateCardMutation();

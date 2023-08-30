@@ -49,21 +49,21 @@ export const App = () => {
                   <HomePage />
                 </PrivateRoute>
               }
-            />
+            >
+              <Route
+                path="/home/:boardId"
+                element={
+                  <Suspense fallback={<Loader />}>
+                    <ScreensPage />
+                  </Suspense>
+                }
+              />
+            </Route>
 
             <Route path="/auth/:id" element={<AuthPage />}>
               <Route path="login" element={<LoginForm />} />
               <Route path="register" element={<RegisterForm />} />
             </Route>
-
-            <Route
-              path="/home/:boardName"
-              element={
-                <Suspense fallback={<Loader />}>
-                  <ScreensPage />
-                </Suspense>
-              }
-            />
 
             <Route path="*" element={<NotFound />} />
           </Routes>

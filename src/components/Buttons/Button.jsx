@@ -102,7 +102,6 @@ export const ButtonAdd = ({ onClick }) => {
         alignItems: 'center',
         textTransform: 'none',
         borderRadius: '8px',
-        marginTop: '40px',
         letterSpacing: '-0.02em',
         fontSize: '14px',
         background: '#121212',

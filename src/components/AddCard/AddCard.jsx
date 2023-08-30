@@ -12,29 +12,33 @@ import {
 import { useFormik } from 'formik';
 import ColorRadioButtons from 'components/ColorRadioButtons/ColorRadioButtons';
 import { format } from 'date-fns';
-
 import { ButtonWithIcon } from 'components/Buttons/Button';
 import * as Yup from 'yup';
 import DropDownIcon from 'components/Icons/DropDownIcon/DropDownIcon';
 import Popup from 'components/Popup/Popup';
 import DatePickerCmponent from 'components/DatePicker/DatePicker';
+// import { useAddCardToColumnMutation } from 'redux/tasks/cardSlice';
+import { useSelector } from 'react-redux';
 
-const AddCard = () => {
+const AddCard = ({close}) => {
+  const token = useSelector(state => state.auth.token);
   const [date, setDate] = useState('');
-  const [color, setColor] = useState('grey');
-  const [anchorEl, setAnchorEl] = useState(<DropDownIcon />);
+  const [dateValue, setDateValue] = useState('');
+  const [color, setColor] = useState('0');
+  const [anchorEl, setAnchorEl] = useState(null);
   const [isPopupOpen, setIsPopupOpen] = useState(false);
-
+  // const [addCards] = useAddCardToColumnMutation();
+  
   const handleDateClick = e => {
-    
-      console.log('e.currentTarget :>> ', e.currentTarget);
     setAnchorEl(e.currentTarget);
     setIsPopupOpen(!isPopupOpen);
   };
+  
   const onDateChange = e => {
-    console.log('e :>> ', e);
-    const dateFns = format(e, 'LLLL d');
-    setDate(dateFns);
+    const dateFns = format(e, "LLLL d");
+    console.log('dateFns :>> ', date);
+    setDateValue(dateFns);
+    setDate(e);
     setIsPopupOpen(false);
   };
 
@@ -43,12 +47,24 @@ const AddCard = () => {
     setColor(value);
   };
 
-  const handleSubmit = (title, description, color) => {
-    console.log('Title => ', title);
-    console.log('Description => ', description);
-    console.log('Color :>> ', color);
-    console.log('Date :>> ', date);
+  const handleSubmit = async (title, description, color) => {
+    const dateFns = format(date, 'yyyy-MM-dd');
+    // try {
+    //   await addCards({
+    //     cardsData: {
+    //       title,
+    //       description,
+    //       priority: color,
+    //       deadline: dateFns,
+    //     },
+    //     token,
+    //     columnId: '64eacc9f4040dd4d17e3e96f',
+    //   });
+    // } catch (error) {
+    //   console.log(error);
+    // }
     formik.handleReset();
+    close();
   };
   const validationSchema = Yup.object({
     title: Yup.string()
@@ -71,7 +87,9 @@ const AddCard = () => {
 
   useEffect(() => {
     const dateFns = format(new Date(), "'Today,' LLLL d");
-    setDate(dateFns);
+    setDateValue(dateFns);
+    
+    console.log('dateFns :>> ', dateFns);
   }, []);
 
   return (
@@ -103,7 +121,7 @@ const AddCard = () => {
         <SubWrapper>
           <SubTitle>Deadline</SubTitle>
           <DateWrapper>
-            <DateText>{date}</DateText>
+            <DateText>{dateValue}</DateText>
             <DropDownIcon onClick={handleDateClick} />
             <Popup
               anchorEl={anchorEl}
