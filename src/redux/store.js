@@ -5,7 +5,11 @@ import { persistStore, persistReducer } from 'redux-persist';
 import { authAPI, userAPI, boardsAPI } from 'Services/API_Component';
 // import { authApi } from './auth/authApi';
 import { setupListeners } from '@reduxjs/toolkit/dist/query';
+
+import { cardsApi } from './tasks/cardSlice';
+import { columnsApi } from './columns/columnSlice';
 import { boardsAPISlice, authAPISlice } from './slices';
+
 
 const authPersistConfig = {
   key: 'auth',
@@ -25,10 +29,13 @@ const persistedBoardReducer = persistReducer(boardsPersistConfig, boardsAPISlice
 export const store = configureStore({
   reducer: {
     auth: persistedReducer,
+
     boards:persistedBoardReducer,
     [authAPI.reducerPath]: authAPI.reducer,
     [boardsAPI.reducerPath]: boardsAPI.reducer,
     [userAPI.reducerPath]:userAPI.reducer,
+    [columnsApi.reducerPath]: columnsApi.reducer,
+    [cardsApi.reducerPath]: cardsApi.reducer,
   },
 
   middleware: getDefaultMiddleware =>
@@ -39,7 +46,9 @@ export const store = configureStore({
     })
       .concat([authAPI.middleware])
       .concat([boardsAPI.middleware])
-      .concat([userAPI.middleware]),
+      .concat([userAPI.middleware])
+      .concat([columnsApi.middleware])
+      .concat([cardsApi.middleware]),
 });
 
 setupListeners(store.dispatch);

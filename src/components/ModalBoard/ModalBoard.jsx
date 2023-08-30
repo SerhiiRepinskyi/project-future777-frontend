@@ -1,5 +1,5 @@
-import { useFormik } from "formik";
-import { Typography } from "@mui/material";
+import { useFormik } from 'formik';
+import { Typography } from '@mui/material';
 import {
   FormStyled,
   InputStyled,
@@ -10,6 +10,7 @@ import {
   ImgStyled,
   LiIconsStyled,
 } from './ModalBoard.styled';
+
 import sprite from "../../assets/images/sprite.svg";
 import * as Yup from "yup";
 import { ButtonWithIcon } from "components/Buttons/Button";
@@ -22,64 +23,79 @@ import { useDispatch } from "react-redux";
 import { useAddBoardsMutation } from "Services/API_Component/boardsAPI";
 import {setBoardResponse} from "redux/boards/boardsAPISlice"
 
+
+import sprite from '../../assets/images/sprite.svg';
+import * as Yup from 'yup';
+import { ButtonWithIcon } from 'components/Buttons/Button';
+import ModalLayout from 'components/ModalLayout/ModalLayout';
+import { useState } from 'react';
+import { arrIcons } from './data';
+import { arrBG } from './data';
+import { useSelector } from 'react-redux';
+import {setBoardResponse} from "redux/boards/boardsAPISlice"
+import { useAddBoardsMutation } from "Services/API_Component/boardsAPI";
+import { useDispatch } from "react-redux"
+
+
 const titleStyle = {
-  color: "#FFF",
+  color: '#FFF',
   fontSize: 14,
-  fontStyle: "normal",
+  fontStyle: 'normal',
   fontWeight: 500,
-  lineHeight: "normal",
+  lineHeight: 'normal',
   letterSpacing: -0.36,
-  // marginBottom: 24 / 8,
 };
 
 const ModalBoard = ({ open, handleClose }) => {
-  const dispatch = useDispatch()
- 
   // const [titleInputText, setTitleInputText] = useState('');
-  const [iconIndex, setIconIndex] = useState(0);
-  const [bgImgIndex, setBgImgIndex] = useState(0);
+ const dispatch = useDispatch()
+ const [iconIndex, setIconIndex] = useState(0);
+
+  const [backgroundURL, setBackgroundURL] = useState(arrBG[0]);
+  const [backgroundIndex, setBackgroundIndex] = useState(0);
+
   const [addBoards] = useAddBoardsMutation();
 
-  const handleSubmit = async (title) => {
-    console.log("Title => ", title, iconIndex, bgImgIndex,);
-     
-    
+
+  const token = useSelector(state => state.auth.token);
+
+  const handleSubmit = async title => {
     try {
        const response = await addBoards({
-        title: title,
-        icon: iconIndex,
-        background: bgImgIndex,
+          title: title,
+          icon: iconIndex,
+          iconId,
+          background: backgroundIndex,
+          backgroundURL,
       });
       console.log(response); 
-
       dispatch(setBoardResponse(response))
     } catch (error) {
       console.log(error);
     }
-
     formik.handleReset();
   };
 
   const validationSchema = Yup.object({
     title: Yup.string()
-      .min(2, "Must be more then 2 symbols")
-      .required("Title is required")
+      .min(2, 'Must be more then 2 symbols')
+      .required('Title is required')
       .matches(
         /^(\w*)$/,
-        "Title may contain only letters, apostrophe, dash and spaces."
+        'Title may contain only letters, apostrophe, dash and spaces.'
       ),
     description: Yup.string(),
   });
 
   const formik = useFormik({
-    initialValues: { title: "" },
+    initialValues: { title: '' },
     onSubmit: ({ title }) => handleSubmit(title),
     validationSchema,
   });
 
   return (
     <>
-      <ModalLayout title={"New board"} open={open} handleClose={handleClose}>
+      <ModalLayout title={'New board'} open={open} handleClose={handleClose}>
         <FormStyled onSubmit={formik.handleSubmit}>
           <InputStyled
             id="title"
@@ -93,14 +109,17 @@ const ModalBoard = ({ open, handleClose }) => {
             Icons
           </Typography>
           <UlStyled>
-            {arrIcons.map((el, index) => {
+            {arrIcons.map((icon, index) => {
               return (
                 <LiIconsStyled
-                  key={index + 1}
-                  onClick={() => setIconIndex(index + 1)}
+                  key={icon}
+                  onClick={() => {
+                    setIconId(icon);
+                    setIconIndex(index);
+                  }}
                 >
                   <TransparentSVG>
-                    <use href={sprite + el} />
+                    <use href={sprite + icon} />
                   </TransparentSVG>
                 </LiIconsStyled>
               );
@@ -112,24 +131,24 @@ const ModalBoard = ({ open, handleClose }) => {
           </Typography>
           <UlBgStyled>
             <LiStyled></LiStyled>
-            {backgroundImg.map((el, index) => {
+            {arrBG.map((bg, index) => {
               return (
                 <LiStyled
-                  key={index + 1}
-                  onClick={() => setBgImgIndex(index + 1)}
+                  key={bg}
+                  onClick={() => {
+                    setBackgroundURL(bg);
+                    setBackgroundIndex(index);
+                  }}
                 >
-                  <ImgStyled
-                    src={el}
-                    alt=""
-                  />
+                  <ImgStyled src={bg} alt="background picture" />
                 </LiStyled>
               );
             })}
           </UlBgStyled>
 
           <ButtonWithIcon
-            title={"Create"}
-            type={"submit"}
+            title={'Create'}
+            type={'submit'}
             // onClick={handleClose}
           />
         </FormStyled>

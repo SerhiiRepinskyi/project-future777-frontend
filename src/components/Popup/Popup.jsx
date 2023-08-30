@@ -2,7 +2,7 @@ import { Popover } from '@mui/material';
 import React from 'react';
 
 const PopupStyles = {
-  '.css-3bmhjh-MuiPaper-root-MuiPopover-paper': {
+  '.MuiPaper-root': {
     backgroundColor: '#1F1F1F',
     borderRadius: '8px',
   },

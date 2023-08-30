@@ -29,7 +29,7 @@ export const boardsApi = createApi({
     }),
     deleteBoards: builder.mutation({
       query: ({ id, token }) => ({
-        url: `boards/:${id}`,
+        url: `boards/${id}`,
         method: 'DELETE',
         headers: {
           Authorization: `Bearer ${token}`,
@@ -39,7 +39,7 @@ export const boardsApi = createApi({
     }),
     updateBoards: builder.mutation({
       query: ({ boardsData, id, token }) => ({
-        url: `boards/:${id}`,
+        url: `boards/${id}`,
         method: 'PATCH',
         headers: {
           Authorization: `Bearer ${token}`,
@@ -47,6 +47,15 @@ export const boardsApi = createApi({
         body: boardsData,
       }),
       invalidatesTags: ['boards'],
+    }),
+    getBoardById: builder.query({
+      query: ({ boardId, token }) => ({
+        url: `boards/${boardId}`,
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }),
+      providesTags: ['boards'],
     }),
   }),
 });
@@ -56,4 +65,5 @@ export const {
   useAddBoardsMutation,
   useDeleteBoardsMutation,
   useUpdateBoardsMutation,
+  useGetBoardByIdQuery
 } = boardsApi;
