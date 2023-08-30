@@ -8,9 +8,9 @@ import {
   StyledLink,
 } from '../RegisterForm/RegisterForm.styled';
 import { useState } from 'react';
-import { useLogInMutation } from 'redux/auth/authApi';
+import { useLogInMutation } from 'Services/API_Component/authAPI';
 import { useDispatch } from 'react-redux';
-import { setError, setIsLoggedIn, setCredentials } from 'redux/auth/authSlice';
+import { setError, setIsLoggedIn, setCredentials } from 'redux/auth/authAPISlice';
 import Loader from 'components/Loader/Loader';
 import { useNavigate } from 'react-router-dom';
 
