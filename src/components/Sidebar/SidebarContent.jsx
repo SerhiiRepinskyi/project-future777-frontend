@@ -20,6 +20,7 @@ import { ButtonSidebar } from 'components/Buttons/Button';
 import ModalBoard from 'components/ModalBoard/ModalBoard';
 import { SidebarBoardList } from './SidebarBoardList';
 import { Box } from '@mui/material';
+import ModalHelp from 'components/ModalHelp/ModalHelp';
 
 export const SidebarContent = ({ isSidebarShown }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -79,6 +80,7 @@ export const SidebarContent = ({ isSidebarShown }) => {
               resources or reach out to our customer support team.
             </HelpText>
             <HelpButton type="button" isSidebarShown={isSidebarShown}>
+              <ModalHelp open={isModalOpen} handleClose={modalStateChange}/>
               <svg width="20" height="20" stroke="#ffffff">
                 <use href={sprite + '#icon-help'}></use>
               </svg>
