@@ -74,6 +74,11 @@ export const GlobalStyles = () => {
           --sidebar-icon-plus-bg-color: rgba(190, 219, 176, 1);
           --sidebar-icon-plus-bg-color-HOVER-FOCUS: #9dc888;
           --sidebar-icon-plus-color: rgba(18, 18, 18, 1);
+          --sidebar-scroll-bg-color: rgba(255, 255, 255, 0.08);
+          --sidebar-scroll-thumb-color: rgba(157, 200, 136, 0.2);
+          --sidebar-scroll-thumb-color-HOVER: rgba(157, 200, 136, 0.5);
+          --sidebar-board-item-bg-color-CURRENT: rgba(31, 31, 31, 0.4);
+          --sidebar-board-item-bg-color-AFTER: #bedbb0;
           /* DO NOT TOUCH THIS VARIABLES OR I WILL FIND YOU!!!! */
 
           --header-theme-color: rgba(255, 255, 255, 0.8); //white
@@ -106,6 +111,11 @@ export const GlobalStyles = () => {
           --sidebar-icon-plus-bg-color: rgba(190, 219, 176, 1);
           --sidebar-icon-plus-bg-color-HOVER-FOCUS: #9dc888;
           --sidebar-icon-plus-color: rgba(18, 18, 18, 1);
+          --sidebar-scroll-bg-color: rgba(0, 0, 0, 0.08);
+          --sidebar-scroll-thumb-color: rgba(157, 200, 136, 0.2);
+          --sidebar-scroll-thumb-color-HOVER: rgba(157, 200, 136, 0.5);
+          --sidebar-board-item-bg-color-CURRENT: rgba(246, 246, 247, 0.4);
+          --sidebar-board-item-bg-color-AFTER: #bedbb0;
           /* DO NOT TOUCH THIS VARIABLES OR I WILL FIND YOU!!!! */
 
           --header-theme-color: rgba(22, 22, 22, 0.8); //black
@@ -126,18 +136,23 @@ export const GlobalStyles = () => {
           --secondary-bg-color: rgba(255, 255, 255, 1); //white
 
           /* DO NOT TOUCH THIS VARIABLES OR I WILL FIND YOU!!!! */
+          --sidebar-icon-logo-bg-color: rgba(236, 237, 253, 1);
+          --sidebar-icon-logo-color: rgba(82, 85, 188, 1);
           --sidebar-primary-bg-color: rgba(82, 85, 188, 1);
           --sidebar-secondary-bg-color: rgba(236, 237, 253, 0.4);
           --sidebar-primary-text-color: rgba(255, 255, 255, 1);
           --sidebar-secondary-text-color: rgba(255, 255, 255, 0.5);
-          --sidebar-icon-logo-bg-color: rgba(236, 237, 253, 1);
-          --sidebar-icon-logo-color: rgba(82, 85, 188, 1);
           --sidebar-border-color: rgba(255, 255, 255, 0.1);
           --sidebar-icon-logout-color: rgba(255, 255, 255, 1);
           --sidebar-icon-logout-color-HOVER-FOCUS: #b8bcfd;
           --sidebar-icon-plus-bg-color: rgba(184, 188, 253, 1);
           --sidebar-icon-plus-bg-color-HOVER-FOCUS: #979cea;
           --sidebar-icon-plus-color: rgba(255, 255, 255, 1);
+          --sidebar-scroll-bg-color: rgba(255, 255, 255, 0.08);
+          --sidebar-scroll-thumb-color: rgba(184, 188, 253, 0.2);
+          --sidebar-scroll-thumb-color-HOVER: rgba(184, 188, 253, 0.5);
+          --sidebar-board-item-bg-color-CURRENT: rgba(255, 255, 255, 0.2);
+          --sidebar-board-item-bg-color-AFTER: #ffffff;
           /* DO NOT TOUCH THIS VARIABLES OR I WILL FIND YOU!!!! */
 
           --header-theme-color: rgba(22, 22, 22, 0.8); //black
