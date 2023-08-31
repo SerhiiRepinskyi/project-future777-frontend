@@ -11,15 +11,19 @@ import {
   LiIconsStyled,
 } from './ModalBoard.styled';
 
-import sprite from '../../assets/images/sprite.svg';
-import * as Yup from 'yup';
-import { ButtonWithIcon } from 'components/Buttons/Button';
-import ModalLayout from 'components/ModalLayout/ModalLayout';
-import { useState } from 'react';
-import { arrIcons } from './data';
+import sprite from "../../assets/images/sprite.svg";
+import * as Yup from "yup";
+import { ButtonWithIcon } from "components/Buttons/Button";
+import ModalLayout from "components/ModalLayout/ModalLayout";
+import { useState } from "react";
+import { arrIcons } from "./data";
 import { arrBG } from './data';
-import { useSelector } from 'react-redux';
-import { useAddBoardsMutation } from 'redux/boards/boardSlice';
+// import { useDispatch } from "react-redux";
+// import { selectIsLoggedIn } from 'redux/auth/authSelectors';
+import { useAddBoardsMutation } from "redux/boards/boardSlice";
+// import {setBoardResponse} from "redux/boards/boardsAPISlice"
+
+
 
 const titleStyle = {
   color: '#FFF',
@@ -31,6 +35,8 @@ const titleStyle = {
 };
 
 const ModalBoard = ({ open, handleClose }) => {
+  // const [titleInputText, setTitleInputText] = useState('');
+//  const dispatch = useDispatch()
   const [iconId, setIconId] = useState(arrIcons[0]);
   const [iconIndex, setIconIndex] = useState(0);
 
@@ -39,24 +45,20 @@ const ModalBoard = ({ open, handleClose }) => {
 
   const [addBoards] = useAddBoardsMutation();
 
-  const token = useSelector(state => state.auth.token);
-
   const handleSubmit = async title => {
     try {
-      await addBoards({
-        boardsData: {
+       const response = await addBoards({
           title: title,
           icon: iconIndex,
           iconId,
           background: backgroundIndex,
           backgroundURL,
-        },
-        token,
       });
+      console.log(response); 
+      // dispatch(setBoardResponse(response))
     } catch (error) {
       console.log(error);
     }
-
     formik.handleReset();
   };
 

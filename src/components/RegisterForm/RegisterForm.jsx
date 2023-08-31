@@ -8,9 +8,9 @@ import {
   StyledLink,
 } from './RegisterForm.styled';
 import { useState } from 'react';
-import { useRegisterMutation } from 'redux/auth/authApi';
+import { useRegisterMutation } from 'Services/API_Component/authAPI';
 import { useDispatch } from 'react-redux';
-import { setCredentials, setError } from 'redux/auth/authSlice';
+import { setCredentials, setError } from 'redux/auth/authAPISlice';
 import Loader from 'components/Loader/Loader';
 import { useNavigate } from 'react-router-dom';
 export const RegisterForm = () => {

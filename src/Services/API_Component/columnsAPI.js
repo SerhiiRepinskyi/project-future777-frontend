@@ -3,7 +3,7 @@ import baseQuery from '../API_Helper/APIHelper'
 
 export const columnsAPI = createApi({
     reducerPath: 'columnsAPI',
-    baseQuery,
+    baseQuery: baseQuery,
     tagTypes: ['columns'],
     endpoints: (builder) => ({
         addColumn: builder.mutation({

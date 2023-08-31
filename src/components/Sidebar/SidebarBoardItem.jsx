@@ -6,22 +6,40 @@ import {
   BoardItemWrap,
 } from './SidebarBoardItem-styled';
 
-import { debounce } from 'lodash';
-
 import sprite from '../../assets/images/sprite.svg';
+import MeasureTitleWidth from './MeasureTitleWidth';
+
+import { debounce } from 'lodash';
 import { Box, List, ListItem, ListItemButton } from '@mui/material';
 import { useEffect, useState } from 'react';
-import MeasureTextWidth from './MeasureTextWidth';
+import { API } from 'Services/API';
 
-export const SidebarBoardItem = ({ text, icon, current }) => {
+export const SidebarBoardItem = ({ title, icon, id, current }) => {
   const [isHovered, setIsHovered] = useState(false);
   const [titleWidth, setTitleWidth] = useState(0);
-  const [titleWrapWidth, setTitleWrapWidth] = useState(85);
+  const [titleWrapWidth, setTitleWrapWidth] = useState(130);
   const [screenWidth, setScreenWidth] = useState(window.innerWidth);
+  const [startAnimation, setStartAnimation] = useState(true);
+
+  const [deleteBoard] = API.useDeleteBoardByIdMutation();
 
   const handleResize = debounce(() => {
     setScreenWidth(window.innerWidth);
   }, 200);
+
+  useEffect(() => {
+    const randomNumber = Math.floor(Math.random() * (15000 - 7000 + 1)) + 7000;
+    const interval = setInterval(() => {
+      setStartAnimation(true);
+      setTimeout(() => {
+        setStartAnimation(false);
+      }, 1000);
+    }, randomNumber);
+
+    return () => {
+      clearInterval(interval);
+    };
+  }, []);
 
   useEffect(() => {
     window.addEventListener('resize', handleResize);
@@ -36,7 +54,7 @@ export const SidebarBoardItem = ({ text, icon, current }) => {
     } else if (screenWidth <= 768) {
       setTitleWrapWidth(120);
     } else setTitleWrapWidth(130);
-  }, [screenWidth, text]);
+  }, [screenWidth, title]);
 
   const handleEditClick = event => {
     event.stopPropagation();
@@ -44,11 +62,12 @@ export const SidebarBoardItem = ({ text, icon, current }) => {
 
   const handleDeleteClick = event => {
     event.stopPropagation();
+    deleteBoard(id);
   };
 
   return (
     <>
-      <MeasureTextWidth text={text} setTitleWidth={setTitleWidth} />
+      <MeasureTitleWidth title={title} setTitleWidth={setTitleWidth} />
 
       <BoardItemWrap
         onMouseEnter={() => setIsHovered(true)}
@@ -67,15 +86,15 @@ export const SidebarBoardItem = ({ text, icon, current }) => {
             alignItems: 'center',
           }}
         >
-          <BoardItemIcon sx={{ opacity: current ? 1 : 0.5 }}>
-            <use href={sprite + `#${icon}`}></use>
+          <BoardItemIcon startAnimation={startAnimation} sx={{ opacity: current ? 1 : 0.5 }}>
+            <use href={sprite + icon}></use>
           </BoardItemIcon>
 
           <BoardItemTitleWrap
             sx={{
               width: current
-                ? { 0: 85, 320: '27vw', 375: 120, 768: 130 }
-                : { 0: 135, 320: '42vw', 375: 170, 768: 180 },
+                ? { 0: 85, 320: 'calc(60vw - 105px)', 375: 120, 768: 130 }
+                : { 0: 135, 320: 'calc(60vw - 55px)', 375: 170, 768: 180 },
             }}
           >
             <BoardItemTitle
@@ -84,7 +103,7 @@ export const SidebarBoardItem = ({ text, icon, current }) => {
               titleWrapWidth={titleWrapWidth}
               current={current}
             >
-              {text}
+              {title}
             </BoardItemTitle>
           </BoardItemTitleWrap>
         </Box>

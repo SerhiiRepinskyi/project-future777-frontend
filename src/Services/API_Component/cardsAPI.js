@@ -1,10 +1,12 @@
-import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+import { createApi } from '@reduxjs/toolkit/query/react';
 import baseQuery from '../API_Helper/APIHelper'
 
 export const cardsAPI = createApi({
     reducerPath: 'cardsAPI',
-    baseQuery: fetchBaseQuery({ baseQuery }),
-    endpoints: (builder) => ({ addCard: builder.mutation({
+    baseQuery: baseQuery,
+  endpoints: (builder) => ({
+    
+    addCard: builder.mutation({
       query: (columnId, FormData) => ({
         url: `columns/:${columnId}/cards`,
         method: "POST",
