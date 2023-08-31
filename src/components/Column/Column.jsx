@@ -1,18 +1,17 @@
 import React, { useState } from 'react';
 import sprite from '../../assets/images/sprite.svg';
 import TaskCard from '../TaskCard/TaskCard';
-import ModalLayout from '../ModalLayout/ModalLayout';
 import AddCard from '../AddCard/AddCard';
-import { useGetCardsQuery } from 'redux/tasks/cardSlice';
-import { useSelector } from 'react-redux';
+import { API } from 'Services/API';
+
+// import { useSelector } from 'react-redux';
 import { AddCardButton, CardsList, ColumnHeader, ColumnTitle, ColumnWrapper, StyledIconButton } from './Column.styled';
 
-
 const Column = ({ columnTitle, columnId }) => {
-  const token = useSelector(state => state.auth.token);
-  const [isAddCardOpen, setIsAddCardOpen] = useState(false);
-  const { data: cards } = useGetCardsQuery({ columnId, token });
   
+    const [isAddCardOpen, setIsAddCardOpen] = useState(false);
+  const { data: cards } = API.useGetCardsQuery({ columnId });
+  console.log('cards :>> ', cards);
   const closeAddCard = () => setIsAddCardOpen(false);
   const handleClick = () => setIsAddCardOpen(true);
   
@@ -58,13 +57,13 @@ const Column = ({ columnTitle, columnId }) => {
 
       <AddCardButton onClick={handleClick} title={'Add card'} />
 
-      <ModalLayout
-        title={'Add card'}
-        open={isAddCardOpen}
-        handleClose={closeAddCard}
-      >
-        <AddCard close={closeAddCard} />
-      </ModalLayout>
+      
+        <AddCard
+          modalType={'Add card'}
+          open={isAddCardOpen}
+          handleClose={closeAddCard}
+          close={closeAddCard}
+        />
     </ColumnWrapper>
   );
 };

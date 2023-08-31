@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from 'react';
+import { useFormik } from 'formik';
+import { format } from 'date-fns';
+import * as Yup from 'yup';
+
 import {
-  ComponentWrapper,
   FormStyled,
   TextareaStyled,
   SubWrapper,
@@ -9,18 +12,17 @@ import {
   SubTitle,
   InputStyled,
 } from './AddCard.styled';
-import { useFormik } from 'formik';
 import ColorRadioButtons from 'components/ColorRadioButtons/ColorRadioButtons';
-import { format } from 'date-fns';
 import { ButtonWithIcon } from 'components/Buttons/Button';
-import * as Yup from 'yup';
 import DropDownIcon from 'components/Icons/DropDownIcon/DropDownIcon';
 import Popup from 'components/Popup/Popup';
 import DatePickerCmponent from 'components/DatePicker/DatePicker';
+import ModalLayout from '../ModalLayout/ModalLayout';
+
 // import { useAddCardToColumnMutation } from 'redux/tasks/cardSlice';
 // import { useSelector } from 'react-redux';
 
-const AddCard = ({close}) => {
+const AddCard = ({ modalType, close, open, handleClose, cardId = '' }) => {
   // const token = useSelector(state => state.auth.token);
   const [date, setDate] = useState('');
   const [dateValue, setDateValue] = useState('');
@@ -28,14 +30,14 @@ const AddCard = ({close}) => {
   const [anchorEl, setAnchorEl] = useState(null);
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   // const [addCards] = useAddCardToColumnMutation();
-  
+
   const handleDateClick = e => {
     setAnchorEl(e.currentTarget);
     setIsPopupOpen(!isPopupOpen);
   };
-  
+
   const onDateChange = e => {
-    const dateFns = format(e, "LLLL d");
+    const dateFns = format(e, 'LLLL d');
     console.log('dateFns :>> ', date);
     setDateValue(dateFns);
     setDate(e);
@@ -86,14 +88,14 @@ const AddCard = ({close}) => {
   });
 
   useEffect(() => {
-    const dateFns = format(new Date(), "'Today,' LLLL d");
-    setDateValue(dateFns);
-    
-    console.log('dateFns :>> ', dateFns);
+    const currentDate = format(new Date(), "'Today,' LLLL d");
+    setDateValue(currentDate);
+
+    console.log('dateFns :>> ', currentDate);
   }, []);
 
   return (
-    <ComponentWrapper>
+    <ModalLayout title={modalType} open={open} handleClose={handleClose}>
       <FormStyled onSubmit={formik.handleSubmit}>
         <InputStyled
           id="title"
@@ -133,9 +135,12 @@ const AddCard = ({close}) => {
           </DateWrapper>
         </SubWrapper>
 
-        <ButtonWithIcon title={'Add'} type={'submit'} />
+        <ButtonWithIcon
+          title={modalType === 'Add card' ? 'Add' : 'Edit'}
+          type={'submit'}
+        />
       </FormStyled>
-    </ComponentWrapper>
+    </ModalLayout>
   );
 };
 

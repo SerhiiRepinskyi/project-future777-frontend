@@ -8,7 +8,7 @@ export const cardsAPI = createApi({
     
     addCard: builder.mutation({
       query: (columnId, FormData) => ({
-        url: `columns/:${columnId}/cards`,
+        url: `columns/${columnId}/cards`,
         method: "POST",
         body: FormData,
       }),
@@ -18,7 +18,7 @@ export const cardsAPI = createApi({
 
      updateCardById: builder.mutation({
       query: (cardId, FormData ) => ({
-        url: `/cards/:${cardId}`,
+        url: `/cards/${cardId}`,
         method: "PUT",
         body: FormData,
       }),
@@ -28,7 +28,7 @@ export const cardsAPI = createApi({
 
      deleteCardById: builder.mutation({
       query: (cardId) => ({
-        url: `/columns/:${cardId}`,
+        url: `/columns/${cardId}`,
         method: "DELETE",
       }),
       invalidatesTags: ["columns"],
@@ -36,8 +36,8 @@ export const cardsAPI = createApi({
 
 
     updateCardColumnById: builder.mutation({
-      query: (cardId ) => ({
-        url: `/cards/:${cardId}`,
+      query: (cardId) => ({
+        url: `/cards/${cardId}`,
         method: "PATCH",
       }),
       providesTags: ["cards"],
