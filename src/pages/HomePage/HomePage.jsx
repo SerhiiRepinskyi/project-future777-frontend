@@ -5,12 +5,15 @@ import { SIDEBARWIDTH } from 'components/Sidebar/SidebarCONSTANTS';
 import { Sidebar } from 'components/Sidebar/Sidebar';
 import { Header } from 'components/Header/Header';
 import { Outlet } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { selectIsLoggedIn } from 'redux/auth/authSelectors';
 
 const HomePage = () => {
+  const isLoggdIn = useSelector(selectIsLoggedIn);
   const [isMobileSidebar, setIsMobileSidebar] = useState(false);
   const handleSidebarToggle = () => setIsMobileSidebar(!isMobileSidebar);
 
-  return (
+  return isLoggdIn && (
     <Box sx={{ display: 'flex' }}>
       <AppBar
         position="fixed"
