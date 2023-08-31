@@ -21,9 +21,11 @@ import ModalBoard from 'components/ModalBoard/ModalBoard';
 import { SidebarBoardList } from './SidebarBoardList';
 import { Box } from '@mui/material';
 import ModalHelp from 'components/ModalHelp/ModalHelp';
+// import ModalHelp from 'components/ModalHelp/ModalHelp';
 
 export const SidebarContent = ({ isSidebarShown }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isModalHelpOpen, setIsModalHelpOpen] = useState(false);
 
   const modalStateChange = () => setIsModalOpen(!isModalOpen);
 
@@ -79,13 +81,14 @@ export const SidebarContent = ({ isSidebarShown }) => {
               If you need help with <span>TaskPro</span>, check out our support
               resources or reach out to our customer support team.
             </HelpText>
-            <HelpButton type="button" isSidebarShown={isSidebarShown}>
-              <ModalHelp open={isModalOpen} handleClose={modalStateChange}/>
+            <HelpButton type="button" isSidebarShown={isSidebarShown} onClick={() => setIsModalHelpOpen(true)}>
+              {/* <ModalHelp open={isModalOpen} handleClose={modalStateChange}/> */}
               <svg width="20" height="20" stroke="#ffffff">
                 <use href={sprite + '#icon-help'}></use>
               </svg>
               Need help?
             </HelpButton>
+            <ModalHelp open={isModalHelpOpen} handleClose={()=> setIsModalHelpOpen(false)} />
           </HelpBox>
           <LogoutBtn />
         </Box>

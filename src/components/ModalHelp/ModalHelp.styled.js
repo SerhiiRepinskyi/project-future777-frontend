@@ -1,5 +1,4 @@
 import styled from '@emotion/styled';
-import RadioButtonIcon from '@mui/material/Radio';
 
 export const ComponentWrapper = styled.div`
   padding: 0px;

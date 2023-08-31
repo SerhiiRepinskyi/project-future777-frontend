@@ -2,7 +2,7 @@ import { List, ListItem, ListItemButton } from '@mui/material';
 import { SidebarBoardItem } from './SidebarBoardItem';
 import { useState } from 'react';
 
-import { useGetBoardsQuery } from 'redux/boards/boardSlice';
+import { API } from 'Services/API';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
@@ -12,7 +12,7 @@ export const SidebarBoardList = () => {
   const navigate = useNavigate();
   const token = useSelector(state => state.auth.token);
 
-  const { data: boards } = useGetBoardsQuery(token);
+  const { data: boards } = API.useGetBoardsQuery(token);
 
   const handleButtonClick = (index, id) => {
     setCurrentItemIndex(index);
@@ -35,8 +35,9 @@ export const SidebarBoardList = () => {
             onClick={() => handleButtonClick(index, board._id)}
           >
             <SidebarBoardItem
-              icon={board.icon}
-              text={board.title}
+              id={board._id}
+              icon={board.iconId}
+              title={board.title}
               current={currentItemIndex === index}
             />
           </ListItemButton>

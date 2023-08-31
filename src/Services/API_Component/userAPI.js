@@ -14,7 +14,7 @@ export const userAPI = createApi({
 
     updateUser: builder.mutation({
       query: (userData) => ({
-        url: 'user/',
+        url: 'users/',
         method: 'PATCH',
         body: userData,
       }),
@@ -22,7 +22,7 @@ export const userAPI = createApi({
 
     themeUser: builder.mutation({
       query: (themeData) => ({
-        url: 'user/theme',
+        url: 'users/theme',
         method: 'PATCH',
         body: themeData,
       }),
@@ -30,7 +30,7 @@ export const userAPI = createApi({
 
     avatarUser: builder.mutation({
       query: (FormData) => ({
-        url: 'user/avatar',
+        url: 'users/avatar',
         method: 'PATCH',
         body: FormData,
       }),
@@ -38,7 +38,7 @@ export const userAPI = createApi({
 
     helpUser: builder.mutation({
       query: (FormData) => ({
-        url: 'user/help',
+        url: 'users/help',
         method: 'POST',
         body: FormData,
       }),
