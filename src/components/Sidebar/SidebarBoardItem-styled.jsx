@@ -1,6 +1,11 @@
 import { styled } from '@mui/material/styles';
 import { keyframes } from '@mui/system';
 
+const slideAround = keyframes`
+  0% {transform: rotate(0deg)}
+  100% {transform: rotate(360deg)}
+`;
+
 export const BoardItemWrap = styled('div')({
   paddingTop: '20px',
   paddingBottom: '20px',
@@ -15,16 +20,16 @@ export const BoardItemWrap = styled('div')({
   overflow: 'hidden',
 });
 
-export const BoardItemIcon = styled('svg')({
+export const BoardItemIcon = styled('svg')(({startAnimation})=> ({
   width: '18px',
   height: '18px',
-
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
-
   stroke: '#ffffff',
-});
+
+  animation: startAnimation ? `${slideAround} 1s  ease-out` : 'none',
+}));
 
 export const BoardItemCurrentIcon = styled('svg')({
   width: '16px',
