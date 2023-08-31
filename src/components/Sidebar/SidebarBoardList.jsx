@@ -22,7 +22,7 @@ export const SidebarBoardList = () => {
     <>
       <List
         disablePadding
-        sx={{ display: 'flex', flexDirection: 'column', gap: 0.5, mb: 3 }}
+        sx={{ display: 'flex', flexDirection: 'column-reverse', gap: 0.5, mb: 3 }}
       >
         {boards?.map((board, index) => (
           <ListItem key={board._id} disablePadding>
@@ -31,6 +31,9 @@ export const SidebarBoardList = () => {
                 p: 0,
                 m: 0,
                 pointerEvents: currentItemIndex === index ? 'none' : 'auto',
+                '&:hover, &:focus': {
+                  backgroundColor: 'var(--sidebar-board-item-bg-color-CURRENT)',
+                },
               }}
               onClick={() => handleButtonClick(index, board._id)}
             >
@@ -44,8 +47,6 @@ export const SidebarBoardList = () => {
           </ListItem>
         ))}
       </List>
-
-
     </>
   );
 };

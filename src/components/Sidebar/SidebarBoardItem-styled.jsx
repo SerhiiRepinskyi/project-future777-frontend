@@ -26,7 +26,7 @@ export const BoardItemIcon = styled('svg')(({startAnimation})=> ({
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
-  stroke: '#ffffff',
+  stroke: 'var(--sidebar-primary-text-color)',
 
   animation: startAnimation ? `${slideAround} 1s  ease-out` : 'none',
 }));
@@ -34,12 +34,9 @@ export const BoardItemIcon = styled('svg')(({startAnimation})=> ({
 export const BoardItemCurrentIcon = styled('svg')({
   width: '16px',
   height: '16px',
-
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
-
-  stroke: '#ffffff',
 });
 
 export const BoardItemTitleWrap = styled('div')({
@@ -56,7 +53,7 @@ export const BoardItemTitle = styled('p')(
 
     return {
       margin: '0px',
-      color: '#ffffff',
+      color: 'var(--sidebar-primary-text-color)',
       fontFamily: 'Poppins',
       fontSize: '14px',
       fontStyle: 'normal',
