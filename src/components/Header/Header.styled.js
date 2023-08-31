@@ -6,6 +6,7 @@ export const HeaderContainer = styled.header`
   justify-content: flex-end;
   max-width: 100%;
   width: auto;
+  height:68px;
   padding: 18px 24px;
   background: var(--header-bg-color);
   color: var(--primary-text-color);
@@ -15,6 +16,7 @@ export const HeaderContainer = styled.header`
   }
   @media (max-width: 768px) {
     padding: 14px 20px;
+    height:60px;
   }
 `;
 
@@ -32,9 +34,16 @@ export const ThemeWrap = styled.div`
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  color: var(--header-theme-color);
+  color: var(--primary-text-color);
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: -0.28px;
+  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
   svg {
     stroke: var(--header-theme-color);
+  }
+  &:hover {
+    color: var(--header-theme-color);
   }
 `;
 
@@ -59,7 +68,8 @@ export const ThemeUL = styled.ul`
 
 export const ThemeButton = styled.button`
   border: none;
-  background: transparent;;
+  background: transparent;
+  text-transform: capitalize;
   cursor: ${({ disabled }) => (disabled ? '' : 'pointer')};
   color: ${({ selected }) =>
     selected ? 'var(--button-bg-color)' : 'var(--secondary-text-color)'};
