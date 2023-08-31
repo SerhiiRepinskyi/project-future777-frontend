@@ -107,7 +107,7 @@ export const SidebarContent = ({ isSidebarShown }) => {
         </Box>
       </Box>
 
-      <ModalBoard open={isModalOpen} handleClose={modalStateChange} />
+      <ModalBoard boardTitle={'New board'} open={isModalOpen} handleClose={modalStateChange} />
     </>
   );
 };
