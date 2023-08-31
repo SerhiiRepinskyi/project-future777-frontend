@@ -13,6 +13,7 @@ import { debounce } from 'lodash';
 import { Box, List, ListItem, ListItemButton } from '@mui/material';
 import { useEffect, useState } from 'react';
 import { API } from 'Services/API';
+import ModalBoard from 'components/ModalBoard/ModalBoard';
 
 export const SidebarBoardItem = ({ title, icon, id, current }) => {
   const [isHovered, setIsHovered] = useState(false);
@@ -20,6 +21,7 @@ export const SidebarBoardItem = ({ title, icon, id, current }) => {
   const [titleWrapWidth, setTitleWrapWidth] = useState(130);
   const [screenWidth, setScreenWidth] = useState(window.innerWidth);
   const [startAnimation, setStartAnimation] = useState(true);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const [deleteBoard] = API.useDeleteBoardByIdMutation();
 
@@ -56,8 +58,11 @@ export const SidebarBoardItem = ({ title, icon, id, current }) => {
     } else setTitleWrapWidth(130);
   }, [screenWidth, title]);
 
+  const modalStateChange = () => setIsModalOpen(!isModalOpen);
+
   const handleEditClick = event => {
     event.stopPropagation();
+    modalStateChange();
   };
 
   const handleDeleteClick = event => {
@@ -86,7 +91,10 @@ export const SidebarBoardItem = ({ title, icon, id, current }) => {
             alignItems: 'center',
           }}
         >
-          <BoardItemIcon startAnimation={startAnimation} sx={{ opacity: current ? 1 : 0.5 }}>
+          <BoardItemIcon
+            startAnimation={startAnimation}
+            sx={{ opacity: current ? 1 : 0.5 }}
+          >
             <use href={sprite + icon}></use>
           </BoardItemIcon>
 
@@ -186,6 +194,13 @@ export const SidebarBoardItem = ({ title, icon, id, current }) => {
           </List>
         )}
       </BoardItemWrap>
+
+      <ModalBoard
+        boardId={id}
+        boardTitle={'Edit board'}
+        open={isModalOpen}
+        handleClose={modalStateChange}
+      />
     </>
   );
 };

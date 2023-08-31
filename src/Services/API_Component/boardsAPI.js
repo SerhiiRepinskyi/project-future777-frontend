@@ -37,12 +37,12 @@ export const boardsAPI = createApi({
     }),
 
     updateBoardById: builder.mutation({
-      query: (id, FormData) => ({
-        url: `boards/${id}`,
+      query: ({boardId, FormData}) => ({
+        url: `boards/${boardId}`,
         method: 'PATCH',
         body: FormData,
       }),
-      providesTags: ['boards'],
+      invalidatesTags: ['boards'],
     }),
   }),
 });
