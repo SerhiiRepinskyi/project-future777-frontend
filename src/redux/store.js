@@ -2,12 +2,10 @@ import { configureStore } from '@reduxjs/toolkit';
 import storage from 'redux-persist/lib/storage';
 import { persistStore, persistReducer } from 'redux-persist';
 // 
-import { authAPI, boardsAPI, userAPI } from 'Services/API_Component';
+import { authAPI, boardsAPI, cardsAPI, columnsAPI, userAPI } from 'Services/API_Component';
 // import { authApi } from './auth/authApi';
 import { setupListeners } from '@reduxjs/toolkit/dist/query';
 
-import { cardsApi } from './tasks/cardSlice';
-import { columnsApi } from './columns/columnSlice';
 import { boardsAPISlice, authAPISlice } from './slices';
 
 const authPersistConfig = {
@@ -36,8 +34,8 @@ export const store = configureStore({
     [authAPI.reducerPath]: authAPI.reducer,
     [boardsAPI.reducerPath]: boardsAPI.reducer,
     [userAPI.reducerPath]: userAPI.reducer,
-    [columnsApi.reducerPath]: columnsApi.reducer,
-    [cardsApi.reducerPath]: cardsApi.reducer,
+    [columnsAPI.reducerPath]: columnsAPI.reducer,
+    [cardsAPI.reducerPath]: cardsAPI.reducer,
   },
 
   middleware: getDefaultMiddleware =>
@@ -49,8 +47,8 @@ export const store = configureStore({
       .concat([authAPI.middleware])
       .concat([boardsAPI.middleware])
       .concat([userAPI.middleware])
-      .concat([columnsApi.middleware])
-      .concat([cardsApi.middleware]),
+      .concat([columnsAPI.middleware])
+      .concat([cardsAPI.middleware]),
 });
 
 setupListeners(store.dispatch);
