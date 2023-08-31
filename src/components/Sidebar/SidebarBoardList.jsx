@@ -2,21 +2,20 @@ import { List, ListItem, ListItemButton } from '@mui/material';
 import { SidebarBoardItem } from './SidebarBoardItem';
 import { useState } from 'react';
 
+// import { useNavigate } from 'react-router-dom';
+
 import { API } from 'Services/API';
-import { useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
 
 export const SidebarBoardList = () => {
   const [currentItemIndex, setCurrentItemIndex] = useState(0);
 
-  const navigate = useNavigate();
-  const token = useSelector(state => state.auth.token);
+  // const navigate = useNavigate();
 
-  const { data: boards } = API.useGetBoardsQuery(token);
+  const { data: boards } = API.API.useGetBoardsQuery();
 
   const handleButtonClick = (index, id) => {
     setCurrentItemIndex(index);
-    navigate(`/home/${id}`);
+    // navigate(`/home/${id}`);
   };
 
   return (

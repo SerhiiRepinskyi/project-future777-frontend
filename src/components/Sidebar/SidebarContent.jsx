@@ -2,6 +2,7 @@ import {
   CreateBoardWrap,
   HelpBox,
   HelpButton,
+  HelpIcon,
   HelpText,
   Image,
   Subtitle,
@@ -13,7 +14,7 @@ import styles from './SidebarCustomScroll.module.css';
 import AloeVera from '../../assets/images/aloe-vera.png';
 import sprite from '../../assets/images/sprite.svg';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { SidebarLogo } from 'components/Logo/Logo';
 import LogoutBtn from 'components/logoutBtn/logoutBtn';
 import { ButtonSidebar } from 'components/Buttons/Button';
@@ -26,6 +27,20 @@ import ModalHelp from 'components/ModalHelp/ModalHelp';
 export const SidebarContent = ({ isSidebarShown }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isModalHelpOpen, setIsModalHelpOpen] = useState(false);
+  const [startAnimation, setStartAnimation] = useState(true);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setStartAnimation(true);
+      setTimeout(() => {
+        setStartAnimation(false);
+      }, 1000);
+    }, 7000);
+
+    return () => {
+      clearInterval(interval);
+    };
+  }, []);
 
   const modalStateChange = () => setIsModalOpen(!isModalOpen);
 
@@ -61,9 +76,7 @@ export const SidebarContent = ({ isSidebarShown }) => {
           <SidebarBoardList />
         </Box>
 
-        <Box
-          sx={{ pl: { 0: 1.75, 768: 3 }, pr: { 0: 1.75, 768: 3 } }}
-        >
+        <Box sx={{ pl: { 0: 1.75, 768: 3 }, pr: { 0: 1.75, 768: 3 } }}>
           <HelpBox sx={{ p: { 0: 1.75, 768: 2.5 }, mb: 3 }}>
             <Image
               src={AloeVera}
@@ -83,9 +96,9 @@ export const SidebarContent = ({ isSidebarShown }) => {
             </HelpText>
             <HelpButton type="button" isSidebarShown={isSidebarShown} onClick={() => setIsModalHelpOpen(true)}>
               {/* <ModalHelp open={isModalOpen} handleClose={modalStateChange}/> */}
-              <svg width="20" height="20" stroke="#ffffff">
+              <HelpIcon startAnimation={startAnimation}>
                 <use href={sprite + '#icon-help'}></use>
-              </svg>
+              </HelpIcon>
               Need help?
             </HelpButton>
             <ModalHelp open={isModalHelpOpen} handleClose={()=> setIsModalHelpOpen(false)} />

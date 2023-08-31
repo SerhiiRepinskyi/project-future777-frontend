@@ -25,6 +25,7 @@ export const Sidebar = ({ ...props }) => {
           '& .MuiDrawer-paper': {
             boxSizing: 'border-box',
             boxShadow: 'none',
+            border: 'none',
             overflowX: 'hidden',
             width: {
               0: 192,
@@ -32,7 +33,7 @@ export const Sidebar = ({ ...props }) => {
               375: SIDEBARMOBILEWIDTH,
               768: SIDEBARWIDTH,
             },
-            backgroundColor: '#121212',
+            backgroundColor: "var(--sidebar-primary-bg-color)",
           },
         }}
       >
@@ -47,9 +48,10 @@ export const Sidebar = ({ ...props }) => {
           '& .MuiDrawer-paper': {
             boxSizing: 'border-box',
             boxShadow: 'none',
+            border: 'none',
             overflowX: 'hidden',
             width: SIDEBARWIDTH,
-            backgroundColor: '#121212',
+            backgroundColor: "var(--sidebar-primary-bg-color)",
           },
         }}
       >

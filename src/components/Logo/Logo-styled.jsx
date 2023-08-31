@@ -16,7 +16,7 @@ const slideToRight = keyframes`
 `;
 
 export const SidebarLogoIcon = styled('svg')({
-  fill: '#ffffff',
+  fill: 'var(--sidebar-icon-logo-color)',
   width: '12px',
   height: '16px',
 
@@ -44,14 +44,14 @@ export const SidebarLogoIconWrap = styled('div')({
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
-  backgroundColor: '#1f1f1f',
+  backgroundColor: 'var(--sidebar-icon-logo-bg-color)',
   borderRadius: '8px',
   overflow: 'hidden',
 });
 
 export const SidebarLogoText = styled('p')({
   margin: '0px',
-  color: '#ffffff',
+  color: 'var(--sidebar-primary-text-color)',
   fontFamily: 'Poppins',
   fontSize: '16px',
   fontWeight: 600,

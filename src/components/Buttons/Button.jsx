@@ -145,14 +145,14 @@ export const ButtonSidebar = ({ onClick }) => {
         width: '40px',
         height: '36px',
         borderRadius: '6px',
-        background: '#BEDBB0',
+        background: 'var(--sidebar-icon-plus-bg-color)',
 
-        '&:hover': {
-          background: '#9DC888',
+        '&:hover, &:focus': {
+          background: 'var(--sidebar-icon-plus-bg-color-HOVER-FOCUS)',
         },
       }}
     >
-      <svg width="20" height="20" stroke="#121212">
+      <svg width="20" height="20" stroke="var(--sidebar-icon-plus-color)">
         <use href={sprite + '#icon-add'}></use>
       </svg>
     </IconButton>
