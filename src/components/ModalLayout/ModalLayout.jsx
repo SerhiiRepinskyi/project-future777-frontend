@@ -1,4 +1,4 @@
-import { Modal, Box, Typography } from '@mui/material';
+import { Modal, Box, Typography, useMediaQuery } from '@mui/material';
 import sprite from '../../assets/images/sprite.svg';
 import { ButtonClose } from 'components/ModalBoard/ModalBoard.styled';
 
@@ -27,6 +27,7 @@ const titleStyles = {
 };
 
 const ModalLayout = ({ title, open, handleClose, children }) => {
+   const adaptiveStyle = useMediaQuery('(min-width: 1440px)');
   //   const [open, setOpen] = useState(false);
   //   const handleOpen = () => setOpen(true);
   //   const handleClose = () => setOpen(false);
@@ -39,7 +40,7 @@ const ModalLayout = ({ title, open, handleClose, children }) => {
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
-        <Box sx={ModalStyles}>
+        <Box sx={{ ...ModalStyles, width: adaptiveStyle ? 350 : 335 }}>
           <Typography variant="h2" sx={titleStyles}>
             {title}
           </Typography>
