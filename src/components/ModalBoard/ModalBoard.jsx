@@ -11,19 +11,17 @@ import {
   LiIconsStyled,
 } from './ModalBoard.styled';
 
-import sprite from "../../assets/images/sprite.svg";
-import * as Yup from "yup";
-import { ButtonWithIcon } from "components/Buttons/Button";
-import ModalLayout from "components/ModalLayout/ModalLayout";
-import { useState } from "react";
-import { arrIcons } from "./data";
+import sprite from '../../assets/images/sprite.svg';
+import * as Yup from 'yup';
+import { ButtonWithIcon } from 'components/Buttons/Button';
+import ModalLayout from 'components/ModalLayout/ModalLayout';
+import { useState } from 'react';
+import { arrIcons } from './data';
 import { arrBG } from './data';
-import { useDispatch } from "react-redux";
+import { useDispatch } from 'react-redux';
 // import { selectIsLoggedIn } from 'redux/auth/authSelectors';
 import { API } from 'Services/API';
-import {setBoardResponse} from "redux/boards/boardsAPISlice"
-
-
+import { setBoardResponse } from 'redux/boards/boardsAPISlice';
 
 const titleStyle = {
   color: '#FFF',
@@ -34,28 +32,36 @@ const titleStyle = {
   letterSpacing: -0.36,
 };
 
-const ModalBoard = ({ open, handleClose }) => {
+const ModalBoard = ({ boardTitle, boardId = '', open, handleClose }) => {
   // const [titleInputText, setTitleInputText] = useState('');
- const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const [iconId, setIconId] = useState(arrIcons[0]);
   const [iconIndex, setIconIndex] = useState(0);
 
   const [backgroundURL, setBackgroundURL] = useState(arrBG[0]);
   const [backgroundIndex, setBackgroundIndex] = useState(0);
 
-  const [addBoards] = API.useAddBoardsMutation();
+  const [addBoard] = API.useAddBoardsMutation();
+  const [editBoard] = API.useUpdateBoardByIdMutation();
 
   const handleSubmit = async title => {
     try {
-       const response = await addBoards({
-          title: title,
-          icon: iconIndex,
-          iconId,
-          background: backgroundIndex,
-          backgroundURL,
-      });
-      console.log(response); 
-      dispatch(setBoardResponse(response))
+      const FormData = {
+        title,
+        icon: iconIndex,
+        iconId,
+        background: backgroundIndex,
+        backgroundURL,
+      };
+
+      if (boardTitle === 'New board') {
+        const response = await addBoard(FormData);
+        dispatch(setBoardResponse(response));
+      }
+      if (boardTitle === 'Edit board') {
+        const response = await editBoard({ boardId, FormData });
+        dispatch(setBoardResponse(response));
+      }
     } catch (error) {
       console.log(error);
     }
@@ -81,7 +87,7 @@ const ModalBoard = ({ open, handleClose }) => {
 
   return (
     <>
-      <ModalLayout title={'New board'} open={open} handleClose={handleClose}>
+      <ModalLayout title={boardTitle} open={open} handleClose={handleClose}>
         <FormStyled onSubmit={formik.handleSubmit}>
           <InputStyled
             id="title"
@@ -133,7 +139,7 @@ const ModalBoard = ({ open, handleClose }) => {
           </UlBgStyled>
 
           <ButtonWithIcon
-            title={'Create'}
+            title={boardTitle === 'New board' ? 'Create' : 'Edit'}
             type={'submit'}
             // onClick={handleClose}
           />
