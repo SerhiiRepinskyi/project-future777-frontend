@@ -7,10 +7,7 @@ import AddColumn from 'components/AddColumn/AddColumn';
 import Column from '../../components/Column/Column';
 import styled from '@emotion/styled';
 import { HeaderDashboard } from 'components/HeaderDashboard/HeaderDashboard';
-import {
-  useGetBoardByIdQuery,
-} from 'redux/boards/boardSlice';
-import { useSelector } from 'react-redux';
+import { API } from 'Services/API';
 import { useParams } from 'react-router-dom';
 
 const ColumnsWrapper = styled.div`
@@ -53,8 +50,7 @@ const ColumnsWrapper = styled.div`
 const ScreensPage = () => {
   const { boardId } = useParams();
   const [isAddColumnOpen, setIsAddColumnOpen] = useState(false);
-  const token = useSelector(state => state.auth.token);
-  const { data } = useGetBoardByIdQuery({ boardId, token });
+  const { data } = API.useGetBoardByIdQuery(boardId);
 
   const columns = data?.columns;
   // console.log('data :>> ', data);

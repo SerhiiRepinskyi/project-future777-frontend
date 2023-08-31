@@ -11,7 +11,7 @@ export const SidebarBoardList = () => {
 
   // const navigate = useNavigate();
 
-  const { data: boards } = API.useGetBoardsQuery();
+  const { data: boards } = API.API.useGetBoardsQuery();
 
   const handleButtonClick = (index, id) => {
     setCurrentItemIndex(index);
