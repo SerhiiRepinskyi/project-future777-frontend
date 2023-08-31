@@ -3,7 +3,8 @@ import { createSlice } from '@reduxjs/toolkit';
 const initialState = {
   cards: [],
   cardData:{},
-  selectedCardId: null,  
+  selectedCardId: null,
+  filteredCards: [],
   selectedColumnId: null, 
   error: null,  
 };
@@ -24,6 +25,11 @@ const cardsAPISlice = createSlice({
     },
     setSelectedCardId: (state, action) => {
       state.selectedCardId = action.payload;
+    },
+    setfilterCards: (state, action) => {
+      const { filterParameter } = action.payload;
+      state.filteredCards = state.cards.filter(card => card.someProperty === filterParameter);   
+       //filterCards({ filterParameter: 'someValue' }) => по ідеї має спрацювати, не встигла перевірити. Раптом що змінюй.
     },
     setSelectedColumnId: (state, action) => {
       state.selectedColumnId = action.payload;
