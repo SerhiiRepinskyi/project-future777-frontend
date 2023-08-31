@@ -2,20 +2,20 @@ import { List, ListItem, ListItemButton } from '@mui/material';
 import { SidebarBoardItem } from './SidebarBoardItem';
 import { useState } from 'react';
 
-// import { useNavigate } from 'react-router-dom';
 
 import { API } from 'Services/API';
+import { useNavigate } from 'react-router-dom';
 
 export const SidebarBoardList = () => {
   const [currentItemIndex, setCurrentItemIndex] = useState(0);
 
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
 
   const { data: boards } = API.useGetBoardsQuery();
 
   const handleButtonClick = (index, id) => {
     setCurrentItemIndex(index);
-    // navigate(`/home/${id}`);
+    navigate(`/home/${id}`);
   };
 
   return (
