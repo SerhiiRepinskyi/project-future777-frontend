@@ -19,12 +19,27 @@ export const SidebarBoardItem = ({ title, icon, id, current }) => {
   const [titleWidth, setTitleWidth] = useState(0);
   const [titleWrapWidth, setTitleWrapWidth] = useState(130);
   const [screenWidth, setScreenWidth] = useState(window.innerWidth);
+  const [startAnimation, setStartAnimation] = useState(true);
 
   const [deleteBoard] = API.useDeleteBoardByIdMutation();
 
   const handleResize = debounce(() => {
     setScreenWidth(window.innerWidth);
   }, 200);
+
+  useEffect(() => {
+    const randomNumber = Math.floor(Math.random() * (15000 - 7000 + 1)) + 7000;
+    const interval = setInterval(() => {
+      setStartAnimation(true);
+      setTimeout(() => {
+        setStartAnimation(false);
+      }, 1000);
+    }, randomNumber);
+
+    return () => {
+      clearInterval(interval);
+    };
+  }, []);
 
   useEffect(() => {
     window.addEventListener('resize', handleResize);
@@ -47,7 +62,7 @@ export const SidebarBoardItem = ({ title, icon, id, current }) => {
 
   const handleDeleteClick = event => {
     event.stopPropagation();
-    deleteBoard(id)
+    deleteBoard(id);
   };
 
   return (
@@ -71,15 +86,15 @@ export const SidebarBoardItem = ({ title, icon, id, current }) => {
             alignItems: 'center',
           }}
         >
-          <BoardItemIcon sx={{ opacity: current ? 1 : 0.5 }}>
+          <BoardItemIcon startAnimation={startAnimation} sx={{ opacity: current ? 1 : 0.5 }}>
             <use href={sprite + icon}></use>
           </BoardItemIcon>
 
           <BoardItemTitleWrap
             sx={{
               width: current
-                ? { 0: 85, 320: "calc(60vw - 105px)", 375: 120, 768: 130 }
-                : { 0: 135, 320: "calc(60vw - 55px)", 375: 170, 768: 180 },
+                ? { 0: 85, 320: 'calc(60vw - 105px)', 375: 120, 768: 130 }
+                : { 0: 135, 320: 'calc(60vw - 55px)', 375: 170, 768: 180 },
             }}
           >
             <BoardItemTitle

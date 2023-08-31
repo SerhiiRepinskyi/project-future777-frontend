@@ -16,6 +16,21 @@ const slideToDown = keyframes`
   100% {transform: translateY(0px)}
 `;
 
+const shakeAnimation = keyframes`
+  0%, 100% {
+    transform: translateX(0);
+  }
+  10%, 30%, 50%, 70%, 90% {
+    transform: translateX(-2px);
+   
+  }
+  20%, 40%, 60%, 80% {
+    transform: translateX(2px);
+  
+  }
+
+`;
+
 export const Subtitle = styled('p')(({ isSidebarShown }) => ({
   margin: '0px',
   color: 'var(--sidebar-secondary-text-color)',
@@ -121,4 +136,17 @@ export const HelpButton = styled('button')(({ isSidebarShown }) => ({
   animation: isSidebarShown ? `${slideToLeft} 400ms` : 'none',
   animationTimingFunction: 'ease',
   animationFillMode: 'forwards',
+}));
+
+export const HelpIcon = styled('svg')(({ startAnimation }) => ({
+  stroke: 'var(--sidebar-primary-text-color)',
+  width: '20px',
+  height: '20px',
+
+  animation: startAnimation ? `${shakeAnimation} 1s  ease-out` : 'none',
+
+  '&:hover, &:focus': {
+    textDecoration: 'underline',
+    outline: 'none',
+  },
 }));
