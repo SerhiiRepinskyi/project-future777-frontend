@@ -2,15 +2,16 @@ import React, { useState } from 'react';
 import sprite from '../../assets/images/sprite.svg';
 import TaskCard from '../TaskCard/TaskCard';
 import AddCard from '../AddCard/AddCard';
-import { API } from 'Services/API';
-
+// import { API } from 'Services/API';
+import cards from './db-tasks.cards.json'; 
 // import { useSelector } from 'react-redux';
 import { AddCardButton, CardsList, ColumnHeader, ColumnTitle, ColumnWrapper, StyledIconButton } from './Column.styled';
 
 const Column = ({ columnTitle, columnId }) => {
   
     const [isAddCardOpen, setIsAddCardOpen] = useState(false);
-  const { data: cards } = API.useGetCardsQuery({ columnId });
+  // const { data: cards } = API.useGetCardsQuery({ columnId });
+  
   console.log('cards :>> ', cards);
   const closeAddCard = () => setIsAddCardOpen(false);
   const handleClick = () => setIsAddCardOpen(true);
