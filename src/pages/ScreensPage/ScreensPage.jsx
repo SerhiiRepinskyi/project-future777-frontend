@@ -5,16 +5,13 @@ import Column from '../../components/Column/Column';
 import { HeaderDashboard } from 'components/HeaderDashboard/HeaderDashboard';
 import { API } from 'Services/API';
 import { useParams } from 'react-router-dom';
-import {
-  ColumnsWrapper,
-  MainContainer,
-} from './ScreenPage.styled';
+import { ColumnsWrapper, MainContainer } from './ScreenPage.styled';
 
 const ScreensPage = () => {
   const { boardId } = useParams();
   console.log('boardId :>> ', boardId);
   const [isAddColumnOpen, setIsAddColumnOpen] = useState(false);
-  const { data } = API.useGetBoardByIdQuery(boardId, {
+  const { data, isLoading } = API.useGetBoardByIdQuery(boardId, {
     refetchOnMountOrArgChange: true,
     skip: false,
   });
@@ -23,27 +20,29 @@ const ScreensPage = () => {
   const closeAddColumn = () => setIsAddColumnOpen(false);
 
   return (
-    <MainContainer>
-      <HeaderDashboard title={data?.title} />
+    isLoading && (
+      <MainContainer>
+        <HeaderDashboard title={data?.title} />
 
-      <ColumnsWrapper cols={!data.columns ? 1 : data.columns.length + 1}>
-        {data?.columns?.map(({ columnId, columnTitle }) => (
-          <Column
-            key={columnId}
-            columnTitle={columnTitle}
-            columnId={columnId}
-          />
-        ))}
-        <ButtonAdd onClick={openAddColumn}></ButtonAdd>
-      </ColumnsWrapper>
+        <ColumnsWrapper cols={!data?.columns ? 1 : data?.columns?.length + 1}>
+          {data?.columns?.map(({ columnId, columnTitle }) => (
+            <Column
+              key={columnId}
+              columnTitle={columnTitle}
+              columnId={columnId}
+            />
+          ))}
+          <ButtonAdd onClick={openAddColumn}></ButtonAdd>
+        </ColumnsWrapper>
 
-      <AddColumn
-        modalType={'Add column'}
-        open={isAddColumnOpen}
-        boardId={boardId}
-        close={closeAddColumn}
-      />
-    </MainContainer>
+        <AddColumn
+          modalType={'Add column'}
+          open={isAddColumnOpen}
+          boardId={boardId}
+          close={closeAddColumn}
+        />
+      </MainContainer>
+    )
   );
 };
 
