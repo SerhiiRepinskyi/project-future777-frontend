@@ -7,7 +7,7 @@ export const columnsAPI = createApi({
   tagTypes: ['columns'],
   endpoints: builder => ({
     addColumn: builder.mutation({
-      query: (boardId, title) => ({
+      query: ({boardId, title}) => ({
         url: `boards/${boardId}/columns`,
         method: 'POST',
         body: title,
