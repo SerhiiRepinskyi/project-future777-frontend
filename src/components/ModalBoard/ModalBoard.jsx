@@ -38,6 +38,7 @@ const ModalBoard = ({ boardTitle, boardId = '', open, handleClose }) => {
   const dispatch = useDispatch();
   const [iconId, setIconId] = useState(arrIcons[0]);
   const [iconIndex, setIconIndex] = useState(0);
+  const [idBoard, setIdBoard] = useState(0);
 
   const [backgroundURL, setBackgroundURL] = useState(arrBG[0]);
   const [backgroundIndex, setBackgroundIndex] = useState(0);
@@ -59,14 +60,16 @@ const ModalBoard = ({ boardTitle, boardId = '', open, handleClose }) => {
 
       if (boardTitle === 'New board') {
         const response = await addBoard(FormData);
+        // console.log(response.data);
+        setIdBoard(response.data._id);
         dispatch(setBoardResponse(response));
+        navigate(`/home/${idBoard}`);
       }
       if (boardTitle === 'Edit board') {
         const response = await editBoard({ boardId, FormData });
         dispatch(setBoardResponse(response));
       }
       handleClose();
-      navigate(`/home/${boardId}`);
     } catch (error) {
       console.log(error);
     }
