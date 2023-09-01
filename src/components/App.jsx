@@ -62,7 +62,7 @@ export const App = () => {
                   </PrivateRoute>
                 }
               >
-                <Route path=":boardName" element={<ScreensPage />} />
+                <Route path=":boardId" element={<ScreensPage />} />
               </Route>
 
               <Route
