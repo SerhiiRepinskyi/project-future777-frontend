@@ -12,6 +12,7 @@ import {
 
 const ScreensPage = () => {
   const { boardId } = useParams();
+  console.log('boardId :>> ', boardId);
   const [isAddColumnOpen, setIsAddColumnOpen] = useState(false);
   const { data } = API.useGetBoardByIdQuery(boardId, {
     refetchOnMountOrArgChange: true,
@@ -26,8 +27,7 @@ const ScreensPage = () => {
       <HeaderDashboard title={data?.title} />
 
       <ColumnsWrapper cols={!data.columns ? 1 : data.columns.length + 1}>
-        
-        {data.columns?.map(({ columnId, columnTitle }) => (
+        {data?.columns?.map(({ columnId, columnTitle }) => (
           <Column
             key={columnId}
             columnTitle={columnTitle}
