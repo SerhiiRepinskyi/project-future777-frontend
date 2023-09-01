@@ -6,22 +6,6 @@ export const columnsAPI = createApi({
   baseQuery: baseQuery,
   tagTypes: ['columns'],
   endpoints: builder => ({
-    
-    getAllCardsByColumnId: builder.query({
-      query: columnId => ({
-        url: `columns/${columnId}/cards `,
-        method: 'GET',
-      }),
-       providesTags: ['columns'],
-    }),
-
-    getAllFillteredCardsByColumnId: builder.query({
-      query:({ columnId, priority })=> ({
-        url: `columns/${columnId}/cards?f=${priority} `,
-        method: 'GET',
-      }),
-       providesTags: ['columns'],
-    }),
 
     addColumn: builder.mutation({
       query: ({ boardId, title }) => ({
