@@ -3,16 +3,14 @@ import { HeaderContainer, ThemeButton, ThemeContainer, ThemeUL, ThemeWrap } from
 import sprite from '../../assets/images/sprite.svg';
 import { NavBtn } from './NavBtn/NavBtn';
 import { UserInfo } from './UserInfo/UserInfo';
+import { useSelector } from 'react-redux';
+import { selectUser } from 'redux/auth/authSelectors';
 
 export const Header = ({handleSidebarToggle}) => {
-  const user = {
-    theme: 'dark',
-    name: 'Ivetta',
-    avatarURL: '',
-  };
-  
+ 
+  const {avatarURL, name, theme} = useSelector(selectUser);
   const [themeListVisible, setThemeListVisible] = useState(false);
-  const [selectedTheme, setSelectedTheme] = useState(user.theme);
+  const [selectedTheme, setSelectedTheme] = useState(theme);
 
   const themeList = [ 'light', 'dark', 'violet' ];
  
@@ -57,7 +55,7 @@ export const Header = ({handleSidebarToggle}) => {
           ))}
         </ThemeUL>
       </ThemeContainer>
-      <UserInfo name={user.name} avatarURL={user.avatarURL}/>
+      <UserInfo name={name} avatarURL={avatarURL}/>
     </HeaderContainer>
   );
 };

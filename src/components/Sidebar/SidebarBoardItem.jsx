@@ -80,7 +80,9 @@ export const SidebarBoardItem = ({ title, icon, id, current }) => {
         sx={{
           pl: { 0: 1.75, 768: 3 },
           pr: { 0: 1.75, 768: 3 },
-          backgroundColor: current ? 'rgba(31, 31, 31, 0.4)' : 'transparent',
+          backgroundColor: current
+            ? 'var(--sidebar-board-item-bg-color-CURRENT)'
+            : 'transparent',
         }}
       >
         <Box
@@ -123,7 +125,7 @@ export const SidebarBoardItem = ({ title, icon, id, current }) => {
               right: 0,
               width: '4px',
               height: '100%',
-              backgroundColor: '#BEDBB0',
+              backgroundColor: 'var(--sidebar-board-item-bg-color-AFTER)',
               opacity: 0.4,
               borderRadius: '4px 0px 0px 4px',
             }}
@@ -137,7 +139,7 @@ export const SidebarBoardItem = ({ title, icon, id, current }) => {
               right: 0,
               width: '4px',
               height: '100%',
-              backgroundColor: '#BEDBB0',
+              backgroundColor: 'var(--sidebar-board-item-bg-color-AFTER)',
               borderRadius: '4px 0px 0px 4px',
             }}
           />
@@ -160,9 +162,12 @@ export const SidebarBoardItem = ({ title, icon, id, current }) => {
                   p: 0,
                   m: 0,
                   pointerEvents: 'auto',
+                  backgroundColor: 'transparent',
                   opacity: 0.5,
+                  stroke: 'var(--sidebar-primary-text-color)',
                   '&:hover, &:focus': {
                     opacity: 1,
+                    backgroundColor: 'transparent',
                   },
                 }}
                 onClick={handleEditClick}
@@ -179,9 +184,12 @@ export const SidebarBoardItem = ({ title, icon, id, current }) => {
                   p: 0,
                   m: 0,
                   pointerEvents: 'auto',
+                  backgroundColor: 'transparent',
                   opacity: 0.5,
+                  stroke: 'var(--sidebar-primary-text-color)',
                   '&:hover, &:focus': {
                     opacity: 1,
+                    backgroundColor: 'transparent',
                   },
                 }}
                 onClick={handleDeleteClick}

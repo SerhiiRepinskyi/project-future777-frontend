@@ -1,4 +1,4 @@
-import { EmptyAvatar, UserInfoContainer, UserName } from './UserInfo.styled';
+import { EmptyAvatar, ImgAvatar, UserInfoContainer, UserName } from './UserInfo.styled';
 
 export const UserInfo = ({ name = 'User', avatarURL }) => {
   return (
@@ -6,7 +6,7 @@ export const UserInfo = ({ name = 'User', avatarURL }) => {
       <UserName>{name}</UserName>
       <div>
         {avatarURL ? (
-          <img src={avatarURL} alt="User Avatar" />
+          <ImgAvatar src={avatarURL} alt="User Avatar" />
         ) : (
           <EmptyAvatar />
         )}
