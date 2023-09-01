@@ -1,18 +1,21 @@
-import { Suspense, lazy, useEffect } from 'react';
+import { Suspense, lazy} from 'react';
 import { Route, Routes, Navigate } from 'react-router-dom';
 import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import Loader from './Loader/Loader';
-import { useDispatch, useSelector } from 'react-redux';
-import { useGetCurrentUserQuery } from 'Services/API_Component/userAPI';
-import { setUserRefresh } from 'redux/auth/authAPISlice';
+import { useSelector } from 'react-redux';
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+
 
 import GlobalStyles from './GlobalStyles';
-
+// import {useNavigation} from '../hooks/navigationHook'
 import { LoginForm } from './LoginForm/LoginForm';
 import { RegisterForm } from './RegisterForm/RegisterForm';
 import { PrivateRoute } from 'routes/PrivateRoute';
 import { RestrictedRoute } from 'routes/RestrictedRoute';
+import { useGetCurrentUserQuery } from 'Services/API_Component';
+import { setUserRefresh } from 'redux/auth/authAPISlice';
 
 const WelcomePage = lazy(() => import('../pages/WelcomePage/WelcomePage'));
 const HomePage = lazy(() => import('../pages/HomePage/HomePage'));
@@ -21,8 +24,12 @@ const ScreensPage = lazy(() => import('../pages/ScreensPage/ScreensPage'));
 const NotFound = lazy(() => import('../pages/NotFound/NotFound'));
 
 export const App = () => {
-  const token = useSelector(state => state.auth.token);
+ 
+  // useNavigation()
+
+   const token = useSelector(state => state.auth.token);
   const isRefreshing = useSelector(state => state.auth.isRefreshing);
+ 
 
   const dispatch = useDispatch();
 
@@ -35,6 +42,9 @@ export const App = () => {
       dispatch(setUserRefresh(currentUser));
     }
   }, [token, currentUser, dispatch]);
+
+
+
 
   return (
     <div>
