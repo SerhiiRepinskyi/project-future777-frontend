@@ -12,16 +12,16 @@ export const columnsAPI = createApi({
         method: 'POST',
         body: title,
       }),
-      providesTags: ['columns'],
+      invalidatesTags: ['columns'],
     }),
 
     updateColumnById: builder.mutation({
-      query: (columnId, title) => ({
+      query: ({ columnId, title }) => ({
         url: `/columns/:${columnId}`,
         method: 'PATCH',
         body: title,
       }),
-      providesTags: ['columns'],
+      invalidatesTags: ['columns'],
     }),
 
     deleteColumnById: builder.mutation({

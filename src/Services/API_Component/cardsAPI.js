@@ -1,48 +1,50 @@
 import { createApi } from '@reduxjs/toolkit/query/react';
-import baseQuery from '../API_Helper/APIHelper'
+import baseQuery from '../API_Helper/APIHelper';
 
 export const cardsAPI = createApi({
-    reducerPath: 'cardsAPI',
-    baseQuery: baseQuery,
-  endpoints: (builder) => ({
-    
-    addCard: builder.mutation({
-      query: (columnId, FormData) => ({
+  reducerPath: 'cardsAPI',
+  baseQuery: baseQuery,
+  endpoints: builder => ({
+    getAllCards: builder.query({
+      query: columnId => ({
         url: `columns/${columnId}/cards`,
-        method: "POST",
-        body: FormData,
       }),
-      providesTags: ["columns"],
-     }),
-     
+      providesTags: ['columns'],
+    }),
 
-     updateCardById: builder.mutation({
-      query: (cardId, FormData ) => ({
+    addCard: builder.mutation({
+      query: ({ columnId, cardData }) => ({
+        url: `columns/${columnId}/cards`,
+        method: 'POST',
+        body: cardData,
+      }),
+      invalidatesTags: ['columns'],
+    }),
+
+    updateCardById: builder.mutation({
+      query: ({ cardId, FormData }) => ({
         url: `/cards/${cardId}`,
-        method: "PUT",
+        method: 'PUT',
         body: FormData,
       }),
-      providesTags: ["cards"],
-     }),
-     
+      invalidatesTags: ['cards'],
+    }),
 
-     deleteCardById: builder.mutation({
-      query: (cardId) => ({
+    deleteCardById: builder.mutation({
+      query: cardId => ({
         url: `/columns/${cardId}`,
-        method: "DELETE",
+        method: 'DELETE',
       }),
-      invalidatesTags: ["columns"],
-     }),
-
+      invalidatesTags: ['columns'],
+    }),
 
     updateCardColumnById: builder.mutation({
-      query: (cardId) => ({
+      query: cardId => ({
         url: `/cards/${cardId}`,
-        method: "PATCH",
+        method: 'PATCH',
       }),
-      providesTags: ["cards"],
-     }), 
-
+      invalidatesTags: ['cards'],
+    }),
   }),
 });
 
@@ -50,5 +52,6 @@ export const {
   useAddCardMutation,
   useUpdateCardByIdMutation,
   useDeleteCardByIdMutation,
-  useUpdateCardColumnByIdMutation
+  useUpdateCardColumnByIdMutation,
+  useGetAllCardsQuery,
 } = cardsAPI;
