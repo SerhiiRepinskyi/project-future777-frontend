@@ -5,10 +5,7 @@ import Column from '../../components/Column/Column';
 import { HeaderDashboard } from 'components/HeaderDashboard/HeaderDashboard';
 import { API } from 'Services/API';
 import { useParams } from 'react-router-dom';
-import {
-  ColumnsWrapper,
-  MainContainer,
-} from './ScreenPage.styled';
+import { ColumnsWrapper, MainContainer } from './ScreenPage.styled';
 import { DefaultScreenPage } from './DefaultScreenPage';
 
 const ScreensPage = () => {
@@ -23,30 +20,30 @@ const ScreensPage = () => {
   const openAddColumn = () => setIsAddColumnOpen(true);
   const closeAddColumn = () => setIsAddColumnOpen(false);
 
-  return !boardId ? (
-    <DefaultScreenPage />
-  ) : (
-    <MainContainer>
-      <HeaderDashboard title={data?.title} />
+  return (
+    isLoading && (
+      <MainContainer>
+        <HeaderDashboard title={data?.title} />
 
-      <ColumnsWrapper cols={!data?.columns ? 1 : data?.columns?.length + 1}>
-        {data?.columns?.map(({ columnId, columnTitle }) => (
-          <Column
-            key={columnId}
-            columnTitle={columnTitle}
-            columnId={columnId}
-          />
-        ))}
-        <ButtonAdd onClick={openAddColumn}></ButtonAdd>
-      </ColumnsWrapper>
+        <ColumnsWrapper cols={!data?.columns ? 1 : data?.columns?.length + 1}>
+          {data?.columns?.map(({ columnId, columnTitle }) => (
+            <Column
+              key={columnId}
+              columnTitle={columnTitle}
+              columnId={columnId}
+            />
+          ))}
+          <ButtonAdd onClick={openAddColumn}></ButtonAdd>
+        </ColumnsWrapper>
 
-      <AddColumn
-        modalType={'Add column'}
-        open={isAddColumnOpen}
-        boardId={boardId}
-        close={closeAddColumn}
-      />
-    </MainContainer>
+        <AddColumn
+          modalType={'Add column'}
+          open={isAddColumnOpen}
+          boardId={boardId}
+          close={closeAddColumn}
+        />
+      </MainContainer>
+    )
   );
 };
 
