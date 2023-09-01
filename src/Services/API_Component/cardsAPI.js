@@ -5,6 +5,23 @@ export const cardsAPI = createApi({
   reducerPath: 'cardsAPI',
   baseQuery: baseQuery,
   endpoints: builder => ({
+    
+     getAllCardsByColumnId: builder.query({
+      query: columnId => ({
+        url: `columns/${columnId}/cards `,
+        method: 'GET',
+      }),
+       providesTags: ['columns'],
+    }),
+
+    getAllFillteredCardsByColumnId: builder.query({
+      query:({ columnId, priority })=> ({
+        url: `columns/${columnId}/cards?f=${priority} `,
+        method: 'GET',
+      }),
+       providesTags: ['columns'],
+    }),
+
     getAllCards: builder.query({
       query: columnId => ({
         url: `columns/${columnId}/cards`,
