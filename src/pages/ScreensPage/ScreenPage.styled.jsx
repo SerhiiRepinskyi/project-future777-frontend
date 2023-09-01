@@ -1,6 +1,26 @@
 import styled from '@emotion/styled';
 import { SIDEBARWIDTH } from 'components/Sidebar/SidebarCONSTANTS';
 
+
+export const MainContainer = styled.main`
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  background-color: #2e2e2e;
+  height: 100vh;
+  padding-top: 78px;
+  padding-left: 24px;
+  padding-right: 24px;
+  @media screen and (min-width: 0px) {
+    width: 100vw;
+  }
+  @media screen and (min-width: 767px) {
+  }
+  @media screen and (min-width: 1400px) {
+    width: calc(100vw - ${SIDEBARWIDTH}px);
+  }
+`;
+
 export const ColumnsWrapper = styled.div`
   display: flex;
   flex-direction: column;

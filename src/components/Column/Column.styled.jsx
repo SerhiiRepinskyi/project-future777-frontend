@@ -3,10 +3,11 @@ import styled from '@emotion/styled';
 import { IconButton } from '@mui/material';
 
 export const ColumnWrapper = styled.li`
-  display: grid;
-  grid-template-rows: 56px auto 56px;
+  display: flex;
+  flex-direction: column;
+  /* grid-template-rows: 56px auto 56px; */
   align-items: left;
-  gap: 14px;
+  /* gap: 14px; */
   width: 346px;
   max-height: 80vh;
   padding-right: 12px;
@@ -25,6 +26,7 @@ export const ColumnHeader = styled.div`
   color: #ffffff;
   padding: 20px;
   border-radius: 8px;
+  margin-bottom: 14px;
 `;
 
 export const ColumnTitle = styled.h2`
@@ -36,9 +38,12 @@ export const ColumnTitle = styled.h2`
 `;
 
 export const CardsList = styled.ul`
-  display: grid;
+  display: flex;
+  flex-direction: column;
+  /* grid-template-rows: 155px; */
   width: 346px;
-  height: 100%;
+  margin-bottom: 14px;
+  max-height: 60vh;
   gap: 8px;
   border-radius: 8px;
   padding-right: 8px;

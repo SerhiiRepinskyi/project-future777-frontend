@@ -4,7 +4,6 @@ import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { FormStyled, InputStyled } from '../AddCard/AddCard.styled';
 import { ButtonWithIcon } from 'components/Buttons/Button';
-// import { useSelector } from 'react-redux';
 import ModalLayout from '../ModalLayout/ModalLayout';
 
 const AddColumn = ({ open, modalType, boardId, close }) => {
@@ -25,9 +24,8 @@ const AddColumn = ({ open, modalType, boardId, close }) => {
     onSubmit: title => handleSubmit(title),
     validationSchema,
   });
+
   const handleSubmit = async title => {
-    console.log('boardId', boardId);
-    console.log('title', title);
 
     try {
       await addColumn({ boardId, title });

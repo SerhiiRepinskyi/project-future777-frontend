@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 
-export const DropDawnBtn = styled.button`
+export const DropDawnBtn = styled.div`
   outline: none;
   background-color: transparent;
   border: none;
