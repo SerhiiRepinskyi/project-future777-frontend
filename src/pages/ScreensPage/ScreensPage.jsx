@@ -9,12 +9,13 @@ import {
   ColumnsWrapper,
   MainContainer,
 } from './ScreenPage.styled';
+import { DefaultScreenPage } from './DefaultScreenPage';
 
 const ScreensPage = () => {
   const { boardId } = useParams();
   console.log('boardId :>> ', boardId);
   const [isAddColumnOpen, setIsAddColumnOpen] = useState(false);
-  const { data } = API.useGetBoardByIdQuery(boardId, {
+  const { data, isLoading } = API.useGetBoardByIdQuery(boardId, {
     refetchOnMountOrArgChange: true,
     skip: false,
   });
@@ -22,11 +23,13 @@ const ScreensPage = () => {
   const openAddColumn = () => setIsAddColumnOpen(true);
   const closeAddColumn = () => setIsAddColumnOpen(false);
 
-  return (
+  return !boardId ? (
+    <DefaultScreenPage />
+  ) : (
     <MainContainer>
       <HeaderDashboard title={data?.title} />
 
-      <ColumnsWrapper cols={!data.columns ? 1 : data.columns.length + 1}>
+      <ColumnsWrapper cols={!data?.columns ? 1 : data?.columns?.length + 1}>
         {data?.columns?.map(({ columnId, columnTitle }) => (
           <Column
             key={columnId}
