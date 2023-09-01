@@ -3,6 +3,9 @@ import { Route, Routes, Navigate } from 'react-router-dom';
 import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import Loader from './Loader/Loader';
+import { useSelector } from 'react-redux';
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 
 
 import GlobalStyles from './GlobalStyles';
@@ -11,6 +14,8 @@ import { LoginForm } from './LoginForm/LoginForm';
 import { RegisterForm } from './RegisterForm/RegisterForm';
 import { PrivateRoute } from 'routes/PrivateRoute';
 import { RestrictedRoute } from 'routes/RestrictedRoute';
+import { useGetCurrentUserQuery } from 'Services/API_Component';
+import { setUserRefresh } from 'redux/auth/authAPISlice';
 
 const WelcomePage = lazy(() => import('../pages/WelcomePage/WelcomePage'));
 const HomePage = lazy(() => import('../pages/HomePage/HomePage'));
@@ -21,6 +26,23 @@ const NotFound = lazy(() => import('../pages/NotFound/NotFound'));
 export const App = () => {
  
   // useNavigation()
+
+   const token = useSelector(state => state.auth.token);
+  const isRefreshing = useSelector(state => state.auth.isRefreshing);
+
+  const dispatch = useDispatch();
+
+  const { data: currentUser } = useGetCurrentUserQuery({
+    skip: token === null,
+  });
+
+  useEffect(() => {
+    if (token && currentUser) {
+      dispatch(setUserRefresh(currentUser));
+    }
+  }, [token, currentUser, dispatch]);
+
+
 
 
   return (
