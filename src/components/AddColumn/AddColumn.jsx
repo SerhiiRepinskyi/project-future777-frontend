@@ -22,15 +22,14 @@ const AddColumn = ({ open, modalType, boardId, close }) => {
 
   const formik = useFormik({
     initialValues: { title: '' },
-    onSubmit: ({ title }) => handleSubmit(title),
+    onSubmit: ( title ) => handleSubmit(title),
     validationSchema,
   });
-  const handleSubmit = async titleColumn => {
+  const handleSubmit = async (title) => {
     console.log('boardId', boardId);
-    console.log('title', titleColumn);
 
     try {
-      await addColumn(boardId,  {title: titleColumn} );
+      await addColumn({boardId,  title });
 
       close();
     } catch (error) {
