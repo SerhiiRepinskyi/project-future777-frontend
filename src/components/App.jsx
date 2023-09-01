@@ -6,7 +6,7 @@ import Loader from './Loader/Loader';
 
 
 import GlobalStyles from './GlobalStyles';
-
+// import {useNavigation} from '../hooks/navigationHook'
 import { LoginForm } from './LoginForm/LoginForm';
 import { RegisterForm } from './RegisterForm/RegisterForm';
 import { PrivateRoute } from 'routes/PrivateRoute';
@@ -19,6 +19,7 @@ const NotFound = lazy(() => import('../pages/NotFound/NotFound'));
 
 export const App = () => {
  
+  // useNavigation()
 
 
   return (
