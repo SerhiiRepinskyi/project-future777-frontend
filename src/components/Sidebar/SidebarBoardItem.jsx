@@ -14,8 +14,10 @@ import { Box, List, ListItem, ListItemButton } from '@mui/material';
 import { useEffect, useState } from 'react';
 import { API } from 'Services/API';
 import ModalBoard from 'components/ModalBoard/ModalBoard';
+// import { useNavigate } from 'react-router-dom';
 
 export const SidebarBoardItem = ({ title, icon, id, current }) => {
+  // const navigate = useNavigate();
   const [isHovered, setIsHovered] = useState(false);
   const [titleWidth, setTitleWidth] = useState(0);
   const [titleWrapWidth, setTitleWrapWidth] = useState(130);
@@ -68,6 +70,7 @@ export const SidebarBoardItem = ({ title, icon, id, current }) => {
   const handleDeleteClick = event => {
     event.stopPropagation();
     deleteBoard(id);
+    // navigate(`/home/${currentItemId}`);
   };
 
   return (
@@ -204,6 +207,7 @@ export const SidebarBoardItem = ({ title, icon, id, current }) => {
       </BoardItemWrap>
 
       <ModalBoard
+        title={title}
         boardId={id}
         boardTitle={'Edit board'}
         open={isModalOpen}
