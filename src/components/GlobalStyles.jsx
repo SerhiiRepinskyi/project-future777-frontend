@@ -62,6 +62,7 @@ export const GlobalStyles = () => {
           --secondary-bg-color: rgba(18, 18, 18, 1); //black
 
           /* DO NOT TOUCH THIS VARIABLES OR I WILL FIND YOU!!!! */
+          --sidebar-backdrop-color: rgba(21, 21, 21, 0.5);
           --sidebar-icon-logo-bg-color: rgba(31, 31, 31, 1);
           --sidebar-icon-logo-color: rgba(255, 255, 255, 1);
           --sidebar-primary-bg-color: rgba(18, 18, 18, 1);
@@ -79,6 +80,7 @@ export const GlobalStyles = () => {
           --sidebar-scroll-thumb-color-HOVER: rgba(157, 200, 136, 0.5);
           --sidebar-board-item-bg-color-CURRENT: rgba(31, 31, 31, 0.4);
           --sidebar-board-item-bg-color-AFTER: #bedbb0;
+          --default-screen-page-link-color: #bedbb0;
           /* DO NOT TOUCH THIS VARIABLES OR I WILL FIND YOU!!!! */
 
           --header-theme-color: rgba(255, 255, 255, 0.8); //white
@@ -99,6 +101,7 @@ export const GlobalStyles = () => {
           --secondary-bg-color: rgba(255, 255, 255, 1); //white
 
           /* DO NOT TOUCH THIS VARIABLES OR I WILL FIND YOU!!!! */
+          --sidebar-backdrop-color: rgba(21, 21, 21, 0.3);
           --sidebar-icon-logo-bg-color: rgba(31, 31, 31, 1);
           --sidebar-icon-logo-color: rgba(255, 255, 255, 1);
           --sidebar-primary-bg-color: rgba(255, 255, 255, 1);
@@ -116,6 +119,7 @@ export const GlobalStyles = () => {
           --sidebar-scroll-thumb-color-HOVER: rgba(157, 200, 136, 0.5);
           --sidebar-board-item-bg-color-CURRENT: rgba(246, 246, 247, 0.4);
           --sidebar-board-item-bg-color-AFTER: #bedbb0;
+          --default-screen-page-link-color: #bedbb0;
           /* DO NOT TOUCH THIS VARIABLES OR I WILL FIND YOU!!!! */
 
           --header-theme-color: rgba(22, 22, 22, 0.8); //black
@@ -136,6 +140,7 @@ export const GlobalStyles = () => {
           --secondary-bg-color: rgba(255, 255, 255, 1); //white
 
           /* DO NOT TOUCH THIS VARIABLES OR I WILL FIND YOU!!!! */
+          --sidebar-backdrop-color: rgba(21, 21, 21, 0.3);
           --sidebar-icon-logo-bg-color: rgba(236, 237, 253, 1);
           --sidebar-icon-logo-color: rgba(82, 85, 188, 1);
           --sidebar-primary-bg-color: rgba(82, 85, 188, 1);
@@ -153,6 +158,7 @@ export const GlobalStyles = () => {
           --sidebar-scroll-thumb-color-HOVER: rgba(184, 188, 253, 0.5);
           --sidebar-board-item-bg-color-CURRENT: rgba(255, 255, 255, 0.2);
           --sidebar-board-item-bg-color-AFTER: #ffffff;
+          --default-screen-page-link-color: #5255bc;
           /* DO NOT TOUCH THIS VARIABLES OR I WILL FIND YOU!!!! */
 
           --header-theme-color: rgba(22, 22, 22, 0.8); //black
