@@ -9,9 +9,8 @@ import { ColumnsWrapper, MainContainer } from './ScreenPage.styled';
 
 const ScreensPage = () => {
   const { boardId } = useParams();
-  console.log('boardId :>> ', boardId);
   const [isAddColumnOpen, setIsAddColumnOpen] = useState(false);
-  const { data, isLoading } = API.useGetBoardByIdQuery(boardId, {
+  const { data } = API.useGetBoardByIdQuery(boardId, {
     refetchOnMountOrArgChange: true,
     skip: false,
   });
