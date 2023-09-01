@@ -20,29 +20,27 @@ const ScreensPage = () => {
   const closeAddColumn = () => setIsAddColumnOpen(false);
 
   return (
-    isLoading && (
-      <MainContainer>
-        <HeaderDashboard title={data?.title} />
+    <MainContainer>
+      <HeaderDashboard title={data?.title} />
 
-        <ColumnsWrapper cols={!data?.columns ? 1 : data?.columns?.length + 1}>
-          {data?.columns?.map(({ columnId, columnTitle }) => (
-            <Column
-              key={columnId}
-              columnTitle={columnTitle}
-              columnId={columnId}
-            />
-          ))}
-          <ButtonAdd onClick={openAddColumn}></ButtonAdd>
-        </ColumnsWrapper>
+      <ColumnsWrapper cols={!data?.columns ? 1 : data?.columns?.length + 1}>
+        {data?.columns?.map(({ columnId, columnTitle }) => (
+          <Column
+            key={columnId}
+            columnTitle={columnTitle}
+            columnId={columnId}
+          />
+        ))}
+        <ButtonAdd onClick={openAddColumn}></ButtonAdd>
+      </ColumnsWrapper>
 
-        <AddColumn
-          modalType={'Add column'}
-          open={isAddColumnOpen}
-          boardId={boardId}
-          close={closeAddColumn}
-        />
-      </MainContainer>
-    )
+      <AddColumn
+        modalType={'Add column'}
+        open={isAddColumnOpen}
+        boardId={boardId}
+        close={closeAddColumn}
+      />
+    </MainContainer>
   );
 };
 
