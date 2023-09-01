@@ -1,3 +1,6 @@
+import { Modal, Box, Typography, useMediaQuery } from '@mui/material';
+import { ButtonClose } from 'components/ModalBoard/ModalBoard.styled';
+import sprite from '../../assets/images/sprite.svg';
 import { Report } from 'notiflix';
 import { useFormik } from 'formik';
 import * as Yup from "yup";
@@ -8,15 +11,37 @@ import {
   InputStyled,
   TextareaStyled,
 } from './ModalHelp.styled';
-import { ButtonWithoutIcon } from "components/Buttons/Button";
-import ModalLayout from 'components/ModalLayout/ModalLayout';
+import { ButtonWithoutIcon} from "components/Buttons/Button";
 import { useDispatch } from 'react-redux';
 import { API } from 'Services/API';
 import { setError } from 'redux/auth/authAPISlice';
+const ModalStyles = {
+  position: 'absolute',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+  width: 350,
+  borderRadius: 8 / 4,
+  border: '1px solid rgba(190, 219, 176, 0.50)',
+  background: '#151515',
+  padding: 24/8,
+};
+
+const titleStyles = {
+  color: '#FFF',
+  fontSize: 18,
+  fontStyle: 'normal',
+  fontWeight: 500,
+  lineHeight: 'normal',
+  letterSpacing: -0.36,
+  marginBottom: 24 / 8,
+  fontFamily: 'Poppins',
+};
 
 
 
 const ModalHelp = ({ open, handleClose }) => {
+    const adaptiveStyle = useMediaQuery('(min-width: 1440px)');
     const dispatch = useDispatch()
     const[helpUser] = API.useHelpUserMutation()
     
@@ -61,20 +86,28 @@ const ModalHelp = ({ open, handleClose }) => {
     });
     
     return (
-    <ModalLayout
-        title={'Need help'}
+      <ComponentWrapper> 
+      <Modal
         open={open}
-        handleClose={handleClose}
- 
-            // sx={{ ...ModalStyles, width: '400px', height: '355px' }}
-            //СПИТАТИ СТВОРИТИ ОКРЕМИЙ ./ModalLayoutStyles і тоді змінити
-        >
-      <ComponentWrapper>
+        onClose={handleClose}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <Box sx={{ ...ModalStyles, width: adaptiveStyle ? 400 : 335 }}>
+          <Typography variant="h2" sx={titleStyles} >
+            Need help
+          </Typography>
+          <ButtonClose type="button" onClick={handleClose}>
+            <svg style={{ stroke: 'currentcolor' }} width="18" height="18">
+              <use href={sprite + '#icon-x-close'} />
+            </svg>
+          </ButtonClose>
+         
         <FormStyled onSubmit={formik.handleSubmit}>
             <InputStyled
                 id="email"
                 name="email"
-                placeholder="email address"
+                placeholder="Email address"
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
                 value={formik.values.email}
@@ -82,19 +115,26 @@ const ModalHelp = ({ open, handleClose }) => {
              <TextareaStyled
                 id="comment"
                 name="comment"
-                placeholder="comment"
+                placeholder="Comment"
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
                 value={formik.values.comment}
             /> 
-
-                    <ButtonWithoutIcon title={'Add'} type={'submit'} onClick={() => {
-                        (formik.values.email === '' && Notiflix.Notify.warning('Email field must be filled in')) || (formik.values.comment === '' && Notiflix.Notify.warning('Comment field must be filled in'));
-                    }} />
-        </FormStyled>
+       
+            <ButtonWithoutIcon
+            title={'Send'}
+            type={'submit'}
+            sx={{ marginTop: 24, }}
+            onClick={() => {
+                (formik.values.email === '' && Notiflix.Notify.warning('Email field must be filled in')) || (formik.values.comment === '' && Notiflix.Notify.warning('Comment field must be filled in'));
+            }}
+            >
+            Send
+            </ButtonWithoutIcon> 
+         </FormStyled>            
+         </Box>
+      </Modal>
         </ComponentWrapper>
-    </ModalLayout>
-
     );
 }; 
 
