@@ -60,18 +60,21 @@ const ModalBoard = ({ boardTitle, boardId = '', open, handleClose }) => {
       if (boardTitle === 'New board') {
         const response = await addBoard(FormData);
         dispatch(setBoardResponse(response));
+        const newBoardId = response.data._id;
+        navigate(`/home/${newBoardId}`);
+        
       }
       if (boardTitle === 'Edit board') {
         const response = await editBoard({ boardId, FormData });
         dispatch(setBoardResponse(response));
       }
       handleClose();
-      navigate(`/home/${boardId}`);
+      
     } catch (error) {
       console.log(error);
     }
     formik.handleReset();
-    navigate();
+
   };
 
   const validationSchema = Yup.object({
