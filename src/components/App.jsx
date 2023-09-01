@@ -83,7 +83,6 @@ export const App = () => {
           <GlobalStyles />
         </LocalizationProvider>
       )}
-      ;
     </div>
   );
 };
