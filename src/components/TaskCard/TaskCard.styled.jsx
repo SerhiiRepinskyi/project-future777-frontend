@@ -23,7 +23,6 @@ export const TypographyStylesDescription = {
   fontSize: '12px',
   fontWeight: '400',
   letterSpacing: '-0.24px',
-  overflow: 'hidden',
   whitespace: 'nowrap',
   lineHeight: '16px',
   width: '290px' /* Задаємо фіксовану ширину, де текст буде обрізаний */,
