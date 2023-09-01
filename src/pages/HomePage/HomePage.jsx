@@ -19,7 +19,7 @@ const HomePage = () => {
 
   return (
     isLoggdIn && (
-      <Box sx={{ display: 'flex' }}>
+      <Box sx={{ display: 'flex', overflowX: 'hidden' }}>
         <AppBar
           position="fixed"
           sx={{
