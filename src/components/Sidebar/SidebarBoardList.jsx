@@ -1,21 +1,24 @@
 import { List, ListItem, ListItemButton } from '@mui/material';
 import { SidebarBoardItem } from './SidebarBoardItem';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { API } from 'Services/API';
 import { useNavigate } from 'react-router-dom';
 
 export const SidebarBoardList = () => {
-  const { data: boards } = API.useGetBoardsQuery();
-
-  const reverseBoards = boards?.length > 0 ? [...boards].reverse() : boards;
-
-  const [currentItemIndex, setCurrentItemIndex] = useState(0);
-
   const navigate = useNavigate();
 
-  const handleButtonClick = (index, id) => {
-    setCurrentItemIndex(index);
+  const { data } = API.useGetBoardsQuery();
+
+  const [currentItemId, setCurrentItemId] = useState('');
+
+  useEffect(() => {
+    const currentItemId = data?.length > 0 ? data[data?.length - 1]._id : '';
+    setCurrentItemId(currentItemId);
+  }, [data]);
+
+  const handleButtonClick = id => {
+    setCurrentItemId(id);
     navigate(`/home/${id}`);
   };
 
@@ -25,29 +28,29 @@ export const SidebarBoardList = () => {
         disablePadding
         sx={{
           display: 'flex',
-          flexDirection: 'column',
+          flexDirection: 'column-reverse',
           gap: 0.5,
           mb: 3,
         }}
       >
-        {reverseBoards?.map((board, index) => (
+        {data?.map(board => (
           <ListItem key={board._id} disablePadding>
             <ListItemButton
               sx={{
                 p: 0,
                 m: 0,
-                pointerEvents: currentItemIndex === index ? 'none' : 'auto',
+                pointerEvents: currentItemId === board._id ? 'none' : 'auto',
                 '&:hover, &:focus': {
                   backgroundColor: 'var(--sidebar-board-item-bg-color-CURRENT)',
                 },
               }}
-              onClick={() => handleButtonClick(index, board._id)}
+              onClick={() => handleButtonClick(board._id)}
             >
               <SidebarBoardItem
                 id={board._id}
                 icon={board.iconId}
                 title={board.title}
-                current={currentItemIndex === index}
+                current={currentItemId === board._id}
               />
             </ListItemButton>
           </ListItem>
