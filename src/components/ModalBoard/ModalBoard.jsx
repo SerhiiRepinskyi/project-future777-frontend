@@ -22,6 +22,7 @@ import { useDispatch } from 'react-redux';
 // import { selectIsLoggedIn } from 'redux/auth/authSelectors';
 import { API } from 'Services/API';
 import { setBoardResponse } from 'redux/boards/boardsAPISlice';
+import { useNavigate } from 'react-router-dom';
 
 const titleStyle = {
   color: '#FFF',
@@ -44,6 +45,8 @@ const ModalBoard = ({ boardTitle, boardId = '', open, handleClose }) => {
   const [addBoard] = API.useAddBoardsMutation();
   const [editBoard] = API.useUpdateBoardByIdMutation();
 
+  const navigate = useNavigate();
+
   const handleSubmit = async title => {
     try {
       const FormData = {
@@ -62,10 +65,13 @@ const ModalBoard = ({ boardTitle, boardId = '', open, handleClose }) => {
         const response = await editBoard({ boardId, FormData });
         dispatch(setBoardResponse(response));
       }
+      handleClose();
+      navigate(`/home/${boardId}`);
     } catch (error) {
       console.log(error);
     }
     formik.handleReset();
+    navigate();
   };
 
   const validationSchema = Yup.object({
