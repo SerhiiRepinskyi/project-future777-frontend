@@ -1,11 +1,12 @@
-// import { Navigate} from "react-router-dom";
-// import { useSelector } from "react-redux";
+import { useSelector } from 'react-redux';
+import { Navigate } from 'react-router-dom';
 
+export const RestrictedRoute = ({ children }) => {
+  const isLoggedIn = useSelector(state => state.auth.token);
+  
 
-const RestrictedRoute = ({ component: Component, redirectTo = '/' }) => {
-  // const isLoggedIn = useSelector(state => state.auth.token);
-
-  // return isLoggedIn ? <Navigate to={redirectTo} /> : Component;
+  if (!isLoggedIn) {
+    return children;
+  }
+  return <Navigate to="/home" replace />;
 };
-
-export default RestrictedRoute;
