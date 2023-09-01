@@ -12,6 +12,7 @@ import GlobalStyles from './GlobalStyles';
 import { LoginForm } from './LoginForm/LoginForm';
 import { RegisterForm } from './RegisterForm/RegisterForm';
 import { PrivateRoute } from 'routes/PrivateRoute';
+import { RestrictedRoute } from 'routes/RestrictedRoute';
 
 const WelcomePage = lazy(() => import('../pages/WelcomePage/WelcomePage'));
 const HomePage = lazy(() => import('../pages/HomePage/HomePage'));
@@ -21,6 +22,7 @@ const NotFound = lazy(() => import('../pages/NotFound/NotFound'));
 
 export const App = () => {
   const token = useSelector(state => state.auth.token);
+  const isRefreshing = useSelector(state => state.auth.isRefreshing);
 
   const dispatch = useDispatch();
 
@@ -36,42 +38,52 @@ export const App = () => {
 
   return (
     <div>
-      <LocalizationProvider dateAdapter={AdapterDateFns}>
-        <Suspense fallback={<Loader />}>
-          <Routes>
-            <Route path="/" element={<Navigate to="/welcome" />} />
-            <Route path="/welcome" element={<WelcomePage />} />
-
-            <Route
-              path="/home"
-              element={
-                <PrivateRoute>
-                  <HomePage />
-                </PrivateRoute>
-              }
-            >
+      {isRefreshing ? (
+        <Loader />
+      ) : (
+        <LocalizationProvider dateAdapter={AdapterDateFns}>
+          <Suspense fallback={<Loader />}>
+            <Routes>
+              <Route path="/" element={<Navigate to="/welcome" />} />
               <Route
-                path="/home/:boardId"
+                path="/welcome"
                 element={
-                  <Suspense fallback={<Loader />}>
-                    <PrivateRoute>
-                    <ScreensPage />
-                    </PrivateRoute>                    
-                  </Suspense>
+                  <RestrictedRoute>
+                    <WelcomePage />
+                  </RestrictedRoute>
                 }
               />
-            </Route>
 
-            <Route path="/auth/:id" element={<AuthPage />}>
-              <Route path="login" element={<LoginForm />} />
-              <Route path="register" element={<RegisterForm />} />
-            </Route>
+              <Route
+                path="/home"
+                element={
+                  <PrivateRoute>
+                    <HomePage />
+                  </PrivateRoute>
+                }
+              >
+                <Route path=":boardName" element={<ScreensPage />} />
+              </Route>
 
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-        </Suspense>
-        <GlobalStyles />
-      </LocalizationProvider>
+              <Route
+                path="/auth/:id"
+                element={
+                  <RestrictedRoute>
+                    <AuthPage />
+                  </RestrictedRoute>
+                }
+              >
+                <Route path="login" element={<LoginForm />} />
+                <Route path="register" element={<RegisterForm />} />
+              </Route>
+
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          </Suspense>
+          <GlobalStyles />
+        </LocalizationProvider>
+      )}
+      ;
     </div>
   );
 };

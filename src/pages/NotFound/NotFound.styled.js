@@ -32,18 +32,6 @@ export const Title = styled.h1`
 }
 `;
 
-export const Text = styled.p`
-  text-align: center;
-  font-size:12px;
-  margin: 0;
-
-@media screen and (min-width: 768px) {
-  font-size: 20px;
-}
-@media screen and (min-width: 1440px) {
-  font-size: 28px;
-}
-`;
 
 export const Image = styled.img`
   width: 200px;
