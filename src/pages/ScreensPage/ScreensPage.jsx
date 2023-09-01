@@ -6,7 +6,6 @@ import { HeaderDashboard } from 'components/HeaderDashboard/HeaderDashboard';
 import { API } from 'Services/API';
 import { useParams } from 'react-router-dom';
 import { ColumnsWrapper, MainContainer } from './ScreenPage.styled';
-import { DefaultScreenPage } from './DefaultScreenPage';
 
 const ScreensPage = () => {
   const { boardId } = useParams();
