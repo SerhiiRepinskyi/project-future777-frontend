@@ -1,8 +1,22 @@
-import { EmptyAvatar, ImgAvatar, UserInfoContainer, UserName } from './UserInfo.styled';
+import { useState } from 'react';
+import { ModalEditProfile } from 'components/EditProfile/ModalEditProfile';
+import {
+  EmptyAvatar,
+  ImgAvatar,
+  UserInfoContainer,
+  UserName,
+} from './UserInfo.styled';
 
 export const UserInfo = ({ name = 'User', avatarURL }) => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const handleCloseModal = () => {
+    console.log('handleCloseModal called');
+    setIsOpen(false);
+  };
+
   return (
-    <UserInfoContainer>
+    <UserInfoContainer onClick={() => setIsOpen(true)}>
       <UserName>{name}</UserName>
       <div>
         {avatarURL ? (
@@ -11,6 +25,9 @@ export const UserInfo = ({ name = 'User', avatarURL }) => {
           <EmptyAvatar />
         )}
       </div>
+      {isOpen && (
+        <ModalEditProfile onClose={handleCloseModal}></ModalEditProfile>
+      )}
     </UserInfoContainer>
   );
 };

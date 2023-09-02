@@ -101,6 +101,18 @@ export const GlobalStyles = () => {
           --screen-page-scrollbar-bg-color: rgba(255, 255, 255, 0.2);
           --screen-page-scrollbar-thumb-color: rgba(18, 18, 18, 1);
           --screen-page-scrollbar-thumb-color-HOVER: #9dc888;
+
+          //----------------Yuliya-style--------------------------//
+
+          --avatar-bcg-color: rgba(31, 31, 31, 1); //dark-grey
+          --avatar-fill-color: rgba(21, 21, 21, 1); //black
+          --icon-plus-bcg: rgba(190, 219, 176, 1); //light-green
+          --icon-add-color: rgba(22, 22, 22, 1); // black
+          --input-border-color: rgba(190, 219, 176, 1); //green
+          --input-bcg-color: rgba(31, 31, 31, 1);
+          --btn-text-color: rgba(22, 22, 22, 1); // black
+
+          //------------------------------------------//
         }
 
         .light {
@@ -149,6 +161,18 @@ export const GlobalStyles = () => {
           --screen-page-scrollbar-bg-color: rgba(232, 232, 232, 1);
           --screen-page-scrollbar-thumb-color: rgba(22, 22, 22, 0.1);
           --screen-page-scrollbar-thumb-color-HOVER: #9dc888;
+
+          //----------------Yuliya-style--------------------------//
+
+          --avatar-bcg-color: rgba(246, 246, 247, 1); // light-grey
+          --avatar-fill-color: rgba(255, 255, 255, 1); //white
+          --icon-plus-bcg: rgba(190, 219, 176, 1); //light-green
+          --icon-add-color: rgba(22, 22, 22, 1); // black
+          --input-border-color: rgba(190, 219, 176, 1); //green
+          --input-bcg-color: rgba(252, 252, 252, 1);
+          --btn-text-color: rgba(22, 22, 22, 1); // black
+
+          //------------------------------------------//
         }
 
         .violet {
@@ -197,6 +221,18 @@ export const GlobalStyles = () => {
           --screen-page-scrollbar-bg-color: rgba(255, 255, 255, 1);
           --screen-page-scrollbar-thumb-color: rgba(184, 188, 253, 1);
           --screen-page-scrollbar-thumb-color-HOVER: rgba(82, 85, 188, 1);
+
+          //----------------Yuliya-style--------------------------//
+
+          --avatar-bcg-color: rgba(236, 237, 253, 1); // light-grey
+          --avatar-fill-color: rgba(255, 255, 255, 1); //white
+          --icon-plus-bcg: rgba(236, 237, 253, 1); //light-purple
+          --icon-add-color: rgba(22, 22, 22, 1); // black
+          --input-border-color: rgba(82, 85, 188, 1); //purple
+          --input-bcg-color: rgba(252, 252, 252, 1);
+          --btn-text-color: rgba(255, 255, 255, 1); //white
+
+          //------------------------------------------//
         }
       `}
     />
