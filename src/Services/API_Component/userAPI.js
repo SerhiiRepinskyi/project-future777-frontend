@@ -4,7 +4,7 @@ import baseQuery from '../API_Helper/APIHelper';
 export const userAPI = createApi({
   reducerPath: 'userAPI',
   baseQuery: baseQuery,
-  endpoints: (builder) => ({
+  endpoints: builder => ({
     getCurrentUser: builder.query({
       query: () => ({
         url: 'users/current',
@@ -12,32 +12,36 @@ export const userAPI = createApi({
       providesTags: ['User'],
     }),
 
-    updateUser: builder.mutation({
-      query: (userData) => ({
-        url: 'users/',
+    updateAvatar: builder.mutation({
+      query: formData => ({
+        url: 'users/avatar',
         method: 'PATCH',
-        body: userData,
+        body: formData,
+        headers: {
+          'Content-Type': `multipart/form-data>`,
+        },
       }),
+      invalidatesTags: ['User'],
+    }),
+    updateUser: builder.mutation({
+      query: updateUser => ({
+        url: 'users',
+        method: 'PATCH',
+        body: updateUser,
+      }),
+      invalidatesTags: ['User'],
     }),
 
     themeUser: builder.mutation({
-      query: (themeData) => ({
+      query: themeData => ({
         url: 'users/theme',
         method: 'PATCH',
         body: themeData,
       }),
     }),
 
-    avatarUser: builder.mutation({
-      query: (FormData) => ({
-        url: 'users/avatar',
-        method: 'PATCH',
-        body: FormData,
-      }),
-    }),
-
     helpUser: builder.mutation({
-      query: (FormData) => ({
+      query: FormData => ({
         url: 'users/help',
         method: 'POST',
         body: FormData,
@@ -50,9 +54,9 @@ export const userAPI = createApi({
 export const {
   useGetCurrentUserQuery,
   useThemeUserMutation,
-  useAvatarUserMutation,
+  useUpdateAvatarMutation,
   useHelpUserMutation,
-  useUpdateUserMutation
+  useUpdateUserMutation,
 } = userAPI;
 
 
