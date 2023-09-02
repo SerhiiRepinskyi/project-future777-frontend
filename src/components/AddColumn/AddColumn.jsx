@@ -6,8 +6,16 @@ import { FormStyled, InputStyled } from '../AddCard/AddCard.styled';
 import { ButtonWithIcon } from 'components/Buttons/Button';
 import ModalLayout from '../ModalLayout/ModalLayout';
 
-const AddColumn = ({ open, modalType, boardId, close }) => {
+const AddColumn = ({
+  open,
+  modalType,
+  boardId,
+  close,
+  columnId,
+  titleValue,
+}) => {
   const [addColumn] = API.useAddColumnMutation();
+  const [updateColumn] = API.useUpdateColumnByIdMutation();
 
   const validationSchema = Yup.object({
     title: Yup.string()
@@ -19,16 +27,29 @@ const AddColumn = ({ open, modalType, boardId, close }) => {
       ),
   });
 
+  const formikTitle =
+    modalType === 'Add column' ? { title: '' } : { title: titleValue };
+
   const formik = useFormik({
-    initialValues: { title: '' },
+    initialValues: formikTitle,
     onSubmit: title => handleSubmit(title),
     validationSchema,
   });
 
   const handleSubmit = async title => {
+    console.log('columnId :>> ', columnId);
+    if (modalType === 'Add column') {
+      try {
+        await addColumn({ boardId, title });
+
+        close();
+      } catch (error) {
+        console.log(error.message);
+      }
+    }
 
     try {
-      await addColumn({ boardId, title });
+      await updateColumn({ columnId, title });
 
       close();
     } catch (error) {

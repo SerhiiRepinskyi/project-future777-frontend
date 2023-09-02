@@ -6,7 +6,7 @@ export const MainContainer = styled.main`
   display: flex;
   flex-direction: column;
   flex-grow: 1;
-  background-color: #2e2e2e;
+  background-color: var(--primary-bg-color);
   height: 100vh;
   padding-top: 78px;
   padding-left: 24px;
@@ -31,27 +31,29 @@ export const ColumnsWrapper = styled.div`
     border-radius: 5px;
     margin-left: 4px;
     height: 8px;
-    background-color: rgba(255, 255, 255, 0.2);
+    background-color: var(--screen-page-scrollbar-bg-color);
   }
   ::-webkit-scrollbar-thumb {
-    background: #121212;
+    background-color: var(--screen-page-scrollbar-thumb-color);
     border-radius: 5px;
   }
   ::-webkit-scrollbar-thumb:hover {
-    background: #9dc888;
+    background-color: var(--screen-page-scrollbar-thumb-color-HOVER);
   }
+  
   @media screen and (min-width: 767px) {
+    display: grid;
+    grid-template-columns: ${props => {
+      return `repeat(${props.cols}, 334px)`;
+    }};
     overflow-x: ${props => {
-      if (props.cols < 2) {
+      if (props.cols < 3) {
         return `hidden`;
       }
       return `scroll`;
     }};
-    display: grid;
-    grid-template-columns: ${props => {
-      return `repeat(${props.cols + 1}, 334px)`;
-    }};
   }
+
   @media screen and (min-width: 1400px) {
     display: grid;
     overflow-x: ${props => {
