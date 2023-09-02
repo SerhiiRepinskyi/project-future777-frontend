@@ -68,10 +68,10 @@ export const screenSyles = {
   pb: { 0: 3, 768: 4, 1440: 1 },
   pl: { 0: 2.5, 768: 4, 1440: 3 },
   pr: { 0: 2.5, 768: 4, 1440: 3 },
-  height: { 0: '100vh', 768: '100vh', 1440: '100vh' },
+  height: '100vh',
   width: { 0: '100vw', 1440: `calc(100vw - ${SIDEBARWIDTH}px)` },
   flexGrow: 1,
-  // height: { 0: '100%', 768: '100vh', 1440: '100vh' },
+
   backgroundColor: 'var(--primary-bg-color)',
 };
 
