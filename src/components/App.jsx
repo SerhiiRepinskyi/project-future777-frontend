@@ -1,5 +1,5 @@
 import { Suspense, lazy} from 'react';
-import { Route, Routes, Navigate, useNavigate } from 'react-router-dom';
+import { Route, Routes, Navigate, useNavigate, useLocation } from 'react-router-dom';
 import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import Loader from './Loader/Loader';
@@ -27,6 +27,7 @@ const NotFound = lazy(() => import('../pages/NotFound/NotFound'));
 export const App = () => {
 const dispatch = useDispatch();  
 const navigate = useNavigate()
+const location = useLocation()
 const token = useSelector(state => state.auth.token);
 const boardId = useSelector(state => state.boards.boardId);; 
 const isRefreshing = useSelector(state => state.auth.isRefreshing);
@@ -44,13 +45,17 @@ useEffect(() => {
   }, [error])
   
 useEffect(() => {
-  if (token && currentUser) {
+ if (token && currentUser) {
     dispatch(setUserRefresh(currentUser));
     if (boardId) {
-     navigate(`/home/${boardId}`); 
+      const pathParts = location.pathname.split('/');
+      if (pathParts.length <= 2) {
+        navigate(`/home/${boardId}`);
+      }
     }
+  }
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }}, [token, currentUser])
+  }, [token, currentUser])
 
   return (
     <div>
