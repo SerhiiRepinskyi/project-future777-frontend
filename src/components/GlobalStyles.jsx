@@ -101,6 +101,7 @@ export const GlobalStyles = () => {
           --screen-page-scrollbar-bg-color: rgba(255, 255, 255, 0.2);
           --screen-page-scrollbar-thumb-color: rgba(18, 18, 18, 1);
           --screen-page-scrollbar-thumb-color-HOVER: #9dc888;
+          --cards-underline: rgba(255, 255, 255, 0.1);
         }
 
         .light {
@@ -149,6 +150,7 @@ export const GlobalStyles = () => {
           --screen-page-scrollbar-bg-color: rgba(232, 232, 232, 1);
           --screen-page-scrollbar-thumb-color: rgba(22, 22, 22, 0.1);
           --screen-page-scrollbar-thumb-color-HOVER: #9dc888;
+          --cards-underline: rgba(22, 22, 22, 0.1);
         }
 
         .violet {
@@ -197,6 +199,7 @@ export const GlobalStyles = () => {
           --screen-page-scrollbar-bg-color: rgba(255, 255, 255, 1);
           --screen-page-scrollbar-thumb-color: rgba(184, 188, 253, 1);
           --screen-page-scrollbar-thumb-color-HOVER: rgba(82, 85, 188, 1);
+          --cards-underline: rgba(22, 22, 22, 0.1);
         }
       `}
     />

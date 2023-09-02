@@ -115,7 +115,7 @@ function TaskCard({
               sx={{
                 width: '14px',
                 height: '14px',
-                color: '#fff',
+                color: 'var(--primary-text-color)',
                 fontFamily: 'Poppins',
                 fontSize: '10px',
                 fontStyle: 'normal',

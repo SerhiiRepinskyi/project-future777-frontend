@@ -28,7 +28,7 @@ export function getPriorityText(priority) {
   }
 }
 export const TypographyStylesTitle = {
-  color: '#FFF',
+  color: 'var(--primary-text-color)',
   fontSize: '14px',
   fontWeight: '600',
   letterSpacing: '-0.28px',
@@ -40,7 +40,7 @@ export const TypographyStylesPriority = {
   flexDirection: 'column',
   justifyContent: 'start',
   gap: '4px',
-  color: ' rgba(255, 255, 255, 0.50)',
+  color: 'var( --secondary-text-color)',
   fontFamily: 'Poppins',
   fontSize: '8px',
 
@@ -49,7 +49,7 @@ export const TypographyStylesPriority = {
   letterSpacing: '-0.16px',
 };
 export const CardContentStyles = {
-  borderBottom: '1px solid rgba(255, 255, 255, 0.10)',
+  borderBottom: '1px solid var(--cards-underline)',
   padding: '0px',
   paddingBottom: '14px',
   marginBottom: '14px',
@@ -72,7 +72,7 @@ export const Circle = styled.div`
   background-color: ${props => getPriorityColor(props.priority)};
 `;
 export const TypographyText = styled.div`
-  color: #fff;
+  color: var(--primary-text-color);
 
   font-size: 10px;
   font-style: normal;
@@ -87,13 +87,13 @@ export const CardStyles = styled.div`
   padding-bottom: 14px;
   padding-left: 24px;
   padding-right: 20px;
-  background-color: #121212;
+  background-color: var(--icon-add-color);
   border-radius: 8px;
   border-left: 4px solid ${props => getPriorityColor(props.priority)};
 `;
 export const StyledIconButton = styled(IconButton)`
   &:hover svg {
-    stroke: #bedbb0;
+    stroke: var(--default-screen-page-link-color);
     stroke-opacity: 1;
     transition: stroke 0.3s;
   }
@@ -102,17 +102,17 @@ export const ListMenuStyles = styled(MenuItem)`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  color: rgba(255, 255, 255, 0.5);
+  color: var(--secondary-text-color);
   font-family: 'Poppins';
   font-size: 14px;
 
   font-weight: 400px;
 
   &:hover {
-    color: #bedbb0;
+    color: var(--default-screen-page-link-color);
   }
   &:hover svg {
-    stroke: #bedbb0;
+    stroke: var(--default-screen-page-link-color);
     stroke-opacity: 1;
     transition: stroke 0.3s;
   }
@@ -128,7 +128,7 @@ const TextContainer = styled.div`
 `;
 
 const Text = styled.div`
-  color: rgba(255, 255, 255, 0.5);
+  color: var(--secondary-text-color);
   font-size: 12px;
   font-weight: 400px;
   padding-right: 2px;
@@ -136,7 +136,7 @@ const Text = styled.div`
 `;
 
 const ReadMore = styled.div`
-  color: rgba(255, 255, 255, 0.5);
+  color: var(--secondary-text-color);
   position: absolute;
   bottom: 0;
   right: 0;
@@ -150,7 +150,7 @@ const ReadMore = styled.div`
   }
 `;
 const ShowMoreButton = styled.button`
-  color: #fff;
+  color: var(--primary-text-color);
   background-color: transparent;
   border: none;
   cursor: pointer;
