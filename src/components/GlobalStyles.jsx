@@ -97,6 +97,10 @@ export const GlobalStyles = () => {
           --icon-plus-bg-color: rgba(22, 22, 22, 1); //black
 
           --modal-bg-color: rgba(21, 21, 21, 1); //black
+
+          --screen-page-scrollbar-bg-color: rgba(255, 255, 255, 0.2);
+          --screen-page-scrollbar-thumb-color: rgba(18, 18, 18, 1);
+          --screen-page-scrollbar-thumb-color-HOVER: #9dc888;
         }
 
         .light {
@@ -141,6 +145,10 @@ export const GlobalStyles = () => {
           --icon-add-color: #ffffff; //white
 
           --modal-bg-color: rgba(252, 252, 252, 1); //white
+
+          --screen-page-scrollbar-bg-color: rgba(232, 232, 232, 1);
+          --screen-page-scrollbar-thumb-color: rgba(22, 22, 22, 0.1);
+          --screen-page-scrollbar-thumb-color-HOVER: #9dc888;
         }
 
         .violet {
@@ -185,6 +193,10 @@ export const GlobalStyles = () => {
           --icon-add-color: #ffffff; //white
 
           --modal-bg-color: rgba(252, 252, 252, 1); //white
+
+          --screen-page-scrollbar-bg-color: rgba(255, 255, 255, 1);
+          --screen-page-scrollbar-thumb-color: rgba(184, 188, 253, 1);
+          --screen-page-scrollbar-thumb-color-HOVER: rgba(82, 85, 188, 1);
         }
       `}
     />

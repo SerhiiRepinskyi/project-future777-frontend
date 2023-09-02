@@ -70,6 +70,8 @@ const AddCard = ({
     } catch (error) {
       console.log(error);
     }
+    setDateValue('');
+    setDate('');
     formik.handleReset();
     close();
   };
@@ -94,9 +96,7 @@ const AddCard = ({
   useEffect(() => {
     const currentDate = format(new Date(), "'Today,' LLLL d");
     setDateValue(currentDate);
-
-    console.log('dateFns :>> ', currentDate);
-  }, []);
+  }, [open]);
 
   return (
     <ModalLayout title={modalType} open={open} handleClose={handleClose}>

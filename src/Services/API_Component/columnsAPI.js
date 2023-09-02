@@ -6,7 +6,6 @@ export const columnsAPI = createApi({
   baseQuery: baseQuery,
   tagTypes: ['columns'],
   endpoints: builder => ({
-
     addColumn: builder.mutation({
       query: ({ boardId, title }) => ({
         url: `boards/${boardId}/columns`,
@@ -18,7 +17,7 @@ export const columnsAPI = createApi({
 
     updateColumnById: builder.mutation({
       query: ({ columnId, title }) => ({
-        url: `/columns/:${columnId}`,
+        url: `/columns/${columnId}`,
         method: 'PATCH',
         body: title,
       }),
@@ -26,8 +25,8 @@ export const columnsAPI = createApi({
     }),
 
     deleteColumnById: builder.mutation({
-      query: columnId => ({
-        url: `/columns/:${columnId}`,
+      query: ({ columnId }) => ({
+        url: `/columns/${columnId}`,
         method: 'DELETE',
       }),
       invalidatesTags: ['columns'],
