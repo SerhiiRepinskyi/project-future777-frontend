@@ -34,7 +34,7 @@ const titleStyle = {
 };
 
 const ModalBoard = ({
-  title = '',
+  board = {},
   boardTitle,
   boardId = '',
   open,
@@ -42,9 +42,9 @@ const ModalBoard = ({
 }) => {
   const dispatch = useDispatch();
   const [iconId, setIconId] = useState(arrIcons[0]);
-  const [iconIndex, setIconIndex] = useState(0);
-  const [selectedBG, setSelectedBG] = useState(-1);
-  const [selectedIconIndex, setSelectedIconIndex] = useState(null);
+  const [iconIndex, setIconIndex] = useState(board.icon);
+  const [selectedBG, setSelectedBG] = useState(board.background);
+  const [selectedIconIndex, setSelectedIconIndex] = useState(board.icon);
 
   const [backgroundURL, setBackgroundURL] = useState(arrBG[0]);
   const [backgroundIndex, setBackgroundIndex] = useState(0);
@@ -53,8 +53,6 @@ const ModalBoard = ({
   const [editBoard] = API.useUpdateBoardByIdMutation();
 
   const navigate = useNavigate();
-
-  console.log(title);
 
   const handleSubmit = async title => {
     try {
@@ -113,7 +111,7 @@ const ModalBoard = ({
           <InputStyled
             id="title"
             name="title"
-            placeholder={title ? title : 'Title'}
+            placeholder={board ? board.title : 'Title'}
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
             value={formik.values.title}
