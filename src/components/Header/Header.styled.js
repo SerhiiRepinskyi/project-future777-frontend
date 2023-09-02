@@ -64,6 +64,9 @@ export const ThemeUL = styled.ul`
     max-height: 107px;
     padding: 18px 44px 18px 18px;
   }
+  @media (max-width: 768px) {
+    top: 41px;
+  }
 `;
 
 export const ThemeButton = styled.button`
