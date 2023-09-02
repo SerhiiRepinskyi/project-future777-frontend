@@ -14,12 +14,11 @@ import { useEffect, useState } from 'react';
 import { API } from 'Services/API';
 import ModalBoard from 'components/ModalBoard/ModalBoard';
 import { SidebarBoardItemIcon } from './SidebarBoardItemIcon';
-// import { useNavigate } from 'react-router-dom';
 
-export const SidebarBoardItem = ({ board, current }) => {
+export const SidebarBoardItem = ({ board, current}) => {
   const { _id: id, iconId, title } = board;
 
-  // const navigate = useNavigate();
+
   const [isHovered, setIsHovered] = useState(false);
   const [titleWidth, setTitleWidth] = useState(0);
   const [titleWrapWidth, setTitleWrapWidth] = useState(130);
@@ -57,7 +56,6 @@ export const SidebarBoardItem = ({ board, current }) => {
   const handleDeleteClick = event => {
     event.stopPropagation();
     deleteBoard(id);
-    // navigate(`/home/${currentItemId}`);
   };
 
   return (
