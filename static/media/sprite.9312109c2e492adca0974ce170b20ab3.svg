@@ -105,7 +105,7 @@
             </path>
         </symbol>
         <symbol id="icon-filter" viewBox="0 0 32 32">
-            <path fill="none" stroke="#fff" stroke-linecap="round" stroke-miterlimit="4" stroke-width="3"
+            <path fill="none" stroke-linecap="round" stroke-miterlimit="4" stroke-width="3"
                 d="M29.334 4h-26.668l10.668 12.614v8.72l5.334 2.666v-11.386l10.666-12.614z"></path>
         </symbol>
         <symbol id="icon-eye" viewBox="0 0 32 32">
