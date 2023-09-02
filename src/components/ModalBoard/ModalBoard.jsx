@@ -64,6 +64,7 @@ const ModalBoard = ({ board = {}, boardTitle, open, handleClose }) => {
         dispatch(setBoardResponse(response));
         const newBoardId = response.data._id;
         navigate(`/home/${newBoardId}`);
+        setInputValue('')
       }
       if (boardTitle === 'Edit board') {
         const response = await editBoard({ boardId: board._id, FormData });
