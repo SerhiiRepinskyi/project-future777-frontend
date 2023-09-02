@@ -9,8 +9,8 @@ import CardActions from '@mui/material/CardActions';
 import Menu from '@mui/material/Menu';
 import Box from '@mui/material/Box';
 import sprite from '../../assets/images/sprite.svg';
-import { styled } from '@mui/material';
-import { getPriorityColor, getPriorityText } from './TaskCard.styled';
+
+import { getPriorityText } from './TaskCard.styled';
 
 import { deleteCard, setCardData } from '../../redux/tasks/cardsAPISlice';
 import { useDispatch } from 'react-redux';
@@ -31,7 +31,6 @@ import {
 } from './TaskCard.styled';
 
 function TaskCard({ title, description, priority, deadline, moveCard, id }) {
-  const [expanded, setExpanded] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
   const [updateCardById] = API.useUpdateCardByIdMutation();
   const [deleteCardById] = API.useDeleteCardByIdMutation();
@@ -43,9 +42,7 @@ function TaskCard({ title, description, priority, deadline, moveCard, id }) {
   const handleOpenMenu = event => {
     setAnchorEl(event.currentTarget);
   };
-  const toggleExpanded = () => {
-    setExpanded(!expanded);
-  };
+
   const handleCloseMenu = () => {
     setAnchorEl(null);
   };
