@@ -4,12 +4,16 @@ import ModalLayout from 'components/ModalLayout/ModalLayout';
 import { Form, Formik } from 'formik';
 import { useState } from 'react';
 
-import { arrBG } from '../ModalBoard/data';
+// import { arrBG } from '../ModalBoard/data';
 import { Button, Div, Label, LabelGroup, RadioWrap } from './Filter.styled';
-import { LiStyled, UlBgStyled } from 'components/ModalBoard/ModalBoard.styled';
+// import {
+//   ImgStyled,
+//   LiStyled,
+//   UlBgStyled,
+// } from 'components/ModalBoard/ModalBoard.styled';
 
-const titleStyle = {
-  color: '#FFF',
+const labelStyle = {
+  color: 'var(--primary-text-color)',
   fontSize: 14,
   fontStyle: 'normal',
   fontWeight: 500,
@@ -18,13 +22,25 @@ const titleStyle = {
   // marginBottom: 24 / 8,
 };
 
+const titleStyle = {
+  color: 'var(--primary-text-color)',
+  fontSize: 18,
+  fontFamily: 'Poppins',
+  fontWeight: '500',
+  wordWrap: 'break-word',
+  marginBottom: '14px',
+  paddingBottom: '14px',
+  borderBottom: '0.50px rgba(255, 255, 255, 0.10) solid',
+};
+
 export const Filter = ({ open, onClose }) => {
-  const [bgImgIndex, setBgImgIndex] = useState(null);
+  // const [bgImgIndex, setBgImgIndex] = useState(null);
+  // const [backgroundURL, setBackgroundURL] = useState(arrBG[0]);
+  // const [backgroundIndex, setBackgroundIndex] = useState(0);
 
   const [currentPrority, setCurrentPrority] = useState('');
   const [isShowAllActive, setIsShowAllActive] = useState(false);
   const initialValues = {
-    currentBg: 0,
     currentPrority: '',
   };
 
@@ -51,29 +67,18 @@ export const Filter = ({ open, onClose }) => {
       setIsShowAllActive(false);
     }
   };
-  // console.log(currentPrority);
-  console.log(bgImgIndex);
+  console.log(currentPrority);
 
   return (
-    <ModalLayout title={'Filters'} open={open} handleClose={onClose}>
+    <ModalLayout open={open} handleClose={onClose}>
+      <Typography variant="h2" sx={titleStyle}>
+        Filters
+      </Typography>
       <Formik initialValues={initialValues}>
         <Form onChange={handleChange}>
-          <UlBgStyled>
-            <LiStyled></LiStyled>
-            {arrBG.map((el, index) => {
-              return (
-                <LiStyled
-                  key={index + 1}
-                  onClick={() => setBgImgIndex(index + 1)}
-                >
-                  <img src={el} alt="" width="24px" height="24px" />
-                </LiStyled>
-              );
-            })}
-          </UlBgStyled>
           <LabelGroup role="group" aria-labelledby="my-radio-group">
             <Div>
-              <Typography variant="h2" sx={titleStyle}>
+              <Typography variant="h2" sx={labelStyle}>
                 Label Color
               </Typography>
               <Button
@@ -88,9 +93,9 @@ export const Filter = ({ open, onClose }) => {
               <Label>
                 <Radio
                   onClick={handleRadioClick}
-                  checked={currentPrority === 'without'}
+                  checked={currentPrority === '0'}
                   name="currentPrority"
-                  {...controlProps('without')}
+                  {...controlProps('0')}
                   size="small"
                   sx={{ color: 'grey', '&.Mui-checked': { color: 'grey' } }}
                 />
@@ -99,9 +104,9 @@ export const Filter = ({ open, onClose }) => {
               <Label>
                 <Radio
                   onClick={handleRadioClick}
-                  checked={currentPrority === 'low'}
+                  checked={currentPrority === '1'}
                   name="currentPrority"
-                  {...controlProps('low')}
+                  {...controlProps('1')}
                   size="small"
                   sx={{
                     color: '#8FA1D0',
@@ -113,9 +118,9 @@ export const Filter = ({ open, onClose }) => {
               <Label>
                 <Radio
                   onClick={handleRadioClick}
-                  checked={currentPrority === 'medium'}
+                  checked={currentPrority === '2'}
                   name="currentPrority"
-                  {...controlProps('medium')}
+                  {...controlProps('2')}
                   size="small"
                   sx={{
                     color: '#E09CB5',
@@ -128,9 +133,9 @@ export const Filter = ({ open, onClose }) => {
               <Label>
                 <Radio
                   onClick={handleRadioClick}
-                  checked={currentPrority === 'high'}
+                  checked={currentPrority === '3'}
                   name="currentPrority"
-                  {...controlProps('high')}
+                  {...controlProps('3')}
                   size="small"
                   sx={{
                     color: '#BEDBB0',
