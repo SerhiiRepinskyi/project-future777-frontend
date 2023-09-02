@@ -23,8 +23,8 @@ const boardsAPISlice = createSlice({
     },
 
     setBoardId: (state, action) => {
-      const { id } = action.payload;
-      state.id = id;
+      const { boardId } = action.payload;
+      state.boardId = boardId;
     },
 
     setBoardData: (state, action) => {
