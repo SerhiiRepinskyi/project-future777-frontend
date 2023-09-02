@@ -1,17 +1,16 @@
 import React from 'react';
 import { format } from 'date-fns';
 import { useState } from 'react';
-import Card from '@mui/material/Card';
+
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 import CardActions from '@mui/material/CardActions';
-import { IconButton } from '@mui/material';
-import MenuItem from '@mui/material/MenuItem';
+
 import Menu from '@mui/material/Menu';
 import Box from '@mui/material/Box';
 import sprite from '../../assets/images/sprite.svg';
 import { styled } from '@mui/material';
-import getPriorityColor from './TaskCard.styled';
+import { getPriorityColor, getPriorityText } from './TaskCard.styled';
 
 import { deleteCard, setCardData } from '../../redux/tasks/cardsAPISlice';
 import { useDispatch } from 'react-redux';
@@ -19,53 +18,20 @@ import { API } from 'Services/API';
 
 import {
   TypographyStylesTitle,
-  TypographyStylesDescription,
   TypographyStylesPriority,
   CardContentStyles,
   ActionsBox,
   CardActionsStyled,
   Circle,
+  TypographyText,
+  StyledIconButton,
+  CardStyles,
+  ListMenuStyles,
+  TruncatedText,
 } from './TaskCard.styled';
-const StyledIconButton = styled(IconButton)`
-  &:hover svg {
-    stroke: #bedbb0;
-    stroke-opacity: 1;
-    transition: stroke 0.3s;
-  }
-`;
 
-const CardStyles = styled(Card)`
-  width: 334px;
-  height: 154px;
-  padding-top: 14px;
-  padding-bottom: 14px;
-  padding-left: 24px;
-  padding-right: 20px;
-  background-color: #121212;
-  border-radius: 8px;
-  border-left: 4px solid ${props => getPriorityColor(props.priority)};
-`;
-
-const ListMenuStyles = styled(MenuItem)`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  color: rgba(255, 255, 255, 0.5);
-  font-family: 'Poppins';
-  font-size: 14px;
-
-  font-weight: 400px;
-
-  &:hover {
-    color: #bedbb0;
-  }
-  &:hover svg {
-    stroke: #bedbb0;
-    stroke-opacity: 1;
-    transition: stroke 0.3s;
-  }
-`;
 function TaskCard({ title, description, priority, deadline, moveCard, id }) {
+  const [expanded, setExpanded] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
   const [updateCardById] = API.useUpdateCardByIdMutation();
   const [deleteCardById] = API.useDeleteCardByIdMutation();
@@ -77,7 +43,9 @@ function TaskCard({ title, description, priority, deadline, moveCard, id }) {
   const handleOpenMenu = event => {
     setAnchorEl(event.currentTarget);
   };
-
+  const toggleExpanded = () => {
+    setExpanded(!expanded);
+  };
   const handleCloseMenu = () => {
     setAnchorEl(null);
   };
@@ -116,18 +84,20 @@ function TaskCard({ title, description, priority, deadline, moveCard, id }) {
     <CardStyles priority={priority}>
       <CardContent sx={CardContentStyles}>
         <Typography sx={TypographyStylesTitle} variant="h4" component="div">
-          Заголовок картки {title}
+          {title}
         </Typography>
-        <Typography sx={TypographyStylesDescription} variant="body2">
-          Текст або вміст картки буде тут. {description}
-        </Typography>
+        <TruncatedText text={description} />
       </CardContent>
       <CardActions sx={CardActionsStyled}>
         <Box sx={ActionsBox}>
           <Typography sx={TypographyStylesPriority} variant="body2">
             Priority:
-            <Circle priority={priority} />
-            <Typography variant="subText">{priority}</Typography>
+            <Box sx={{ display: 'flex', gap: '4px', alignItems: 'center' }}>
+              <Circle priority={priority} />
+              <TypographyText variant="subText">
+                {getPriorityText(priority)}
+              </TypographyText>
+            </Box>
           </Typography>
           <Typography sx={TypographyStylesPriority} variant="body2">
             Deadline:
