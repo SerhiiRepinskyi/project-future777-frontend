@@ -16,9 +16,10 @@ export const SidebarBoardList = () => {
     if (data?.length !== boardsArray?.length) {
       const currentItemId = data?.length > 0 ? data[data?.length - 1]._id : '';
       setCurrentItemId(currentItemId);
+      navigate(`/home/${currentItemId}`);
     }
     setBoardsArray(data);
-  }, [boardsArray, data]);
+  }, [boardsArray, data, navigate]);
 
   const handleButtonClick = id => {
     setCurrentItemId(id);
