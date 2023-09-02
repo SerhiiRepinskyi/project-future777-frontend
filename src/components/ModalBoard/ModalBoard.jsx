@@ -45,6 +45,7 @@ const ModalBoard = ({
   const [iconIndex, setIconIndex] = useState(board.icon);
   const [selectedBG, setSelectedBG] = useState(board.background);
   const [selectedIconIndex, setSelectedIconIndex] = useState(board.icon);
+  const [inputValue, setInputValue] = useState(board?.title || "");
 
   const [backgroundURL, setBackgroundURL] = useState(arrBG[0]);
   const [backgroundIndex, setBackgroundIndex] = useState(0);
@@ -71,7 +72,7 @@ const ModalBoard = ({
         navigate(`/home/${newBoardId}`);
       }
       if (boardTitle === 'Edit board') {
-        const response = await editBoard({ boardId, FormData });
+        const response = await editBoard({ boardId: board._id, FormData });
         dispatch(setBoardResponse(response));
       }
       handleClose();
@@ -79,6 +80,12 @@ const ModalBoard = ({
       console.log(error);
     }
     formik.handleReset();
+  };
+
+  const handleChange = (e) => {
+
+    setInputValue(e.currentTarget.value);
+    formik.setFieldValue('title', e.currentTarget.value);
   };
 
   const validationSchema = Yup.object({
@@ -111,10 +118,10 @@ const ModalBoard = ({
           <InputStyled
             id="title"
             name="title"
-            placeholder={board ? board.title : 'Title'}
-            onChange={formik.handleChange}
+            placeholder={'Title'}
+            onChange={handleChange}
             onBlur={formik.handleBlur}
-            value={formik.values.title}
+            value={inputValue}
           />
           <Typography variant="h2" sx={titleStyle}>
             Icons
