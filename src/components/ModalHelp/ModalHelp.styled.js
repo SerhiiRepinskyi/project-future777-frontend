@@ -22,6 +22,7 @@ export const InputStyled = styled.input`
   font-size: 14px;
   line-height: normal;
   letter-spacing: -0.28px;
+  caret-color: white;
 
   color: rgba(255, 255, 255, 1);
   border-radius: 8px;
