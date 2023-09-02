@@ -11,9 +11,13 @@ import {
   ColumnWrapper,
   StyledIconButton,
 } from './Column.styled';
+import AddColumn from 'components/AddColumn/AddColumn';
 
 const Column = ({ columnTitle, columnId }) => {
+const [deleteColumn] = API.useDeleteColumnByIdMutation();
+
   const [isAddCardOpen, setIsAddCardOpen] = useState(false);
+  const [isEditColumnOpen, setIsEditColumnOpen] = useState(false);
 
   const { data: cards, isLoading } = API.useGetAllCardsQuery(columnId, {
     refetchOnMountOrArgChange: true,
@@ -23,11 +27,16 @@ const Column = ({ columnTitle, columnId }) => {
   const closeAddCard = () => setIsAddCardOpen(false);
   const handleClick = () => setIsAddCardOpen(true);
 
-  const handleUpdateColumn = () => {
-    console.log('Column updated');
-  };
-  const handleDeleteColumn = () => {
-    console.log('Column deleted');
+  const openEditColumn = () => setIsEditColumnOpen(true);
+  const closeEditColumn = () => setIsEditColumnOpen(false);
+  
+  const handleDeleteColumn = async () => {
+    try {
+        await deleteColumn( {columnId} );
+
+      } catch (error) {
+        console.log(error.message);
+      }
   };
 
   return (
@@ -36,7 +45,7 @@ const Column = ({ columnTitle, columnId }) => {
         <ColumnHeader>
           <ColumnTitle>{columnTitle}</ColumnTitle>
           <div>
-            <StyledIconButton onClick={handleUpdateColumn} aria-label="edit">
+            <StyledIconButton onClick={openEditColumn} aria-label="edit">
               <svg stroke="#fff" strokeOpacity="0.5" width="16" height="16">
                 <use href={sprite + '#icon-pencil'} />
               </svg>
@@ -53,6 +62,7 @@ const Column = ({ columnTitle, columnId }) => {
             ({ title, description, priority, deadline, _id: id }, index) => {
               return (
                 <TaskCard
+                  key={id}
                   title={title}
                   description={description}
                   priority={priority}
@@ -72,6 +82,13 @@ const Column = ({ columnTitle, columnId }) => {
           open={isAddCardOpen}
           handleClose={closeAddCard}
           close={closeAddCard}
+        />
+        <AddColumn
+          modalType={'Edit column'}
+          open={isEditColumnOpen}
+          columnId={columnId}
+          close={closeEditColumn}
+          titleValue={columnTitle}
         />
       </ColumnWrapper>
     )

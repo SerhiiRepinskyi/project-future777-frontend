@@ -11,5 +11,5 @@ export const DropDawnBtn = styled.div`
   }
 `;
 export const DropDownSVG = styled.svg`
-  stroke: #bedbb0;
+  stroke: var(--default-screen-page-link-color);
 `;
