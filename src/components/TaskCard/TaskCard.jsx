@@ -1,7 +1,7 @@
 import React from 'react';
 import { format } from 'date-fns';
 import { useState } from 'react';
-
+import AddCard from 'components/AddCard/AddCard';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 import CardActions from '@mui/material/CardActions';
@@ -30,14 +30,26 @@ import {
   TruncatedText,
 } from './TaskCard.styled';
 
-function TaskCard({ title, description, priority, deadline, moveCard, id }) {
+function TaskCard({
+  title,
+  description,
+  priority,
+  deadline,
+  moveCard,
+  id,
+  columnId,
+}) {
   const [anchorEl, setAnchorEl] = useState(null);
   const [updateCardById] = API.useUpdateCardByIdMutation();
   const [deleteCardById] = API.useDeleteCardByIdMutation();
+  const [isAddCardOpen, setIsAddCardOpen] = useState(false);
   const dispatch = useDispatch();
 
   const date = new Date(`${deadline}`);
   const formattedDate = format(date, 'dd/MM/yyyy');
+
+  const closeAddCard = () => setIsAddCardOpen(false);
+  const handleClick = () => setIsAddCardOpen(true);
 
   const handleOpenMenu = event => {
     setAnchorEl(event.currentTarget);
@@ -72,6 +84,7 @@ function TaskCard({ title, description, priority, deadline, moveCard, id }) {
       };
       const response = await updateCardById({ id, updatedData });
       dispatch(setCardData(response));
+      handleClick();
     } catch (error) {
       console.error('Error updating card:', error);
     }
@@ -122,11 +135,22 @@ function TaskCard({ title, description, priority, deadline, moveCard, id }) {
               <use href={sprite + '#icon-active'} />
             </svg>
           </StyledIconButton>
-          <StyledIconButton onClick={handleUpdateCard} aria-label="edit">
+          <StyledIconButton
+            onClick={handleUpdateCard}
+            title={'Edit card'}
+            aria-label="edit"
+          >
             <svg stroke="#fff" strokeOpacity="0.5" width="16" height="16">
               <use href={sprite + '#icon-pencil'} />
             </svg>
           </StyledIconButton>
+          <AddCard
+            columnId={columnId}
+            modalType={'Edit card'}
+            open={isAddCardOpen}
+            handleClose={closeAddCard}
+            close={closeAddCard}
+          />
           <StyledIconButton onClick={handleDeleteCard} aria-label="remove">
             <svg stroke="#fff" strokeOpacity="0.5" width="16" height="16">
               <use href={sprite + '#icon-trash'} />
