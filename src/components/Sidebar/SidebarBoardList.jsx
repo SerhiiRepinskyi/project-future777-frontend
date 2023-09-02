@@ -47,9 +47,7 @@ export const SidebarBoardList = () => {
               onClick={() => handleButtonClick(board._id)}
             >
               <SidebarBoardItem
-                id={board._id}
-                icon={board.iconId}
-                title={board.title}
+                board={board}
                 current={currentItemId === board._id}
               />
             </ListItemButton>
