@@ -1,5 +1,5 @@
 import { useFormikContext } from 'formik';
-
+import UI_MSGS from 'constants/AuthUIConstants';
 import Sprite from '../../assets/images/sprite.svg';
 import {
   FormikForm,
@@ -11,7 +11,14 @@ import {
   Button,
   Error,
 } from './RegisterForm.styled';
+/* FIXME:
+OD: ці паттерни в інпутах непотрібні-> викликають
+ помилки. Валідація зроблена через yup-схему.
 
+          pattern={EMAIL_REGEXP}
+            pattern={PASSWORD_REGEXP}
+          pattern={NAME_REGEXP}
+           */
 export const RegisterFormContext = ({
   showPassword,
   togglePassword,
@@ -38,8 +45,7 @@ export const RegisterFormContext = ({
           value={values.name}
           onBlur={handleBlur}
           onChange={handleChange}
-          pattern="^[a-zA-Z0-9@$!%*?& -]*$"
-          title="Only letters, digits, and certain symbols are allowed."
+          title={UI_MSGS.INPUT_NAME_TITLE}
         />
         {touched.name && errors.name && (
           <Error>{errors.name}</Error>
@@ -56,8 +62,7 @@ export const RegisterFormContext = ({
           value={values.email}
           onBlur={handleBlur}
           onChange={handleChange}
-          pattern="^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$"
-          title="Please enter a valid email address"
+          title={UI_MSGS.INPUT_EMAIL_TITLE}
         />
         {touched.email && errors.email && <Error>{errors.email}</Error>}
         <Error name="email" component="div" />
@@ -73,9 +78,8 @@ export const RegisterFormContext = ({
             value={values.password}
             onBlur={handleBlur}
             onChange={handleChange}
-            pattern="^[a-zA-Z0-9@$!%*?& -_#+=]*$"
-            title="Password must contain at least one letter and at least one number"
-          />{' '}
+            title={UI_MSGS.INPUT_PWD_TITLE}
+          />
           <IconBtn
             type="button"
             onClick={togglePassword}
