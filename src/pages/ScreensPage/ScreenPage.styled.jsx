@@ -51,5 +51,5 @@ export const screenSyles = {
   width: { 0: '100vw', 1440: `calc(100vw - ${SIDEBARWIDTH}px)` },
   flexGrow: 1,
   height: { 0: '100%', 768: '100vh', 1440: '100vh' },
-  backgroundColor: '#2e2e2e',
+  backgroundColor: 'var(--primary-bg-color)',
 };
