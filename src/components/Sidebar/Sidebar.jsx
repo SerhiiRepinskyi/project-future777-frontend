@@ -20,6 +20,13 @@ export const Sidebar = ({ ...props }) => {
         open={isMobileSidebar}
         onClose={handleSidebarToggle}
         ModalProps={{ keepMounted: true }}
+        slotProps={{
+          backdrop: {
+            style: {
+              backgroundColor: 'var(--sidebar-backdrop-color)',
+            },
+          },
+        }}
         sx={{
           display: { 0: 'block', 1440: 'none' },
           '& .MuiDrawer-paper': {
@@ -33,7 +40,7 @@ export const Sidebar = ({ ...props }) => {
               375: SIDEBARMOBILEWIDTH,
               768: SIDEBARWIDTH,
             },
-            backgroundColor: "var(--sidebar-primary-bg-color)",
+            backgroundColor: 'var(--sidebar-primary-bg-color)',
           },
         }}
       >
@@ -51,7 +58,7 @@ export const Sidebar = ({ ...props }) => {
             border: 'none',
             overflowX: 'hidden',
             width: SIDEBARWIDTH,
-            backgroundColor: "var(--sidebar-primary-bg-color)",
+            backgroundColor: 'var(--sidebar-primary-bg-color)',
           },
         }}
       >

@@ -70,7 +70,7 @@ export const ButtonWithoutIcon = ({ title, onClick, type }) => {
         alignItems: 'center',
         textTransform: 'none',
         borderRadius: '8px',
-        marginTop: '40px',
+        marginTop: '24px',
         letterSpacing: '-0.02em',
         fontSize: '14px',
         // background: '#BEDBB0',

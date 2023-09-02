@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { useFormik } from 'formik';
 import { format } from 'date-fns';
 import * as Yup from 'yup';
+import { API } from 'Services/API';
+import formatISO from 'date-fns/formatISO';
 
 import {
   FormStyled,
@@ -19,28 +21,32 @@ import Popup from 'components/Popup/Popup';
 import DatePickerCmponent from 'components/DatePicker/DatePicker';
 import ModalLayout from '../ModalLayout/ModalLayout';
 
-// import { useAddCardToColumnMutation } from 'redux/tasks/cardSlice';
-// import { useSelector } from 'react-redux';
 
-const AddCard = ({ modalType, close, open, handleClose, cardId = '' }) => {
-  // const token = useSelector(state => state.auth.token);
+const AddCard = ({
+  modalType,
+  close,
+  open,
+  handleClose,
+  columnId,
+  cardId = '',
+}) => {
   const [date, setDate] = useState('');
   const [dateValue, setDateValue] = useState('');
   const [color, setColor] = useState('0');
   const [anchorEl, setAnchorEl] = useState(null);
   const [isPopupOpen, setIsPopupOpen] = useState(false);
-  // const [addCards] = useAddCardToColumnMutation();
+  const [addCards] = API.useAddCardMutation();
 
   const handleDateClick = e => {
     setAnchorEl(e.currentTarget);
-    setIsPopupOpen(!isPopupOpen);
+    setIsPopupOpen(true);
   };
 
   const onDateChange = e => {
     const dateFns = format(e, 'LLLL d');
-    console.log('dateFns :>> ', date);
     setDateValue(dateFns);
     setDate(e);
+    setAnchorEl(null);
     setIsPopupOpen(false);
   };
 
@@ -49,41 +55,39 @@ const AddCard = ({ modalType, close, open, handleClose, cardId = '' }) => {
     setColor(value);
   };
 
-  const handleSubmit = async (title, description, color) => {
-    // const dateFns = format(date, 'yyyy-MM-dd');
-    // try {
-    //   await addCards({
-    //     cardsData: {
-    //       title,
-    //       description,
-    //       priority: color,
-    //       deadline: dateFns,
-    //     },
-    //     token,
-    //     columnId: '64eacc9f4040dd4d17e3e96f',
-    //   });
-    // } catch (error) {
-    //   console.log(error);
-    // }
+  const handleSubmit = async (title, description) => {
+    const ISODate = formatISO(date, { representation: 'date' });
+
+    const cardData = {
+      title,
+      description,
+      priority: color,
+      deadline: ISODate,
+    };
+
+    try {
+      await addCards({columnId, cardData} );
+    } catch (error) {
+      console.log(error);
+    }
     formik.handleReset();
     close();
   };
+
   const validationSchema = Yup.object({
     title: Yup.string()
+      .trim('The title cannot include leading and trailing spaces')
+      .strict(true)
       .min(2, 'Must be more then 2 symbols')
-      .required('Title is required')
-      .matches(
-        /^(\w*)$/,
-        'Title may contain only letters, apostrophe, dash and spaces.'
-      ),
+      .required('Title is required'),
     description: Yup.string(),
     color: Yup.string(),
   });
 
   const formik = useFormik({
     initialValues: { title: '', description: '' },
-    onSubmit: ({ title, description }) =>
-      handleSubmit(title, description, color, date),
+    onSubmit: ({title, description} ) =>
+      handleSubmit(title, description),
     validationSchema,
   });
 
@@ -125,13 +129,6 @@ const AddCard = ({ modalType, close, open, handleClose, cardId = '' }) => {
           <DateWrapper>
             <DateText>{dateValue}</DateText>
             <DropDownIcon onClick={handleDateClick} />
-            <Popup
-              anchorEl={anchorEl}
-              open={isPopupOpen}
-              onClose={handleDateClick}
-            >
-              <DatePickerCmponent onChange={onDateChange} />
-            </Popup>
           </DateWrapper>
         </SubWrapper>
 
@@ -140,6 +137,14 @@ const AddCard = ({ modalType, close, open, handleClose, cardId = '' }) => {
           type={'submit'}
         />
       </FormStyled>
+
+      <Popup
+        anchorEl={anchorEl}
+        open={isPopupOpen}
+        onClose={() => setIsPopupOpen(false)}
+      >
+        <DatePickerCmponent onChange={onDateChange} />
+      </Popup>
     </ModalLayout>
   );
 };

@@ -22,6 +22,7 @@ import { useDispatch } from 'react-redux';
 // import { selectIsLoggedIn } from 'redux/auth/authSelectors';
 import { API } from 'Services/API';
 import { setBoardResponse } from 'redux/boards/boardsAPISlice';
+import { useNavigate } from 'react-router-dom';
 
 const titleStyle = {
   color: '#FFF',
@@ -32,17 +33,28 @@ const titleStyle = {
   letterSpacing: -0.36,
 };
 
-const ModalBoard = ({ boardTitle, boardId = '', open, handleClose }) => {
-  // const [titleInputText, setTitleInputText] = useState('');
+const ModalBoard = ({
+  title = '',
+  boardTitle,
+  boardId = '',
+  open,
+  handleClose,
+}) => {
   const dispatch = useDispatch();
   const [iconId, setIconId] = useState(arrIcons[0]);
   const [iconIndex, setIconIndex] = useState(0);
+  const [selectedBG, setSelectedBG] = useState(-1);
+  const [selectedIconIndex, setSelectedIconIndex] = useState(null);
 
   const [backgroundURL, setBackgroundURL] = useState(arrBG[0]);
   const [backgroundIndex, setBackgroundIndex] = useState(0);
 
   const [addBoard] = API.useAddBoardsMutation();
   const [editBoard] = API.useUpdateBoardByIdMutation();
+
+  const navigate = useNavigate();
+
+  console.log(title);
 
   const handleSubmit = async title => {
     try {
@@ -57,11 +69,14 @@ const ModalBoard = ({ boardTitle, boardId = '', open, handleClose }) => {
       if (boardTitle === 'New board') {
         const response = await addBoard(FormData);
         dispatch(setBoardResponse(response));
+        const newBoardId = response.data._id;
+        navigate(`/home/${newBoardId}`);
       }
       if (boardTitle === 'Edit board') {
         const response = await editBoard({ boardId, FormData });
         dispatch(setBoardResponse(response));
       }
+      handleClose();
     } catch (error) {
       console.log(error);
     }
@@ -85,6 +100,12 @@ const ModalBoard = ({ boardTitle, boardId = '', open, handleClose }) => {
     validationSchema,
   });
 
+  const handleIconCurrent = (icon, index) => {
+    setIconId(icon);
+    setIconIndex(index);
+    setSelectedIconIndex(index);
+  };
+
   return (
     <>
       <ModalLayout title={boardTitle} open={open} handleClose={handleClose}>
@@ -92,7 +113,7 @@ const ModalBoard = ({ boardTitle, boardId = '', open, handleClose }) => {
           <InputStyled
             id="title"
             name="title"
-            placeholder="Title"
+            placeholder={title ? title : 'Title'}
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
             value={formik.values.title}
@@ -105,13 +126,20 @@ const ModalBoard = ({ boardTitle, boardId = '', open, handleClose }) => {
               return (
                 <LiIconsStyled
                   key={icon}
-                  onClick={() => {
-                    setIconId(icon);
-                    setIconIndex(index);
-                  }}
+                  onClick={() => handleIconCurrent(icon, index)}
+                  isSelected={selectedIconIndex === index}
                 >
                   <TransparentSVG>
-                    <use href={sprite + icon} />
+                    <use
+                      href={sprite + icon}
+                      style={{
+                        stroke:
+                          selectedIconIndex === index
+                            ? '#FFFFFF'
+                            : 'rgba(255, 255, 255, 0.5)',
+                        transition: 'stroke 0.2s ease',
+                      }}
+                    />
                   </TransparentSVG>
                 </LiIconsStyled>
               );
@@ -130,9 +158,18 @@ const ModalBoard = ({ boardTitle, boardId = '', open, handleClose }) => {
                   onClick={() => {
                     setBackgroundURL(bg);
                     setBackgroundIndex(index);
+                    setSelectedBG(index);
                   }}
                 >
-                  <ImgStyled src={bg} alt="background picture" />
+                  <ImgStyled
+                    src={bg}
+                    alt="background picture"
+                    style={{
+                      border: `2px solid ${
+                        selectedBG === index ? 'white' : 'transparent'
+                      }`,
+                    }}
+                  />
                 </LiStyled>
               );
             })}

@@ -8,24 +8,24 @@ import {
   Subtitle,
   TitleCreate,
 } from './SidebarContent-styled';
+import { Box } from '@mui/material';
+import { useEffect, useState } from 'react';
 
 import styles from './SidebarCustomScroll.module.css';
 
 import AloeVera from '../../assets/images/aloe-vera.png';
 import sprite from '../../assets/images/sprite.svg';
 
-import { useEffect, useState } from 'react';
 import { SidebarLogo } from 'components/Logo/Logo';
-import LogoutBtn from 'components/logoutBtn/logoutBtn';
 import { ButtonSidebar } from 'components/Buttons/Button';
-import ModalBoard from 'components/ModalBoard/ModalBoard';
 import { SidebarBoardList } from './SidebarBoardList';
-import { Box } from '@mui/material';
+
+import LogoutBtn from 'components/logoutBtn/logoutBtn';
+import ModalBoard from 'components/ModalBoard/ModalBoard';
 import ModalHelp from 'components/ModalHelp/ModalHelp';
-// import ModalHelp from 'components/ModalHelp/ModalHelp';
 
 export const SidebarContent = ({ isSidebarShown }) => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isModalBoardOpen, setIsModalBoardOpen] = useState(false);
   const [isModalHelpOpen, setIsModalHelpOpen] = useState(false);
   const [startAnimation, setStartAnimation] = useState(true);
 
@@ -42,7 +42,8 @@ export const SidebarContent = ({ isSidebarShown }) => {
     };
   }, []);
 
-  const modalStateChange = () => setIsModalOpen(!isModalOpen);
+  const modalBoardStateChange = () => setIsModalBoardOpen(!isModalBoardOpen);
+  const modalHelpStateChange = () => setIsModalHelpOpen(!isModalHelpOpen);
 
   return (
     <>
@@ -70,7 +71,7 @@ export const SidebarContent = ({ isSidebarShown }) => {
               <TitleCreate isSidebarShown={isSidebarShown}>
                 Create a <br /> new board
               </TitleCreate>
-              <ButtonSidebar onClick={modalStateChange} />
+              <ButtonSidebar onClick={modalBoardStateChange} />
             </CreateBoardWrap>
           </Box>
           <SidebarBoardList />
@@ -94,20 +95,27 @@ export const SidebarContent = ({ isSidebarShown }) => {
               If you need help with <span>TaskPro</span>, check out our support
               resources or reach out to our customer support team.
             </HelpText>
-            <HelpButton type="button" isSidebarShown={isSidebarShown} onClick={() => setIsModalHelpOpen(true)}>
-              {/* <ModalHelp open={isModalOpen} handleClose={modalStateChange}/> */}
+            <HelpButton
+              type="button"
+              isSidebarShown={isSidebarShown}
+              onClick={modalHelpStateChange}
+            >
               <HelpIcon startAnimation={startAnimation}>
                 <use href={sprite + '#icon-help'}></use>
               </HelpIcon>
               Need help?
             </HelpButton>
-            <ModalHelp open={isModalHelpOpen} handleClose={()=> setIsModalHelpOpen(false)} />
           </HelpBox>
           <LogoutBtn />
         </Box>
       </Box>
 
-      <ModalBoard boardTitle={'New board'} open={isModalOpen} handleClose={modalStateChange} />
+      <ModalBoard
+        boardTitle={'New board'}
+        open={isModalBoardOpen}
+        handleClose={modalBoardStateChange}
+      />
+      <ModalHelp open={isModalHelpOpen} handleClose={modalHelpStateChange} />
     </>
   );
 };

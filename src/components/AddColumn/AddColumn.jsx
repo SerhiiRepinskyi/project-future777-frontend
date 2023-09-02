@@ -4,7 +4,6 @@ import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { FormStyled, InputStyled } from '../AddCard/AddCard.styled';
 import { ButtonWithIcon } from 'components/Buttons/Button';
-// import { useSelector } from 'react-redux';
 import ModalLayout from '../ModalLayout/ModalLayout';
 
 const AddColumn = ({ open, modalType, boardId, close }) => {
@@ -22,15 +21,14 @@ const AddColumn = ({ open, modalType, boardId, close }) => {
 
   const formik = useFormik({
     initialValues: { title: '' },
-    onSubmit: ({ title }) => handleSubmit(title),
+    onSubmit: title => handleSubmit(title),
     validationSchema,
   });
-  const handleSubmit = async titleColumn => {
-    console.log('boardId', boardId);
-    console.log('title', titleColumn);
+
+  const handleSubmit = async title => {
 
     try {
-      await addColumn(boardId,  {title: titleColumn} );
+      await addColumn({ boardId, title });
 
       close();
     } catch (error) {
