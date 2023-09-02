@@ -36,10 +36,10 @@ const titleStyle = {
 const ModalBoard = ({
   board = {},
   boardTitle,
-  boardId = '',
   open,
   handleClose,
 }) => {
+
   const dispatch = useDispatch();
   const [iconId, setIconId] = useState(arrIcons[0]);
   const [iconIndex, setIconIndex] = useState(board.icon);
