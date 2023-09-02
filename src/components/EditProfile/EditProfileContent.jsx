@@ -122,7 +122,7 @@ export const EditProfileContent = ({ onClose }) => {
                 onClick={() => document.getElementById('avatarURL').click()}
               >
                 <IconPlus aria-label="add">
-                  <use href={`${Sprite}#icon-add`}></use>
+                  <use href={`${Sprite}#icon-plus`}></use>
                 </IconPlus>
                 <input
                   id="avatarURL"
