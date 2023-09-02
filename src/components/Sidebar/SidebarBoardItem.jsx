@@ -17,7 +17,7 @@ import ModalBoard from 'components/ModalBoard/ModalBoard';
 // import { useNavigate } from 'react-router-dom';
 
 export const SidebarBoardItem = ({ board, current }) => {
-  const { _id: id, icon, title } = board;
+  const { _id: id, iconId, title } = board;
 
   // const navigate = useNavigate();
   const [isHovered, setIsHovered] = useState(false);
@@ -102,7 +102,7 @@ export const SidebarBoardItem = ({ board, current }) => {
             startAnimation={startAnimation}
             sx={{ opacity: current ? 1 : 0.5 }}
           >
-            <use href={sprite + icon}></use>
+            <use href={sprite + iconId}></use>
           </BoardItemIcon>
 
           <BoardItemTitleWrap
