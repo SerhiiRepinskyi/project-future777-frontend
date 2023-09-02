@@ -23,7 +23,6 @@ export const WelcomeImage = styled(WelcomePageImage)`
   width: 124px;
   height: 124px;
   background-color: black;
-  margin-bottom: 24px;
 
   @media screen and (min-width: 768px) {
     width: 162px;
@@ -31,23 +30,8 @@ export const WelcomeImage = styled(WelcomePageImage)`
   }
 `;
 
-export const WelcomeLogo = styled.span`
-  font-family: Poppins;
-  font-size: 28px;
-  font-weight: 600;
-  line-height: 42px;
-  letter-spacing: -0.04em;
-  color: #161616;
-  height: 40px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 14px;
-`;
-
 export const WelcomeTitle = styled.p`
   color: #161616;
-  font-family: Poppins;
   font-size: 14px;
   font-weight: 400;
   line-height: 18px;
@@ -55,18 +39,19 @@ export const WelcomeTitle = styled.p`
   text-align: center;
   margin-bottom: 48px;
   max-width: 335px;
+  margin-top: 24px;
   @media screen and (min-width: 768px) {
     max-width: 473px;
   }
 `;
 
 const Link = styled(NavLink)`
-  font-family: Poppins;
   font-size: 14px;
   font-weight: 500;
   line-height: 21px;
   letter-spacing: -0.02em;
   text-align: center;
+  border-radius: 8px;
 
   padding: 14px 0;
   text-decoration: none;
