@@ -27,9 +27,6 @@ export const SidebarContent = ({ isSidebarShown }) => {
   const [isModalBoardOpen, setIsModalBoardOpen] = useState(false);
   const [isModalHelpOpen, setIsModalHelpOpen] = useState(false);
 
-
-
-
   const modalBoardStateChange = () => setIsModalBoardOpen(!isModalBoardOpen);
   const modalHelpStateChange = () => setIsModalHelpOpen(!isModalHelpOpen);
 
@@ -46,7 +43,7 @@ export const SidebarContent = ({ isSidebarShown }) => {
           justifyContent: 'space-between',
         }}
       >
-        <Box >
+        <Box>
           <Box sx={{ pl: { 0: 1.75, 768: 3 }, pr: { 0: 1.75, 768: 3 } }}>
             <SidebarLogo sx={{ mb: 7.5 }} isSidebarShown={isSidebarShown} />
 
@@ -87,7 +84,7 @@ export const SidebarContent = ({ isSidebarShown }) => {
               isSidebarShown={isSidebarShown}
               onClick={modalHelpStateChange}
             >
-              <SidebarHelpIcon/>
+              <SidebarHelpIcon />
               Need help?
             </HelpButton>
           </HelpBox>

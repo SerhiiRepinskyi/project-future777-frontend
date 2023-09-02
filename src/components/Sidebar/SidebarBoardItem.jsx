@@ -83,7 +83,7 @@ export const SidebarBoardItem = ({ board, current }) => {
             alignItems: 'center',
           }}
         >
-          <SidebarBoardItemIcon current={current} iconId={iconId}/>
+          <SidebarBoardItemIcon current={current} iconId={iconId} />
 
           <BoardItemTitleWrap
             sx={{

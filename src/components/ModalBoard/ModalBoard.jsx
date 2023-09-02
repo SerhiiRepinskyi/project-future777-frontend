@@ -33,19 +33,13 @@ const titleStyle = {
   letterSpacing: -0.36,
 };
 
-const ModalBoard = ({
-  board = {},
-  boardTitle,
-  open,
-  handleClose,
-}) => {
-
+const ModalBoard = ({ board = {}, boardTitle, open, handleClose }) => {
   const dispatch = useDispatch();
   const [iconId, setIconId] = useState(arrIcons[0]);
   const [iconIndex, setIconIndex] = useState(board.icon);
   const [selectedBG, setSelectedBG] = useState(board.background);
   const [selectedIconIndex, setSelectedIconIndex] = useState(board.icon);
-  const [inputValue, setInputValue] = useState(board?.title || "");
+  const [inputValue, setInputValue] = useState(board?.title || '');
 
   const [backgroundURL, setBackgroundURL] = useState(arrBG[0]);
   const [backgroundIndex, setBackgroundIndex] = useState(0);
@@ -82,8 +76,7 @@ const ModalBoard = ({
     formik.handleReset();
   };
 
-  const handleChange = (e) => {
-
+  const handleChange = e => {
     setInputValue(e.currentTarget.value);
     formik.setFieldValue('title', e.currentTarget.value);
   };
