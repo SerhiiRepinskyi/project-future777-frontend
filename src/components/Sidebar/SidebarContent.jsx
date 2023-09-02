@@ -50,7 +50,6 @@ export const SidebarContent = ({ isSidebarShown }) => {
       <Box
         className={styles.container}
         sx={{
-          overflowX: 'hidden',
           pt: 3,
           pb: 3,
           display: 'flex',
@@ -59,7 +58,7 @@ export const SidebarContent = ({ isSidebarShown }) => {
           justifyContent: 'space-between',
         }}
       >
-        <Box>
+        <Box >
           <Box sx={{ pl: { 0: 1.75, 768: 3 }, pr: { 0: 1.75, 768: 3 } }}>
             <SidebarLogo sx={{ mb: 7.5 }} isSidebarShown={isSidebarShown} />
 
