@@ -85,6 +85,8 @@ export const UlBgStyled = styled.ul`
 
 export const LiStyled = styled.li`
   display: flex;
+  justify-content: center;
+  align-items: center;
   width: 28px;
   height: 28px;
   border-radius: 14px;
