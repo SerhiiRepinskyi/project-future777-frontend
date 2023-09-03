@@ -146,7 +146,7 @@ export const GlobalStyles = () => {
           --sidebar-taskpro-link-color: #bedbb0;
           /* DO NOT TOUCH THIS VARIABLES OR I WILL FIND YOU!!!! */
 
-          --header-theme-color: rgba(22, 22, 22, 0.8); //black
+          --header-theme-color: rgba(190, 219, 176, 1); //light green
           --header-bg-color: rgba(252, 252, 252, 1); //white
 
           --button-bg-color: rgba(190, 219, 176, 1); //light green
@@ -207,7 +207,7 @@ export const GlobalStyles = () => {
           --sidebar-taskpro-link-color: #5255bc;
           /* DO NOT TOUCH THIS VARIABLES OR I WILL FIND YOU!!!! */
 
-          --header-theme-color: rgba(22, 22, 22, 0.8); //black
+          --header-theme-color: rgba(184, 188, 253, 1); //light violet
           --header-bg-color: rgba(255, 255, 255, 1); //white
 
           --button-bg-color-hover: rgba(82, 85, 188, 1); //blue
