@@ -65,6 +65,7 @@ export const SidebarContent = ({ isSidebarShown }) => {
       >
         <Box>
           <Box sx={{ pl: { 0: 1.75, 768: 3 }, pr: { 0: 1.75, 768: 3 } }}>
+          
           <MembersButton
               type="button"
               isSidebarShown={isSidebarShown}
