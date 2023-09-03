@@ -1,6 +1,6 @@
 export const NAME_REGEXP = /^[a-zA-Z0-9@$!%*?&<>'._ -]*$/;
 
-export const EMAIL_REGEXP =  /^[a-z0-9_.-]+@[a-z0-9-]+\.[a-z]{2,}$/;
+export const EMAIL_REGEXP =  /^[a-z0-9_.-]+@[a-z0-9-]+\.[a-z]{2,}$/i;
  //  /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$/;  // /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/;
 //                          /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/
 //                         "^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$"

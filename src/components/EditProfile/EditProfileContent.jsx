@@ -43,7 +43,8 @@ export const EditProfileContent = ({ onClose }) => {
   };
 
   const [updateAvatar, { isLoading }] = useUpdateAvatarMutation();
-  const [updateUser,{ isLoading: isUpdateUserLoading}] = useUpdateUserMutation();
+  const [updateUser, { isLoading: isUpdateUserLoading }] =
+    useUpdateUserMutation();
 
   const dispatch = useDispatch();
   const currentImage = useSelector(selectAvatar);
