@@ -22,12 +22,10 @@ const shakeAnimation = keyframes`
   }
   10%, 30%, 50%, 70%, 90% {
     transform: translateX(-2px);
-   
-  }
+     }
   20%, 40%, 60%, 80% {
     transform: translateX(2px);
-  
-  }
+    }
 
 `;
 
