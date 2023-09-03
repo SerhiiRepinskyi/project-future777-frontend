@@ -17,7 +17,7 @@ export const userAPI = createApi({
         url: 'users/avatar',
         method: 'PATCH',
         body: formData,
-}),
+      }),
       invalidatesTags: ['User'],
     }),
     updateUser: builder.mutation({
