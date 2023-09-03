@@ -6,6 +6,7 @@ export const initialState = {
   boardId: null,
   boardData: {},
   error: null,
+  filter: "",
 };
 
 const boardsAPISlice = createSlice({
@@ -40,14 +41,18 @@ const boardsAPISlice = createSlice({
       state.error = action.payload;
     },
 
-    clearError: (state) => {
+    clearError: state => {
       state.error = null;
+    },
+
+    setFilter: (state, action) => {
+      state.filter = action.payload;
     },
   },
  // OD: extraReducers: {},
 });
 
-export const { setError, clearError, setBoardData, setAllBoards, setBoardId, setBoardResponse } = boardsAPISlice.actions;
+export const { setError,setFilter, clearError, setBoardData, setAllBoards, setBoardId, setBoardResponse } = boardsAPISlice.actions;
 
 export default boardsAPISlice.reducer;
 
