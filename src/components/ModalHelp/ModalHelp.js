@@ -10,9 +10,10 @@ import {
   FormStyled,
   InputStyled,
   TextareaStyled,
+
 } from './ModalHelp.styled';
 import { ButtonWithoutIcon} from "components/Buttons/Button";
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { API } from 'Services/API';
 import { setError } from 'redux/auth/authAPISlice';
 const ModalStyles = {
@@ -28,7 +29,7 @@ const ModalStyles = {
 };
 
 const titleStyles = {
-  color: '#FFF',
+  color: 'var(--primary-text-color)',
   fontSize: 18,
   fontStyle: 'normal',
   fontWeight: 500,
@@ -44,7 +45,7 @@ const ModalHelp = ({ open, handleClose }) => {
     const adaptiveStyle = useMediaQuery('(min-width: 1440px)');
     const dispatch = useDispatch()
     const[helpUser] = API.useHelpUserMutation()
-    
+    const email = useSelector(state => state.auth.user.email);
     const handleSubmit = async () => {
         try {
             const response = await helpUser({
@@ -80,7 +81,7 @@ const ModalHelp = ({ open, handleClose }) => {
     });
 
     const formik = useFormik({
-        initialValues: { email: "", comment: "" , },
+        initialValues: { email: email, comment: "" , },
         onSubmit: ({ title }) => handleSubmit(title),
         validationSchema,
     });
@@ -88,17 +89,18 @@ const ModalHelp = ({ open, handleClose }) => {
     return (
       <ComponentWrapper> 
       <Modal
-        open={open}
-        onClose={handleClose}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
+          open={open}
+          onClose={handleClose}
+          aria-labelledby="modal-modal-title"
+          aria-describedby="modal-modal-description"
+        
       >
-        <Box sx={{ ...ModalStyles, width: adaptiveStyle ? 400 : 335 }}>
+        <Box sx={{ ...ModalStyles, width: adaptiveStyle ? 400 : 335,  background:'var(--modal-bg-color)' }}>
           <Typography variant="h2" sx={titleStyles} >
             Need help
           </Typography>
-          <ButtonClose type="button" onClick={handleClose}>
-            <svg style={{ stroke: 'currentcolor' }} width="18" height="18">
+            <ButtonClose type="button" onClick={handleClose} >
+            <svg style={{ stroke: 'var(--primary-text-color)' }} width="18" height="18">
               <use href={sprite + '#icon-x-close'} />
             </svg>
           </ButtonClose>
@@ -111,6 +113,8 @@ const ModalHelp = ({ open, handleClose }) => {
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
                 value={formik.values.email}
+                pattern="^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$"
+                title="Please enter a valid email address"
             />
              <TextareaStyled
                 id="comment"
@@ -124,7 +128,7 @@ const ModalHelp = ({ open, handleClose }) => {
             <ButtonWithoutIcon
             title={'Send'}
             type={'submit'}
-            sx={{ marginTop: 24, }}
+            sx={{ marginTop: 24, background:'var(--primary-text-color)' }}
             onClick={() => {
                 (formik.values.email === '' && Notiflix.Notify.warning('Email field must be filled in')) || (formik.values.comment === '' && Notiflix.Notify.warning('Comment field must be filled in'));
             }}
