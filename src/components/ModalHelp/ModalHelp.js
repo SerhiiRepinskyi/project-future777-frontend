@@ -42,11 +42,11 @@ const titleStyles = {
 
 
 const ModalHelp = ({ open, handleClose }) => {
-    const adaptiveStyle = useMediaQuery('(min-width: 1440px)');
+  const adaptiveStyle = useMediaQuery('(min-width: 1440px)');
     const dispatch = useDispatch()
     const[helpUser] = API.useHelpUserMutation()
     const email = useSelector(state => state.auth.user.email);
-    const handleSubmit = async () => {
+  const handleSubmit = async () => {
         try {
             const response = await helpUser({
                 email: formik.values.email,
@@ -74,11 +74,16 @@ const ModalHelp = ({ open, handleClose }) => {
     };
     
     const validationSchema = Yup.object({
-        email: Yup.string().email()
-            .required('Email is required'),
-        comment: Yup.string()
-        .required('Comment is required'),
-    });
+  email: Yup.string()
+    .email('Please enter a valid email address')
+    .matches(
+      /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
+      'Please enter a valid email address'
+    )
+    .required('Email is required'),
+  comment: Yup.string()
+    .required('Comment is required'),
+});
 
     const formik = useFormik({
         initialValues: { email: email, comment: "" , },
@@ -113,8 +118,7 @@ const ModalHelp = ({ open, handleClose }) => {
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
                 value={formik.values.email}
-                pattern="^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$"
-                title="Please enter a valid email address"
+               
             />
              <TextareaStyled
                 id="comment"
@@ -129,9 +133,12 @@ const ModalHelp = ({ open, handleClose }) => {
             title={'Send'}
             type={'submit'}
             sx={{ marginTop: 24, background:'var(--primary-text-color)' }}
-            onClick={() => {
-                (formik.values.email === '' && Notiflix.Notify.warning('Email field must be filled in')) || (formik.values.comment === '' && Notiflix.Notify.warning('Comment field must be filled in'));
-            }}
+                onClick={() => {
+                  (formik.values.email === '' && Notiflix.Notify.warning('Email field must be filled in')) || (formik.values.comment === '' && Notiflix.Notify.warning('Comment field must be filled in'));
+                  if (!validationSchema.isValidSync({ email: formik.values.email })) {
+                    Notiflix.Notify.failure('Please enter a valid email address');
+                  }
+                }}
             >
             Send
             </ButtonWithoutIcon> 
