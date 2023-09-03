@@ -10,9 +10,15 @@ import {
 import { useState } from 'react';
 import { useLogInMutation } from 'Services/API_Component/authAPI';
 import { useDispatch } from 'react-redux';
-import { setError, setIsLoggedIn, setCredentials } from 'redux/auth/authAPISlice';
+import {
+  setError,
+  setIsLoggedIn,
+  setCredentials,
+} from 'redux/auth/authAPISlice';
 import Loader from 'components/Loader/Loader';
 import { useNavigate } from 'react-router-dom';
+import { loginValidationSchema } from 'validationSchemas/validationSchema';
+import { Report } from 'notiflix';
 
 export const LoginForm = () => {
   const navigate = useNavigate();
@@ -24,26 +30,30 @@ export const LoginForm = () => {
   const dispatch = useDispatch();
 
   const handleSubmit = async (values, { resetForm }) => {
+    const trimmedValues = {
+      email: values.email.trim(),
+      password: values.password.trim(),
+    };
+
     try {
-      const response = await login({
-        email: values.email,
-        password: values.password,
-      });
+      const response = await login(trimmedValues);
 
       if (response.data && response.data.token) {
         dispatch(setCredentials(response.data));
         dispatch(setIsLoggedIn(true));
+
+        Report.success('Login successful', 'Welcome back!', 'Okay');
+        navigate('/home');
         resetForm();
       }
 
       if (response.error) {
         if (response.error.status === 401 || response.error.status === 400) {
-          console.log('Email or password is wrong');
+        
+           Report.failure('Error!', 'Email or password is wrong', 'Okay');
         }
         dispatch(setError(response.error));
       }
-navigate('/home');
-     
     } catch (error) {
       dispatch(setError(error));
     }
@@ -62,6 +72,7 @@ navigate('/home');
             password: '',
           }}
           onSubmit={handleSubmit}
+          validationSchema={loginValidationSchema}
         >
           {() => (
             <>

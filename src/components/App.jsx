@@ -25,36 +25,36 @@ const ScreensPage = lazy(() => import('../pages/ScreensPage/ScreensPage'));
 const NotFound = lazy(() => import('../pages/NotFound/NotFound'));
 
 export const App = () => {
-const dispatch = useDispatch();  
-const navigate = useNavigate()
-const location = useLocation()
-const token = useSelector(state => state.auth.token);
-const boardId = useSelector(state => state.boards.boardId);; 
-const isRefreshing = useSelector(state => state.auth.isRefreshing);
-  
-const { data: currentUser, error } = useGetCurrentUserQuery(token,{
+  const dispatch = useDispatch();
+  const navigate = useNavigate()
+  const location = useLocation()
+  const token = useSelector(state => state.auth.token);
+  const boardId = useSelector(state => state.boards.boardId);;
+  const isRefreshing = useSelector(state => state.auth.isRefreshing);
+
+  const { data: currentUser, error } = useGetCurrentUserQuery(token,{
     skip: token === null,});
 
-useEffect(() => {
-  if (error) {
-    if (error.status === 401) {
-      dispatch(logout(currentUser))
-    } else {
-      console.error("Інша помилка отримання користувача:", error)}} 
-   // eslint-disable-next-line react-hooks/exhaustive-deps
+  useEffect(() => {
+    if (error) {
+      if (error.status === 401) {
+        dispatch(logout(currentUser))
+      } else {
+        console.error("Інша помилка отримання користувача:", error)}}
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [error])
-  
-useEffect(() => {
- if (token && currentUser) {
-    dispatch(setUserRefresh(currentUser));
-    if (boardId) {
-      const pathParts = location.pathname.split('/');
-      if (pathParts.length <= 2) {
-        navigate(`/home/${boardId}`);
+
+  useEffect(() => {
+    if (token && currentUser) {
+      dispatch(setUserRefresh(currentUser));
+      if (boardId) {
+        const pathParts = location.pathname.split('/');
+        if (pathParts.length <= 2) {
+          navigate(`/home/${boardId}`);
+        }
       }
     }
-  }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [token, currentUser])
 
   return (

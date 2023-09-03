@@ -40,6 +40,7 @@ export const LoginFormContext = ({ showPassword, togglePassword }) => {
             onClick={togglePassword}
             active={showPassword}
             className={showPassword ? 'active' : ''}
+            aria-label="Toggle Password Visibility"
           >
             <Icon>
               <use href={`${Sprite}#icon-eye`}></use>
@@ -48,7 +49,7 @@ export const LoginFormContext = ({ showPassword, togglePassword }) => {
         </Wrap>
       </Label>
 
-      <Button type="submit" disabled={!dirty}>
+      <Button type="submit" disabled={!dirty} aria-label="Submit">
         Log In Now
       </Button>
     </FormikForm>

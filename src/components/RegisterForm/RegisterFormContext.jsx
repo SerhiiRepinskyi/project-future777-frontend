@@ -1,6 +1,7 @@
-import { useFormikContext } from 'formik';
+import { ErrorMessage, useFormikContext } from 'formik';
 import UI_MSGS from 'constants/AuthUIConstants';
 import Sprite from '../../assets/images/sprite.svg';
+import { Notify } from 'notiflix';
 import {
   FormikForm,
   FormikInput,
@@ -9,20 +10,10 @@ import {
   Wrap,
   Label,
   Button,
-  Error,
 } from './RegisterForm.styled';
-/* FIXME:
-OD: ці паттерни в інпутах непотрібні-> викликають
- помилки. Валідація зроблена через yup-схему.
+import { notifyInit } from 'helpers/notifyInit';
 
-          pattern={EMAIL_REGEXP}
-            pattern={PASSWORD_REGEXP}
-          pattern={NAME_REGEXP}
-           */
-export const RegisterFormContext = ({
-  showPassword,
-  togglePassword,
-}) => {
+export const RegisterFormContext = ({ showPassword, togglePassword }) => {
   const {
     values,
     handleChange,
@@ -48,9 +39,13 @@ export const RegisterFormContext = ({
           title={UI_MSGS.INPUT_NAME_TITLE}
         />
         {touched.name && errors.name && (
-          <Error>{errors.name}</Error>
+          <ErrorMessage
+            name="name"
+            render={msg => {
+              Notify.failure(` ${msg}`, notifyInit);
+            }}
+          />
         )}
-        <Error name="name" component="div" />
       </Label>
 
       <Label htmlFor="email">
@@ -64,8 +59,14 @@ export const RegisterFormContext = ({
           onChange={handleChange}
           title={UI_MSGS.INPUT_EMAIL_TITLE}
         />
-        {touched.email && errors.email && <Error>{errors.email}</Error>}
-        <Error name="email" component="div" />
+        {touched.email && errors.email && (
+          <ErrorMessage
+            name="email"
+            render={msg => {
+              Notify.failure(` ${msg}`, notifyInit);
+            }}
+          />
+        )}
       </Label>
 
       <Label htmlFor="password">
@@ -85,6 +86,7 @@ export const RegisterFormContext = ({
             onClick={togglePassword}
             active={showPassword}
             className={showPassword ? 'active' : ''}
+            aria-label="Toggle Password Visibility"
           >
             <Icon>
               <use href={`${Sprite}#icon-eye`}></use>
@@ -93,12 +95,16 @@ export const RegisterFormContext = ({
         </Wrap>
 
         {touched.password && errors.password && (
-          <Error>{errors.password}</Error>
+          <ErrorMessage
+            name="password"
+            render={msg => {
+              Notify.failure(` ${msg}`, notifyInit);
+            }}
+          />
         )}
-        <Error name="password" component="div" />
       </Label>
 
-      <Button type="submit" disabled={!dirty || !isValid}>
+      <Button type="submit" disabled={!dirty || !isValid} aria-label="Submit">
         Register Now
       </Button>
     </FormikForm>
