@@ -4,7 +4,7 @@ import baseQuery from '../API_Helper/APIHelper';
 export const boardsAPI = createApi({
   reducerPath: 'boardsAPI',
   baseQuery: baseQuery,
-  tagTypes: ['boards'],
+  tagTypes: ['boards', 'columns', 'cards'],
   endpoints: builder => ({
     getBoards: builder.query({
       query: () => ({
@@ -14,18 +14,18 @@ export const boardsAPI = createApi({
     }),
 
     getBoardContentById: builder.query({
-      query: ({id, filter}) => ({
+      query: ({ id, filter }) => ({
         url: `boards/${id}/content`,
-        params: { "priority": filter},
+        params: { priority: filter },
       }),
-      providesTags: ['boards'],
+      providesTags: ['boards', 'cards'],
     }),
 
     getBoardById: builder.query({
       query: id => ({
         url: `boards/${id}`,
       }),
-      providesTags: ['boards'],
+      providesTags: ['boards', 'columns', 'cards'],
     }),
 
     addBoards: builder.mutation({
@@ -62,6 +62,15 @@ export const boardsAPI = createApi({
       }),
       invalidatesTags: ['boards'],
     }),
+
+    addCard: builder.mutation({
+      query: ({ columnId, cardData }) => ({
+        url: `columns/${columnId}/cards`,
+        method: 'POST',
+        body: cardData,
+      }),
+      invalidatesTags: ['boards', 'columns', 'cards'],
+    }),
   }),
 });
 
@@ -73,4 +82,5 @@ export const {
   useDeleteBoardByIdMutation,
   useUpdateBoardByIdMutation,
   useAddColumnMutation,
+  useAddCardMutation,
 } = boardsAPI;
