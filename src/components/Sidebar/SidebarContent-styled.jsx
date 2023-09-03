@@ -150,16 +150,3 @@ export const HelpIcon = styled('svg')(({ startAnimation }) => ({
     outline: 'none',
   },
 }));
-
-
-export const MembersButton = styled('button')(({ isSidebarShown }) => ({
-  backgroundColor: 'transparent',
-  border: 'none',
-  cursor: 'pointer',
-  
-  transform: 'translateX(250px)',
-  animation: isSidebarShown ? `${slideToLeft} 400ms` : 'none',
-  animationTimingFunction: 'ease',
-  animationFillMode: 'forwards',
-  
-}));
