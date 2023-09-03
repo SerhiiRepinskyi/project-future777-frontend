@@ -1,18 +1,40 @@
 import styled from '@emotion/styled';
 import { SIDEBARWIDTH } from 'components/Sidebar/SidebarCONSTANTS';
+import bgData from './bg-data.json';
 
+export const MainWrapper = styled.main`
+  min-height: 100vh;
+  background-color: var(--primary-bg-color);
+  @media screen and (min-width: 0px) {
+  }
 
-export const MainContainer = styled.main`
+  @media screen and (min-width: 767px) {
+    height: 100vh;
+  }
+
+  @media screen and (min-width: 1400px) {
+    height: 100vh;
+    @media (-webkit-min-device-pixel-ratio: 1) {
+    }
+    background-image: url(${() => bgData[0].desktop[0].x1[1]});
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+`;
+
+export const MainContainer = styled.div`
   display: flex;
   flex-direction: column;
   flex-grow: 1;
-  background-color: var(--primary-bg-color);
+
   height: 100vh;
   padding-top: 78px;
   padding-left: 24px;
   padding-right: 24px;
+  padding-bottom: 78px;
   @media screen and (min-width: 0px) {
     width: 100vw;
+    height: 100%;
   }
   @media screen and (min-width: 767px) {
   }
@@ -26,7 +48,7 @@ export const ColumnsWrapper = styled.div`
   flex-direction: column;
   gap: 34px;
   align-items: top;
-
+  overflow: hidden;
   ::-webkit-scrollbar {
     border-radius: 5px;
     margin-left: 4px;
@@ -40,27 +62,27 @@ export const ColumnsWrapper = styled.div`
   ::-webkit-scrollbar-thumb:hover {
     background-color: var(--screen-page-scrollbar-thumb-color-HOVER);
   }
-  
+
   @media screen and (min-width: 767px) {
     display: grid;
     grid-template-columns: ${props => {
       return `repeat(${props.cols}, 334px)`;
     }};
     overflow-x: ${props => {
-      if (props.cols < 3) {
-        return `hidden`;
+      if (props.cols > 3) {
+        return 'scroll';
       }
-      return `scroll`;
+      return 'hidden';
     }};
   }
 
   @media screen and (min-width: 1400px) {
     display: grid;
     overflow-x: ${props => {
-      if (props.cols < 4) {
-        return `hidden`;
+      if (props.cols > 4) {
+        return 'scroll';
       }
-      return `scroll`;
+      return 'hidden';
     }};
   }
 `;
@@ -76,4 +98,3 @@ export const screenSyles = {
 
   backgroundColor: 'var(--primary-bg-color)',
 };
-

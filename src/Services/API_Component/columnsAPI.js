@@ -6,14 +6,14 @@ export const columnsAPI = createApi({
   baseQuery: baseQuery,
   tagTypes: ['columns'],
   endpoints: builder => ({
-    addColumn: builder.mutation({
-      query: ({ boardId, title }) => ({
-        url: `boards/${boardId}/columns`,
-        method: 'POST',
-        body: title,
-      }),
-      invalidatesTags: ['columns'],
-    }),
+    // addColumn: builder.mutation({
+    //   query: ({ boardId, title }) => ({
+    //     url: `boards/${boardId}/columns`,
+    //     method: 'POST',
+    //     body: title,
+    //   }),
+    //   invalidatesTags: ['columns'],
+    // }),
 
     updateColumnById: builder.mutation({
       query: ({ columnId, title }) => ({
@@ -35,7 +35,6 @@ export const columnsAPI = createApi({
 });
 
 export const {
-  useAddColumnMutation,
   useUpdateColumnByIdMutation,
   useDeleteColumnByIdMutation,
 } = columnsAPI;

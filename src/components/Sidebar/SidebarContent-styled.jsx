@@ -100,7 +100,7 @@ export const HelpText = styled('p')(({ isSidebarShown }) => ({
   fontWeight: 400,
   letterSpacing: -0.15,
   '& span': {
-    color: 'var(--button-bg-color)',
+    color: 'var(--sidebar-taskpro-link-color)',
   },
 
   transform: 'translateX(-250px)',

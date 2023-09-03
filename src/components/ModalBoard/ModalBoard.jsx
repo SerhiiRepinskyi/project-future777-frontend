@@ -33,21 +33,14 @@ const titleStyle = {
   letterSpacing: -0.36,
 };
 
-const ModalBoard = ({
-  board = {},
-  boardTitle,
-  boardId = '',
-  open,
-  handleClose,
-}) => {
+const ModalBoard = ({ board = {}, boardTitle, open, handleClose }) => {
   const dispatch = useDispatch();
-  const [iconId, setIconId] = useState(arrIcons[0]);
-  const [iconIndex, setIconIndex] = useState(board.icon);
-  const [selectedBG, setSelectedBG] = useState(board.background);
-  const [selectedIconIndex, setSelectedIconIndex] = useState(board.icon);
 
-  const [backgroundURL, setBackgroundURL] = useState(arrBG[0]);
-  const [backgroundIndex, setBackgroundIndex] = useState(0);
+  const [inputValue, setInputValue] = useState(board?.title || '');
+  const [iconId, setIconId] = useState(board?.iconId || arrIcons[0]);
+  const [backgroundURL, setBackgroundURL] = useState(
+    board?.backgroundURL || 'default background'
+  );
 
   const [addBoard] = API.useAddBoardsMutation();
   const [editBoard] = API.useUpdateBoardByIdMutation();
@@ -58,10 +51,10 @@ const ModalBoard = ({
     try {
       const FormData = {
         title,
-        icon: iconIndex,
-        iconId,
-        background: backgroundIndex,
         backgroundURL,
+        iconId,
+        icon: 0,
+        background: 0,
       };
 
       if (boardTitle === 'New board') {
@@ -69,9 +62,12 @@ const ModalBoard = ({
         dispatch(setBoardResponse(response));
         const newBoardId = response.data._id;
         navigate(`/home/${newBoardId}`);
+        setInputValue('');
+        setIconId(arrIcons[0]);
+        setBackgroundURL('default background');
       }
       if (boardTitle === 'Edit board') {
-        const response = await editBoard({ boardId, FormData });
+        const response = await editBoard({ boardId: board._id, FormData });
         dispatch(setBoardResponse(response));
       }
       handleClose();
@@ -79,6 +75,11 @@ const ModalBoard = ({
       console.log(error);
     }
     formik.handleReset();
+  };
+
+  const handleChange = e => {
+    setInputValue(e.currentTarget.value);
+    formik.setFieldValue('title', e.currentTarget.value);
   };
 
   const validationSchema = Yup.object({
@@ -98,10 +99,8 @@ const ModalBoard = ({
     validationSchema,
   });
 
-  const handleIconCurrent = (icon, index) => {
+  const handleIconCurrent = icon => {
     setIconId(icon);
-    setIconIndex(index);
-    setSelectedIconIndex(index);
   };
 
   return (
@@ -111,28 +110,28 @@ const ModalBoard = ({
           <InputStyled
             id="title"
             name="title"
-            placeholder={board ? board.title : 'Title'}
-            onChange={formik.handleChange}
+            placeholder={'Title'}
+            onChange={handleChange}
             onBlur={formik.handleBlur}
-            value={formik.values.title}
+            value={inputValue}
           />
           <Typography variant="h2" sx={titleStyle}>
             Icons
           </Typography>
           <UlStyled>
-            {arrIcons.map((icon, index) => {
+            {arrIcons.map(icon => {
               return (
                 <LiIconsStyled
                   key={icon}
-                  onClick={() => handleIconCurrent(icon, index)}
-                  isSelected={selectedIconIndex === index}
+                  onClick={() => handleIconCurrent(icon)}
+                  isSelected={iconId === icon}
                 >
                   <TransparentSVG>
                     <use
                       href={sprite + icon}
                       style={{
                         stroke:
-                          selectedIconIndex === index
+                          iconId === icon
                             ? '#FFFFFF'
                             : 'rgba(255, 255, 255, 0.5)',
                         transition: 'stroke 0.2s ease',
@@ -148,15 +147,46 @@ const ModalBoard = ({
             Background
           </Typography>
           <UlBgStyled>
-            <LiStyled></LiStyled>
-            {arrBG.map((bg, index) => {
+            <LiStyled
+              key={'default background'}
+              onClick={() => {
+                setBackgroundURL('default background');
+              }}
+            >
+              <div
+                style={{
+                  display: 'flex',
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                  width: '100%',
+                  height: '100%',
+                  backgroundColor: '#1F1F1F',
+                  borderRadius: '5px',
+                  border: `2px solid ${
+                    backgroundURL === 'default background'
+                      ? 'white'
+                      : 'transparent'
+                  }`,
+                  cursor: 'pointer',
+                }}
+              >
+                <svg
+                  style={{
+                    width: '16px',
+                    height: '16px',
+                    stroke: 'rgba(255, 255, 255, 0.10)',
+                  }}
+                >
+                  <use href={sprite + '#icon-default-background'}></use>
+                </svg>
+              </div>
+            </LiStyled>
+            {arrBG.map(bg => {
               return (
                 <LiStyled
                   key={bg}
                   onClick={() => {
                     setBackgroundURL(bg);
-                    setBackgroundIndex(index);
-                    setSelectedBG(index);
                   }}
                 >
                   <ImgStyled
@@ -164,7 +194,7 @@ const ModalBoard = ({
                     alt="background picture"
                     style={{
                       border: `2px solid ${
-                        selectedBG === index ? 'white' : 'transparent'
+                        backgroundURL === bg ? 'white' : 'transparent'
                       }`,
                     }}
                   />
