@@ -66,10 +66,20 @@ const ModalBoard = ({ board = {}, boardTitle, open, handleClose }) => {
         setInputValue('');
         setIconId(arrIcons[0]);
         setBackgroundURL('default background');
+           Report.success(
+             'Board added successfully',
+             'You can use your board and add columns to it',
+             'Ok'
+           );
       }
       if (boardTitle === 'Edit board') {
         const response = await editBoard({ boardId: board._id, FormData });
         dispatch(setBoardResponse(response));
+          Report.success(
+            'Board edited successfully',
+            'All changes have been made',
+            'Ok'
+          );
       }
       handleClose();
     } catch (error) {
@@ -93,10 +103,6 @@ const ModalBoard = ({ board = {}, boardTitle, open, handleClose }) => {
       .min(2, 'Must be more than 2 symbols')
       .max(50, 'Must be less than 50 symbols')
       .required('Title is required')
-      .matches(
-        /^[a-zA-Z\s'-]*$/,
-        'Title may contain only English letters, apostrophe, dash, spaces, and single quotes.'
-      )
       .test(
         'is-not-cyrillic',
         'Title must not contain Cyrillic characters',
@@ -113,6 +119,7 @@ const ModalBoard = ({ board = {}, boardTitle, open, handleClose }) => {
       ),
     description: Yup.string(),
   });
+
   const formik = useFormik({
     initialValues: { title: '' },
     onSubmit: ({ title }) => handleSubmit(title),
@@ -228,8 +235,9 @@ const ModalBoard = ({ board = {}, boardTitle, open, handleClose }) => {
             type={'submit'}
             // onClick={handleClose}
             onClick={() => {
-              formik.values.title === '' &&
-                Notiflix.Notify.warning('Title field must be filled in');
+             if (formik.values.title === '' && !inputValue) {
+               Notiflix.Notify.warning('Title field must be filled in');
+             }
             }}
           />
         </FormStyled>
