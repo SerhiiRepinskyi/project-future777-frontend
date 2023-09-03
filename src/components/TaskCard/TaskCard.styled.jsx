@@ -1,11 +1,11 @@
 import styled from '@emotion/styled';
 const getPriorityColor = priority => {
   switch (priority) {
-    case 1:
-      return '#BEDBB0';
-    case 2:
-      return '#8FA1D0';
     case 3:
+      return '#BEDBB0';
+    case 1:
+      return '#8FA1D0';
+    case 2:
       return '#E09CB5';
     default:
       return '#bababa';

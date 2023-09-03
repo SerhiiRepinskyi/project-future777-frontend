@@ -41,21 +41,19 @@ const AddColumn = ({
     if (modalType === 'Add column') {
       try {
         await addColumn({ boardId, title });
-
         close();
       } catch (error) {
         console.log(error.message);
       }
     }
-
-    try {
-      await updateColumn({ columnId, title });
-
-      close();
-    } catch (error) {
-      console.log(error.message);
+    if (modalType === 'Edit column') {
+      try {
+        await updateColumn({ columnId, title });
+        close();
+      } catch (error) {
+        console.log(error.message);
+      }
     }
-
     formik.handleReset();
   };
 
