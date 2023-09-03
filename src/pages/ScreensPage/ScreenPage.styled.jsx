@@ -1,18 +1,40 @@
 import styled from '@emotion/styled';
 import { SIDEBARWIDTH } from 'components/Sidebar/SidebarCONSTANTS';
+import bgData from './bg-data.json';
 
+export const MainWrapper = styled.main`
+  min-height: 100vh;
+  background-color: var(--primary-bg-color);
+  @media screen and (min-width: 0px) {
+  }
 
-export const MainContainer = styled.main`
+  @media screen and (min-width: 767px) {
+    height: 100vh;
+  }
+
+  @media screen and (min-width: 1400px) {
+    height: 100vh;
+    @media (-webkit-min-device-pixel-ratio: 1) {
+    }
+    background-image: url(${() => bgData[0].desktop[0].x1[1]});
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+`;
+
+export const MainContainer = styled.div`
   display: flex;
   flex-direction: column;
   flex-grow: 1;
-  background-color: #2e2e2e;
+
   height: 100vh;
   padding-top: 78px;
   padding-left: 24px;
   padding-right: 24px;
+  padding-bottom: 78px;
   @media screen and (min-width: 0px) {
     width: 100vw;
+    height: 100%;
   }
   @media screen and (min-width: 767px) {
   }
@@ -26,39 +48,41 @@ export const ColumnsWrapper = styled.div`
   flex-direction: column;
   gap: 34px;
   align-items: top;
-
+  overflow: hidden;
   ::-webkit-scrollbar {
     border-radius: 5px;
     margin-left: 4px;
     height: 8px;
-    background-color: rgba(255, 255, 255, 0.2);
+    background-color: var(--screen-page-scrollbar-bg-color);
   }
   ::-webkit-scrollbar-thumb {
-    background: #121212;
+    background-color: var(--screen-page-scrollbar-thumb-color);
     border-radius: 5px;
   }
   ::-webkit-scrollbar-thumb:hover {
-    background: #9dc888;
+    background-color: var(--screen-page-scrollbar-thumb-color-HOVER);
   }
+
   @media screen and (min-width: 767px) {
-    overflow-x: ${props => {
-      if (props.cols < 2) {
-        return `hidden`;
-      }
-      return `scroll`;
-    }};
     display: grid;
     grid-template-columns: ${props => {
-      return `repeat(${props.cols + 1}, 334px)`;
+      return `repeat(${props.cols}, 334px)`;
+    }};
+    overflow-x: ${props => {
+      if (props.cols > 3) {
+        return 'scroll';
+      }
+      return 'hidden';
     }};
   }
+
   @media screen and (min-width: 1400px) {
     display: grid;
     overflow-x: ${props => {
-      if (props.cols < 4) {
-        return `hidden`;
+      if (props.cols > 4) {
+        return 'scroll';
       }
-      return `scroll`;
+      return 'hidden';
     }};
   }
 `;
@@ -68,8 +92,9 @@ export const screenSyles = {
   pb: { 0: 3, 768: 4, 1440: 1 },
   pl: { 0: 2.5, 768: 4, 1440: 3 },
   pr: { 0: 2.5, 768: 4, 1440: 3 },
-  height: { 0: '100vh', 768: '100vh', 1440: '100vh' },
+  height: '100vh',
   width: { 0: '100vw', 1440: `calc(100vw - ${SIDEBARWIDTH}px)` },
   flexGrow: 1,
-  backgroundColor: '#2e2e2e',
+
+  backgroundColor: 'var(--primary-bg-color)',
 };

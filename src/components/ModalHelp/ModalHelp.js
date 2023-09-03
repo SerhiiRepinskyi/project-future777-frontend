@@ -1,3 +1,6 @@
+import { Modal, Box, Typography, useMediaQuery } from '@mui/material';
+import { ButtonClose } from 'components/ModalBoard/ModalBoard.styled';
+import sprite from '../../assets/images/sprite.svg';
 import { Report } from 'notiflix';
 import { useFormik } from 'formik';
 import * as Yup from "yup";
@@ -7,19 +10,42 @@ import {
   FormStyled,
   InputStyled,
   TextareaStyled,
+
 } from './ModalHelp.styled';
-import { ButtonWithoutIcon } from "components/Buttons/Button";
-import ModalLayout from 'components/ModalLayout/ModalLayout';
-import { useDispatch } from 'react-redux';
+import { ButtonWithoutIcon} from "components/Buttons/Button";
+import { useDispatch, useSelector } from 'react-redux';
 import { API } from 'Services/API';
 import { setError } from 'redux/auth/authAPISlice';
+const ModalStyles = {
+  position: 'absolute',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+  width: 350,
+  borderRadius: 8 / 4,
+  border: '1px solid rgba(190, 219, 176, 0.50)',
+  background: '#151515',
+  padding: 24/8,
+};
+
+const titleStyles = {
+  color: 'var(--primary-text-color)',
+  fontSize: 18,
+  fontStyle: 'normal',
+  fontWeight: 500,
+  lineHeight: 'normal',
+  letterSpacing: -0.36,
+  marginBottom: 24 / 8,
+  fontFamily: 'Poppins',
+};
 
 
 
 const ModalHelp = ({ open, handleClose }) => {
+    const adaptiveStyle = useMediaQuery('(min-width: 1440px)');
     const dispatch = useDispatch()
     const[helpUser] = API.useHelpUserMutation()
-    
+    const email = useSelector(state => state.auth.user.email);
     const handleSubmit = async () => {
         try {
             const response = await helpUser({
@@ -55,46 +81,64 @@ const ModalHelp = ({ open, handleClose }) => {
     });
 
     const formik = useFormik({
-        initialValues: { email: "", comment: "" , },
+        initialValues: { email: email, comment: "" , },
         onSubmit: ({ title }) => handleSubmit(title),
         validationSchema,
     });
     
     return (
-    <ModalLayout
-        title={'Need help'}
-        open={open}
-        handleClose={handleClose}
- 
-            // sx={{ ...ModalStyles, width: '400px', height: '355px' }}
-            //СПИТАТИ СТВОРИТИ ОКРЕМИЙ ./ModalLayoutStyles і тоді змінити
-        >
-      <ComponentWrapper>
+      <ComponentWrapper> 
+      <Modal
+          open={open}
+          onClose={handleClose}
+          aria-labelledby="modal-modal-title"
+          aria-describedby="modal-modal-description"
+        
+      >
+        <Box sx={{ ...ModalStyles, width: adaptiveStyle ? 400 : 335,  background:'var(--modal-bg-color)' }}>
+          <Typography variant="h2" sx={titleStyles} >
+            Need help
+          </Typography>
+            <ButtonClose type="button" onClick={handleClose} >
+            <svg style={{ stroke: 'var(--primary-text-color)' }} width="18" height="18">
+              <use href={sprite + '#icon-x-close'} />
+            </svg>
+          </ButtonClose>
+         
         <FormStyled onSubmit={formik.handleSubmit}>
             <InputStyled
                 id="email"
                 name="email"
-                placeholder="email address"
+                placeholder="Email address"
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
                 value={formik.values.email}
+                pattern="^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$"
+                title="Please enter a valid email address"
             />
              <TextareaStyled
                 id="comment"
                 name="comment"
-                placeholder="comment"
+                placeholder="Comment"
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
                 value={formik.values.comment}
             /> 
-
-                    <ButtonWithoutIcon title={'Add'} type={'submit'} onClick={() => {
-                        (formik.values.email === '' && Notiflix.Notify.warning('Email field must be filled in')) || (formik.values.comment === '' && Notiflix.Notify.warning('Comment field must be filled in'));
-                    }} />
-        </FormStyled>
+       
+            <ButtonWithoutIcon
+            title={'Send'}
+            type={'submit'}
+            sx={{ marginTop: 24, background:'var(--primary-text-color)' }}
+            onClick={() => {
+                (formik.values.email === '' && Notiflix.Notify.warning('Email field must be filled in')) || (formik.values.comment === '' && Notiflix.Notify.warning('Comment field must be filled in'));
+            }}
+            >
+            Send
+            </ButtonWithoutIcon> 
+         </FormStyled>            
+         </Box>
+      </Modal>
         </ComponentWrapper>
-    </ModalLayout>
-
     );
 }; 
 

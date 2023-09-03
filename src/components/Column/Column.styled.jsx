@@ -9,10 +9,14 @@ export const ColumnWrapper = styled.li`
   align-items: left;
   /* gap: 14px; */
   width: 346px;
-  max-height: 80vh;
+  max-height: 100%;
   padding-right: 12px;
   padding-bottom: 14px;
   margin-right: 14px;
+
+  @media screen and (min-width: 1400px) {
+    max-height: 80vh;
+  }
 `;
 
 export const ColumnHeader = styled.div`
@@ -22,8 +26,8 @@ export const ColumnHeader = styled.div`
   align-items: center;
   max-width: 334px;
   height: 56px;
-  background-color: #121212;
-  color: #ffffff;
+  background-color: var(--secondary-bg-color);
+  color: var(--primary-text-color);
   padding: 20px;
   border-radius: 8px;
   margin-bottom: 14px;
@@ -38,9 +42,14 @@ export const ColumnTitle = styled.h2`
 `;
 
 export const CardsList = styled.ul`
-  display: flex;
+  display: ${props => {
+    if (props.cols.length < 4) {
+      return `flex`;
+    }
+    return `grid`;
+  }};
   flex-direction: column;
-  /* grid-template-rows: 155px; */
+  grid-template-rows: 155px;
   width: 346px;
   margin-bottom: 14px;
   max-height: 60vh;
@@ -48,7 +57,12 @@ export const CardsList = styled.ul`
   border-radius: 8px;
   padding-right: 8px;
   overflow-x: hidden;
-  overflow-y: scroll;
+  overflow-y: ${props => {
+    if (props.cols.length < 4) {
+      return `hidden`;
+    }
+    return `scroll`;
+  }};
   ::-webkit-scrollbar {
     border-radius: 5px;
     margin-left: 4px;

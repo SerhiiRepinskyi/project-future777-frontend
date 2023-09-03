@@ -2,7 +2,6 @@ import {
   CreateBoardWrap,
   HelpBox,
   HelpButton,
-  HelpIcon,
   HelpText,
   Image,
   Subtitle,
@@ -10,12 +9,11 @@ import {
   MembersButton,
 } from './SidebarContent-styled';
 import { Box } from '@mui/material';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 import styles from './SidebarCustomScroll.module.css';
 
 import AloeVera from '../../assets/images/aloe-vera.png';
-import sprite from '../../assets/images/sprite.svg';
 
 import { SidebarLogo } from 'components/Logo/Logo';
 import { ButtonSidebar } from 'components/Buttons/Button';
@@ -24,11 +22,16 @@ import { SidebarBoardList } from './SidebarBoardList';
 import LogoutBtn from 'components/logoutBtn/logoutBtn';
 import ModalBoard from 'components/ModalBoard/ModalBoard';
 import ModalHelp from 'components/ModalHelp/ModalHelp';
+
 import ModalMembers from 'components/ModalMembers/ModalMembers';
+
+import { SidebarHelpIcon } from './SidebarHelpIcon';
+
 
 export const SidebarContent = ({ isSidebarShown }) => {
   const [isModalBoardOpen, setIsModalBoardOpen] = useState(false);
   const [isModalHelpOpen, setIsModalHelpOpen] = useState(false);
+
   const [startAnimation, setStartAnimation] = useState(true);
   const [isModalMembersOpen, setIsModalMembersOpen] = useState(false);
 
@@ -45,6 +48,8 @@ export const SidebarContent = ({ isSidebarShown }) => {
     };
   }, []);
 
+
+
   const modalBoardStateChange = () => setIsModalBoardOpen(!isModalBoardOpen);
   const modalHelpStateChange = () => setIsModalHelpOpen(!isModalHelpOpen);
   const modalMembersStateChange = () => setIsModalMembersOpen(!isModalMembersOpen);
@@ -54,7 +59,6 @@ export const SidebarContent = ({ isSidebarShown }) => {
       <Box
         className={styles.container}
         sx={{
-          overflowX: 'hidden',
           pt: 3,
           pb: 3,
           display: 'flex',
@@ -110,9 +114,7 @@ export const SidebarContent = ({ isSidebarShown }) => {
               isSidebarShown={isSidebarShown}
               onClick={modalHelpStateChange}
             >
-              <HelpIcon startAnimation={startAnimation}>
-                <use href={sprite + '#icon-help'}></use>
-              </HelpIcon>
+              <SidebarHelpIcon />
               Need help?
             </HelpButton>
           </HelpBox>

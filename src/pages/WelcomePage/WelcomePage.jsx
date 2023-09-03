@@ -1,4 +1,3 @@
-
 import { StartPageLogo } from 'components/Logo/Logo';
 import {
   Container,
@@ -12,7 +11,7 @@ const WelcomePage = () => {
   return (
     <Container>
       <WelcomeImage />
-      <StartPageLogo />
+      <StartPageLogo style={{ margin: '24px 0 0 0' }} />
       <WelcomeTitle>
         Supercharge your productivity and take control of your tasks with Task
         Pro - Don't wait, start achieving your goals now!

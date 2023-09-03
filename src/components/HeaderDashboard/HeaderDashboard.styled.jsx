@@ -28,7 +28,7 @@ export const TitleDashBoard = styled.p`
   font-weight: 500;
   letter-spacing: -0.36px;
   margin: 0;
-  color: #ffffff;
+  color: var(--primary-text-color);
 `;
 
 export const FilterButton = styled.button`
@@ -40,14 +40,13 @@ export const FilterButton = styled.button`
   border: none;
   outline: none;
   opacity: 0.8;
-  color: #ffffffcc;
   cursor: pointer;
 `;
 export const TitleFilter = styled.p`
   font-size: 14px;
   font-weight: 500;
   letter-spacing: -0.28px;
-  color: #ffffffcc;
+  color: var(--secondary-text-color);
   margin-left: 8px;
   font-family: Poppins;
 `;

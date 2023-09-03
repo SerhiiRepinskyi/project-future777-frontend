@@ -27,6 +27,7 @@ const authAPISlice = createSlice({
     logout: (state, action) => {
       state.user = null;
       state.token = null;
+      state.isLoggedIn = false;
     },
     setError: (state, action) => {
       state.error = action.payload;

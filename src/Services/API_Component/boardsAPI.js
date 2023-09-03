@@ -4,6 +4,7 @@ import baseQuery from '../API_Helper/APIHelper';
 export const boardsAPI = createApi({
   reducerPath: 'boardsAPI',
   baseQuery: baseQuery,
+  tagTypes: ['boards', 'columns', 'cards'],
   endpoints: builder => ({
     getBoards: builder.query({
       query: () => ({
@@ -12,11 +13,19 @@ export const boardsAPI = createApi({
       providesTags: ['boards'],
     }),
 
+    getBoardContentById: builder.query({
+      query: ({ id, filter }) => ({
+        url: `boards/${id}/content`,
+        params: { priority: filter },
+      }),
+      providesTags: ['boards', 'cards'],
+    }),
+
     getBoardById: builder.query({
       query: id => ({
         url: `boards/${id}`,
       }),
-      providesTags: ['boards'],
+      providesTags: ['boards', 'columns', 'cards'],
     }),
 
     addBoards: builder.mutation({
@@ -37,20 +46,41 @@ export const boardsAPI = createApi({
     }),
 
     updateBoardById: builder.mutation({
-      query: ({boardId, FormData}) => ({
+      query: ({ boardId, FormData }) => ({
         url: `boards/${boardId}`,
         method: 'PATCH',
         body: FormData,
       }),
       invalidatesTags: ['boards'],
     }),
+
+    addColumn: builder.mutation({
+      query: ({ boardId, title }) => ({
+        url: `boards/${boardId}/columns`,
+        method: 'POST',
+        body: title,
+      }),
+      invalidatesTags: ['boards'],
+    }),
+
+    addCard: builder.mutation({
+      query: ({ columnId, cardData }) => ({
+        url: `columns/${columnId}/cards`,
+        method: 'POST',
+        body: cardData,
+      }),
+      invalidatesTags: ['boards', 'columns', 'cards'],
+    }),
   }),
 });
 
 export const {
   useGetBoardsQuery,
+  useGetBoardContentByIdQuery,
   useGetBoardByIdQuery,
   useAddBoardsMutation,
   useDeleteBoardByIdMutation,
   useUpdateBoardByIdMutation,
+  useAddColumnMutation,
+  useAddCardMutation,
 } = boardsAPI;

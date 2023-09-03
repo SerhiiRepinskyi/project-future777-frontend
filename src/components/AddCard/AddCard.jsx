@@ -4,6 +4,7 @@ import { format } from 'date-fns';
 import * as Yup from 'yup';
 import { API } from 'Services/API';
 import formatISO from 'date-fns/formatISO';
+import Notiflix from 'notiflix';
 
 import {
   FormStyled,
@@ -20,6 +21,12 @@ import DropDownIcon from 'components/Icons/DropDownIcon/DropDownIcon';
 import Popup from 'components/Popup/Popup';
 import DatePickerCmponent from 'components/DatePicker/DatePicker';
 import ModalLayout from '../ModalLayout/ModalLayout';
+
+Notiflix.Notify.init({
+  success: {
+    background: 'var(--button-bg-color)',
+  },
+});
 
 
 const AddCard = ({
@@ -66,10 +73,19 @@ const AddCard = ({
     };
 
     try {
-      await addCards({columnId, cardData} );
+      await addCards({ columnId, cardData });
+
+      Notiflix.Notify.success('Your card successfully added');
+
     } catch (error) {
-      console.log(error);
+      if (error.status === 400) {
+        Notiflix.Notify.failure('All field must be filled in');
+      } else {
+        console.log('An error occurred:', error.data.message);
+      }
     }
+    setDateValue('');
+    setDate('');
     formik.handleReset();
     close();
   };
@@ -86,17 +102,14 @@ const AddCard = ({
 
   const formik = useFormik({
     initialValues: { title: '', description: '' },
-    onSubmit: ({title, description} ) =>
-      handleSubmit(title, description),
+    onSubmit: ({ title, description }) => handleSubmit(title, description),
     validationSchema,
   });
 
   useEffect(() => {
     const currentDate = format(new Date(), "'Today,' LLLL d");
     setDateValue(currentDate);
-
-    console.log('dateFns :>> ', currentDate);
-  }, []);
+  }, [open]);
 
   return (
     <ModalLayout title={modalType} open={open} handleClose={handleClose}>

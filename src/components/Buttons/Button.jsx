@@ -23,14 +23,16 @@ export const ButtonWithIcon = ({ title, onClick, type }) => {
         borderRadius: '8px',
         letterSpacing: '-0.02em',
         fontSize: '14px',
-        background: '#BEDBB0',
+        // background: '#BEDBB0',
+        background: ' var(--button-bg-color)',
         lineHeight: '21px',
         fontWeight: '500',
         fontStyle: 'normal',
         width: '100%',
         height: '56px',
         '&:hover': {
-          background: '#9DC888',
+          // background: '#9DC888',
+          background: 'var( --button-bg-color-hover)',
         },
       }}
     >
@@ -38,14 +40,14 @@ export const ButtonWithIcon = ({ title, onClick, type }) => {
         sx={{
           width: '28px',
           height: '28px',
-          background: '#161616',
+          background: 'var(--icon-plus-bg-color)',
           borderRadius: '6px',
           display: 'flex',
           justifyContent: 'center',
           alignItems: 'center',
         }}
       >
-        <svg width="14" height="14" stroke="#ffffff">
+        <svg width="14" height="14" stroke="var(--icon-plus-color)">
           <use href={sprite + '#icon-add'}></use>
         </svg>
       </Box>
@@ -68,17 +70,18 @@ export const ButtonWithoutIcon = ({ title, onClick, type }) => {
         alignItems: 'center',
         textTransform: 'none',
         borderRadius: '8px',
-        marginTop: '40px',
+        marginTop: '24px',
         letterSpacing: '-0.02em',
         fontSize: '14px',
-        background: '#BEDBB0',
+        // background: '#BEDBB0',
+        background: 'var(--button-bg-color)',
         lineHeight: '21px',
         fontWeight: '500',
         fontStyle: 'normal',
         width: '100%',
         height: '56px',
         '&:hover': {
-          background: '#BEDBB0',
+          background: 'var( --button-bg-color-hover)',
         },
       }}
     >
@@ -97,21 +100,21 @@ export const ButtonAdd = ({ onClick }) => {
       sx={{
         display: 'flex',
         gap: '8px',
-        color: '#FFFFFF',
+        color: 'var(--primary-text-color)',
         fontFamily: 'Poppins, sans-serif',
         alignItems: 'center',
         textTransform: 'none',
         borderRadius: '8px',
         letterSpacing: '-0.02em',
         fontSize: '14px',
-        background: '#121212',
+        background: 'var(--button-add-bg-color)',
         lineHeight: '21px',
         fontWeight: '500',
         fontStyle: 'normal',
         width: '334px',
         height: '56px',
         '&:hover': {
-          background: '#121212',
+          background: 'var(--button-add-bg-color)',
         },
       }}
     >
@@ -119,14 +122,14 @@ export const ButtonAdd = ({ onClick }) => {
         sx={{
           width: '28px',
           height: '28px',
-          background: 'white',
+          background: 'var(--button-add-box-color)',
           borderRadius: '6px',
           display: 'flex',
           justifyContent: 'center',
           alignItems: 'center',
         }}
       >
-        <svg width="14" height="14" stroke="#121212">
+        <svg width="14" height="14" stroke="var(--icon-add-color)">
           <use href={sprite + '#icon-add'}></use>
         </svg>
       </Box>
@@ -158,4 +161,3 @@ export const ButtonSidebar = ({ onClick }) => {
     </IconButton>
   );
 };
-

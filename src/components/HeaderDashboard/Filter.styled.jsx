@@ -33,7 +33,7 @@ export const Label = styled.label`
   /* justify-content: center; */
   gap: 8px;
   cursor: pointer;
-  color: #ffffff80;
+  color: var(--secondary-text-color);
   font-size: 12px;
   font-weight: 400;
   letter-spacing: -0.24px;

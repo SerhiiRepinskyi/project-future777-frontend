@@ -7,7 +7,7 @@ const slideToRight = keyframes`
 `;
 
 const slideToLeft = keyframes`
-  0% {transform: translateX(250px)}
+  0% {transform: translateX(150px)}
   100% {transform: translateX(0px)}
 `;
 
@@ -32,14 +32,14 @@ const shakeAnimation = keyframes`
 `;
 
 export const Subtitle = styled('p')(({ isSidebarShown }) => ({
-  margin: '0px',
+  display: 'inline-block',
   color: 'var(--sidebar-secondary-text-color)',
   fontFamily: 'Poppins',
   fontSize: '12px',
   fontWeight: 400,
   letterSpacing: '-0.24px',
 
-  transform: 'translateX(250px)',
+  transform: 'translateX(150px)',
   animation: isSidebarShown ? `${slideToLeft} 400ms` : 'none',
   animationTimingFunction: 'ease',
 
@@ -100,7 +100,7 @@ export const HelpText = styled('p')(({ isSidebarShown }) => ({
   fontWeight: 400,
   letterSpacing: -0.15,
   '& span': {
-    color: 'var(--button-bg-color)',
+    color: 'var(--sidebar-taskpro-link-color)',
   },
 
   transform: 'translateX(-250px)',

@@ -1,6 +1,5 @@
 import {
   BoardItemCurrentIcon,
-  BoardItemIcon,
   BoardItemTitle,
   BoardItemTitleWrap,
   BoardItemWrap,
@@ -14,13 +13,16 @@ import { Box, List, ListItem, ListItemButton } from '@mui/material';
 import { useEffect, useState } from 'react';
 import { API } from 'Services/API';
 import ModalBoard from 'components/ModalBoard/ModalBoard';
+import { SidebarBoardItemIcon } from './SidebarBoardItemIcon';
 
-export const SidebarBoardItem = ({ title, icon, id, current }) => {
+export const SidebarBoardItem = ({ board, current}) => {
+  const { _id: id, iconId, title } = board;
+
+
   const [isHovered, setIsHovered] = useState(false);
   const [titleWidth, setTitleWidth] = useState(0);
   const [titleWrapWidth, setTitleWrapWidth] = useState(130);
   const [screenWidth, setScreenWidth] = useState(window.innerWidth);
-  const [startAnimation, setStartAnimation] = useState(true);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const [deleteBoard] = API.useDeleteBoardByIdMutation();
@@ -28,20 +30,6 @@ export const SidebarBoardItem = ({ title, icon, id, current }) => {
   const handleResize = debounce(() => {
     setScreenWidth(window.innerWidth);
   }, 200);
-
-  useEffect(() => {
-    const randomNumber = Math.floor(Math.random() * (15000 - 7000 + 1)) + 7000;
-    const interval = setInterval(() => {
-      setStartAnimation(true);
-      setTimeout(() => {
-        setStartAnimation(false);
-      }, 1000);
-    }, randomNumber);
-
-    return () => {
-      clearInterval(interval);
-    };
-  }, []);
 
   useEffect(() => {
     window.addEventListener('resize', handleResize);
@@ -93,12 +81,7 @@ export const SidebarBoardItem = ({ title, icon, id, current }) => {
             alignItems: 'center',
           }}
         >
-          <BoardItemIcon
-            startAnimation={startAnimation}
-            sx={{ opacity: current ? 1 : 0.5 }}
-          >
-            <use href={sprite + icon}></use>
-          </BoardItemIcon>
+          <SidebarBoardItemIcon current={current} iconId={iconId} />
 
           <BoardItemTitleWrap
             sx={{
@@ -204,7 +187,7 @@ export const SidebarBoardItem = ({ title, icon, id, current }) => {
       </BoardItemWrap>
 
       <ModalBoard
-        boardId={id}
+        board={board}
         boardTitle={'Edit board'}
         open={isModalOpen}
         handleClose={modalStateChange}

@@ -53,13 +53,11 @@ export const InputStyled = styled.input`
 export const TransparentSVG = styled.svg`
   width: 18px;
   height: 18px;
-  stroke: rgba(255, 255, 255, 0.5);
+  // stroke: rgba(255, 255, 255, 0.5);
   cursor: pointer;
 
   &:hover,
   &:focus {
-    // width: 24px;
-    // height: 24px;
     stroke: #bedbb0;
   }
 `;
@@ -67,7 +65,7 @@ export const TransparentSVG = styled.svg`
 export const UlStyled = styled.ul`
   display: flex;
   flex-wrap: wrap;
-  gap: 8px;
+  gap: 6px;
   margin: 0;
   padding: 0;
   list-style: none;
@@ -77,19 +75,27 @@ export const UlStyled = styled.ul`
 export const UlBgStyled = styled.ul`
   display: flex;
   flex-wrap: wrap;
-  gap: 4px;
+  gap: 2px;
   margin: 0;
   padding: 0;
   list-style: none;
   margin-bottom: 14px;
-  width: 270px;
+  width: 260px;
 `;
 
 export const LiStyled = styled.li`
   display: flex;
+  justify-content: center;
+  align-items: center;
   width: 28px;
   height: 28px;
   border-radius: 14px;
+
+  &:hover,
+  &:focus {
+    border-radius: 5px;
+    background-color: #bedbb0;
+  }
 `;
 
 export const ImgStyled = styled.img`
@@ -99,15 +105,18 @@ export const ImgStyled = styled.img`
   object-position: center;
   border-radius: 5px;
   cursor: pointer;
-
-  &:hover,
-  &:focus {
-    border: 1px solid #bedbb0;
-  }
 `;
 
 export const LiIconsStyled = styled.li`
   display: flex;
-  width: 18px;
-  height: 18px;
+  width: 20px;
+  height: 20px;
+  align-items: center; 
+  justify-content: center;
+
+  &:hover,
+  &:focus {
+    border-radius: 5px;
+    background-color: rgba(190, 219, 176, 0.2);
+  }
 `;

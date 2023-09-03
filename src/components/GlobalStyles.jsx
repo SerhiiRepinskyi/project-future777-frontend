@@ -72,7 +72,7 @@ export const GlobalStyles = () => {
           --sidebar-border-color: rgba(255, 255, 255, 0.1);
           --sidebar-icon-logout-color: rgba(190, 219, 176, 1);
           --sidebar-icon-logout-color-HOVER-FOCUS: #9dc888;
-          --sidebar-icon-plus-bg-color: rgba(190, 219, 176, 1);
+          --sidebar-icon-plus-bg-color: #BEDBB0;
           --sidebar-icon-plus-bg-color-HOVER-FOCUS: #9dc888;
           --sidebar-icon-plus-color: rgba(18, 18, 18, 1);
           --sidebar-scroll-bg-color: rgba(255, 255, 255, 0.08);
@@ -81,16 +81,39 @@ export const GlobalStyles = () => {
           --sidebar-board-item-bg-color-CURRENT: rgba(31, 31, 31, 0.4);
           --sidebar-board-item-bg-color-AFTER: #bedbb0;
           --default-screen-page-link-color: #bedbb0;
+          --sidebar-taskpro-link-color: #bedbb0;
           /* DO NOT TOUCH THIS VARIABLES OR I WILL FIND YOU!!!! */
 
           --header-theme-color: rgba(255, 255, 255, 0.8); //white
           --header-bg-color: rgba(22, 22, 22, 1); //black
 
           --button-bg-color: rgba(190, 219, 176, 1); //light green
+          --button-bg-color-hover: #9dc888; //green
+
+          --button-add-bg-color: #121212; //black
+          --button-add-box-color: #ffffff; //white
+          --icon-add-color: #121212; //black
+
           --icon-plus-color: rgba(255, 255, 255, 1); //white
           --icon-plus-bg-color: rgba(22, 22, 22, 1); //black
 
           --modal-bg-color: rgba(21, 21, 21, 1); //black
+
+          --screen-page-scrollbar-bg-color: rgba(255, 255, 255, 0.2);
+          --screen-page-scrollbar-thumb-color: rgba(18, 18, 18, 1);
+          --screen-page-scrollbar-thumb-color-HOVER: #9dc888;
+
+          //----------------Yuliya-style--------------------------//
+
+          --avatar-bcg-color: rgba(31, 31, 31, 1); //dark-grey
+          --avatar-fill-color: rgba(21, 21, 21, 1); //black
+          --icon-plus-bcg: rgba(190, 219, 176, 1); //light-green
+          --icon-add-color: rgba(22, 22, 22, 1); // black
+          --input-border-color: rgba(190, 219, 176, 1); //green
+          --input-bcg-color: rgba(31, 31, 31, 1);
+          --btn-text-color: rgba(22, 22, 22, 1); // black
+
+          //------------------------------------------//
         }
 
         .light {
@@ -111,7 +134,7 @@ export const GlobalStyles = () => {
           --sidebar-border-color: rgba(22, 22, 22, 0.1);
           --sidebar-icon-logout-color: rgba(190, 219, 176, 1);
           --sidebar-icon-logout-color-HOVER-FOCUS: #9dc888;
-          --sidebar-icon-plus-bg-color: rgba(190, 219, 176, 1);
+          --sidebar-icon-plus-bg-color: #BEDBB0;
           --sidebar-icon-plus-bg-color-HOVER-FOCUS: #9dc888;
           --sidebar-icon-plus-color: rgba(18, 18, 18, 1);
           --sidebar-scroll-bg-color: rgba(0, 0, 0, 0.08);
@@ -120,16 +143,38 @@ export const GlobalStyles = () => {
           --sidebar-board-item-bg-color-CURRENT: rgba(246, 246, 247, 0.4);
           --sidebar-board-item-bg-color-AFTER: #bedbb0;
           --default-screen-page-link-color: #bedbb0;
+          --sidebar-taskpro-link-color: #bedbb0;
           /* DO NOT TOUCH THIS VARIABLES OR I WILL FIND YOU!!!! */
 
           --header-theme-color: rgba(22, 22, 22, 0.8); //black
           --header-bg-color: rgba(252, 252, 252, 1); //white
 
           --button-bg-color: rgba(190, 219, 176, 1); //light green
+          --button-bg-color-hover: #9dc888; //green
           --icon-plus-color: rgba(255, 255, 255, 1); //white
           --icon-plus-bg-color: rgba(22, 22, 22, 1); //black
 
+          --button-add-bg-color: #ffffff; //white
+          --button-add-box-color: #161616; //black
+          --icon-add-color: #ffffff; //white
+
           --modal-bg-color: rgba(252, 252, 252, 1); //white
+
+          --screen-page-scrollbar-bg-color: rgba(232, 232, 232, 1);
+          --screen-page-scrollbar-thumb-color: rgba(22, 22, 22, 0.1);
+          --screen-page-scrollbar-thumb-color-HOVER: #9dc888;
+
+          //----------------Yuliya-style--------------------------//
+
+          --avatar-bcg-color: rgba(246, 246, 247, 1); // light-grey
+          --avatar-fill-color: rgba(255, 255, 255, 1); //white
+          --icon-plus-bcg: rgba(190, 219, 176, 1); //light-green
+          --icon-add-color: rgba(22, 22, 22, 1); // black
+          --input-border-color: rgba(190, 219, 176, 1); //green
+          --input-bcg-color: rgba(252, 252, 252, 1);
+          --btn-text-color: rgba(22, 22, 22, 1); // black
+
+          //------------------------------------------//
         }
 
         .violet {
@@ -150,7 +195,7 @@ export const GlobalStyles = () => {
           --sidebar-border-color: rgba(255, 255, 255, 0.1);
           --sidebar-icon-logout-color: rgba(255, 255, 255, 1);
           --sidebar-icon-logout-color-HOVER-FOCUS: #b8bcfd;
-          --sidebar-icon-plus-bg-color: rgba(184, 188, 253, 1);
+          --sidebar-icon-plus-bg-color: #B8BCFD;
           --sidebar-icon-plus-bg-color-HOVER-FOCUS: #979cea;
           --sidebar-icon-plus-color: rgba(255, 255, 255, 1);
           --sidebar-scroll-bg-color: rgba(255, 255, 255, 0.08);
@@ -159,16 +204,38 @@ export const GlobalStyles = () => {
           --sidebar-board-item-bg-color-CURRENT: rgba(255, 255, 255, 0.2);
           --sidebar-board-item-bg-color-AFTER: #ffffff;
           --default-screen-page-link-color: #5255bc;
+          --sidebar-taskpro-link-color: #5255bc;
           /* DO NOT TOUCH THIS VARIABLES OR I WILL FIND YOU!!!! */
 
           --header-theme-color: rgba(22, 22, 22, 0.8); //black
           --header-bg-color: rgba(255, 255, 255, 1); //white
 
-          --button-bg-color: rgba(82, 85, 188, 1); //blue
+          --button-bg-color-hover: rgba(82, 85, 188, 1); //blue
+          --button-bg-color: #7b7ede; //hover blue
           --icon-plus-color: rgba(22, 22, 22, 1); //black
           --icon-plus-bg-color: rgba(255, 255, 255, 1); //white
 
+          --button-add-bg-color: #ffffff; //white
+          --button-add-box-color: #5255bc; //fiolet
+          --icon-add-color: #ffffff; //white
+
           --modal-bg-color: rgba(252, 252, 252, 1); //white
+
+          --screen-page-scrollbar-bg-color: rgba(255, 255, 255, 1);
+          --screen-page-scrollbar-thumb-color: rgba(184, 188, 253, 1);
+          --screen-page-scrollbar-thumb-color-HOVER: rgba(82, 85, 188, 1);
+
+          //----------------Yuliya-style--------------------------//
+
+          --avatar-bcg-color: rgba(236, 237, 253, 1); // light-grey
+          --avatar-fill-color: rgba(255, 255, 255, 1); //white
+          --icon-plus-bcg: rgba(236, 237, 253, 1); //light-purple
+          --icon-add-color: rgba(22, 22, 22, 1); // black
+          --input-border-color: rgba(82, 85, 188, 1); //purple
+          --input-bcg-color: rgba(252, 252, 252, 1);
+          --btn-text-color: rgba(255, 255, 255, 1); //white
+
+          //------------------------------------------//
         }
       `}
     />

@@ -1,5 +1,4 @@
 import styled from '@emotion/styled';
-import RadioButtonIcon from '@mui/material/Radio';
 
 export const ComponentWrapper = styled.div`
   padding: 0px;
@@ -16,7 +15,7 @@ export const FormStyled = styled.form`
 
 export const InputStyled = styled.input`
   resize: none;
-  color: #ffffff;
+  color: var(--primary-text-color);
   padding: 14px 14px;
   background-color: transparent;
   border: 1px solid #bedbb0;
@@ -26,7 +25,7 @@ export const InputStyled = styled.input`
     outline: none;
   }
   ::placeholder {
-    color: #ffffff;
+    color: var(--primary-text-color);
     opacity: 30%;
   }
 `;
@@ -34,7 +33,7 @@ export const InputStyled = styled.input`
 export const TextareaStyled = styled.textarea`
   display: flex;
   min-height: 155px;
-  color: #ffffff;
+  color: var(--primary-text-color);
   resize: none;
   padding: 14px 14px;
   background-color: transparent;
@@ -46,7 +45,7 @@ export const TextareaStyled = styled.textarea`
     outline: none;
   }
   ::placeholder {
-    color: #ffffff;
+    color: var(--primary-text-color);
     opacity: 30%;
   }
 `;
@@ -54,21 +53,6 @@ export const TextareaStyled = styled.textarea`
 export const LabelColorBox = styled.div`
   display: flex;
   gap: 4px;
-`;
-
-export const RadioIcon = styled(RadioButtonIcon)`
-  width: 14px;
-  height: 14px;
-  border-radius: 50%;
-  background-color: #8fa1d0;
-`;
-
-export const RadioIconChecked = styled(RadioButtonIcon)`
-  width: 14px;
-  height: 14px;
-  border-radius: 50%;
-  border: solid 2px #8fa1d0;
-  background-color: none;
 `;
 
 export const SubWrapper = styled.div`
@@ -86,13 +70,13 @@ export const DateWrapper = styled.div`
 `;
 
 export const DateText = styled.p`
-  color: #bedbb0;
+  color: var(--default-screen-page-link-color);
   font-size: 14px;
   margin: 0;
 `;
 
 export const SubTitle = styled.p`
-  color: #ffffff;
+  color: var(--primary-text-color);
   font-size: 12px;
   opacity: 50%;
   margin: 0;
