@@ -17,8 +17,11 @@ import {
 } from 'redux/auth/authAPISlice';
 import Loader from 'components/Loader/Loader';
 import { useNavigate } from 'react-router-dom';
-import { loginValidationSchema } from 'validationSchemas/validationSchema';
 import { Report } from 'notiflix';
+import { loginValidationSchema } from 'validationSchemas/loginValidationSchema';
+
+
+
 
 export const LoginForm = () => {
   const navigate = useNavigate();
