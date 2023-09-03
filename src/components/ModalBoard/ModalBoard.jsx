@@ -34,14 +34,12 @@ const titleStyle = {
   letterSpacing: -0.36,
 };
 
-const ModalBoard = ({ board = {}, boardTitle, open, handleClose }) => {
+const ModalBoard = ({ board, boardTitle, open, handleClose }) => {
   const dispatch = useDispatch();
 
   const [inputValue, setInputValue] = useState(board?.title || '');
   const [iconId, setIconId] = useState(board?.iconId || arrIcons[0]);
-  const [backgroundURL, setBackgroundURL] = useState(
-    board?.backgroundURL || 'default background'
-  );
+  const [background, setBackground] = useState(board?.background || 0);
 
   const [addBoard] = API.useAddBoardsMutation();
   const [editBoard] = API.useUpdateBoardByIdMutation();
@@ -52,10 +50,8 @@ const ModalBoard = ({ board = {}, boardTitle, open, handleClose }) => {
     try {
       const FormData = {
         title,
-        backgroundURL,
+        background,
         iconId,
-        icon: 0,
-        background: 0,
       };
 
       if (boardTitle === 'New board') {
@@ -65,31 +61,39 @@ const ModalBoard = ({ board = {}, boardTitle, open, handleClose }) => {
         navigate(`/home/${newBoardId}`);
         setInputValue('');
         setIconId(arrIcons[0]);
-        setBackgroundURL('default background');
-           Report.success(
-             'Board added successfully',
-             'You can use your board and add columns to it',
-             'Ok'
-           );
+        setBackground(0);
+        Report.success(
+          'Board added successfully',
+          'You can use your board and add columns to it',
+          'Ok'
+        );
       }
       if (boardTitle === 'Edit board') {
-        const response = await editBoard({ boardId: board._id, FormData });
-        dispatch(setBoardResponse(response));
-          Report.success(
-            'Board edited successfully',
-            'All changes have been made',
+        if (
+          board.title === inputValue &&
+          board.iconId === iconId &&
+          board.background === background
+        ) {
+          Report.warning(
+            'No changes have been selected',
+            'Edit any field to apply the changes',
             'Ok'
           );
+          return;
+        }
+        const response = await editBoard({ boardId: board._id, FormData });
+        dispatch(setBoardResponse(response));
+        Report.success(
+          'Board edited successfully',
+          'All changes have been made',
+          'Ok'
+        );
       }
       handleClose();
-    } catch (error) {
-      console.log(error);
+    } catch {
+      Report.failure("Board wasn't edited", 'Changes have not been made', 'Ok');
     }
-    Report.success(
-      'Board added successfully',
-      'You can use your board and add columns to it',
-      'Ok'
-    );
+
     formik.handleReset();
   };
 
@@ -121,7 +125,7 @@ const ModalBoard = ({ board = {}, boardTitle, open, handleClose }) => {
   });
 
   const formik = useFormik({
-    initialValues: { title: '' },
+    initialValues: { title: inputValue },
     onSubmit: ({ title }) => handleSubmit(title),
     validationSchema,
   });
@@ -175,9 +179,9 @@ const ModalBoard = ({ board = {}, boardTitle, open, handleClose }) => {
           </Typography>
           <UlBgStyled>
             <LiStyled
-              key={'default background'}
+              key={0}
               onClick={() => {
-                setBackgroundURL('default background');
+                setBackground(0);
               }}
             >
               <div
@@ -190,9 +194,7 @@ const ModalBoard = ({ board = {}, boardTitle, open, handleClose }) => {
                   backgroundColor: '#1F1F1F',
                   borderRadius: '5px',
                   border: `2px solid ${
-                    backgroundURL === 'default background'
-                      ? 'white'
-                      : 'transparent'
+                    background === 0 ? 'white' : 'transparent'
                   }`,
                   cursor: 'pointer',
                 }}
@@ -208,12 +210,12 @@ const ModalBoard = ({ board = {}, boardTitle, open, handleClose }) => {
                 </svg>
               </div>
             </LiStyled>
-            {arrBG.map(bg => {
+            {arrBG.map((bg, index) => {
               return (
                 <LiStyled
-                  key={bg}
+                  key={index + 1}
                   onClick={() => {
-                    setBackgroundURL(bg);
+                    setBackground(index + 1);
                   }}
                 >
                   <ImgStyled
@@ -221,7 +223,7 @@ const ModalBoard = ({ board = {}, boardTitle, open, handleClose }) => {
                     alt="background picture"
                     style={{
                       border: `2px solid ${
-                        backgroundURL === bg ? 'white' : 'transparent'
+                        background === index + 1 ? 'white' : 'transparent'
                       }`,
                     }}
                   />
@@ -235,9 +237,9 @@ const ModalBoard = ({ board = {}, boardTitle, open, handleClose }) => {
             type={'submit'}
             // onClick={handleClose}
             onClick={() => {
-             if (formik.values.title === '' && !inputValue) {
-               Notiflix.Notify.warning('Title field must be filled in');
-             }
+              if (formik.values.title === '' && !inputValue) {
+                Notiflix.Notify.warning('Title field must be filled in');
+              }
             }}
           />
         </FormStyled>
