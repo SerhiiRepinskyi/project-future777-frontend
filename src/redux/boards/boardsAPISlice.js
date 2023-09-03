@@ -49,7 +49,7 @@ const boardsAPISlice = createSlice({
       state.filter = action.payload;
     },
   },
- // OD: extraReducers: {},
+ 
 });
 
 export const { setError,setFilter, clearError, setBoardData, setAllBoards, setBoardId, setBoardResponse } = boardsAPISlice.actions;
