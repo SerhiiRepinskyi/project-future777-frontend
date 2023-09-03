@@ -11,6 +11,8 @@ import {
   LiIconsStyled,
 } from './ModalBoard.styled';
 
+import Notiflix from 'notiflix';
+import { Report } from 'notiflix';
 import sprite from '../../assets/images/sprite.svg';
 import * as Yup from 'yup';
 import { ButtonWithIcon } from 'components/Buttons/Button';
@@ -19,7 +21,6 @@ import { useState } from 'react';
 import { arrIcons } from './data';
 import { arrBG } from './data';
 import { useDispatch } from 'react-redux';
-// import { selectIsLoggedIn } from 'redux/auth/authSelectors';
 import { API } from 'Services/API';
 import { setBoardResponse } from 'redux/boards/boardsAPISlice';
 import { useNavigate } from 'react-router-dom';
@@ -74,6 +75,11 @@ const ModalBoard = ({ board = {}, boardTitle, open, handleClose }) => {
     } catch (error) {
       console.log(error);
     }
+    Report.success(
+      'Board added successfully',
+      'You can use your board and add columns to it',
+      'Ok'
+    );
     formik.handleReset();
   };
 
@@ -84,15 +90,29 @@ const ModalBoard = ({ board = {}, boardTitle, open, handleClose }) => {
 
   const validationSchema = Yup.object({
     title: Yup.string()
-      .min(2, 'Must be more then 2 symbols')
+      .min(2, 'Must be more than 2 symbols')
+      .max(50, 'Must be less than 50 symbols')
       .required('Title is required')
       .matches(
-        /^(\w*)$/,
-        'Title may contain only letters, apostrophe, dash and spaces.'
+        /^[a-zA-Z\s'-]*$/,
+        'Title may contain only English letters, apostrophe, dash, spaces, and single quotes.'
+      )
+      .test(
+        'is-not-cyrillic',
+        'Title must not contain Cyrillic characters',
+        function (value) {
+          if (/[а-яА-Я]/.test(value)) {
+            Notiflix.Notify.warning(
+              'Title field must not contain enemy characters!'
+            );
+
+            return false;
+          }
+          return true;
+        }
       ),
     description: Yup.string(),
   });
-
   const formik = useFormik({
     initialValues: { title: '' },
     onSubmit: ({ title }) => handleSubmit(title),
@@ -207,6 +227,10 @@ const ModalBoard = ({ board = {}, boardTitle, open, handleClose }) => {
             title={boardTitle === 'New board' ? 'Create' : 'Edit'}
             type={'submit'}
             // onClick={handleClose}
+            onClick={() => {
+              formik.values.title === '' &&
+                Notiflix.Notify.warning('Title field must be filled in');
+            }}
           />
         </FormStyled>
       </ModalLayout>
