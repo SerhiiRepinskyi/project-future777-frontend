@@ -6,6 +6,7 @@ import {
   Image,
   Subtitle,
   TitleCreate,
+  MembersButton,
 } from './SidebarContent-styled';
 import { Box } from '@mui/material';
 import { useState } from 'react';
@@ -22,13 +23,16 @@ import LogoutBtn from 'components/logoutBtn/logoutBtn';
 import ModalBoard from 'components/ModalBoard/ModalBoard';
 import ModalHelp from 'components/ModalHelp/ModalHelp';
 import { SidebarHelpIcon } from './SidebarHelpIcon';
+import ModalMembers from 'components/ModalMembers/ModalMembers';
 
 export const SidebarContent = ({ isSidebarShown }) => {
   const [isModalBoardOpen, setIsModalBoardOpen] = useState(false);
   const [isModalHelpOpen, setIsModalHelpOpen] = useState(false);
+  const [isModalMembersOpen, setIsModalMembersOpen] = useState(false);
 
   const modalBoardStateChange = () => setIsModalBoardOpen(!isModalBoardOpen);
   const modalHelpStateChange = () => setIsModalHelpOpen(!isModalHelpOpen);
+  const modalMembersStateChange = () => setIsModalMembersOpen(!isModalMembersOpen);
 
   return (
     <>
@@ -45,7 +49,13 @@ export const SidebarContent = ({ isSidebarShown }) => {
       >
         <Box>
           <Box sx={{ pl: { 0: 1.75, 768: 3 }, pr: { 0: 1.75, 768: 3 } }}>
+          <MembersButton
+              type="button"
+              isSidebarShown={isSidebarShown}
+              onClick={modalMembersStateChange}
+            >
             <SidebarLogo sx={{ mb: 7.5 }} isSidebarShown={isSidebarShown} />
+            </MembersButton>
 
             <Subtitle sx={{ mb: 1 }} isSidebarShown={isSidebarShown}>
               My boards
@@ -98,6 +108,8 @@ export const SidebarContent = ({ isSidebarShown }) => {
         handleClose={modalBoardStateChange}
       />
       <ModalHelp open={isModalHelpOpen} handleClose={modalHelpStateChange} />
+
+      <ModalMembers open={isModalMembersOpen} handleClose={modalMembersStateChange}/>
     </>
   );
 };
