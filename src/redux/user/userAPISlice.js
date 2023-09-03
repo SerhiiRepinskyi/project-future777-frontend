@@ -2,42 +2,55 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
   userName: null,
-  userData:{},
+  userData: {},
   theme: null,
   avatarURL: null,
   error: null,
+  user: null,
 };
 
 const userAPISlice = createSlice({
-    name: 'user',
-    initialState,
-    reducers: {
-        setUserData: (state, action) => {
-            const { userName, theme, avatarURL } = action.payload;
-            state.userName = userName;
-            state.theme = theme;
-            state.avatarURL = avatarURL;
-        },
-        setAvatarURL: (state, action) => {
-            const avatarURL = action.payload.path;
-            state.avatarURL = avatarURL;
-        },
-        setTheme: (state, action) => {
-            const theme = action.theme;
-            state.theme = theme;
-        },
-        setError: (state, action) => {
-            state.error = action.payload;
-        },
-        setUserNone: (state, action) => {
-            state.userData = {};
-            state.theme = null;
-            state.avatarURL = null;
-            state.error = null;
-            
-        },
+  name: 'user',
+  initialState,
+  reducers: {
+    setUserData: (state, action) => {
+      const { userName, theme, avatarURL } = action.payload;
+      state.userName = userName;
+      state.theme = theme;
+      state.avatarURL = avatarURL;
     },
-    
+    setAvatarURL: (state, action) => {
+      const avatarURL = action.payload.path;
+      state.avatarURL = avatarURL;
+    },
+    setTheme: (state, action) => {
+      const theme = action.theme;
+      state.theme = theme;
+    },
+    setError: (state, action) => {
+      state.error = action.payload;
+    },
+    setUserNone: (state, action) => {
+      state.userData = {};
+      state.theme = null;
+      state.avatarURL = null;
+      state.error = null;
+    },
+    setUser: (state, action) => {
+      state.user = action.payload.user;
+    },
+
+    setUserRefresh: (state, action) => {
+      state.user = action.payload;
+      state.isLoggedIn = true;
+    },
+
+    setAvatar: (state, action) => {
+      if (state.user) {
+        state.user.avatarURL = action.payload;
+      }
+    },
+  },
 });
 //   extraReducers: (builder) => {
 //     builder
@@ -88,7 +101,10 @@ export const {
   setUserData,
   setAvatarURL,
   setTheme,
+  setUser,
   setError,
+  setUserRefresh,
+  setAvatar,
 } = userAPISlice.actions;
 
 

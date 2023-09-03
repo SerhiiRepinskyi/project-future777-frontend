@@ -12,19 +12,19 @@ const boardsAPISlice = createSlice({
   name: 'boards',
   initialState,
   reducers: {
-    
+
     setAllBoards: (state, action) => {
       state.boards = action.payload;
-      
+
     },
 
     setBoardResponse: (state, action) => {
-      state.boards.push(action.payload); 
+      state.boards.push(action.payload);
     },
 
     setBoardId: (state, action) => {
-      const { id } = action.payload;
-      state.id = id;
+      const { boardId } = action.payload;
+      state.boardId = boardId;
     },
 
     setBoardData: (state, action) => {
@@ -44,7 +44,7 @@ const boardsAPISlice = createSlice({
       state.error = null;
     },
   },
-  extraReducers: {},
+ // OD: extraReducers: {},
 });
 
 export const { setError, clearError, setBoardData, setAllBoards, setBoardId, setBoardResponse } = boardsAPISlice.actions;
