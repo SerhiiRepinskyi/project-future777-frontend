@@ -17,9 +17,6 @@ export const userAPI = createApi({
         url: 'users/avatar',
         method: 'PATCH',
         body: formData,
-        headers: {
-          'Content-Type': `multipart/form-data>`,
-        },
       }),
       invalidatesTags: ['User'],
     }),
