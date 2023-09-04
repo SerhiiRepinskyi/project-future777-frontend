@@ -1,27 +1,12 @@
 import styled from '@emotion/styled';
+import { styled as MUI } from '@mui/material/styles';
 
-export const ComponentWrapper = styled.div`
-  padding: 0px;
-  display: flex;
-  flex-direction: column;
-  font-family: Poppins;
-  
-`;
-export const Box = styled.div`
-  padding: 0px;
-  display: flex;
-  flex-direction: column;
-  font-family: Poppins;
-  
-`;
-
-
-export const FormStyled = styled.form`
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 0px;
-  
-`;
+export const FormStyled = MUI('form')({
+  display: 'flex',
+  flexDirection: 'column',
+  marginBottom: '0px',
+  overflow: 'hidden',
+});
 
 const inputStyles = `
   width: 100%;
@@ -76,7 +61,7 @@ const inputStyles = `
 export const InputStyled = styled.input`
   ${inputStyles}
   box-shadow: 0 0 0px 1000px var(--modal-bg-color) inset;
- &::placeholder {
+  &::placeholder {
     color: var(--secondary-text-color) !important;
     font-size: 14px;
     line-height: 21px;
@@ -90,23 +75,20 @@ export const InputStyled = styled.input`
     background-color: var(--modal-bg-color) !important;
     border: 1px solid var(--button-bg-color);
   }
-  
 `;
 
 export const TextareaStyled = styled.textarea`
   ${inputStyles}
-   font-size: 14px;
-    line-height: 21px !important;
-    font-family: 'Poppins';
-    letter-spacing: -0.28px !important;
+  font-size: 14px;
+  line-height: 21px !important;
+  font-family: 'Poppins';
+  letter-spacing: -0.28px !important;
   min-height: 155px;
   resize: none;
   text-align: top;
-
 `;
 
 export const LabelColorBox = styled.div`
   display: flex;
   gap: 4px;
 `;
-

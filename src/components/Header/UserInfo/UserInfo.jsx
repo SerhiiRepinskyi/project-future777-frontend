@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { ModalEditProfile } from 'components/EditProfile/ModalEditProfile';
+import { ModalEditProfile } from 'components/ModalEditProfile/ModalEditProfile';
 import {
   EmptyAvatar,
   ImgAvatar,
@@ -8,25 +8,28 @@ import {
 } from './UserInfo.styled';
 
 export const UserInfo = ({ name = 'User', avatarURL }) => {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const handleCloseModal = () => {
-    setIsOpen(false);
-  };
+  const modalStateChange = () => setIsModalOpen(!isModalOpen);
 
   return (
-    <UserInfoContainer onClick={() => setIsOpen(true)}>
-      <UserName>{name}</UserName>
-      <div>
-        {avatarURL ? (
-          <ImgAvatar src={avatarURL} alt="User Avatar" />
-        ) : (
-          <EmptyAvatar />
-        )}
-      </div>
-      {isOpen && (
-        <ModalEditProfile onClose={handleCloseModal}></ModalEditProfile>
-      )}
-    </UserInfoContainer>
+    <>
+      <UserInfoContainer onClick={modalStateChange}>
+        <UserName>{name}</UserName>
+        <div>
+          {avatarURL ? (
+            <ImgAvatar src={avatarURL} alt="User Avatar" />
+          ) : (
+            <EmptyAvatar />
+          )}
+        </div>
+      </UserInfoContainer>
+
+      <ModalEditProfile
+        title={'Edit  profile'}
+        open={isModalOpen}
+        handleClose={modalStateChange}
+      />
+    </>
   );
 };

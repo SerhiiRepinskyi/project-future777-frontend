@@ -1,5 +1,5 @@
 import { useFormik } from 'formik';
-import { Typography } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 import {
   FormStyled,
   InputStyled,
@@ -32,16 +32,14 @@ const titleStyle = {
   fontWeight: 500,
   lineHeight: 'normal',
   letterSpacing: -0.36,
+  fontFamily: 'Poppins',
 };
-
-const ModalBoard = ({ board = {}, boardTitle, open, handleClose }) => {
+const ModalBoard = ({ board, boardTitle, open, handleClose }) => {
   const dispatch = useDispatch();
 
   const [inputValue, setInputValue] = useState(board?.title || '');
   const [iconId, setIconId] = useState(board?.iconId || arrIcons[0]);
-  const [backgroundURL, setBackgroundURL] = useState(
-    board?.backgroundURL || 'default background'
-  );
+  const [background, setBackground] = useState(board?.background || 0);
 
   const [addBoard] = API.useAddBoardsMutation();
   const [editBoard] = API.useUpdateBoardByIdMutation();
@@ -52,10 +50,8 @@ const ModalBoard = ({ board = {}, boardTitle, open, handleClose }) => {
     try {
       const FormData = {
         title,
-        backgroundURL,
+        background,
         iconId,
-        icon: 0,
-        background: 0,
       };
 
       if (boardTitle === 'New board') {
@@ -65,31 +61,39 @@ const ModalBoard = ({ board = {}, boardTitle, open, handleClose }) => {
         navigate(`/home/${newBoardId}`);
         setInputValue('');
         setIconId(arrIcons[0]);
-        setBackgroundURL('default background');
-           Report.success(
-             'Board added successfully',
-             'You can use your board and add columns to it',
-             'Ok'
-           );
+        setBackground(0);
+        Report.success(
+          'Board added successfully',
+          'You can use your board and add columns to it',
+          'Ok'
+        );
       }
       if (boardTitle === 'Edit board') {
-        const response = await editBoard({ boardId: board._id, FormData });
-        dispatch(setBoardResponse(response));
-          Report.success(
-            'Board edited successfully',
-            'All changes have been made',
+        if (
+          board.title === inputValue &&
+          board.iconId === iconId &&
+          board.background === background
+        ) {
+          Report.warning(
+            'No changes have been selected',
+            'Edit any field to apply the changes',
             'Ok'
           );
+          return;
+        }
+
+        const response = await editBoard({ boardId: board._id, FormData });
+        dispatch(setBoardResponse(response));
+        Report.success(
+          'Board edited successfully',
+          'All changes have been made',
+          'Ok'
+        );
       }
       handleClose();
-    } catch (error) {
-      console.log(error);
+    } catch {
+      Report.failure("Board wasn't edited", 'Changes have not been made', 'Ok');
     }
-    Report.success(
-      'Board added successfully',
-      'You can use your board and add columns to it',
-      'Ok'
-    );
     formik.handleReset();
   };
 
@@ -121,19 +125,18 @@ const ModalBoard = ({ board = {}, boardTitle, open, handleClose }) => {
   });
 
   const formik = useFormik({
-    initialValues: { title: '' },
+    initialValues: { title: inputValue },
     onSubmit: ({ title }) => handleSubmit(title),
     validationSchema,
   });
 
-  const handleIconCurrent = icon => {
-    setIconId(icon);
-  };
-
   return (
     <>
       <ModalLayout title={boardTitle} open={open} handleClose={handleClose}>
-        <FormStyled onSubmit={formik.handleSubmit}>
+        <FormStyled
+          sx={{ width: { 0: '77vw', 375: '287px', 768: '302px' } }}
+          onSubmit={formik.handleSubmit}
+        >
           <InputStyled
             id="title"
             name="title"
@@ -150,7 +153,7 @@ const ModalBoard = ({ board = {}, boardTitle, open, handleClose }) => {
               return (
                 <LiIconsStyled
                   key={icon}
-                  onClick={() => handleIconCurrent(icon)}
+                  onClick={() => setIconId(icon)}
                   isSelected={iconId === icon}
                 >
                   <TransparentSVG>
@@ -174,58 +177,78 @@ const ModalBoard = ({ board = {}, boardTitle, open, handleClose }) => {
             Background
           </Typography>
           <UlBgStyled>
-            <LiStyled
-              key={'default background'}
+            <li
+              key={0}
               onClick={() => {
-                setBackgroundURL('default background');
+                setBackground(0);
               }}
             >
-              <div
-                style={{
+              <Box
+                sx={{
+                  overflow: 'hidden',
                   display: 'flex',
                   justifyContent: 'center',
                   alignItems: 'center',
-                  width: '100%',
-                  height: '100%',
-                  backgroundColor: '#1F1F1F',
-                  borderRadius: '5px',
-                  border: `2px solid ${
-                    backgroundURL === 'default background'
-                      ? 'white'
-                      : 'transparent'
-                  }`,
-                  cursor: 'pointer',
+                  width: '28px',
+                  height: '28px',
+                  borderRadius: '6px',
+                  border:
+                    0 === background
+                      ? '2px solid #ffffff'
+                      : '2px solid transparent',
+                  '&:hover, &:focus': {
+                    border: '2px solid #bedbb0',
+                  },
                 }}
               >
-                <svg
+                <div
                   style={{
-                    width: '16px',
-                    height: '16px',
-                    stroke: 'rgba(255, 255, 255, 0.10)',
+                    display: 'flex',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    width: '100%',
+                    height: '100%',
+                    backgroundColor: '#1F1F1F',
+                    borderRadius: '5px',
+                    cursor: 'pointer',
                   }}
                 >
-                  <use href={sprite + '#icon-default-background'}></use>
-                </svg>
-              </div>
-            </LiStyled>
-            {arrBG.map(bg => {
-              return (
-                <LiStyled
-                  key={bg}
-                  onClick={() => {
-                    setBackgroundURL(bg);
-                  }}
-                >
-                  <ImgStyled
-                    src={bg}
-                    alt="background picture"
+                  <svg
                     style={{
-                      border: `2px solid ${
-                        backgroundURL === bg ? 'white' : 'transparent'
-                      }`,
+                      width: '16px',
+                      height: '16px',
+                      stroke: 'rgba(255, 255, 255, 0.10)',
                     }}
-                  />
-                </LiStyled>
+                  >
+                    <use href={sprite + '#icon-default-background'}></use>
+                  </svg>
+                </div>
+              </Box>
+            </li>
+            {arrBG.map((bg, index) => {
+              return (
+                <li key={index + 1} onClick={() => setBackground(index + 1)}>
+                  <Box
+                    sx={{
+                      overflow: 'hidden',
+                      display: 'flex',
+                      justifyContent: 'center',
+                      alignItems: 'center',
+                      width: '28px',
+                      height: '28px',
+                      borderRadius: '6px',
+                      border:
+                        index + 1 === background
+                          ? '2px solid #ffffff'
+                          : '2px solid transparent',
+                      '&:hover, &:focus': {
+                        border: '2px solid #bedbb0',
+                      },
+                    }}
+                  >
+                    <ImgStyled src={bg} alt="background picture" />
+                  </Box>
+                </li>
               );
             })}
           </UlBgStyled>
@@ -233,11 +256,10 @@ const ModalBoard = ({ board = {}, boardTitle, open, handleClose }) => {
           <ButtonWithIcon
             title={boardTitle === 'New board' ? 'Create' : 'Edit'}
             type={'submit'}
-            // onClick={handleClose}
             onClick={() => {
-             if (formik.values.title === '' && !inputValue) {
-               Notiflix.Notify.warning('Title field must be filled in');
-             }
+              if (formik.values.title === '' && !inputValue) {
+                Notiflix.Notify.warning('Title field must be filled in');
+              }
             }}
           />
         </FormStyled>
