@@ -6,6 +6,7 @@ import {
   WelcomeImage,
   WelcomeTitle,
 } from './WelcomePage.styled';
+import GoogleAuth from 'components/GoogleAuth/GoogleAuth';
 
 const WelcomePage = () => {
   return (
@@ -18,6 +19,7 @@ const WelcomePage = () => {
       </WelcomeTitle>
       <RegistrationLink to="/auth/register">Registration</RegistrationLink>
       <Loginlink to="/auth/login">Log In</Loginlink>
+      <GoogleAuth/>
     </Container>
   );
 };

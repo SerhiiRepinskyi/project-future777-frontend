@@ -54,6 +54,17 @@ export const GlobalStyles = () => {
           max-width: 100%;
           height: auto;
         }
+        .MuiDateCalendar-root
+          .MuiButtonBase-root.MuiPickersDay-root.Mui-disabled {
+          color: var(--secondary-text-color) !important;
+        }
+        .MuiDateCalendar-root .MuiPickersDay-dayOutsideMonth {
+          color: rgba(0, 0, 0, 0.38) !important;
+        }
+        .MuiButton-contained.Mui-disabled {
+          background-color: var(--button-bg-color) !important;
+          cursor: none;
+        }
         .dark {
           --primary-text-color: rgba(255, 255, 255, 1); //white
           --secondary-text-color: rgba(255, 255, 255, 0.5); //white
@@ -73,6 +84,7 @@ export const GlobalStyles = () => {
           --sidebar-icon-logout-color: rgba(190, 219, 176, 1);
           --sidebar-icon-logout-color-HOVER-FOCUS: #9dc888;
           --sidebar-icon-plus-bg-color: #bedbb0;
+          --sidebar-icon-plus-bg-color: #bedbb0;
           --sidebar-icon-plus-bg-color-HOVER-FOCUS: #9dc888;
           --sidebar-icon-plus-color: rgba(18, 18, 18, 1);
           --sidebar-scroll-bg-color: rgba(255, 255, 255, 0.08);
@@ -89,10 +101,11 @@ export const GlobalStyles = () => {
 
           --button-bg-color: rgba(190, 219, 176, 1); //light green
           --button-bg-color-hover: #9dc888; //green
-
+          --button-text-color: #161616;
           --button-add-bg-color: #121212; //black
           --button-add-box-color: #ffffff; //white
           --icon-add-colors: #121212; //black
+          --border-filters: rgba(255, 255, 255, 0.1); //grey
 
           --icon-plus-color: rgba(255, 255, 255, 1); //white
           --icon-plus-bg-color: rgba(22, 22, 22, 1); //black
@@ -111,10 +124,12 @@ export const GlobalStyles = () => {
           --avatar-bcg-color: rgba(31, 31, 31, 1); //dark-grey
           --avatar-fill-color: rgba(21, 21, 21, 1); //black
           --icon-plus-bcg: rgba(190, 219, 176, 1); //light-green
-          --icon-add-color: rgba(22, 22, 22, 1); // black
+          --icon-plus-bcg-hover-focus: rgba(157, 200, 136, 1);
+          --icon-add-avatar: rgba(22, 22, 22, 1); // black
           --input-border-color: rgba(190, 219, 176, 1); //green
           --input-bcg-color: rgba(31, 31, 31, 1);
           --btn-text-color: rgba(22, 22, 22, 1); // black
+          --bcg-modal-color: rgba(21, 21, 21, 1); //black
 
           //------------------------------------------//
         }
@@ -138,6 +153,7 @@ export const GlobalStyles = () => {
           --sidebar-icon-logout-color: rgba(190, 219, 176, 1);
           --sidebar-icon-logout-color-HOVER-FOCUS: #9dc888;
           --sidebar-icon-plus-bg-color: #bedbb0;
+          --sidebar-icon-plus-bg-color: #bedbb0;
           --sidebar-icon-plus-bg-color-HOVER-FOCUS: #9dc888;
           --sidebar-icon-plus-color: rgba(18, 18, 18, 1);
           --sidebar-scroll-bg-color: rgba(0, 0, 0, 0.08);
@@ -151,7 +167,7 @@ export const GlobalStyles = () => {
 
           --header-theme-color: rgba(190, 219, 176, 1); //light green
           --header-bg-color: rgba(252, 252, 252, 1); //white
-
+          --button-text-color: #161616;
           --button-bg-color: rgba(190, 219, 176, 1); //light green
           --button-bg-color-hover: #9dc888; //green
           --icon-plus-color: rgba(255, 255, 255, 1); //white
@@ -160,6 +176,7 @@ export const GlobalStyles = () => {
           --button-add-bg-color: #ffffff; //white
           --button-add-box-color: #161616; //black
           --icon-add-colors: #ffffff; //white
+          --border-filters: rgba(22, 22, 22, 0.1); //grey
 
           --modal-bg-color: rgba(252, 252, 252, 1); //white
 
@@ -172,13 +189,15 @@ export const GlobalStyles = () => {
           --avatar-bcg-color: rgba(246, 246, 247, 1); // light-grey
           --avatar-fill-color: rgba(255, 255, 255, 1); //white
           --icon-plus-bcg: rgba(190, 219, 176, 1); //light-green
-          --icon-add-color: rgba(22, 22, 22, 1); // black
+          --icon-plus-bcg-hover-focus: rgba(157, 200, 136, 1);
+          --icon-add-avatar: rgba(22, 22, 22, 1); // black
           --input-border-color: rgba(190, 219, 176, 1); //green
           --cards-bg-color: #fff;
           --cards-underline: rgba(22, 22, 22, 0.1);
           --cards-icon-color: rgba(22, 22, 22, 0.5);
           --input-bcg-color: rgba(252, 252, 252, 1);
           --btn-text-color: rgba(22, 22, 22, 1); // black
+          --bcg-modal-color: rgba(252, 252, 252, 1);
 
           //------------------------------------------//
         }
@@ -202,6 +221,7 @@ export const GlobalStyles = () => {
           --sidebar-icon-logout-color: rgba(255, 255, 255, 1);
           --sidebar-icon-logout-color-HOVER-FOCUS: #b8bcfd;
           --sidebar-icon-plus-bg-color: #b8bcfd;
+          --sidebar-icon-plus-bg-color: #b8bcfd;
           --sidebar-icon-plus-bg-color-HOVER-FOCUS: #979cea;
           --sidebar-icon-plus-color: rgba(255, 255, 255, 1);
           --sidebar-scroll-bg-color: rgba(255, 255, 255, 0.08);
@@ -224,7 +244,8 @@ export const GlobalStyles = () => {
           --button-add-bg-color: #ffffff; //white
           --button-add-box-color: #5255bc; //fiolet
           --icon-add-colors: #ffffff; //white
-
+          --border-filters: rgba(22, 22, 22, 0.1); //grey
+          --button-text-color: #ffffff;
           --modal-bg-color: rgba(252, 252, 252, 1); //white
 
           --screen-page-scrollbar-bg-color: rgba(255, 255, 255, 1);
@@ -236,10 +257,14 @@ export const GlobalStyles = () => {
           --avatar-bcg-color: rgba(236, 237, 253, 1); // light-grey
           --avatar-fill-color: rgba(255, 255, 255, 1); //white
           --icon-plus-bcg: rgba(236, 237, 253, 1); //light-purple
-          --icon-add-color: rgba(22, 22, 22, 1); // black
+          --icon-plus-bcg-hover-focus: rgba(184, 188, 253, 1); //light-purple
+
+          --icon-add-avatar: rgba(22, 22, 22, 1); // black
           --input-border-color: rgba(82, 85, 188, 1); //purple
           --input-bcg-color: rgba(252, 252, 252, 1);
           --btn-text-color: rgba(255, 255, 255, 1); //white
+          --bcg-modal-color: rgba(252, 252, 252, 1);
+
           --cards-bg-color: #fff;
           --cards-underline: rgba(22, 22, 22, 0.1);
           --cards-icon-color: rgba(22, 22, 22, 0.5);

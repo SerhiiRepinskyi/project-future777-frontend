@@ -12,7 +12,7 @@ import sprite from '../../assets/images/sprite.svg';
 
 import { getPriorityText } from './TaskCard.styled';
 
-import { deleteCard, setCardData } from '../../redux/tasks/cardsAPISlice';
+import { deleteCard } from '../../redux/tasks/cardsAPISlice';
 import { useDispatch } from 'react-redux';
 import { API } from 'Services/API';
 
@@ -41,7 +41,7 @@ function TaskCard({
 }) {
   const [anchorEl, setAnchorEl] = useState(null);
 
-  const [updateCardById] = API.useUpdateCardByIdMutation();
+  // const [updateCardById] = API.useUpdateCardByIdMutation();
   const [deleteCardById] = API.useDeleteCardByIdMutation();
 
   const [isAddCardOpen, setIsAddCardOpen] = useState(false);
@@ -77,23 +77,23 @@ function TaskCard({
     }
   };
 
-  const handleUpdateCard = async () => {
-    try {
-      const updatedData = {
-        title,
-        description,
-        priority,
-        deadline,
+  // const handleUpdateCard = async () => {
+  //   try {
+  //     const updatedData = {
+  //       title,
+  //       description,
+  //       priority,
+  //       deadline,
 
-        /* об'єкт з оновленими даними картки */
-      };
-      const response = await updateCardById({ id, updatedData });
-      dispatch(setCardData(response));
-      handleClick();
-    } catch (error) {
-      console.error('Error updating card:', error);
-    }
-  };
+  //       /* об'єкт з оновленими даними картки */
+  //     };
+  //     const response = await updateCardById({ id, updatedData });
+  //     dispatch(setCardData(response));
+  //     handleClick();
+  //   } catch (error) {
+  //     console.error('Error updating card:', error);
+  //   }
+  // };
 
   const date = new Date(`${deadline}`);
   const formattedDate = format(date, 'dd/MM/yyyy');
@@ -155,7 +155,7 @@ function TaskCard({
             </svg>
           </StyledIconButton>
           <StyledIconButton
-            onClick={handleUpdateCard}
+            onClick={handleClick}
             title={'Edit card'}
             aria-label="edit"
           >
@@ -165,10 +165,15 @@ function TaskCard({
           </StyledIconButton>
           <AddCard
             columnId={columnId}
+            cardId={id}
             modalType={'Edit card'}
             open={isAddCardOpen}
             handleClose={closeAddCard}
             close={closeAddCard}
+            titleValue={title}
+            descrValue={description}
+            priorityValue={priority}
+            deadlineValue={deadline}
           />
           <StyledIconButton onClick={handleDeleteCard} aria-label="remove">
             <svg stroke="var(--cards-icon-color)" width="16" height="16">

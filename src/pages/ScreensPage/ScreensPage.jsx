@@ -11,16 +11,12 @@ import {
   MainContainer,
 } from './ScreenPage.styled';
 import { useDispatch, useSelector } from 'react-redux';
-
-// console.log('window :>> ', window.devicePixelRatio);
+import Loader from 'components/Loader';
 
 const ScreensPage = () => {
   const { boardId } = useParams();
   const [filterValue, setFilterValue] = useState('');
-  const stateFilter = useSelector(state => state.boards?.filter);
-
-//  console.log('filter :>> ', stateFilter);
-
+  const stateFilter = useSelector(state => state.boards.filter);
   const dispatch = useDispatch();
 
   const reqData = {
@@ -29,20 +25,23 @@ const ScreensPage = () => {
   };
   const [isAddColumnOpen, setIsAddColumnOpen] = useState(false);
 
-  const { data } = API.useGetBoardContentByIdQuery(reqData, {
-    refetchOnMountOrArgChange: true,
-    skip: false,
-  });
+  const { currentData, data, isFetching } = API.useGetBoardContentByIdQuery(
+    reqData,
+    {
+      refetchOnMountOrArgChange: true,
+      // skip: false,
+    }
+  );
 
-  // console.log('data :>> ', data);
+  console.log('currentData :>> ', currentData);
+  console.log('data :>> ', data);
+
 
   const openAddColumn = () => setIsAddColumnOpen(true);
   const closeAddColumn = () => setIsAddColumnOpen(false);
 
-  // const setBoardBgImage = () => { };
-  
   useEffect(() => {
-    if (stateFilter === "0") {
+    if (stateFilter === '0') {
       setFilterValue('');
     } else {
       setFilterValue(stateFilter);
@@ -50,30 +49,40 @@ const ScreensPage = () => {
   }, [dispatch, stateFilter]);
 
   return (
-    <MainWrapper>
+    <MainWrapper index={data?.background}>
       <MainContainer>
         <HeaderDashboard filter={setFilterValue} title={data?.title} />
 
         <ColumnsWrapper cols={!data?.content ? 1 : data?.content?.length + 1}>
-          {data?.content?.map(
-            ({ _id: columnId, title: columnTitle, cards }) => (
-              <Column
-                key={columnId}
-                columnTitle={columnTitle}
-                columnId={columnId}
-                cards={cards}
-              />
+          {!isFetching ? (
+            data?.content?.map(
+              ({ _id: columnId, title: columnTitle, cards }, index) => (
+                <Column
+                  isFetching={isFetching}
+                  key={columnId}
+                  columnData={data.content[index]}
+                  columnTitle={columnTitle}
+                  columnId={columnId}
+                  cards={cards}
+                />
+              )
             )
+          ) : (
+            <Loader />
           )}
+
           <ButtonAdd onClick={openAddColumn}></ButtonAdd>
         </ColumnsWrapper>
-
-        <AddColumn
-          modalType={'Add column'}
-          open={isAddColumnOpen}
-          boardId={boardId}
-          close={closeAddColumn}
-        />
+        {isAddColumnOpen ? (
+          <AddColumn
+            modalType={'Add column'}
+            open={isAddColumnOpen}
+            boardId={boardId}
+            close={closeAddColumn}
+          />
+        ) : (
+          <></>
+        )}
       </MainContainer>
     </MainWrapper>
   );
