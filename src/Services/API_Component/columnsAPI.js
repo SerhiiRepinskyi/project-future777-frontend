@@ -14,27 +14,6 @@ export const columnsAPI = createApi({
     //   }),
     //   invalidatesTags: ['columns'],
     // }),
-
-    updateColumnById: builder.mutation({
-      query: ({ columnId, title }) => ({
-        url: `/columns/${columnId}`,
-        method: 'PATCH',
-        body: title,
-      }),
-      invalidatesTags: ['columns'],
-    }),
-
-    deleteColumnById: builder.mutation({
-      query: ({ columnId }) => ({
-        url: `/columns/${columnId}`,
-        method: 'DELETE',
-      }),
-      invalidatesTags: ['columns'],
-    }),
   }),
 });
 
-export const {
-  useUpdateColumnByIdMutation,
-  useDeleteColumnByIdMutation,
-} = columnsAPI;
