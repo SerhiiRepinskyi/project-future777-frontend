@@ -93,6 +93,7 @@ export const GlobalStyles = () => {
           --button-add-bg-color: #121212; //black
           --button-add-box-color: #ffffff; //white
           --icon-add-colors: #121212; //black
+          --border-filters: rgba(255, 255, 255, 0.1); //grey
 
           --icon-plus-color: rgba(255, 255, 255, 1); //white
           --icon-plus-bg-color: rgba(22, 22, 22, 1); //black
@@ -160,6 +161,7 @@ export const GlobalStyles = () => {
           --button-add-bg-color: #ffffff; //white
           --button-add-box-color: #161616; //black
           --icon-add-colors: #ffffff; //white
+          --border-filters: rgba(22, 22, 22, 0.1); //grey
 
           --modal-bg-color: rgba(252, 252, 252, 1); //white
 
@@ -224,6 +226,7 @@ export const GlobalStyles = () => {
           --button-add-bg-color: #ffffff; //white
           --button-add-box-color: #5255bc; //fiolet
           --icon-add-colors: #ffffff; //white
+          --border-filters: rgba(22, 22, 22, 0.1); //grey
 
           --modal-bg-color: rgba(252, 252, 252, 1); //white
 
