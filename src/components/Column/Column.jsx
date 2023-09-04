@@ -12,8 +12,9 @@ import {
   StyledIconButton,
 } from './Column.styled';
 import AddColumn from 'components/AddColumn/AddColumn';
+import Loader from 'components/Loader';
 
-const Column = ({ columnTitle, columnId, cards }) => {
+const Column = ({ columnTitle, columnId, cards, columnData, isFetching }) => {
   const [deleteColumn] = API.useDeleteColumnByIdMutation();
 
   const [isAddCardOpen, setIsAddCardOpen] = useState(false);
@@ -36,7 +37,7 @@ const Column = ({ columnTitle, columnId, cards }) => {
   return (
     <ColumnWrapper>
       <ColumnHeader>
-        <ColumnTitle>{columnTitle}</ColumnTitle>
+        <ColumnTitle>{!isFetching ? columnTitle : (<Loader/>)}</ColumnTitle>
         <div>
           <StyledIconButton onClick={openEditColumn} aria-label="edit">
             <svg
@@ -61,20 +62,18 @@ const Column = ({ columnTitle, columnId, cards }) => {
         </div>
       </ColumnHeader>
       <CardsList cols={cards}>
-        {cards?.map(
-          ({ title, description, priority, deadline, _id: id }, index) => {
-            return (
-              <TaskCard
-                key={id}
-                title={title}
-                description={description}
-                priority={priority}
-                deadline={deadline}
-                id={id}
-              />
-            );
-          }
-        )}
+        {cards?.map(({ title, description, priority, deadline, _id: id }) => {
+          return (
+            <TaskCard
+              key={id}
+              title={title}
+              description={description}
+              priority={priority}
+              deadline={deadline}
+              id={id}
+            />
+          );
+        })}
       </CardsList>
 
       <AddCardButton onClick={handleClick} title={'Add card'} />
@@ -92,6 +91,7 @@ const Column = ({ columnTitle, columnId, cards }) => {
         columnId={columnId}
         close={closeEditColumn}
         titleValue={columnTitle}
+        column={columnData}
       />
     </ColumnWrapper>
   );

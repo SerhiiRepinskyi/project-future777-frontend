@@ -41,7 +41,7 @@ function TaskCard({
 }) {
   const [anchorEl, setAnchorEl] = useState(null);
 
-  const [updateCardById] = API.useUpdateCardByIdMutation();
+  // const [updateCardById] = API.useUpdateCardByIdMutation();
   const [deleteCardById] = API.useDeleteCardByIdMutation();
 
   const [isAddCardOpen, setIsAddCardOpen] = useState(false);
@@ -77,23 +77,23 @@ function TaskCard({
     }
   };
 
-  const handleUpdateCard = async () => {
-    try {
-      const updatedData = {
-        title,
-        description,
-        priority,
-        deadline,
+  // const handleUpdateCard = async () => {
+  //   try {
+  //     const updatedData = {
+  //       title,
+  //       description,
+  //       priority,
+  //       deadline,
 
-        /* об'єкт з оновленими даними картки */
-      };
-      const response = await updateCardById({ id, updatedData });
-      dispatch(setCardData(response));
-      handleClick();
-    } catch (error) {
-      console.error('Error updating card:', error);
-    }
-  };
+  //       /* об'єкт з оновленими даними картки */
+  //     };
+  //     const response = await updateCardById({ id, updatedData });
+  //     dispatch(setCardData(response));
+  //     handleClick();
+  //   } catch (error) {
+  //     console.error('Error updating card:', error);
+  //   }
+  // };
 
   const date = new Date(`${deadline}`);
   const formattedDate = format(date, 'dd/MM/yyyy');

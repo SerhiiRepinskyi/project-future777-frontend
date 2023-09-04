@@ -11,12 +11,12 @@ import {
   MainContainer,
 } from './ScreenPage.styled';
 import { useDispatch, useSelector } from 'react-redux';
+import Loader from 'components/Loader';
 
 const ScreensPage = () => {
   const { boardId } = useParams();
   const [filterValue, setFilterValue] = useState('');
   const stateFilter = useSelector(state => state.boards.filter);
-console.log('stateFilter :>> ', stateFilter);
   const dispatch = useDispatch();
 
   const reqData = {
@@ -25,10 +25,17 @@ console.log('stateFilter :>> ', stateFilter);
   };
   const [isAddColumnOpen, setIsAddColumnOpen] = useState(false);
 
-  const { data } = API.useGetBoardContentByIdQuery(reqData, {
-    refetchOnMountOrArgChange: true,
-    skip: false,
-  });
+  const { currentData, data, isFetching } = API.useGetBoardContentByIdQuery(
+    reqData,
+    {
+      refetchOnMountOrArgChange: true,
+      // skip: false,
+    }
+  );
+
+  console.log('currentData :>> ', currentData);
+  console.log('data :>> ', data);
+
 
   const openAddColumn = () => setIsAddColumnOpen(true);
   const closeAddColumn = () => setIsAddColumnOpen(false);
@@ -47,25 +54,35 @@ console.log('stateFilter :>> ', stateFilter);
         <HeaderDashboard filter={setFilterValue} title={data?.title} />
 
         <ColumnsWrapper cols={!data?.content ? 1 : data?.content?.length + 1}>
-          {data?.content?.map(
-            ({ _id: columnId, title: columnTitle, cards }) => (
-              <Column
-                key={columnId}
-                columnTitle={columnTitle}
-                columnId={columnId}
-                cards={cards}
-              />
+          {!isFetching ? (
+            data?.content?.map(
+              ({ _id: columnId, title: columnTitle, cards }, index) => (
+                <Column
+                  isFetching={isFetching}
+                  key={columnId}
+                  columnData={data.content[index]}
+                  columnTitle={columnTitle}
+                  columnId={columnId}
+                  cards={cards}
+                />
+              )
             )
+          ) : (
+            <Loader />
           )}
+
           <ButtonAdd onClick={openAddColumn}></ButtonAdd>
         </ColumnsWrapper>
-
-        <AddColumn
-          modalType={'Add column'}
-          open={isAddColumnOpen}
-          boardId={boardId}
-          close={closeAddColumn}
-        />
+        {isAddColumnOpen ? (
+          <AddColumn
+            modalType={'Add column'}
+            open={isAddColumnOpen}
+            boardId={boardId}
+            close={closeAddColumn}
+          />
+        ) : (
+          <></>
+        )}
       </MainContainer>
     </MainWrapper>
   );
