@@ -1,22 +1,14 @@
 import styled, { css } from 'styled-components';
+import { styled as MUI } from '@mui/material/styles';
 import { Form, Field, ErrorMessage } from 'formik';
 
-export const Container = styled.div`
-  background-color: var(--input-bcg-color);
-  margin-left: auto;
-  margin-right: auto;
-  // padding: 24px;
-  border-radius: 8px;
+export const Container = MUI('div')({
+  backgroundColor: 'var(--input-bcg-color)',
+  marginLeft: 'auto',
+  marginRight: 'auto',
+  borderRadius: '8px'
+});
 
-  @media (min-width: 375px) {
-    // max-width: 287px;
-    max-width: 335px;
-  }
-  @media (min-width: 768px) {
-    // max-width: 352px;
-    max-width: 400px;
-  }
-`;
 export const FormWrap = styled.div`
   background-color: var(--modal-bg-color);
   display: flex;
@@ -26,18 +18,10 @@ export const FormWrap = styled.div`
   min-width: 100%;
 `;
 
-export const Title = styled.h3`
-  font-size: 18px;
-  margin-right: auto;
-  font-weight: 500;
-  letter-spacing: -0.36px;
-  color: var(--primary-text-color);
-`;
 export const AvatarWrapper = styled.div`
   display: flex;
   justify-content: center;
   margin-bottom: 25px;
-  margin-top: 25px;
 `;
 export const ImgWrapper = styled.div`
   position: relative;
@@ -62,7 +46,7 @@ export const Img = styled.img`
 export const IconButton = styled.button`
   border: none;
   border-radius: 8px;
-  cursor:pointer;
+  cursor: pointer;
   position: absolute;
   top: 101%;
   left: 50%;
@@ -177,20 +161,22 @@ export const Button = styled.button`
   width: 100%;
   border: none;
   border-radius: 8px;
-  background:  var(--input-border-color);
+  background: var(--input-border-color);
   opacity: 1;
-   outline: none;
-     cursor: pointer;
+  outline: none;
+  cursor: pointer;
+
   &:disabled {
     // opacity: 0.6;
     //  background: var(--input-border-color);
     cursor: not-allowed;
-    &:focus {
-      opacity: 1;
-       -webkit-tap-highlight-color: none;
-       
-    }
+  }
+  &:focus {
+    opacity: 1;
+    -webkit-tap-highlight-color: none;
+  }
 `;
+
 export const Error = styled(ErrorMessage)`
   font-family: 'Roboto';
   opacity: 0.5;

@@ -97,7 +97,7 @@ export const SidebarContent = ({ isSidebarShown }) => {
         open={isModalBoardOpen}
         handleClose={modalBoardStateChange}
       />
-      <ModalHelp open={isModalHelpOpen} handleClose={modalHelpStateChange} />
+      <ModalHelp title={"Need help"} open={isModalHelpOpen} handleClose={modalHelpStateChange} />
     </>
   );
 };
