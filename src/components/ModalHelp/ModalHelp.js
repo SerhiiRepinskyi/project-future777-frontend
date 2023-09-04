@@ -58,7 +58,7 @@ const ModalHelp = ({ title, open, handleClose }) => {
 
   return (
     <>
-      <ModalLayout title={title} open={open} handleClose={handleClose}>
+      <ModalLayout title={'Need help'} open={open} handleClose={handleClose}>
         <FormStyled sx={{width: {0: "77vw", 375: "287px", 768: "352px"}}} onSubmit={formik.handleSubmit}>
           <InputStyled
             id="email"
