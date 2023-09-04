@@ -25,7 +25,7 @@ export const boardsAPI = createApi({
       query: id => ({
         url: `boards/${id}`,
       }),
-      providesTags: ['boards', 'columns', 'cards'],
+      providesTags: ['boards'],
     }),
 
     addBoards: builder.mutation({
@@ -63,13 +63,78 @@ export const boardsAPI = createApi({
       invalidatesTags: ['boards'],
     }),
 
+    updateColumnById: builder.mutation({
+      query: ({ columnId, title }) => ({
+        url: `/columns/${columnId}`,
+        method: 'PATCH',
+        body: title,
+      }),
+      invalidatesTags: ['boards'],
+    }),
+
+    deleteColumnById: builder.mutation({
+      query: ({ columnId }) => ({
+        url: `/columns/${columnId}`,
+        method: 'DELETE',
+      }),
+      invalidatesTags: ['boards'],
+    }),
+
+    getAllCards: builder.query({
+      query: columnId => ({
+        url: `columns/${columnId}/cards`,
+      }),
+      providesTags: ['columns'],
+    }),
+
+    getAllCardsByColumnId: builder.query({
+      query: columnId => ({
+        url: `columns/${columnId}/cards `,
+        method: 'GET',
+      }),
+      providesTags: ['columns'],
+    }),
+
+    getAllFillteredCardsByColumnId: builder.query({
+      query: ({ columnId, priority }) => ({
+        url: `columns/${columnId}/cards?f=${priority} `,
+        method: 'GET',
+      }),
+      providesTags: ['columns'],
+    }),
+
     addCard: builder.mutation({
       query: ({ columnId, cardData }) => ({
         url: `columns/${columnId}/cards`,
         method: 'POST',
         body: cardData,
       }),
-      invalidatesTags: ['boards', 'columns', 'cards'],
+      invalidatesTags: ['cards'],
+    }),
+
+    updateCardById: builder.mutation({
+      query: ({ cardId, FormData }) => ({
+        url: `/cards/${cardId}`,
+        method: 'PUT',
+        body: FormData,
+      }),
+      invalidatesTags: ['cards'],
+    }),
+
+    deleteCardById: builder.mutation({
+      query: cardId => ({
+        url: `/cards/${cardId}`,
+        method: 'DELETE',
+      }),
+      invalidatesTags: ['cards'],
+    }),
+
+    updateCardColumnById: builder.mutation({
+      query: cardId => ({
+        url: `/cards/${cardId}`,
+        method: 'PATCH',
+      }),
+      invalidatesTags: ['cards'],
     }),
   }),
 });
@@ -81,6 +146,17 @@ export const {
   useAddBoardsMutation,
   useDeleteBoardByIdMutation,
   useUpdateBoardByIdMutation,
+
   useAddColumnMutation,
+  useUpdateColumnByIdMutation,
+  useDeleteColumnByIdMutation,
+
+  useGetAllCardsQuery,
+  useGetAllCardsByColumnIdQuery,
+  useGetAllFillteredCardsByColumnIdQuery,
   useAddCardMutation,
+  useUpdateCardByIdMutation,
+  useDeleteCardByIdMutation,
+  useUpdateCardColumnByIdMutation,
+  
 } = boardsAPI;
