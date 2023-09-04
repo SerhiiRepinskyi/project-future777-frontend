@@ -11,7 +11,6 @@ export const UserInfo = ({ name = 'User', avatarURL }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const handleCloseModal = () => {
-    console.log('handleCloseModal called');
     setIsOpen(false);
   };
 

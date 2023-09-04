@@ -34,32 +34,39 @@ const inputStyles = `
   letter-spacing: -0.28px;
   caret-color: white;
   border-radius: 8px;
+  color:var(--primary-text-color);
   border: 1px solid var(--button-bg-color-hover);
-  background-color: transparent;
-  transition: border-color 0.3s ease; 
-    &::placeholder {
-    color: --secondary-text-color;
+  background-color: var(--modal-bg-color);
+  transition: border-color 0.3s ease;
+
+  &::placeholder {
+    color: var(--secondary-text-color) !important;
     font-size: 14px;
     line-height: 21px;
     font-family: 'Poppins';
     letter-spacing: -0.28px;
   }
-  &:-webkit-autofill {
-    background-color: transparent !important;
+
+  &:-webkit-autofill:active,
+  &:-webkit-autofill:focus,
+  &:-webkit-autofill:hover {
+    box-shadow: 0 0 0px 1000px var(--modal-bg-color) inset;
+    color: var(--modal-bg-color) !important;
+    background-color: var(--modal-bg-color) !important;
     border: 1px solid var(--button-bg-color);
-    
   }
 
   &:focus {
-   background-color: transparent !important;
-  -webkit-text-fill-color: var(--primary-text-color);
+    background-color: var(--modal-bg-color) !important;
+    -webkit-text-fill-color: var(--primary-text-color);
     border: 1px outset var(--button-bg-color);
   }
 
   &:active {
-   background-color: transparent !important;
+    -webkit-text-fill-color: var(--primary-text-color) !important;
+    background-color: var(--modal-bg-color);
     border: 1px outset var(--button-bg-color);
-     font-size: 14px;
+    font-size: 14px;
     line-height: 21px;
     font-family: 'Poppins';
     letter-spacing: -0.28px;
@@ -68,7 +75,21 @@ const inputStyles = `
 
 export const InputStyled = styled.input`
   ${inputStyles}
+  box-shadow: 0 0 0px 1000px var(--modal-bg-color) inset;
+ &::placeholder {
+    color: var(--secondary-text-color) !important;
+    font-size: 14px;
+    line-height: 21px;
+    font-family: 'Poppins';
+    letter-spacing: -0.28px;
+  }
 
+  &:-webkit-autofill:active,
+  &:-webkit-autofill:focus,
+  &:-webkit-autofill:hover {
+    background-color: var(--modal-bg-color) !important;
+    border: 1px solid var(--button-bg-color);
+  }
   
 `;
 
