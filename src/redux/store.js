@@ -4,7 +4,7 @@ import { persistStore, persistReducer } from 'redux-persist';
 import { authAPI, boardsAPI, cardsAPI, columnsAPI, userAPI } from 'Services/API_Component';
 // import { authApi } from './auth/authApi';
 import { setupListeners } from '@reduxjs/toolkit/dist/query';
-import {authAPISlice, userDataSlice } from './slices';
+import {authAPISlice, userDataSlice, userDataComb} from './slices';
 
 const authPersistConfig = {
   key: 'auth',
@@ -13,8 +13,9 @@ const authPersistConfig = {
 };
 
 const boardsPersistConfig = {
-  key: 'boardData',
+  key: 'boards' ,
   storage,
+  whitelist: ['boardId'],
 };
 
 const persistedReducer = persistReducer(authPersistConfig, authAPISlice);
@@ -27,13 +28,13 @@ export const store = configureStore({
   reducer: {
     auth: persistedReducer,
 
-    userBoardsData: persistedBoardReducer,
+    userData: persistedBoardReducer,
     [authAPI.reducerPath]: authAPI.reducer,
     [boardsAPI.reducerPath]: boardsAPI.reducer,
     [userAPI.reducerPath]: userAPI.reducer,
     [columnsAPI.reducerPath]: columnsAPI.reducer,
     [cardsAPI.reducerPath]: cardsAPI.reducer,
-    userData: userDataSlice, //КОМБІНОВАНИЙ РЕДЮСЕР БОРД КОЛОНКА ТА КАРТКА!!!
+    userBoardsData: userDataComb, //КОМБІНОВАНИЙ РЕДЮСЕР БОРД КОЛОНКА ТА КАРТКА!!!
   },
 
   middleware: getDefaultMiddleware =>
