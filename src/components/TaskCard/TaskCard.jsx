@@ -65,8 +65,7 @@ function TaskCard({
   };
   const handleDeleteCard = async () => {
     try {
-      const response = await deleteCardById({ id });
-      dispatch(deleteCard(response));
+      await deleteCardById({ id });
     } catch (error) {
       console.error('Error deleting card:', error);
     }
@@ -131,7 +130,7 @@ function TaskCard({
         </Box>
         <Box>
           <StyledIconButton onClick={handleOpenMenu} aria-label="next-colomn">
-            <svg stroke="#fff" strokeOpacity="0.5" width="16" height="16">
+            <svg stroke="var(--cards-icon-color)" width="16" height="16">
               <use href={sprite + '#icon-active'} />
             </svg>
           </StyledIconButton>
@@ -140,7 +139,7 @@ function TaskCard({
             title={'Edit card'}
             aria-label="edit"
           >
-            <svg stroke="#fff" strokeOpacity="0.5" width="16" height="16">
+            <svg stroke="var(--cards-icon-color)" width="16" height="16">
               <use href={sprite + '#icon-pencil'} />
             </svg>
           </StyledIconButton>
@@ -152,7 +151,7 @@ function TaskCard({
             close={closeAddCard}
           />
           <StyledIconButton onClick={handleDeleteCard} aria-label="remove">
-            <svg stroke="#fff" strokeOpacity="0.5" width="16" height="16">
+            <svg stroke="var(--cards-icon-color)" width="16" height="16">
               <use href={sprite + '#icon-trash'} />
             </svg>
           </StyledIconButton>
@@ -175,7 +174,7 @@ function TaskCard({
           <Box> In progress </Box>
           <Box>
             {' '}
-            <svg stroke="#fff" strokeOpacity="0.5" width="16" height="16">
+            <svg stroke="var(--cards-icon-color)" width="16" height="16">
               <use href={sprite + '#icon-active'} />
             </svg>
           </Box>
@@ -184,7 +183,7 @@ function TaskCard({
           <Box> Done </Box>
           <Box>
             {' '}
-            <svg stroke="#fff" strokeOpacity="0.5" width="16" height="16">
+            <svg stroke="var(--cards-icon-color)" width="16" height="16">
               <use href={sprite + '#icon-active'} />
             </svg>
           </Box>
