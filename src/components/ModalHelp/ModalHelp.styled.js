@@ -27,69 +27,45 @@ const inputStyles = `
   transition: border-color 0.3s ease;
   outline: none;
 
-  &::placeholder {
-     color: var(--primary-text-color);
-    // color: var(--secondary-text-color) !important;
-    font-size: 14px;
-    line-height: 21px;
-    font-family: 'Poppins';
-    letter-spacing: -0.28px;
+    color: var(--secondary-text-color) !important;
+    outline:none;
   }
 
   &:-webkit-autofill:active,
   &:-webkit-autofill:focus,
   &:-webkit-autofill:hover {
-    box-shadow: 0 0 0px 1000px var(--modal-bg-color) inset;
     color: var(--modal-bg-color) !important;
     background-color: var(--modal-bg-color) !important;
     border: 1px solid var(--button-bg-color);
+    outline:none;
   }
 
   &:focus {
     // background-color: var(--modal-bg-color) !important;
     -webkit-text-fill-color: var(--primary-text-color);
-    // border: 1px outset var(--button-bg-color);
-      opacity: 1;
+
+    border: 1px solid var(--button-bg-color);
+    outline:none;
   }
 
   &:active {
-    -webkit-text-fill-color: var(--primary-text-color) !important;
     background-color: var(--modal-bg-color);
-    border: 1px outset var(--button-bg-color);
+    border: 1px solid var(--button-bg-color);
     font-size: 14px;
     line-height: 21px;
     font-family: 'Poppins';
     letter-spacing: -0.28px;
+    outline:none;
   }
 `;
 
 export const InputStyled = styled.input`
   ${inputStyles}
-  box-shadow: 0 0 0px 1000px var(--modal-bg-color) inset;
-  &::placeholder {
-    color: var(--secondary-text-color) !important;
-    font-size: 14px;
-    line-height: 21px;
-    font-family: 'Poppins';
-    letter-spacing: -0.28px;
-  }
-
-  &:-webkit-autofill:active,
-  &:-webkit-autofill:focus,
-  &:-webkit-autofill:hover {
-    background-color: var(--modal-bg-color) !important;
-    border: 1px solid var(--button-bg-color);
-  }
 `;
 
 export const TextareaStyled = styled.textarea`
   ${inputStyles}
-  font-size: 14px;
-  line-height: 21px !important;
-  font-family: 'Poppins';
-  letter-spacing: -0.28px !important;
   min-height: 155px;
-  resize: none;
   text-align: top;
 `;
 
