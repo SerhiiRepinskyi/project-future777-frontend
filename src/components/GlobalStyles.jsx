@@ -92,7 +92,7 @@ export const GlobalStyles = () => {
 
           --button-add-bg-color: #121212; //black
           --button-add-box-color: #ffffff; //white
-          --icon-add-color: #121212; //black
+          --icon-add-colors: #121212; //black
 
           --icon-plus-color: rgba(255, 255, 255, 1); //white
           --icon-plus-bg-color: rgba(22, 22, 22, 1); //black
@@ -159,7 +159,7 @@ export const GlobalStyles = () => {
 
           --button-add-bg-color: #ffffff; //white
           --button-add-box-color: #161616; //black
-          --icon-add-color: #ffffff; //white
+          --icon-add-colors: #ffffff; //white
 
           --modal-bg-color: rgba(252, 252, 252, 1); //white
 
@@ -216,14 +216,14 @@ export const GlobalStyles = () => {
           --header-theme-color: rgba(184, 188, 253, 1); //light violet
           --header-bg-color: rgba(255, 255, 255, 1); //white
 
-          --button-bg-color-hover: rgba(82, 85, 188, 1); //blue
-          --button-bg-color: #7b7ede; //hover blue
+          --button-bg-color-hover: #7b7ede; //blue
+          --button-bg-color: #5255bc; //hover blue
           --icon-plus-color: rgba(22, 22, 22, 1); //black
           --icon-plus-bg-color: rgba(255, 255, 255, 1); //white
 
           --button-add-bg-color: #ffffff; //white
           --button-add-box-color: #5255bc; //fiolet
-          --icon-add-color: #ffffff; //white
+          --icon-add-colors: #ffffff; //white
 
           --modal-bg-color: rgba(252, 252, 252, 1); //white
 
