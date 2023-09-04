@@ -1,5 +1,9 @@
-import { useEffect } from 'react';
+import { useEffect} from 'react';
+import { useDispatch } from 'react-redux';
+
 import jwt_decode from "jwt-decode";
+import { API } from 'Services/API';
+import { useNavigate } from 'react-router-dom';
 
 // создаем в HTML скрипт, который делает запрос на 'https://accounts.google.com/gsi/client'
 const src = 'https://accounts.google.com/gsi/client'
@@ -17,8 +21,10 @@ new Promise((resolve, reject) => {
 })
 
 const GoogleAuth = () => {
-    // const dispatch = useDispatch();
-    // const navigate = useNavigate()
+    const [registerGoogle] = API.useRegisterGoogleMutation();
+    const dispatch = useDispatch();
+    const navigate = useNavigate()
+
 
     useEffect(() => {
 
@@ -49,7 +55,8 @@ const GoogleAuth = () => {
         console.log('name', name)
         console.log('email', email)
         
-        // dispatch(loginGoogleUser({email, name}))
+        dispatch(registerGoogle({email, name}))
+        navigate("/home")
 
     }
 
