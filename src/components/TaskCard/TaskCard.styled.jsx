@@ -87,7 +87,7 @@ export const CardStyles = styled.div`
   padding-bottom: 14px;
   padding-left: 24px;
   padding-right: 20px;
-  background-color: var(--icon-add-color);
+  background-color: var(--cards-bg-color);
   border-radius: 8px;
   border-left: 4px solid ${props => getPriorityColor(props.priority)};
 `;

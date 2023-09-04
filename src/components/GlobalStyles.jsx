@@ -102,6 +102,7 @@ export const GlobalStyles = () => {
           --screen-page-scrollbar-bg-color: rgba(255, 255, 255, 0.2);
           --screen-page-scrollbar-thumb-color: rgba(18, 18, 18, 1);
           --screen-page-scrollbar-thumb-color-HOVER: #9dc888;
+          --cards-bg-color: #121212;
           --cards-underline: rgba(255, 255, 255, 0.1);
           --cards-icon-color: rgba(255, 255, 255, 0.5);
 
@@ -173,6 +174,9 @@ export const GlobalStyles = () => {
           --icon-plus-bcg: rgba(190, 219, 176, 1); //light-green
           --icon-add-color: rgba(22, 22, 22, 1); // black
           --input-border-color: rgba(190, 219, 176, 1); //green
+          --cards-bg-color: #fff;
+          --cards-underline: rgba(22, 22, 22, 0.1);
+          --cards-icon-color: rgba(22, 22, 22, 0.5);
           --input-bcg-color: rgba(252, 252, 252, 1);
           --btn-text-color: rgba(22, 22, 22, 1); // black
 
@@ -236,6 +240,9 @@ export const GlobalStyles = () => {
           --input-border-color: rgba(82, 85, 188, 1); //purple
           --input-bcg-color: rgba(252, 252, 252, 1);
           --btn-text-color: rgba(255, 255, 255, 1); //white
+          --cards-bg-color: #fff;
+          --cards-underline: rgba(22, 22, 22, 0.1);
+          --cards-icon-color: rgba(22, 22, 22, 0.5);
 
           //------------------------------------------//
         }

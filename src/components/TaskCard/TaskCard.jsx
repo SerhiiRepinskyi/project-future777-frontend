@@ -40,13 +40,18 @@ function TaskCard({
   columnId,
 }) {
   const [anchorEl, setAnchorEl] = useState(null);
+
   const [updateCardById] = API.useUpdateCardByIdMutation();
   const [deleteCardById] = API.useDeleteCardByIdMutation();
-  const [isAddCardOpen, setIsAddCardOpen] = useState(false);
-  const dispatch = useDispatch();
 
-  const date = new Date(`${deadline}`);
-  const formattedDate = format(date, 'dd/MM/yyyy');
+  const [isAddCardOpen, setIsAddCardOpen] = useState(false);
+  const [updatedData, setUpdatedData] = useState({
+    title,
+    description,
+    priority,
+    deadline,
+  });
+  const dispatch = useDispatch();
 
   const closeAddCard = () => setIsAddCardOpen(false);
   const handleClick = () => setIsAddCardOpen(true);
@@ -65,7 +70,8 @@ function TaskCard({
   };
   const handleDeleteCard = async () => {
     try {
-      await deleteCardById({ id });
+      const response = await deleteCardById(id);
+      dispatch(deleteCard(response));
     } catch (error) {
       console.error('Error deleting card:', error);
     }
@@ -88,6 +94,13 @@ function TaskCard({
       console.error('Error updating card:', error);
     }
   };
+
+  const date = new Date(`${deadline}`);
+  const formattedDate = format(date, 'dd/MM/yyyy');
+
+  const currentDate = new Date();
+  const formatteCurrentDate = format(currentDate, 'dd/MM/yyyy');
+  const isDeadlineToday = formattedDate === formatteCurrentDate;
 
   return (
     <CardStyles priority={priority}>
@@ -129,6 +142,13 @@ function TaskCard({
           </Typography>
         </Box>
         <Box>
+          {isDeadlineToday && (
+            <StyledIconButton aria-label="deadline">
+              <svg stroke="#BEDBB0" width="16" height="16">
+                <use href={sprite + '#icon-bell'} />
+              </svg>
+            </StyledIconButton>
+          )}
           <StyledIconButton onClick={handleOpenMenu} aria-label="next-colomn">
             <svg stroke="var(--cards-icon-color)" width="16" height="16">
               <use href={sprite + '#icon-active'} />
