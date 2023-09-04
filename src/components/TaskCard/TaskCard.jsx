@@ -12,7 +12,7 @@ import sprite from '../../assets/images/sprite.svg';
 
 import { getPriorityText } from './TaskCard.styled';
 
-import { deleteCard, setCardData } from '../../redux/tasks/cardsAPISlice';
+import { deleteCard } from '../../redux/tasks/cardsAPISlice';
 import { useDispatch } from 'react-redux';
 import { API } from 'Services/API';
 
