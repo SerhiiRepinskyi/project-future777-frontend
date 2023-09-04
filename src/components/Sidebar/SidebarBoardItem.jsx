@@ -14,10 +14,13 @@ import { useEffect, useState } from 'react';
 import { API } from 'Services/API';
 import ModalBoard from 'components/ModalBoard/ModalBoard';
 import { SidebarBoardItemIcon } from './SidebarBoardItemIcon';
+import { useDispatch } from 'react-redux';
+import { setBoardId } from 'redux/boards/boardsAPISlice';
 
-export const SidebarBoardItem = ({ board, current}) => {
+export const SidebarBoardItem = ({ board, current }) => {
   const { _id: id, iconId, title } = board;
 
+  const dispatch = useDispatch();
 
   const [isHovered, setIsHovered] = useState(false);
   const [titleWidth, setTitleWidth] = useState(0);
@@ -55,6 +58,7 @@ export const SidebarBoardItem = ({ board, current}) => {
 
   const handleDeleteClick = event => {
     event.stopPropagation();
+    dispatch(setBoardId({ boardId: '' }));
     deleteBoard(id);
   };
 

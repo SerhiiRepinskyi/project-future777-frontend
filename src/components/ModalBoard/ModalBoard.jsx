@@ -22,7 +22,7 @@ import { arrIcons } from './data';
 import { arrBG } from './data';
 import { useDispatch } from 'react-redux';
 import { API } from 'Services/API';
-import { setBoardResponse } from 'redux/boards/boardsAPISlice';
+import { setBoardId, setBoardResponse } from 'redux/boards/boardsAPISlice';
 import { useNavigate } from 'react-router-dom';
 
 const titleStyle = {
@@ -58,6 +58,7 @@ const ModalBoard = ({ board, boardTitle, open, handleClose }) => {
         const response = await addBoard(FormData);
         dispatch(setBoardResponse(response));
         const newBoardId = response.data._id;
+        dispatch(setBoardId({boardId:newBoardId}));
         navigate(`/home/${newBoardId}`);
         setInputValue('');
         setIconId(arrIcons[0]);

@@ -4,13 +4,18 @@ import { useEffect, useState } from 'react';
 
 import { API } from 'Services/API';
 import { useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { setBoardId } from 'redux/boards/boardsAPISlice';
 
 export const SidebarBoardList = () => {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { data } = API.useGetBoardsQuery();
 
-  const [boardsArray, setBoardsArray] = useState([]);
-  const [currentItemId, setCurrentItemId] = useState('');
+  const { data } = API.useGetBoardsQuery();
+  const boardId = useSelector(state => state.boards.boardId);
+
+  const [boardsArray, setBoardsArray] = useState(data || []);
+  const [currentItemId, setCurrentItemId] = useState(boardId || '');
 
   useEffect(() => {
     if (data?.length !== boardsArray?.length) {
@@ -23,6 +28,7 @@ export const SidebarBoardList = () => {
 
   const handleButtonClick = id => {
     setCurrentItemId(id);
+    dispatch(setBoardId({ boardId: id }));
     navigate(`/home/${id}`);
   };
 
