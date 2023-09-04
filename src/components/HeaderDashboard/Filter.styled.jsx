@@ -7,6 +7,13 @@ export const Div = styled.div`
   align-items: baseline;
   margin-bottom: 2px;
 `;
+export const FormPopup = styled.form`
+  background-color: var(--modal-bg-color);
+  height: 275px;
+  width: 200px;
+  border-radius: 8px;
+  padding: 24px;
+`;
 
 export const Button = styled.button`
   color: rgba(255, 255, 255, 0.5);
