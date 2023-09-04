@@ -7,15 +7,19 @@ import { useNavigate } from 'react-router-dom';
 
 export const SidebarBoardList = () => {
   const navigate = useNavigate();
-
   const { data } = API.useGetBoardsQuery();
 
+  const [boardsArray, setBoardsArray] = useState([]);
   const [currentItemId, setCurrentItemId] = useState('');
 
   useEffect(() => {
-    const currentItemId = data?.length > 0 ? data[data?.length - 1]._id : '';
-    setCurrentItemId(currentItemId);
-  }, [data]);
+    if (data?.length !== boardsArray?.length) {
+      const currentItemId = data?.length > 0 ? data[data?.length - 1]._id : '';
+      setCurrentItemId(currentItemId);
+      navigate(`/home/${currentItemId}`);
+    }
+    setBoardsArray(data);
+  }, [boardsArray, data, navigate]);
 
   const handleButtonClick = id => {
     setCurrentItemId(id);
@@ -33,7 +37,7 @@ export const SidebarBoardList = () => {
           mb: 3,
         }}
       >
-        {data?.map(board => (
+        {boardsArray?.map(board => (
           <ListItem key={board._id} disablePadding>
             <ListItemButton
               sx={{

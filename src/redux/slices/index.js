@@ -7,3 +7,7 @@ export { default as columnAPISlice } from '../columns/columnAPISlice'
 export { default as cardsAPISlice } from '../tasks/cardsAPISlice'
 
 export { default as userAPISlice } from '../user/userAPISlice';
+
+export { default as userDataComb } from './userDataSliceCombained';
+
+export { default as userDataSlice } from '../slices/userDataSliceCombained';

@@ -6,6 +6,8 @@ import { useState } from 'react';
 
 // import { arrBG } from '../ModalBoard/data';
 import { Button, Div, Label, LabelGroup, RadioWrap } from './Filter.styled';
+import { useDispatch } from 'react-redux';
+import { setFilter } from 'redux/boards/boardsAPISlice';
 // import {
 //   ImgStyled,
 //   LiStyled,
@@ -33,13 +35,16 @@ const titleStyle = {
   borderBottom: '0.50px rgba(255, 255, 255, 0.10) solid',
 };
 
-export const Filter = ({ open, onClose }) => {
+export const Filter = ({ filter, open, onClose }) => {
   // const [bgImgIndex, setBgImgIndex] = useState(null);
   // const [backgroundURL, setBackgroundURL] = useState(arrBG[0]);
   // const [backgroundIndex, setBackgroundIndex] = useState(0);
 
   const [currentPrority, setCurrentPrority] = useState('');
   const [isShowAllActive, setIsShowAllActive] = useState(false);
+
+  const dispatch = useDispatch();
+
   const initialValues = {
     currentPrority: '',
   };
@@ -50,8 +55,10 @@ export const Filter = ({ open, onClose }) => {
     value: item,
   });
   const handleChange = event => {
-    const filter = event.target.value;
-    setCurrentPrority(filter);
+    // const filter = event.target.value;
+    // filter(event.target.value);
+    dispatch(setFilter(event.target.value));
+    setCurrentPrority(event.target.value);
     // dispatch(setFilterCards(filter));
     setIsShowAllActive(false);
   };

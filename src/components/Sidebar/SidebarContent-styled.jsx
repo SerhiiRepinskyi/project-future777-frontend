@@ -39,10 +39,8 @@ export const Subtitle = styled('p')(({ isSidebarShown }) => ({
   fontWeight: 400,
   letterSpacing: '-0.24px',
 
-  transform: 'translateX(150px)',
   animation: isSidebarShown ? `${slideToLeft} 400ms` : 'none',
   animationTimingFunction: 'ease',
-
   animationFillMode: 'forwards',
 }));
 
@@ -100,7 +98,7 @@ export const HelpText = styled('p')(({ isSidebarShown }) => ({
   fontWeight: 400,
   letterSpacing: -0.15,
   '& span': {
-    color: 'var(--button-bg-color)',
+    color: 'var(--sidebar-taskpro-link-color)',
   },
 
   transform: 'translateX(-250px)',

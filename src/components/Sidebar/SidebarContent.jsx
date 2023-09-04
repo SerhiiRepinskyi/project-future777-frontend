@@ -2,19 +2,17 @@ import {
   CreateBoardWrap,
   HelpBox,
   HelpButton,
-  HelpIcon,
   HelpText,
   Image,
   Subtitle,
   TitleCreate,
 } from './SidebarContent-styled';
 import { Box } from '@mui/material';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 import styles from './SidebarCustomScroll.module.css';
 
 import AloeVera from '../../assets/images/aloe-vera.png';
-import sprite from '../../assets/images/sprite.svg';
 
 import { SidebarLogo } from 'components/Logo/Logo';
 import { ButtonSidebar } from 'components/Buttons/Button';
@@ -23,24 +21,11 @@ import { SidebarBoardList } from './SidebarBoardList';
 import LogoutBtn from 'components/logoutBtn/logoutBtn';
 import ModalBoard from 'components/ModalBoard/ModalBoard';
 import ModalHelp from 'components/ModalHelp/ModalHelp';
+import { SidebarHelpIcon } from './SidebarHelpIcon';
 
 export const SidebarContent = ({ isSidebarShown }) => {
   const [isModalBoardOpen, setIsModalBoardOpen] = useState(false);
   const [isModalHelpOpen, setIsModalHelpOpen] = useState(false);
-  const [startAnimation, setStartAnimation] = useState(true);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setStartAnimation(true);
-      setTimeout(() => {
-        setStartAnimation(false);
-      }, 1000);
-    }, 7000);
-
-    return () => {
-      clearInterval(interval);
-    };
-  }, []);
 
   const modalBoardStateChange = () => setIsModalBoardOpen(!isModalBoardOpen);
   const modalHelpStateChange = () => setIsModalHelpOpen(!isModalHelpOpen);
@@ -58,7 +43,7 @@ export const SidebarContent = ({ isSidebarShown }) => {
           justifyContent: 'space-between',
         }}
       >
-        <Box >
+        <Box>
           <Box sx={{ pl: { 0: 1.75, 768: 3 }, pr: { 0: 1.75, 768: 3 } }}>
             <SidebarLogo sx={{ mb: 7.5 }} isSidebarShown={isSidebarShown} />
 
@@ -99,9 +84,7 @@ export const SidebarContent = ({ isSidebarShown }) => {
               isSidebarShown={isSidebarShown}
               onClick={modalHelpStateChange}
             >
-              <HelpIcon startAnimation={startAnimation}>
-                <use href={sprite + '#icon-help'}></use>
-              </HelpIcon>
+              <SidebarHelpIcon />
               Need help?
             </HelpButton>
           </HelpBox>
@@ -114,7 +97,7 @@ export const SidebarContent = ({ isSidebarShown }) => {
         open={isModalBoardOpen}
         handleClose={modalBoardStateChange}
       />
-      <ModalHelp open={isModalHelpOpen} handleClose={modalHelpStateChange} />
+      <ModalHelp title={"Need help"} open={isModalHelpOpen} handleClose={modalHelpStateChange} />
     </>
   );
 };

@@ -38,12 +38,17 @@ export const ThemeWrap = styled.div`
   font-size: 14px;
   font-weight: 500;
   letter-spacing: -0.28px;
-  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: color 300ms cubic-bezier(0.4, 0, 0.2, 1);
   svg {
-    stroke: var(--header-theme-color);
+    stroke: var(--primary-text-color);
+    transition: stroke 300ms cubic-bezier(0.4, 0, 0.2, 1);
   }
   &:hover {
+    svg {
+      stroke: var(--header-theme-color);
+    }
     color: var(--header-theme-color);
+   
   }
 `;
 
@@ -58,11 +63,13 @@ export const ThemeUL = styled.ul`
   overflow: hidden;
   list-style: none;
   border-radius: 8px;
-
+  
   &.visible {
     width: 100px;
     max-height: 107px;
     padding: 18px 44px 18px 18px;
+    border: 1px solid var(--button-bg-color);
+    box-shadow: 0px 4px 16px 0px rgba(17, 17, 17, 0.1);
   }
   @media (max-width: 768px) {
     top: 41px;

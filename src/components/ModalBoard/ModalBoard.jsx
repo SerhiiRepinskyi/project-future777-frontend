@@ -1,5 +1,5 @@
 import { useFormik } from 'formik';
-import { Typography } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 import {
   FormStyled,
   InputStyled,
@@ -11,6 +11,8 @@ import {
   LiIconsStyled,
 } from './ModalBoard.styled';
 
+import Notiflix from 'notiflix';
+import { Report } from 'notiflix';
 import sprite from '../../assets/images/sprite.svg';
 import * as Yup from 'yup';
 import { ButtonWithIcon } from 'components/Buttons/Button';
@@ -19,7 +21,6 @@ import { useState } from 'react';
 import { arrIcons } from './data';
 import { arrBG } from './data';
 import { useDispatch } from 'react-redux';
-// import { selectIsLoggedIn } from 'redux/auth/authSelectors';
 import { API } from 'Services/API';
 import { setBoardResponse } from 'redux/boards/boardsAPISlice';
 import { useNavigate } from 'react-router-dom';
@@ -31,23 +32,14 @@ const titleStyle = {
   fontWeight: 500,
   lineHeight: 'normal',
   letterSpacing: -0.36,
+  fontFamily: 'Poppins',
 };
-
-const ModalBoard = ({
-  board = {},
-  boardTitle,
-  boardId = '',
-  open,
-  handleClose,
-}) => {
+const ModalBoard = ({ board, boardTitle, open, handleClose }) => {
   const dispatch = useDispatch();
-  const [iconId, setIconId] = useState(arrIcons[0]);
-  const [iconIndex, setIconIndex] = useState(board.icon);
-  const [selectedBG, setSelectedBG] = useState(board.background);
-  const [selectedIconIndex, setSelectedIconIndex] = useState(board.icon);
 
-  const [backgroundURL, setBackgroundURL] = useState(arrBG[0]);
-  const [backgroundIndex, setBackgroundIndex] = useState(0);
+  const [inputValue, setInputValue] = useState(board?.title || '');
+  const [iconId, setIconId] = useState(board?.iconId || arrIcons[0]);
+  const [background, setBackground] = useState(board?.background || 0);
 
   const [addBoard] = API.useAddBoardsMutation();
   const [editBoard] = API.useUpdateBoardByIdMutation();
@@ -58,10 +50,8 @@ const ModalBoard = ({
     try {
       const FormData = {
         title,
-        icon: iconIndex,
+        background,
         iconId,
-        background: backgroundIndex,
-        backgroundURL,
       };
 
       if (boardTitle === 'New board') {
@@ -69,70 +59,109 @@ const ModalBoard = ({
         dispatch(setBoardResponse(response));
         const newBoardId = response.data._id;
         navigate(`/home/${newBoardId}`);
+        setInputValue('');
+        setIconId(arrIcons[0]);
+        setBackground(0);
+        Report.success(
+          'Board added successfully',
+          'You can use your board and add columns to it',
+          'Ok'
+        );
       }
       if (boardTitle === 'Edit board') {
-        const response = await editBoard({ boardId, FormData });
+        if (
+          board.title === inputValue &&
+          board.iconId === iconId &&
+          board.background === background
+        ) {
+          Report.warning(
+            'No changes have been selected',
+            'Edit any field to apply the changes',
+            'Ok'
+          );
+          return;
+        }
+
+        const response = await editBoard({ boardId: board._id, FormData });
         dispatch(setBoardResponse(response));
+        Report.success(
+          'Board edited successfully',
+          'All changes have been made',
+          'Ok'
+        );
       }
       handleClose();
-    } catch (error) {
-      console.log(error);
+    } catch {
+      Report.failure("Board wasn't edited", 'Changes have not been made', 'Ok');
     }
     formik.handleReset();
   };
 
+  const handleChange = e => {
+    setInputValue(e.currentTarget.value);
+    formik.setFieldValue('title', e.currentTarget.value);
+  };
+
   const validationSchema = Yup.object({
     title: Yup.string()
-      .min(2, 'Must be more then 2 symbols')
+      .min(2, 'Must be more than 2 symbols')
+      .max(50, 'Must be less than 50 symbols')
       .required('Title is required')
-      .matches(
-        /^(\w*)$/,
-        'Title may contain only letters, apostrophe, dash and spaces.'
+      .test(
+        'is-not-cyrillic',
+        'Title must not contain Cyrillic characters',
+        function (value) {
+          if (/[а-яА-Я]/.test(value)) {
+            Notiflix.Notify.warning(
+              'Title field must not contain enemy characters!'
+            );
+
+            return false;
+          }
+          return true;
+        }
       ),
     description: Yup.string(),
   });
 
   const formik = useFormik({
-    initialValues: { title: '' },
+    initialValues: { title: inputValue },
     onSubmit: ({ title }) => handleSubmit(title),
     validationSchema,
   });
 
-  const handleIconCurrent = (icon, index) => {
-    setIconId(icon);
-    setIconIndex(index);
-    setSelectedIconIndex(index);
-  };
-
   return (
     <>
       <ModalLayout title={boardTitle} open={open} handleClose={handleClose}>
-        <FormStyled onSubmit={formik.handleSubmit}>
+        <FormStyled
+          sx={{ width: { 0: '77vw', 375: '287px', 768: '302px' } }}
+          onSubmit={formik.handleSubmit}
+        >
           <InputStyled
             id="title"
             name="title"
-            placeholder={board ? board.title : 'Title'}
-            onChange={formik.handleChange}
+            placeholder={'Title'}
+            onChange={handleChange}
             onBlur={formik.handleBlur}
-            value={formik.values.title}
+            value={inputValue}
           />
           <Typography variant="h2" sx={titleStyle}>
             Icons
           </Typography>
           <UlStyled>
-            {arrIcons.map((icon, index) => {
+            {arrIcons.map(icon => {
               return (
                 <LiIconsStyled
                   key={icon}
-                  onClick={() => handleIconCurrent(icon, index)}
-                  isSelected={selectedIconIndex === index}
+                  onClick={() => setIconId(icon)}
+                  isSelected={iconId === icon}
                 >
                   <TransparentSVG>
                     <use
                       href={sprite + icon}
                       style={{
                         stroke:
-                          selectedIconIndex === index
+                          iconId === icon
                             ? '#FFFFFF'
                             : 'rgba(255, 255, 255, 0.5)',
                         transition: 'stroke 0.2s ease',
@@ -148,27 +177,78 @@ const ModalBoard = ({
             Background
           </Typography>
           <UlBgStyled>
-            <LiStyled></LiStyled>
-            {arrBG.map((bg, index) => {
-              return (
-                <LiStyled
-                  key={bg}
-                  onClick={() => {
-                    setBackgroundURL(bg);
-                    setBackgroundIndex(index);
-                    setSelectedBG(index);
+            <li
+              key={0}
+              onClick={() => {
+                setBackground(0);
+              }}
+            >
+              <Box
+                sx={{
+                  overflow: 'hidden',
+                  display: 'flex',
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                  width: '28px',
+                  height: '28px',
+                  borderRadius: '6px',
+                  border:
+                    0 === background
+                      ? '2px solid #ffffff'
+                      : '2px solid transparent',
+                  '&:hover, &:focus': {
+                    border: '2px solid #bedbb0',
+                  },
+                }}
+              >
+                <div
+                  style={{
+                    display: 'flex',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    width: '100%',
+                    height: '100%',
+                    backgroundColor: '#1F1F1F',
+                    borderRadius: '5px',
+                    cursor: 'pointer',
                   }}
                 >
-                  <ImgStyled
-                    src={bg}
-                    alt="background picture"
+                  <svg
                     style={{
-                      border: `2px solid ${
-                        selectedBG === index ? 'white' : 'transparent'
-                      }`,
+                      width: '16px',
+                      height: '16px',
+                      stroke: 'rgba(255, 255, 255, 0.10)',
                     }}
-                  />
-                </LiStyled>
+                  >
+                    <use href={sprite + '#icon-default-background'}></use>
+                  </svg>
+                </div>
+              </Box>
+            </li>
+            {arrBG.map((bg, index) => {
+              return (
+                <li key={index + 1} onClick={() => setBackground(index + 1)}>
+                  <Box
+                    sx={{
+                      overflow: 'hidden',
+                      display: 'flex',
+                      justifyContent: 'center',
+                      alignItems: 'center',
+                      width: '28px',
+                      height: '28px',
+                      borderRadius: '6px',
+                      border:
+                        index + 1 === background
+                          ? '2px solid #ffffff'
+                          : '2px solid transparent',
+                      '&:hover, &:focus': {
+                        border: '2px solid #bedbb0',
+                      },
+                    }}
+                  >
+                    <ImgStyled src={bg} alt="background picture" />
+                  </Box>
+                </li>
               );
             })}
           </UlBgStyled>
@@ -176,7 +256,11 @@ const ModalBoard = ({
           <ButtonWithIcon
             title={boardTitle === 'New board' ? 'Create' : 'Edit'}
             type={'submit'}
-            // onClick={handleClose}
+            onClick={() => {
+              if (formik.values.title === '' && !inputValue) {
+                Notiflix.Notify.warning('Title field must be filled in');
+              }
+            }}
           />
         </FormStyled>
       </ModalLayout>

@@ -9,10 +9,14 @@ export const ColumnWrapper = styled.li`
   align-items: left;
   /* gap: 14px; */
   width: 346px;
-  max-height: 80vh;
+  max-height: 100%;
   padding-right: 12px;
   padding-bottom: 14px;
   margin-right: 14px;
+
+  @media screen and (min-width: 1400px) {
+    max-height: 80vh;
+  }
 `;
 
 export const ColumnHeader = styled.div`

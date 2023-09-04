@@ -9,7 +9,7 @@ const {
   FilterButton,
   TitleFilter,
 } = require('./HeaderDashboard.styled');
-export const HeaderDashboard = ({ title }) => {
+export const HeaderDashboard = ({ title, filter }) => {
   const [isOpen, setIsOpen] = useState();
   const toggleModal = () => setIsOpen(!isOpen);
 
@@ -27,7 +27,7 @@ export const HeaderDashboard = ({ title }) => {
         </svg>
         <TitleFilter>Filters</TitleFilter>
       </FilterButton>
-      {isOpen && <Filter open={isOpen} onClose={toggleModal} />}
+      {isOpen && <Filter filter={filter} open={isOpen} onClose={toggleModal} />}
     </Container>
   );
 };

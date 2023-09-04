@@ -38,7 +38,7 @@ const columnsAPISlice = createSlice({
       state.error = null;
     },
   },
-  extraReducers: {},
+  
 });
 
 export const { setError, clearError } = columnsAPISlice.actions;

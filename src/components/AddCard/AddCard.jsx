@@ -96,7 +96,7 @@ const AddCard = ({
       .strict(true)
       .min(2, 'Must be more then 2 symbols')
       .required('Title is required'),
-    description: Yup.string().required,
+    description: Yup.string(),
     color: Yup.string(),
   });
 

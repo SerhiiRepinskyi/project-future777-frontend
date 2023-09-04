@@ -1,6 +1,5 @@
 import {
   BoardItemCurrentIcon,
-  BoardItemIcon,
   BoardItemTitle,
   BoardItemTitleWrap,
   BoardItemWrap,
@@ -14,17 +13,16 @@ import { Box, List, ListItem, ListItemButton } from '@mui/material';
 import { useEffect, useState } from 'react';
 import { API } from 'Services/API';
 import ModalBoard from 'components/ModalBoard/ModalBoard';
-// import { useNavigate } from 'react-router-dom';
+import { SidebarBoardItemIcon } from './SidebarBoardItemIcon';
 
-export const SidebarBoardItem = ({ board, current }) => {
+export const SidebarBoardItem = ({ board, current}) => {
   const { _id: id, iconId, title } = board;
 
-  // const navigate = useNavigate();
+
   const [isHovered, setIsHovered] = useState(false);
   const [titleWidth, setTitleWidth] = useState(0);
   const [titleWrapWidth, setTitleWrapWidth] = useState(130);
   const [screenWidth, setScreenWidth] = useState(window.innerWidth);
-  const [startAnimation, setStartAnimation] = useState(true);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const [deleteBoard] = API.useDeleteBoardByIdMutation();
@@ -32,20 +30,6 @@ export const SidebarBoardItem = ({ board, current }) => {
   const handleResize = debounce(() => {
     setScreenWidth(window.innerWidth);
   }, 200);
-
-  useEffect(() => {
-    const randomNumber = Math.floor(Math.random() * (15000 - 7000 + 1)) + 7000;
-    const interval = setInterval(() => {
-      setStartAnimation(true);
-      setTimeout(() => {
-        setStartAnimation(false);
-      }, 1000);
-    }, randomNumber);
-
-    return () => {
-      clearInterval(interval);
-    };
-  }, []);
 
   useEffect(() => {
     window.addEventListener('resize', handleResize);
@@ -72,7 +56,6 @@ export const SidebarBoardItem = ({ board, current }) => {
   const handleDeleteClick = event => {
     event.stopPropagation();
     deleteBoard(id);
-    // navigate(`/home/${currentItemId}`);
   };
 
   return (
@@ -98,12 +81,7 @@ export const SidebarBoardItem = ({ board, current }) => {
             alignItems: 'center',
           }}
         >
-          <BoardItemIcon
-            startAnimation={startAnimation}
-            sx={{ opacity: current ? 1 : 0.5 }}
-          >
-            <use href={sprite + iconId}></use>
-          </BoardItemIcon>
+          <SidebarBoardItemIcon current={current} iconId={iconId} />
 
           <BoardItemTitleWrap
             sx={{

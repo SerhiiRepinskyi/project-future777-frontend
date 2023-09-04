@@ -1,6 +1,14 @@
 import styled from '@emotion/styled';
+import { styled as MUI } from '@mui/material/styles';
+
+export const FormStyled = MUI('form')({
+  display: 'flex',
+  flexDirection: 'column',
+  gap: '14px',
+});
 
 export const ButtonClose = styled.button`
+  font-family: Poppins;
   margin: 0;
   padding: 0;
   position: absolute;
@@ -11,7 +19,6 @@ export const ButtonClose = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
-  color: rgba(255, 255, 255, 0.5);
 
   background-color: transparent;
   border: none;
@@ -20,21 +27,16 @@ export const ButtonClose = styled.button`
 
   &:hover,
   &:focus {
-    border: 1px solid #ffffff;
-    color: rgba(255, 255, 255, 1);
+    transform: scale(1.2);
+    /* border: 1px solid #ffffff;
+    color: rgba(255, 255, 255, 1); */
   }
 `;
 
-export const FormStyled = styled.form`
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-  margin-bottom: 24px;
-`;
-
 export const InputStyled = styled.input`
+  font-family: Poppins;
   resize: none;
-  color: #ffffff;
+  color: var(--primary-text-color);
   padding: 14px 14px;
   background-color: transparent;
   border: 1px solid rgba(190, 219, 176, 0.4);
@@ -45,7 +47,7 @@ export const InputStyled = styled.input`
     outline: none;
   }
   ::placeholder {
-    color: #ffffff;
+    color: var(--primary-text-color);
     opacity: 30%;
   }
 `;
@@ -75,24 +77,25 @@ export const UlStyled = styled.ul`
 export const UlBgStyled = styled.ul`
   display: flex;
   flex-wrap: wrap;
-  gap: 2px;
+  gap: 4px;
   margin: 0;
   padding: 0;
   list-style: none;
   margin-bottom: 14px;
-  width: 260px;
+  max-width: 260px;
 `;
 
 export const LiStyled = styled.li`
   display: flex;
+  justify-content: center;
+  align-items: center;
   width: 28px;
   height: 28px;
-  border-radius: 14px;
+  border-radius: 5px;
 
   &:hover,
   &:focus {
-    border-radius: 5px;
-    background-color: #bedbb0;
+    border: 1px solid #bedbb0;
   }
 `;
 
@@ -101,7 +104,6 @@ export const ImgStyled = styled.img`
   height: 100%;
   object-fit: cover;
   object-position: center;
-  border-radius: 5px;
   cursor: pointer;
 `;
 
@@ -109,7 +111,7 @@ export const LiIconsStyled = styled.li`
   display: flex;
   width: 20px;
   height: 20px;
-  align-items: center; 
+  align-items: center;
   justify-content: center;
 
   &:hover,
