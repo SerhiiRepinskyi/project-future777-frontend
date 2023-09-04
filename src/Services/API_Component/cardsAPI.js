@@ -49,10 +49,10 @@ export const cardsAPI = createApi({
 
     deleteCardById: builder.mutation({
       query: cardId => ({
-        url: `/columns/${cardId}`,
+        url: `/cards/${cardId}`,
         method: 'DELETE',
       }),
-      invalidatesTags: ['columns'],
+      invalidatesTags: ['cards'],
     }),
 
     updateCardColumnById: builder.mutation({
@@ -66,7 +66,6 @@ export const cardsAPI = createApi({
 });
 
 export const {
-  
   useUpdateCardByIdMutation,
   useDeleteCardByIdMutation,
   useUpdateCardColumnByIdMutation,
