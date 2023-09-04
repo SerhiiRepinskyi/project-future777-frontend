@@ -23,7 +23,6 @@ import {
   FormikInput,
   Wrap,
   Icon,
-  Button,
   IconBtn,
 } from './ModalEditProfile.styled';
 import { notifyInit } from 'helpers/notifyInit';
@@ -35,6 +34,7 @@ import {
   useUpdateUserMutation,
 } from 'Services/API_Component';
 import ModalLayout from 'components/ModalLayout/ModalLayout';
+import { ButtonWithoutIcon } from 'components/Buttons/Button';
 
 export const ModalEditProfile = ({ title, open, handleClose }) => {
   const [showPassword, setShowPassword] = useState(false);
@@ -107,9 +107,8 @@ export const ModalEditProfile = ({ title, open, handleClose }) => {
     <>
       <ModalLayout title={title} open={open} handleClose={handleClose}>
         {(isLoading || isUpdateUserLoading) && <Loader />}
-        <Container sx={{ width: {0: "77vw", 375: "287px", 768: "352px"} }}>
+        <Container sx={{ width: { 0: '77vw', 375: '287px', 768: '352px' } }}>
           <FormWrap>
-            
             <AvatarWrapper>
               <ImgWrapper>
                 {currentImage.includes('gravatar') ? (
@@ -239,13 +238,19 @@ export const ModalEditProfile = ({ title, open, handleClose }) => {
                       )}
                     </Label>
 
-                    <Button
+                    {/* <Button
                       type="submit"
                       disabled={!dirty || !isValid}
                       aria-label="Submit"
                     >
                       Send
-                    </Button>
+                    </Button> */}
+                    <ButtonWithoutIcon
+                      title={'Send'}
+                      type={'submit'}
+                      disabled={!dirty || !isValid}
+                      disableElevation
+                    ></ButtonWithoutIcon>
                   </FormikForm>
                 </>
               )}

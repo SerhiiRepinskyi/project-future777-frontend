@@ -65,12 +65,12 @@ export const ButtonWithoutIcon = ({ title, onClick, type }) => {
       disableElevation
       sx={{
         display: 'flex',
-        color: '#161616',
+        color: ' var(--btn-text-color)',
         fontFamily: 'Poppins, sans-serif',
         alignItems: 'center',
         textTransform: 'none',
         borderRadius: '8px',
-        marginTop: '24px',
+        marginTop: '10px',
         letterSpacing: '-0.02em',
         fontSize: '14px',
         // background: '#BEDBB0',
@@ -79,7 +79,7 @@ export const ButtonWithoutIcon = ({ title, onClick, type }) => {
         fontWeight: '500',
         fontStyle: 'normal',
         width: '100%',
-        height: '56px',
+        height: '49px',
         '&:hover': {
           background: 'var( --button-bg-color-hover)',
         },
