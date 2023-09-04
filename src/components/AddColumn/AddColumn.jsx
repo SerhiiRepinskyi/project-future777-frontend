@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { API } from 'Services/API';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { FormStyled, InputStyled } from '../AddCard/AddCard.styled';
 import { ButtonWithIcon } from 'components/Buttons/Button';
 import ModalLayout from '../ModalLayout/ModalLayout';
+import Notiflix from 'notiflix';
 
 const AddColumn = ({
   open,
@@ -14,21 +15,18 @@ const AddColumn = ({
   columnId,
   titleValue,
 }) => {
+  const [columnTitle, setColumnTitle] = useState(titleValue);
   const [addColumn] = API.useAddColumnMutation();
   const [updateColumn] = API.useUpdateColumnByIdMutation();
 
   const validationSchema = Yup.object({
     title: Yup.string()
       .min(2, 'Must be more then 2 symbols')
-      .required('Title is required')
-      .matches(
-        /^(\w*)$/,
-        'Title may contain only letters, apostrophe, dash and spaces.'
-      ),
+      .required('Title is required'),
   });
 
   const formikTitle =
-    modalType === 'Add column' ? { title: '' } : { title: titleValue };
+    modalType === 'Add column' ? { title: '' } : { title: columnTitle };
 
   const formik = useFormik({
     initialValues: formikTitle,
@@ -37,24 +35,29 @@ const AddColumn = ({
   });
 
   const handleSubmit = async title => {
-    console.log('columnId :>> ', columnId);
     if (modalType === 'Add column') {
       try {
         await addColumn({ boardId, title });
-        close();
       } catch (error) {
         console.log(error.message);
       }
     }
+
     if (modalType === 'Edit column') {
+      if (title.title === titleValue) {
+        return Notiflix.Notify.failure('Nothing changed');
+      }
+      setColumnTitle('');
       try {
         await updateColumn({ columnId, title });
-        close();
+        Notiflix.Notify.success('Your column successfully updated');
+        
       } catch (error) {
         console.log(error.message);
       }
     }
     formik.handleReset();
+    close();
   };
 
   return (

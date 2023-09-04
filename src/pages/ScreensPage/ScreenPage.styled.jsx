@@ -15,7 +15,6 @@ export const MainWrapper = styled.main`
         if (props.index === undefined) {
           return 'none';
         }
-        console.log('props.index :>> ', props.index);
         return `url(${bgData[2].mobile[0][props.index]})`;
       }};
     }
@@ -24,7 +23,6 @@ export const MainWrapper = styled.main`
         if (props.index === undefined) {
           return 'none';
         }
-        console.log('props.index :>> ', props.index);
         return `url(${bgData[2].mobile[1][props.index]})`;
       }};
     }
@@ -33,7 +31,6 @@ export const MainWrapper = styled.main`
         if (props.index === undefined) {
           return 'none';
         }
-        console.log('props.index :>> ', props.index);
         return `url(${bgData[2].mobile[2][props.index]})`;
       }};
     }
@@ -74,7 +71,6 @@ export const MainWrapper = styled.main`
         if (props.index === undefined) {
           return 'none';
         }
-        console.log('props.index :>> ', props.index);
         return `url(${bgData[1].laptop[0][props.index]})`;
       }};
     }
@@ -83,7 +79,6 @@ export const MainWrapper = styled.main`
         if (props.index === undefined) {
           return 'none';
         }
-        console.log('props.index :>> ', props.index);
         return `url(${bgData[1].laptop[1][props.index]})`;
       }};
     }
@@ -92,7 +87,6 @@ export const MainWrapper = styled.main`
         if (props.index === undefined) {
           return 'none';
         }
-        console.log('props.index :>> ', props.index);
         return `url(${bgData[1].laptop[2][props.index]})`;
       }};
     }
