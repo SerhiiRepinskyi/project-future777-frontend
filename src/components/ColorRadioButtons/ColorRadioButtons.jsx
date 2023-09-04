@@ -1,8 +1,8 @@
 import * as React from 'react';
 import Radio from '@mui/material/Radio';
 
-export default function ColorRadioButtons({ onColorChange, value }) {
-  const [selectedValue, setSelectedValue] = React.useState('0');
+export default function ColorRadioButtons({ onColorChange, value = '0' }) {
+  const [selectedValue, setSelectedValue] = React.useState(value);
 
   const handleChange = event => {
     setSelectedValue(event.target.value);

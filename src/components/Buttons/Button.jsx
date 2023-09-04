@@ -6,9 +6,10 @@ import { Box, IconButton } from '@mui/material';
 import sprite from '../../assets/images/sprite.svg';
 
 // Кнопка для модалок с иконкой
-export const ButtonWithIcon = ({ title, onClick, type }) => {
+export const ButtonWithIcon = ({ title, onClick, type, disabled }) => {
   return (
     <Button
+      disabled={disabled}
       onClick={onClick}
       type={type}
       variant="contained"
@@ -16,7 +17,7 @@ export const ButtonWithIcon = ({ title, onClick, type }) => {
       sx={{
         display: 'flex',
         gap: '8px',
-        color: '#161616',
+        color: 'var(--button-text-color)',
         fontFamily: 'Poppins, sans-serif',
         alignItems: 'center',
         textTransform: 'none',

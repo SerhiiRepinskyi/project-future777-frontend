@@ -12,15 +12,11 @@ import {
 } from './ScreenPage.styled';
 import { useDispatch, useSelector } from 'react-redux';
 
-// console.log('window :>> ', window.devicePixelRatio);
-
 const ScreensPage = () => {
   const { boardId } = useParams();
   const [filterValue, setFilterValue] = useState('');
-  const stateFilter = useSelector(state => state.boards?.filter);
-
-//  console.log('filter :>> ', stateFilter);
-
+  const stateFilter = useSelector(state => state.boards.filter);
+console.log('stateFilter :>> ', stateFilter);
   const dispatch = useDispatch();
 
   const reqData = {
@@ -34,15 +30,11 @@ const ScreensPage = () => {
     skip: false,
   });
 
-  // console.log('data :>> ', data);
-
   const openAddColumn = () => setIsAddColumnOpen(true);
   const closeAddColumn = () => setIsAddColumnOpen(false);
 
-  // const setBoardBgImage = () => { };
-  
   useEffect(() => {
-    if (stateFilter === "0") {
+    if (stateFilter === '0') {
       setFilterValue('');
     } else {
       setFilterValue(stateFilter);
@@ -50,7 +42,7 @@ const ScreensPage = () => {
   }, [dispatch, stateFilter]);
 
   return (
-    <MainWrapper>
+    <MainWrapper index={data?.background}>
       <MainContainer>
         <HeaderDashboard filter={setFilterValue} title={data?.title} />
 

@@ -3,20 +3,128 @@ import { SIDEBARWIDTH } from 'components/Sidebar/SidebarCONSTANTS';
 import bgData from './bg-data.json';
 
 export const MainWrapper = styled.main`
-  min-height: 100vh;
+  min-height: 100%;
   background-color: var(--primary-bg-color);
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding-bottom: 18px;
   @media screen and (min-width: 0px) {
-  }
-
-  @media screen and (min-width: 767px) {
-    height: 100vh;
+    min-height: 100vh;
+    @media (-webkit-min-device-pixel-ratio: 1) {
+      background-image: ${props => {
+        if (props.index === undefined) {
+          return 'none';
+        }
+        console.log('props.index :>> ', props.index);
+        return `url(${bgData[2].mobile[0][props.index]})`;
+      }};
+    }
+    @media (-webkit-min-device-pixel-ratio: 2) {
+      background-image: ${props => {
+        if (props.index === undefined) {
+          return 'none';
+        }
+        console.log('props.index :>> ', props.index);
+        return `url(${bgData[2].mobile[1][props.index]})`;
+      }};
+    }
+    @media (-webkit-min-device-pixel-ratio: 3) {
+      background-image: ${props => {
+        if (props.index === undefined) {
+          return 'none';
+        }
+        console.log('props.index :>> ', props.index);
+        return `url(${bgData[2].mobile[2][props.index]})`;
+      }};
+    }
   }
 
   @media screen and (min-width: 1400px) {
     height: 100vh;
     @media (-webkit-min-device-pixel-ratio: 1) {
+      background-image: ${props => {
+        if (props.index === undefined) {
+          return 'none';
+        }
+        return `url(${bgData[0].desktop[0][props.index]})`;
+      }};
     }
-    background-image: url(${() => bgData[0].desktop[0].x1[1]});
+    @media (-webkit-min-device-pixel-ratio: 2) {
+      background-image: ${props => {
+        if (props.index === undefined) {
+          return 'none';
+        }
+        return `url(${bgData[0].desktop[1][props.index]})`;
+      }};
+    }
+    @media (-webkit-min-device-pixel-ratio: 3) {
+      background-image: ${props => {
+        if (props.index === undefined) {
+          return 'none';
+        }
+        return `url(${bgData[0].desktop[2][props.index]})`;
+      }};
+    }
+  }
+
+  @media screen and (min-width: 767px) {
+    height: 100vh;
+    @media (-webkit-min-device-pixel-ratio: 1) {
+      background-image: ${props => {
+        if (props.index === undefined) {
+          return 'none';
+        }
+        console.log('props.index :>> ', props.index);
+        return `url(${bgData[1].laptop[0][props.index]})`;
+      }};
+    }
+    @media (-webkit-min-device-pixel-ratio: 2) {
+      background-image: ${props => {
+        if (props.index === undefined) {
+          return 'none';
+        }
+        console.log('props.index :>> ', props.index);
+        return `url(${bgData[1].laptop[1][props.index]})`;
+      }};
+    }
+    @media (-webkit-min-device-pixel-ratio: 3) {
+      background-image: ${props => {
+        if (props.index === undefined) {
+          return 'none';
+        }
+        console.log('props.index :>> ', props.index);
+        return `url(${bgData[1].laptop[2][props.index]})`;
+      }};
+    }
+  }
+
+  @media screen and (min-width: 1400px) {
+    height: 100vh;
+    @media (-webkit-min-device-pixel-ratio: 1) {
+      background-image: ${props => {
+        if (props.index === undefined) {
+          return 'none';
+        }
+        return `url(${bgData[0].desktop[0][props.index]})`;
+      }};
+    }
+    @media (-webkit-min-device-pixel-ratio: 2) {
+      background-image: ${props => {
+        if (props.index === undefined) {
+          return 'none';
+        }
+        return `url(${bgData[0].desktop[1][props.index]})`;
+      }};
+    }
+    @media (-webkit-min-device-pixel-ratio: 3) {
+      background-image: ${props => {
+        if (props.index === undefined) {
+          return 'none';
+        }
+        return `url(${bgData[0].desktop[2][props.index]})`;
+      }};
+    }
+
     background-repeat: no-repeat;
     background-size: cover;
   }
@@ -31,7 +139,8 @@ export const MainContainer = styled.div`
   padding-top: 78px;
   padding-left: 24px;
   padding-right: 24px;
-  padding-bottom: 78px;
+  padding-bottom: 28px;
+  margin-bottom: 28px;
   @media screen and (min-width: 0px) {
     width: 100vw;
     height: 100%;
@@ -49,6 +158,7 @@ export const ColumnsWrapper = styled.div`
   gap: 34px;
   align-items: top;
   overflow: hidden;
+  margin-bottom: auto;
   ::-webkit-scrollbar {
     border-radius: 5px;
     margin-left: 4px;
@@ -65,6 +175,7 @@ export const ColumnsWrapper = styled.div`
 
   @media screen and (min-width: 767px) {
     display: grid;
+    margin-bottom: auto;
     grid-template-columns: ${props => {
       return `repeat(${props.cols}, 334px)`;
     }};
@@ -78,6 +189,8 @@ export const ColumnsWrapper = styled.div`
 
   @media screen and (min-width: 1400px) {
     display: grid;
+    margin-bottom: auto;
+
     overflow-x: ${props => {
       if (props.cols > 4) {
         return 'scroll';

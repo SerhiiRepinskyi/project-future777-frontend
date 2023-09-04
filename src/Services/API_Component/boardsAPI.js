@@ -113,10 +113,10 @@ export const boardsAPI = createApi({
     }),
 
     updateCardById: builder.mutation({
-      query: ({ cardId, FormData }) => ({
+      query: ({ cardId, cardData }) => ({
         url: `/cards/${cardId}`,
         method: 'PUT',
-        body: FormData,
+        body: cardData,
       }),
       invalidatesTags: ['cards'],
     }),

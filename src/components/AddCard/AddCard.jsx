@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useFormik } from 'formik';
-import { format } from 'date-fns';
+import { format, parseISO } from 'date-fns';
 import * as Yup from 'yup';
 import { API } from 'Services/API';
 import formatISO from 'date-fns/formatISO';
@@ -28,7 +28,6 @@ Notiflix.Notify.init({
   },
 });
 
-
 const AddCard = ({
   modalType,
   close,
@@ -36,13 +35,18 @@ const AddCard = ({
   handleClose,
   columnId,
   cardId = '',
+  titleValue = '',
+  descrValue = '',
+  priorityValue = '0',
+  deadlineValue,
 }) => {
   const [date, setDate] = useState('');
   const [dateValue, setDateValue] = useState('');
-  const [color, setColor] = useState('0');
+  const [color, setColor] = useState(priorityValue.toString());
   const [anchorEl, setAnchorEl] = useState(null);
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const [addCards] = API.useAddCardMutation();
+  const [updateCard] = API.useUpdateCardByIdMutation();
 
   const handleDateClick = e => {
     setAnchorEl(e.currentTarget);
@@ -62,31 +66,57 @@ const AddCard = ({
     setColor(value);
   };
 
-  const handleSubmit = async (title, description) => {
-    const ISODate = formatISO(date, { representation: 'date' });
+  const handleSubmitForm = async (title, description) => {
+    if (modalType === 'Add card') {
+      if (!date) {
+        Notiflix.Notify.failure('Please select the date');
+      }
 
-    const cardData = {
-      title,
-      description,
-      priority: color,
-      deadline: ISODate,
-    };
+      const ISODate = formatISO(date, { representation: 'date' });
+      console.log('ISODate :>> ', ISODate);
 
-    try {
-      await addCards({ columnId, cardData });
+      const cardData = {
+        title,
+        description,
+        priority: color,
+        deadline: ISODate,
+      };
 
-      Notiflix.Notify.success('Your card successfully added');
+      try {
+        await addCards({ columnId, cardData });
 
-    } catch (error) {
-      if (error.status === 400) {
-        Notiflix.Notify.failure('All field must be filled in');
-      } else {
-        console.log('An error occurred:', error.data.message);
+        Notiflix.Notify.success('Your card successfully added');
+      } catch (error) {
+        if (error.status === 400) {
+          return Notiflix.Notify.failure('All field must be filled in');
+        } else {
+          console.log('An error occurred:', error.data.message);
+        }
+      }
+    } else {
+      const ISODate = formatISO(date, { representation: 'date' });
+      const cardData = {
+        title,
+        description,
+        priority: color,
+        deadline: ISODate,
+      };
+
+      try {
+        await updateCard({ cardId, cardData });
+        Notiflix.Notify.success('Your card successfully updated');
+      } catch (error) {
+        if (error.status === 400) {
+          return Notiflix.Notify.failure('All field must be filled in');
+        } else {
+          console.log('An error occurred:', error.data.message);
+        }
       }
     }
+
     setDateValue('');
     setDate('');
-    formik.handleReset();
+    handleReset();
     close();
   };
 
@@ -96,45 +126,61 @@ const AddCard = ({
       .strict(true)
       .min(2, 'Must be more then 2 symbols')
       .required('Title is required'),
-    description: Yup.string(),
+    description: Yup.string().min(5, 'Must be more then 2 symbols'),
     color: Yup.string(),
   });
 
-  const formik = useFormik({
-    initialValues: { title: '', description: '' },
-    onSubmit: ({ title, description }) => handleSubmit(title, description),
-    validationSchema,
-  });
+  const cardInitialValues =
+    modalType === 'Add card'
+      ? { title: '', description: '' }
+      : { title: titleValue, description: descrValue };
+
+  const { values, handleBlur, handleChange, handleReset, handleSubmit } =
+    useFormik({
+      initialValues: cardInitialValues,
+      onSubmit: ({ title, description }) =>
+        handleSubmitForm(title, description),
+      validationSchema,
+    });
 
   useEffect(() => {
-    const currentDate = format(new Date(), "'Today,' LLLL d");
-    setDateValue(currentDate);
-  }, [open]);
+    if (modalType === 'Add card') {
+      const currentDate = format(new Date(), "'Today,' LLLL d");
+      setDateValue(currentDate);
+    }
+    if (modalType === 'Edit card') {
+      console.log('deadlineValue :>> ', deadlineValue);
+      const dateISO = parseISO(deadlineValue, "'Today,' LLLL d");
+      setDate(dateISO);
+      const currentDate = format(dateISO, "'Today,' LLLL d");
+      setDateValue(currentDate);
+    }
+  }, [modalType, deadlineValue]);
 
   return (
     <ModalLayout title={modalType} open={open} handleClose={handleClose}>
-      <FormStyled onSubmit={formik.handleSubmit}>
+      <FormStyled onSubmit={handleSubmit}>
         <InputStyled
           id="title"
           name="title"
           placeholder="Title"
-          onChange={formik.handleChange}
-          onBlur={formik.handleBlur}
-          value={formik.values.title}
+          onChange={handleChange}
+          onBlur={handleBlur}
+          value={values.title}
         />
 
         <TextareaStyled
           id="description"
           name="description"
           placeholder="Description"
-          onChange={formik.handleChange}
-          onBlur={formik.handleBlur}
-          value={formik.values.description}
+          onChange={handleChange}
+          onBlur={handleBlur}
+          value={values.description}
         />
 
         <SubWrapper>
           <SubTitle>Label color</SubTitle>
-          <ColorRadioButtons onColorChange={onColorChange} />
+          <ColorRadioButtons value={color} onColorChange={onColorChange} />
         </SubWrapper>
 
         <SubWrapper>
@@ -148,6 +194,7 @@ const AddCard = ({
         <ButtonWithIcon
           title={modalType === 'Add card' ? 'Add' : 'Edit'}
           type={'submit'}
+          disabled={!values.title ? true : false}
         />
       </FormStyled>
 

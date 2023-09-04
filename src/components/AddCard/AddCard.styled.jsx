@@ -9,6 +9,7 @@ export const ComponentWrapper = styled.div`
 export const FormStyled = styled.form`
   display: flex;
   flex-direction: column;
+  width: 350px;
   gap: 14px;
   margin-bottom: 0px;
 `;
