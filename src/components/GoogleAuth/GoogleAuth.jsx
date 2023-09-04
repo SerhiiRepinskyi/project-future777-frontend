@@ -1,4 +1,4 @@
-import { useEffect, useDispatch, useNavigate } from 'react';
+import { useEffect } from 'react';
 import jwt_decode from "jwt-decode";
 
 // создаем в HTML скрипт, который делает запрос на 'https://accounts.google.com/gsi/client'
