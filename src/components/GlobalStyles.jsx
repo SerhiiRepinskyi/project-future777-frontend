@@ -54,6 +54,17 @@ export const GlobalStyles = () => {
           max-width: 100%;
           height: auto;
         }
+        .MuiDateCalendar-root
+          .MuiButtonBase-root.MuiPickersDay-root.Mui-disabled {
+          color: var(--secondary-text-color) !important;
+        }
+        .MuiDateCalendar-root .MuiPickersDay-dayOutsideMonth {
+          color: rgba(0, 0, 0, 0.38) !important;
+        }
+        .MuiButton-contained.Mui-disabled {
+          background-color: var(--button-bg-color) !important;
+          cursor: none;
+        }
         .dark {
           --primary-text-color: rgba(255, 255, 255, 1); //white
           --secondary-text-color: rgba(255, 255, 255, 0.5); //white
@@ -90,7 +101,7 @@ export const GlobalStyles = () => {
 
           --button-bg-color: rgba(190, 219, 176, 1); //light green
           --button-bg-color-hover: #9dc888; //green
-
+          --button-text-color: #161616;
           --button-add-bg-color: #121212; //black
           --button-add-box-color: #ffffff; //white
           --icon-add-colors: #121212; //black
@@ -156,7 +167,7 @@ export const GlobalStyles = () => {
 
           --header-theme-color: rgba(190, 219, 176, 1); //light green
           --header-bg-color: rgba(252, 252, 252, 1); //white
-
+          --button-text-color: #161616;
           --button-bg-color: rgba(190, 219, 176, 1); //light green
           --button-bg-color-hover: #9dc888; //green
           --icon-plus-color: rgba(255, 255, 255, 1); //white
@@ -234,7 +245,7 @@ export const GlobalStyles = () => {
           --button-add-box-color: #5255bc; //fiolet
           --icon-add-colors: #ffffff; //white
           --border-filters: rgba(22, 22, 22, 0.1); //grey
-
+          --button-text-color: #ffffff;
           --modal-bg-color: rgba(252, 252, 252, 1); //white
 
           --screen-page-scrollbar-bg-color: rgba(255, 255, 255, 1);
