@@ -45,12 +45,12 @@ function TaskCard({
   const [deleteCardById] = API.useDeleteCardByIdMutation();
 
   const [isAddCardOpen, setIsAddCardOpen] = useState(false);
-  const [updatedData, setUpdatedData] = useState({
-    title,
-    description,
-    priority,
-    deadline,
-  });
+  // const [updatedData, setUpdatedData] = useState({
+  //   title,
+  //   description,
+  //   priority,
+  //   deadline,
+  // });
   const dispatch = useDispatch();
 
   const closeAddCard = () => setIsAddCardOpen(false);
