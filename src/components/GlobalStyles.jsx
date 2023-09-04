@@ -72,7 +72,7 @@ export const GlobalStyles = () => {
           --sidebar-border-color: rgba(255, 255, 255, 0.1);
           --sidebar-icon-logout-color: rgba(190, 219, 176, 1);
           --sidebar-icon-logout-color-HOVER-FOCUS: #9dc888;
-          --sidebar-icon-plus-bg-color: #BEDBB0;
+          --sidebar-icon-plus-bg-color: #bedbb0;
           --sidebar-icon-plus-bg-color-HOVER-FOCUS: #9dc888;
           --sidebar-icon-plus-color: rgba(18, 18, 18, 1);
           --sidebar-scroll-bg-color: rgba(255, 255, 255, 0.08);
@@ -92,7 +92,7 @@ export const GlobalStyles = () => {
 
           --button-add-bg-color: #121212; //black
           --button-add-box-color: #ffffff; //white
-          --icon-add-color: #121212; //black
+          --icon-add-colors: #121212; //black
 
           --icon-plus-color: rgba(255, 255, 255, 1); //white
           --icon-plus-bg-color: rgba(22, 22, 22, 1); //black
@@ -134,7 +134,7 @@ export const GlobalStyles = () => {
           --sidebar-border-color: rgba(22, 22, 22, 0.1);
           --sidebar-icon-logout-color: rgba(190, 219, 176, 1);
           --sidebar-icon-logout-color-HOVER-FOCUS: #9dc888;
-          --sidebar-icon-plus-bg-color: #BEDBB0;
+          --sidebar-icon-plus-bg-color: #bedbb0;
           --sidebar-icon-plus-bg-color-HOVER-FOCUS: #9dc888;
           --sidebar-icon-plus-color: rgba(18, 18, 18, 1);
           --sidebar-scroll-bg-color: rgba(0, 0, 0, 0.08);
@@ -156,7 +156,7 @@ export const GlobalStyles = () => {
 
           --button-add-bg-color: #ffffff; //white
           --button-add-box-color: #161616; //black
-          --icon-add-color: #ffffff; //white
+          --icon-add-colors: #ffffff; //white
 
           --modal-bg-color: rgba(252, 252, 252, 1); //white
 
@@ -195,7 +195,7 @@ export const GlobalStyles = () => {
           --sidebar-border-color: rgba(255, 255, 255, 0.1);
           --sidebar-icon-logout-color: rgba(255, 255, 255, 1);
           --sidebar-icon-logout-color-HOVER-FOCUS: #b8bcfd;
-          --sidebar-icon-plus-bg-color: #B8BCFD;
+          --sidebar-icon-plus-bg-color: #b8bcfd;
           --sidebar-icon-plus-bg-color-HOVER-FOCUS: #979cea;
           --sidebar-icon-plus-color: rgba(255, 255, 255, 1);
           --sidebar-scroll-bg-color: rgba(255, 255, 255, 0.08);
@@ -210,14 +210,14 @@ export const GlobalStyles = () => {
           --header-theme-color: rgba(184, 188, 253, 1); //light violet
           --header-bg-color: rgba(255, 255, 255, 1); //white
 
-          --button-bg-color-hover: rgba(82, 85, 188, 1); //blue
-          --button-bg-color: #7b7ede; //hover blue
+          --button-bg-color-hover: #7b7ede; //blue
+          --button-bg-color: #5255bc; //hover blue
           --icon-plus-color: rgba(22, 22, 22, 1); //black
           --icon-plus-bg-color: rgba(255, 255, 255, 1); //white
 
           --button-add-bg-color: #ffffff; //white
           --button-add-box-color: #5255bc; //fiolet
-          --icon-add-color: #ffffff; //white
+          --icon-add-colors: #ffffff; //white
 
           --modal-bg-color: rgba(252, 252, 252, 1); //white
 

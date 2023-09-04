@@ -129,7 +129,7 @@ export const ButtonAdd = ({ onClick }) => {
           alignItems: 'center',
         }}
       >
-        <svg width="14" height="14" stroke="var(--icon-add-color)">
+        <svg width="14" height="14" stroke="var(--icon-add-colors)">
           <use href={sprite + '#icon-add'}></use>
         </svg>
       </Box>
