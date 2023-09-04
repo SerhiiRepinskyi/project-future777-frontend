@@ -1,5 +1,5 @@
 import { createApi } from '@reduxjs/toolkit/query/react';
-import baseQuery from '../API_Helper/APIHelper';
+import baseQuery from '../src/Services/API_Helper/APIHelper';
 
 export const columnsAPI = createApi({
   reducerPath: 'columnsAPI',
