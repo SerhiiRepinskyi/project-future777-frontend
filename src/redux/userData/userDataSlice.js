@@ -19,7 +19,7 @@ export const initialState = {
 };
 
 const  userDataSlice = createSlice({
-  name: 'boards',
+  name: 'userData',
   initialState,
   reducers: {
 
@@ -62,8 +62,7 @@ const  userDataSlice = createSlice({
       const { ownerId, columnId, columnTitle } = action.payload;
       const boardIndex = state.columns.findIndex(board => board.ownerId === ownerId);
       if (boardIndex !== -1) {
-        const newColumn = { columnId, columnTitle };
-        state.columns[boardIndex].columns.push(newColumn);
+      state.columns.push({ columnId, columnTitle });
       }
     },
 

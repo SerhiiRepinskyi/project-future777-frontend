@@ -29,7 +29,7 @@ const dispatch = useDispatch();
 const navigate = useNavigate()
 const location = useLocation()
 const token = useSelector(state => state.auth.token);
-const boardId = useSelector(state => state.boards.boardId);; 
+const boardId = useSelector(state => state.userData.boards.boardId);; 
 const isRefreshing = useSelector(state => state.auth.isRefreshing);
   
 const { data: currentUser, error } = useGetCurrentUserQuery(token,{

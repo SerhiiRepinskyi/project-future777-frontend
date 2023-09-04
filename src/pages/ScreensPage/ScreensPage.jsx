@@ -17,7 +17,7 @@ import { useDispatch, useSelector } from 'react-redux';
 const ScreensPage = () => {
   const { boardId } = useParams();
   const [filterValue, setFilterValue] = useState('');
-  const stateFilter = useSelector(state => state.boards.filter);
+  const stateFilter = useSelector(state => state.userData.filter);
 
 //  console.log('filter :>> ', stateFilter);
 

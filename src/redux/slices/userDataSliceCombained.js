@@ -1,11 +1,11 @@
 import { combineReducers } from 'redux';
-import {cardsAPI, columnsAPI, userAPI } from 'Services/API_Component';
+import { boardsAPI, cardsAPI, columnsAPI,} from 'Services/API_Component';
 
 
-const userDataSlice = combineReducers({
-  user: userAPI.reducer,
-  columns: columnsAPI.reducer,
-  cards: cardsAPI.reducer,
+const userDataComb = combineReducers({
+boards: boardsAPI.reducer,
+columns: columnsAPI.reducer,
+cards: cardsAPI.reducer,
 });
 
-export default userDataSlice;
+export default userDataComb;
