@@ -21,46 +21,34 @@ const inputStyles = `
   border-radius: 8px;
   color:var(--primary-text-color);
   border: 1px solid var(--input-border-color);
-  // background-color: var(--modal-bg-color);
-    opacity: 0.4;
+  opacity: 0.6;
   background-color: var(--bcg-modal-color);
   transition: border-color 0.3s ease;
   outline: none;
 
-    color: var(--secondary-text-color) !important;
-    outline:none;
-  }
-
-  &:-webkit-autofill:active,
-  &:-webkit-autofill:focus,
-  &:-webkit-autofill:hover {
-    color: var(--modal-bg-color) !important;
-    background-color: var(--modal-bg-color) !important;
-    border: 1px solid var(--button-bg-color);
-    outline:none;
-  }
-
-  &:focus {
-    // background-color: var(--modal-bg-color) !important;
-    -webkit-text-fill-color: var(--primary-text-color);
-
-    border: 1px solid var(--button-bg-color);
-    outline:none;
-  }
-
-  &:active {
-    background-color: var(--modal-bg-color);
-    border: 1px solid var(--button-bg-color);
+  &::placeholder {
+    color: var(--primary-text-color);
     font-size: 14px;
     line-height: 21px;
     font-family: 'Poppins';
     letter-spacing: -0.28px;
+  }
+
+  &:focus {
+    -webkit-text-fill-color: var(--primary-text-color);
+    opacity: 1;
+  
+  }
+  &:active {
+    background-color: var(--modal-bg-color);
+    border: 1px solid var(--button-bg-color-hover);
     outline:none;
   }
 `;
 
 export const InputStyled = styled.input`
   ${inputStyles}
+
 `;
 
 export const TextareaStyled = styled.textarea`
