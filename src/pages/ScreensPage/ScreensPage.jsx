@@ -11,7 +11,6 @@ import {
   MainContainer,
 } from './ScreenPage.styled';
 import { useDispatch, useSelector } from 'react-redux';
-import Loader from 'components/Loader';
 
 const ScreensPage = () => {
   const { boardId } = useParams();
@@ -36,7 +35,6 @@ const ScreensPage = () => {
   console.log('currentData :>> ', currentData);
   console.log('data :>> ', data);
 
-
   const openAddColumn = () => setIsAddColumnOpen(true);
   const closeAddColumn = () => setIsAddColumnOpen(false);
 
@@ -55,35 +53,28 @@ const ScreensPage = () => {
         <HeaderDashboard filter={setFilterValue} title={data?.title} />
 
         <ColumnsWrapper cols={!data?.content ? 1 : data?.content?.length + 1}>
-          {!isFetching ? (
-            data?.content?.map(
-              ({ _id: columnId, title: columnTitle, cards }, index) => (
-                <Column
-                  isFetching={isFetching}
-                  key={columnId}
-                  columnData={data.content[index]}
-                  columnTitle={columnTitle}
-                  columnId={columnId}
-                  cards={cards}
-                />
-              )
+          {data?.content?.map(
+            ({ _id: columnId, title: columnTitle, cards }, index) => (
+              <Column
+                isFetching={isFetching}
+                key={columnId}
+                columnData={data.content[index]}
+                columnTitle={columnTitle}
+                columnId={columnId}
+                cards={cards}
+              />
             )
-          ) : (
-            <Loader />
           )}
 
           <ButtonAdd onClick={openAddColumn}></ButtonAdd>
         </ColumnsWrapper>
-        {isAddColumnOpen ? (
-          <AddColumn
-            modalType={'Add column'}
-            open={isAddColumnOpen}
-            boardId={boardId}
-            close={closeAddColumn}
-          />
-        ) : (
-          <></>
-        )}
+
+        <AddColumn
+          modalType={'Add column'}
+          open={isAddColumnOpen}
+          boardId={boardId}
+          close={closeAddColumn}
+        />
       </MainContainer>
     </MainWrapper>
   );
