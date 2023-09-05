@@ -2,6 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 
 export const initialState = {
   boards: [],
+  boardsIdArray: [],
   boardconfig: null,
   boardId: null,
   boardData: {},
@@ -16,7 +17,10 @@ const boardsAPISlice = createSlice({
 
     setAllBoards: (state, action) => {
       state.boards = action.payload;
+    },
 
+    setBoardsIdArray: (state, action) => {
+      state.boardsIdArray = action.payload;
     },
 
     setBoardResponse: (state, action) => {
@@ -52,7 +56,7 @@ const boardsAPISlice = createSlice({
  
 });
 
-export const { setError,setFilter, clearError, setBoardData, setAllBoards, setBoardId, setBoardResponse } = boardsAPISlice.actions;
+export const { setError,setFilter, clearError, setBoardData, setAllBoards, setBoardsIdArray, setBoardId, setBoardResponse } = boardsAPISlice.actions;
 
 export default boardsAPISlice.reducer;
 

@@ -33,7 +33,7 @@ export const Sidebar = ({ ...props }) => {
             boxSizing: 'border-box',
             boxShadow: 'none',
             border: 'none',
-            overflowX: 'hidden',
+            overflow: 'hidden',
             width: {
               0: 192,
               320: '60vw',
@@ -56,7 +56,7 @@ export const Sidebar = ({ ...props }) => {
             boxSizing: 'border-box',
             boxShadow: 'none',
             border: 'none',
-            overflowX: 'hidden',
+            overflow: 'hidden',
             width: SIDEBARWIDTH,
             backgroundColor: 'var(--sidebar-primary-bg-color)',
           },
