@@ -18,7 +18,7 @@ import { SidebarLogo } from 'components/Logo/Logo';
 import { ButtonSidebar } from 'components/Buttons/Button';
 import { SidebarBoardList } from './SidebarBoardList';
 
-import LogoutBtn from 'components/logoutBtn/LogoutBtn';
+import LogoutBtn from 'components/logoutBtn/logoutBtn';
 import ModalBoard from 'components/ModalBoard/ModalBoard';
 import ModalHelp from 'components/ModalHelp/ModalHelp';
 import { SidebarHelpIcon } from './SidebarHelpIcon';
