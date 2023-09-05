@@ -1,17 +1,28 @@
 
-import ModalMembersLayout from "./ModalMembersLayout";
-import members from '../ModalMembers/members.json';
-import MemberListMap from "./MemberListMap";
+import ModalLayout from 'components/ModalLayout/ModalLayout';
+import MemberListItem from './MemberListItem';
+import teamArray from './members';
+import { MemberList } from './ModalMembers.styled';
 
 
-const ModalMembers = ({ open, handleClose}) => {
-    
-    
-    return (
-        <ModalMembersLayout title={'OUR TEAM'} open={open} handleClose={handleClose}>
-     <MemberListMap members={members} />
-       </ModalMembersLayout>
-    )
-}
+const ModalMembers = ({ title, open, handleClose }) => {
+  return (
+    <>
+     <ModalLayout
+     title={title}
+     open={open}
+     handleClose={handleClose}>
+      <MemberList>{teamArray.map(({ photo, name, position, git}) => (
+                <MemberListItem
+                key={name}
+                photo={photo}
+                name={name}
+                position={position}
+                git={git} />
+            ))}</MemberList>
+     </ModalLayout>
+    </>
+  );
+};
 
 export default ModalMembers;

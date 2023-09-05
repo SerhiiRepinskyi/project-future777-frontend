@@ -1,4 +1,4 @@
-[
+const teamArray = [
     {
      "photo": "https://serhiirepinskyi.github.io/filmoteka-team-project/developer-1.792fd224.jpg",
      "name": "Serhii Repinskyi",
@@ -35,7 +35,7 @@
     },
 
     {
-     "photourl": "https://serhiirepinskyi.github.io/filmoteka-team-project/developer-8.d2b3e959.jpg",
+     "photo": "https://serhiirepinskyi.github.io/filmoteka-team-project/developer-8.d2b3e959.jpg",
      "name": "Oleksii Volynets",
      "position": "developer",
      "git": "https://github.com/VolynetsOleksii"
@@ -97,3 +97,5 @@
         "git": "https://github.com/filipchukdv"
     }
 ]
+
+export default teamArray;

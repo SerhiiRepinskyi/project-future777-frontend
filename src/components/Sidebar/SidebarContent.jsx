@@ -6,7 +6,6 @@ import {
   Image,
   Subtitle,
   TitleCreate,
-  MembersButton,
 } from './SidebarContent-styled';
 import { Box } from '@mui/material';
 import { useState } from 'react';
@@ -49,13 +48,8 @@ export const SidebarContent = ({ isSidebarShown }) => {
       >
         <Box>
           <Box sx={{ pl: { 0: 1.75, 768: 3 }, pr: { 0: 1.75, 768: 3 } }}>
-          <MembersButton
-              type="button"
-              isSidebarShown={isSidebarShown}
-              onClick={modalMembersStateChange}
-            >
+            
             <SidebarLogo sx={{ mb: 7.5 }} isSidebarShown={isSidebarShown} />
-            </MembersButton>
 
             <Subtitle sx={{ mb: 1 }} isSidebarShown={isSidebarShown}>
               My boards
@@ -86,7 +80,7 @@ export const SidebarContent = ({ isSidebarShown }) => {
                 lineHeight: { 0: '16px', 768: '20px' },
               }}
             >
-              If you need help with <span>TaskPro</span>, check out our support
+              If you need help with <span onClick={modalMembersStateChange}>TaskPro</span>, check out our support
               resources or reach out to our customer support team.
             </HelpText>
             <HelpButton
@@ -109,7 +103,7 @@ export const SidebarContent = ({ isSidebarShown }) => {
       />
       <ModalHelp open={isModalHelpOpen} handleClose={modalHelpStateChange} />
 
-      <ModalMembers open={isModalMembersOpen} handleClose={modalMembersStateChange}/>
+      <ModalMembers open={isModalMembersOpen} handleClose={modalMembersStateChange} title={'OUR TEAM'}/>
     </>
   );
 };

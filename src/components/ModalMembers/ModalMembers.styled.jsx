@@ -1,13 +1,24 @@
 import styled from '@emotion/styled';
+import { styled as MUI } from '@mui/material/styles';
 
-export const MemberList = styled.ul`
-    display: flex;
-    flex-wrap: wrap;
-    gap: 16px;
-    justify-content: center;
-    list-style-type: none;
-    padding: 0;
-`;
+
+export const MemberList = MUI('form')({
+    display: 'flex',
+    flexWrap: 'wrap',
+    gap: '16px',
+    justifyContent: 'center',
+    listStyleType: 'none',
+    padding: '0px',
+  });
+
+// export const MemberList = styled.ul`
+//     display: flex;
+//     flex-wrap: wrap;
+//     gap: 16px;
+//     justify-content: center;
+//     list-style-type: none;
+//     padding: 0;
+// `;
 
 export const MemberItem = styled.li`
     flex-basis: calc((100% - 4 * (30px)) / 5); 
@@ -39,18 +50,16 @@ export const MemberImage = styled.img`
 `;
 
 export const MemberName = styled.p`
-   
+color: 'var(--sidebar-primary-text-color)',
     font-size: 15px;
-    color: var(--primary-text-color);
     line-height: 1.16;
     text-align: center;
 `;
 
 export const MemberPosition = styled.p`
-   
+color: 'var(--sidebar-primary-text-color)',
     font-size: 14px;
    
-    color: var(--primary-text-color);
     line-height: 1.16;
     text-align: center;
 `;
