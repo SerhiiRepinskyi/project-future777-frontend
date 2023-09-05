@@ -71,14 +71,14 @@ export const ModalEditProfile = ({ title, open, handleClose }) => {
 
         dispatch(setAvatar(newAvatarURL));
         Report.success('Successful', 'Avatar updated successfully!', 'Okay');
-        handleClose();
+        // handleClose();
       } else {
         Report.failure('Error!', 'Error updating avatar!', 'Okay');
       }
     } catch (error) {
       Report.failure('Error!', `'An error occurred:' ${error}`, 'Okay');
     }
-    handleClose();
+    // handleClose();
   };
 
   const handleSubmit = async values => {
@@ -170,11 +170,11 @@ export const ModalEditProfile = ({ title, open, handleClose }) => {
                         onChange={handleChange}
                         title={UI_MSGS.INPUT_NAME_TITLE}
                       />
-                      {touched.name && errors.name && (
+                      {touched.name && errors.name && dirty && (
                         <ErrorMessage
                           name="name"
                           render={msg => {
-                            Notify.failure(` ${msg}`, notifyInit);
+                            Notify.warning(` ${msg}`, notifyInit);
                           }}
                         />
                       )}
@@ -192,11 +192,11 @@ export const ModalEditProfile = ({ title, open, handleClose }) => {
                         onChange={handleChange}
                         title={UI_MSGS.INPUT_EMAIL_TITLE}
                       />
-                      {touched.email && errors.email && (
+                      {touched.email && errors.email && dirty && (
                         <ErrorMessage
                           name="email"
                           render={msg => {
-                            Notify.failure(` ${msg}`, notifyInit);
+                            Notify.warning(` ${msg}`, notifyInit);
                           }}
                         />
                       )}
@@ -228,11 +228,11 @@ export const ModalEditProfile = ({ title, open, handleClose }) => {
                         </IconBtn>
                       </Wrap>
 
-                      {touched.password && errors.password && (
+                      {touched.password&&errors.password && dirty && (
                         <ErrorMessage
                           name="password"
                           render={msg => {
-                            Notify.failure(` ${msg}`, notifyInit);
+                            Notify.warning(` ${msg}`, notifyInit);
                           }}
                         />
                       )}
@@ -248,8 +248,7 @@ export const ModalEditProfile = ({ title, open, handleClose }) => {
                     <ButtonWithoutIcon
                       title={'Send'}
                       type={'submit'}
-                      disabled={!dirty || !isValid}
-                      disableElevation
+                      disabled={!isValid}
                     ></ButtonWithoutIcon>
                   </FormikForm>
                 </>

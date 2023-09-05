@@ -58,15 +58,17 @@ export const ButtonWithIcon = ({ title, onClick, type, disabled }) => {
 };
 
 // Кнопка для модалок без иконки
-export const ButtonWithoutIcon = ({ title, onClick, type }) => {
+export const ButtonWithoutIcon = ({ title, onClick, type, disabled }) => {
   return (
     <Button
       type={type}
       onClick={onClick}
+      disabled={disabled}
       disableElevation
       sx={{
         display: 'flex',
-        color: ' var(--btn-text-color)',
+        color: 'var(--btn-text-color)',
+        background: 'var(--button-bg-color)',
         fontFamily: 'Poppins, sans-serif',
         alignItems: 'center',
         textTransform: 'none',
@@ -75,14 +77,24 @@ export const ButtonWithoutIcon = ({ title, onClick, type }) => {
         letterSpacing: '-0.02em',
         fontSize: '14px',
         // background: '#BEDBB0',
-        background: 'var(--button-bg-color)',
+
         lineHeight: '21px',
         fontWeight: '500',
         fontStyle: 'normal',
         width: '100%',
         height: '49px',
         '&:hover': {
-          background: 'var( --button-bg-color-hover)',
+          background: 'var(--button-bg-color-hover)',
+        },
+        '&:disabled': {
+          cursor: 'not-allowed',
+          pointerEvents: 'auto',
+          color: 'var(--btn-text-color)',
+          opacity: '0.6',
+          '&:hover': {
+            background: 'var(--button-bg-color)',
+            color: 'var(--btn-text-color)',
+          },
         },
       }}
     >
