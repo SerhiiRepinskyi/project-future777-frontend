@@ -31,6 +31,12 @@ export const ButtonWithIcon = ({ title, onClick, type, disabled }) => {
         fontStyle: 'normal',
         width: '100%',
         height: '56px',
+        '&:disabled': {
+          cursor: 'not-allowed',
+          pointerEvents: 'auto',
+          color: '#161616',
+          opacity: '0.6',
+        },
         '&:hover': {
           // background: '#9DC888',
           background: 'var( --button-bg-color-hover)',

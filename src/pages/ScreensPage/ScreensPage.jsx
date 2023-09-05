@@ -41,6 +41,7 @@ const ScreensPage = () => {
   const closeAddColumn = () => setIsAddColumnOpen(false);
 
   useEffect(() => {
+    setFilterValue(stateFilter);
     if (stateFilter === '0') {
       setFilterValue('');
     } else {

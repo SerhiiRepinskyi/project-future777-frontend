@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { API } from 'Services/API';
-import { useFormik } from 'formik';
+import { ErrorMessage, useFormik } from 'formik';
 import * as Yup from 'yup';
 import { FormStyled, InputStyled } from '../AddCard/AddCard.styled';
 import { ButtonWithIcon } from 'components/Buttons/Button';
@@ -28,13 +28,23 @@ const AddColumn = ({
   const formikTitle =
     modalType === 'Add column' ? { title: '' } : { title: columnTitle };
 
-  const formik = useFormik({
+  const {
+    values,
+    errors,
+    touched,
+    handleBlur,
+    handleChange,
+    handleReset,
+    handleSubmit,
+    isValid,
+    dirty,
+  } = useFormik({
     initialValues: formikTitle,
-    onSubmit: title => handleSubmit(title),
+    onSubmit: title => handleColumnSubmit(title),
     validationSchema,
   });
 
-  const handleSubmit = async title => {
+  const handleColumnSubmit = async title => {
     if (modalType === 'Add column') {
       try {
         await addColumn({ boardId, title });
@@ -56,24 +66,33 @@ const AddColumn = ({
         console.log(error.message);
       }
     }
-    formik.handleReset();
+    handleReset();
     close();
   };
 
   return (
     <ModalLayout title={modalType} open={open} handleClose={close}>
-      <FormStyled onSubmit={formik.handleSubmit}>
+      <FormStyled onSubmit={handleSubmit}>
         <InputStyled
           id="title"
           name="title"
           placeholder="Title"
-          onChange={formik.handleChange}
-          onBlur={formik.handleBlur}
-          value={formik.values.title}
+          onChange={handleChange}
+          onBlur={handleBlur}
+          value={values.title}
         />
+        {touched.title && errors.title && dirty && (
+          <ErrorMessage
+            name="title"
+            render={msg => {
+              Notiflix.Notify.warning(` ${msg}`);
+            }}
+          />
+        )}
         <ButtonWithIcon
           title={modalType === 'Add column' ? 'Add' : 'Edit'}
           type={'submit'}
+          disabled={!dirty || !isValid}
         />
       </FormStyled>
     </ModalLayout>
