@@ -1,6 +1,5 @@
-// import ModalLayout from 'components/ModalLayout/ModalLayout';
 import sprite from '../../assets/images/sprite.svg';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Filter } from './Filter';
 
 const {
@@ -10,7 +9,7 @@ const {
   TitleFilter,
 } = require('./HeaderDashboard.styled');
 export const HeaderDashboard = ({ title, filter }) => {
-  const [isOpen, setIsOpen] = useState();
+  const [isOpen, setIsOpen] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
 
   const toggleModal = e => {
@@ -18,6 +17,24 @@ export const HeaderDashboard = ({ title, filter }) => {
     setAnchorEl(e.currentTarget);
   };
 
+  const handleKeyDown = e => {
+    if (e.key === 'Escape') {
+      setIsOpen(false);
+      window.removeEventListener('keydown', handleKeyDown);
+    }
+  };
+  const handleWindowClick = e => {
+    if (e.target.nodeName === 'DIV') {
+      setIsOpen(false);
+      window.removeEventListener('mousedown', handleWindowClick);
+    }
+  };
+  useEffect(() => {
+    if (isOpen) {
+      window.addEventListener('mousedown', handleWindowClick);
+      window.addEventListener('keydown', handleKeyDown);
+    }
+  });
   return (
     <Container>
       <TitleDashBoard>{title}</TitleDashBoard>
