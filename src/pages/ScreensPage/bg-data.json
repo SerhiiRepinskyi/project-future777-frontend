@@ -1,7 +1,7 @@
 [
   {
     "desktop": [
-      [
+      [ "none",
         "https://res.cloudinary.com/teamprojectavatar/image/upload/v1693617228/bg-img/desktop/1/1-bg-desktop-1x.jpg",
         "https://res.cloudinary.com/teamprojectavatar/image/upload/v1693617228/bg-img/desktop/1/2-bg-desktop-1x.jpg",
         "https://res.cloudinary.com/teamprojectavatar/image/upload/v1693617229/bg-img/desktop/1/3-bg-desktop-1x.jpg",
@@ -19,6 +19,7 @@
         "https://res.cloudinary.com/teamprojectavatar/image/upload/v1693617240/bg-img/desktop/1/15-bg-desktop-1x.jpg"
       ],
       [
+        "none",
         "https://res.cloudinary.com/teamprojectavatar/image/upload/v1693617241/bg-img/desktop/2/1-bg-desktop-2x.jpg",
         "https://res.cloudinary.com/teamprojectavatar/image/upload/v1693617242/bg-img/desktop/2/2-bg-desktop-2x.jpg",
         "https://res.cloudinary.com/teamprojectavatar/image/upload/v1693617243/bg-img/desktop/2/3-bg-desktop-2x.jpg",
@@ -36,6 +37,7 @@
         "https://res.cloudinary.com/teamprojectavatar/image/upload/v1693617253/bg-img/desktop/2/15-bg-desktop-2x.jpg"
       ],
       [
+        "none",
         "https://res.cloudinary.com/teamprojectavatar/image/upload/v1693617268/bg-img/desktop/3/1-bg-desktop-3x.jpg",
         "https://res.cloudinary.com/teamprojectavatar/image/upload/v1693617264/bg-img/desktop/3/2-bg-desktop-3x.jpg",
         "https://res.cloudinary.com/teamprojectavatar/image/upload/v1693617265/bg-img/desktop/3/3-bg-desktop-3x.jpg",
@@ -57,6 +59,7 @@
   {
     "laptop": [
       [
+        "none",
         "https://res.cloudinary.com/teamprojectavatar/image/upload/v1693617131/bg-img/laptop/1/1-bg-laptop-1x.jpg",
         "https://res.cloudinary.com/teamprojectavatar/image/upload/v1693617134/bg-img/laptop/1/2-bg-laptop-1x.jpg",
         "https://res.cloudinary.com/teamprojectavatar/image/upload/v1693617134/bg-img/laptop/1/3-bg-laptop-1x.jpg",
@@ -75,6 +78,7 @@
       ],
 
       [
+        "none",
         "https://res.cloudinary.com/teamprojectavatar/image/upload/v1693617144/bg-img/laptop/2/1-bg-laptop-2x.jpg",
         "https://res.cloudinary.com/teamprojectavatar/image/upload/v1693617145/bg-img/laptop/2/2-bg-laptop-2x.jpg",
         "https://res.cloudinary.com/teamprojectavatar/image/upload/v1693617145/bg-img/laptop/2/3-bg-laptop-2x.jpg",
@@ -92,6 +96,7 @@
         "https://res.cloudinary.com/teamprojectavatar/image/upload/v1693617143/bg-img/laptop/2/15-bg-laptop-2x.jpg"
       ],
       [
+        "none",
         "https://res.cloudinary.com/teamprojectavatar/image/upload/v1693617157/bg-img/laptop/3/1-bg-laptop-3x.jpg",
         "https://res.cloudinary.com/teamprojectavatar/image/upload/v1693617148/bg-img/laptop/3/2-bg-laptop-3x.jpg",
         "https://res.cloudinary.com/teamprojectavatar/image/upload/v1693617149/bg-img/laptop/3/3-bg-laptop-3x.jpg",
@@ -113,6 +118,7 @@
   {
     "mobile": [
       [
+        "none",
         "https://res.cloudinary.com/teamprojectavatar/image/upload/v1693617335/bg-img/mobile/1/1-bg-mobile-1x.jpg",
         "https://res.cloudinary.com/teamprojectavatar/image/upload/v1693617336/bg-img/mobile/1/2-bg-mobile-1x.jpg",
         "https://res.cloudinary.com/teamprojectavatar/image/upload/v1693617337/bg-img/mobile/1/3-bg-mobile-1x.jpg",
@@ -130,6 +136,7 @@
         "https://res.cloudinary.com/teamprojectavatar/image/upload/v1693617350/bg-img/mobile/1/15-bg-mobile-1x.jpg"
       ],
       [
+        "none",
         "https://res.cloudinary.com/teamprojectavatar/image/upload/v1693617358/bg-img/mobile/2/1-bg-mobile-2x.jpg",
         "https://res.cloudinary.com/teamprojectavatar/image/upload/v1693617359/bg-img/mobile/2/2-bg-mobile-2x.jpg",
         "https://res.cloudinary.com/teamprojectavatar/image/upload/v1693617360/bg-img/mobile/2/3-bg-mobile-2x.jpg",
@@ -147,6 +154,7 @@
         "https://res.cloudinary.com/teamprojectavatar/image/upload/v1693617357/bg-img/mobile/2/15-bg-mobile-2x.jpg"
       ],
       [
+        "none",
         "https://res.cloudinary.com/teamprojectavatar/image/upload/v1693617653/bg-img/mobile/3/1-bg-mobile-3x.jpg",
         "https://res.cloudinary.com/teamprojectavatar/image/upload/v1693617655/bg-img/mobile/3/2-bg-mobile-3x.jpg",
         "https://res.cloudinary.com/teamprojectavatar/image/upload/v1693617656/bg-img/mobile/3/3-bg-mobile-3x.jpg",

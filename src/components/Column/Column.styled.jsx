@@ -70,14 +70,14 @@ export const CardsList = styled.ul`
     border-radius: 5px;
     margin-left: 4px;
     width: 8px;
-    background-color: rgba(255, 255, 255, 0.2);
+    background-color: var(--screen-page-scrollbar-bg-color);
   }
   ::-webkit-scrollbar-thumb {
-    background: #121212;
+    background: var(--screen-page-scrollbar-thumb-color);
     border-radius: 5px;
   }
   ::-webkit-scrollbar-thumb:hover {
-    background: #9dc888;
+    background: var(--screen-page-scrollbar-thumb-color-HOVER);
   }
 `;
 

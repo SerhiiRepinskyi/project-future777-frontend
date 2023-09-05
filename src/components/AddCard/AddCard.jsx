@@ -54,6 +54,7 @@ const AddCard = ({
   };
 
   const onDateChange = e => {
+    console.log('Data :>> ', e);
     const dateFns = format(e, 'LLLL d');
     setDateValue(dateFns);
     setDate(e);
