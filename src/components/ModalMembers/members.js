@@ -70,7 +70,7 @@ const teamArray = [
     },
 
     {
-        "photo": "#",
+        "photo": "https://choodoss.github.io/project-group-1-js/Anna.85da079f.jpg",
         "name": "Hanna Shvabovska",
         "position": "developer",
         "git": "https://github.com/AShvab"
