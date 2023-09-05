@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 import { IconButton } from '@mui/material';
 import { useState } from 'react';
-import EllipsisText from 'react-ellipsis-text';
+// import EllipsisText from 'react-ellipsis-text';
 import MenuItem from '@mui/material/MenuItem';
 export function getPriorityColor(priority) {
   switch (priority) {

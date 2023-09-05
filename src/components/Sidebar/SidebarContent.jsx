@@ -18,7 +18,7 @@ import { SidebarLogo } from 'components/Logo/Logo';
 import { ButtonSidebar } from 'components/Buttons/Button';
 import { SidebarBoardList } from './SidebarBoardList';
 
-import LogoutBtn from 'components/LogoutBtn/LogoutBtn';
+import LogoutBtn from 'components/logoutBtn/LogoutBtn';
 import ModalBoard from 'components/ModalBoard/ModalBoard';
 import ModalHelp from 'components/ModalHelp/ModalHelp';
 import { SidebarHelpIcon } from './SidebarHelpIcon';
@@ -97,7 +97,11 @@ export const SidebarContent = ({ isSidebarShown }) => {
         open={isModalBoardOpen}
         handleClose={modalBoardStateChange}
       />
-      <ModalHelp title={"Need help"} open={isModalHelpOpen} handleClose={modalHelpStateChange} />
+      <ModalHelp
+        title={'Need help'}
+        open={isModalHelpOpen}
+        handleClose={modalHelpStateChange}
+      />
     </>
   );
 };
