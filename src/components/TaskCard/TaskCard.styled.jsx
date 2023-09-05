@@ -81,7 +81,7 @@ export const TypographyText = styled.div`
   letter-spacing: -0.2px;
 `;
 export const CardStyles = styled.div`
-  width: 334px;
+  width: 100%;
   height: 154px;
   padding-top: 14px;
   padding-bottom: 14px;
