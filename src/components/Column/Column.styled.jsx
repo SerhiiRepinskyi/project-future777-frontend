@@ -8,15 +8,15 @@ export const ColumnWrapper = styled.li`
   /* grid-template-rows: 56px auto 56px; */
   align-items: left;
   /* gap: 14px; */
-  width: 346px;
-  height: 100vh;
+  max-width: 346px;
   max-height: 100%;
   padding-right: 12px;
   padding-bottom: 14px;
   margin-right: 14px;
   margin-bottom: auto;
 
-  @media screen and (min-width: 1400px) {
+  @media screen and (min-width: 768px) {
+    width: 346px;
     max-height: 80vh;
     margin-bottom: auto;
   }
@@ -51,9 +51,13 @@ export const CardsList = styled.ul`
     }
     return `grid`;
   }};
+  @media screen and (max-width: 0px) {
+    min-width: 280px;
+  }
+
   flex-direction: column;
-  grid-template-rows: 155px;
-  width: 346px;
+  grid-template-rows: auto;
+  width: 100%;
   margin-bottom: 14px;
   max-height: 60vh;
   gap: 8px;
@@ -94,5 +98,8 @@ export const StyledIconButton = styled(IconButton)`
 `;
 
 export const AddCardButton = styled(ButtonWithIcon)`
+  @media screen and (min-width: 0px) {
+    width: 280px;
+  }
   width: 334px;
 `;
