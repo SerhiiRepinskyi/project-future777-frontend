@@ -9,10 +9,9 @@ import {
   IconBtn,
   Wrap,
   Label,
-  Button,
 } from './RegisterForm.styled';
 import { notifyInit } from 'helpers/notifyInit';
-
+import { ButtonAuth } from 'components/Buttons/Button';
 export const RegisterFormContext = ({ showPassword, togglePassword }) => {
   const {
     values,
@@ -38,7 +37,7 @@ export const RegisterFormContext = ({ showPassword, togglePassword }) => {
           onChange={handleChange}
           title={UI_MSGS.INPUT_NAME_TITLE}
         />
-        {touched.name && errors.name && dirty &&(
+        {touched.name && errors.name && dirty && (
           <ErrorMessage
             name="name"
             render={msg => {
@@ -103,10 +102,15 @@ export const RegisterFormContext = ({ showPassword, togglePassword }) => {
           />
         )}
       </Label>
+      <ButtonAuth
+        title="Register Now"
+        type="submit"
+        disabled={!dirty || !isValid}
+      ></ButtonAuth>
 
-      <Button type="submit" disabled={!dirty || !isValid} aria-label="Submit">
+      {/* <Button type="submit" disabled={!dirty || !isValid} aria-label="Submit">
         Register Now
-      </Button>
+      </Button> */}
     </FormikForm>
   );
 };

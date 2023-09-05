@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components';
-import { Form, Field, ErrorMessage } from 'formik';
+import { Form, Field } from 'formik';
 import { NavLink } from 'react-router-dom';
 
 export const Container = styled.div`
@@ -134,6 +134,7 @@ export const IconBtn = styled(({ active, ...rest }) => <button {...rest} />)`
   transform: translateY(-50%);
   cursor: pointer;
   opacity: 0.4;
+  transition: all 0.3s ease;
 
   &:focus {
     outline: none;
@@ -166,6 +167,7 @@ export const Button = styled.button`
   border: none;
   border-radius: 8px;
   background: #9DC888;
+    transition: all 0.3s ease;
    outline: none;
      cursor: pointer;
   &:disabled {
@@ -176,12 +178,12 @@ export const Button = styled.button`
        
     }
 `;
-export const Error = styled(ErrorMessage)`
-  font-family: 'Roboto';
-  opacity: 0.5;
-  color: #fff;
-  font-size: 14px;
-  margin-top: 5px;
-  padding-left: 5px;
-  max-width: 200px;
-`;
+// export const Error = styled(ErrorMessage)`
+//   font-family: 'Roboto';
+//   opacity: 0.5;
+//   color: #fff;
+//   font-size: 14px;
+//   margin-top: 5px;
+//   padding-left: 5px;
+//   max-width: 200px;
+// `;
