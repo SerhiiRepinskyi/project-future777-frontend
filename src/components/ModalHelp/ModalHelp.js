@@ -55,7 +55,7 @@ const ModalHelp = ({ title, open, handleClose }) => {
     onSubmit: ({ title }) => handleSubmit(title),
     validationSchema,
   });
-
+console.log(formik.values.email)
   return (
     <>
       <ModalLayout title={'Need help'} open={open} handleClose={handleClose}>
@@ -81,16 +81,14 @@ const ModalHelp = ({ title, open, handleClose }) => {
             title={'Send'}
             type={'submit'}
             sx={{ marginTop: 24, background: 'var(--primary-text-color)' }}
-            onClick={() => {
-              (formik.values.email === '' &&
-                Notiflix.Notify.warning('Email field must be filled in')) ||
-                (formik.values.comment === '' &&
-                  Notiflix.Notify.warning('Comment field must be filled in'));
-              if (
-                !validationSchema.isValidSync({ email: formik.values.email })
-              ) {
-                Notiflix.Notify.failure('Please enter a valid email address');
-              }
+             onClick={() => {
+               if (!formik.values.email) {
+                 Notiflix.Notify.warning('Email field must be filled in');
+               } else if (formik.values.comment === '') {
+                 Notiflix.Notify.warning('Comment field must be filled in');
+               }else if (!validationSchema.isValidSync({ email: formik.values.email })) {
+              Notiflix.Notify.failure('Please enter a valid email address');
+               }
             }}
           >
             Send

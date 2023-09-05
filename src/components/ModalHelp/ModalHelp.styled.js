@@ -53,12 +53,7 @@ export const InputStyled = styled.input`
 
 export const TextareaStyled = styled.textarea`
   ${inputStyles}
-  font-size: 14px;
-  line-height: 21px !important;
-  font-family: 'Poppins';
-  letter-spacing: -0.28px !important;
   min-height: 155px;
-  resize: none;
   text-align: top;
 `;
 

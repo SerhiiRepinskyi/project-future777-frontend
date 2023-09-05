@@ -28,10 +28,12 @@ export const GlobalStyles = () => {
           -moz-osx-font-smoothing: grayscale;
           font-size: 14px;
         }
+
         code {
           font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
             monospace;
         }
+
         h1,
         h2,
         h3,
@@ -41,6 +43,7 @@ export const GlobalStyles = () => {
         p {
           margin: 0;
         }
+
         ul,
         ol {
           list-style: none;
@@ -54,17 +57,21 @@ export const GlobalStyles = () => {
           max-width: 100%;
           height: auto;
         }
+
         .MuiDateCalendar-root
           .MuiButtonBase-root.MuiPickersDay-root.Mui-disabled {
           color: var(--secondary-text-color) !important;
         }
+
         .MuiDateCalendar-root .MuiPickersDay-dayOutsideMonth {
           color: rgba(0, 0, 0, 0.38) !important;
         }
+
         .MuiButton-contained.Mui-disabled {
           background-color: var(--button-bg-color) !important;
           cursor: none;
         }
+
         .dark {
           --primary-text-color: rgba(255, 255, 255, 1); //white
           --secondary-text-color: rgba(255, 255, 255, 0.5); //white
