@@ -8,10 +8,10 @@ import {
   IconBtn,
   Wrap,
   Label,
-  Button,
 } from '../RegisterForm/RegisterForm.styled';
 import { notifyInit } from 'helpers/notifyInit';
 import { Notify } from 'notiflix';
+import { ButtonAuth } from 'components/Buttons/Button';
 
 export const LoginFormContext = ({ showPassword, togglePassword }) => {
   const { values, dirty, isValid, touched, errors, handleSubmit } = useFormikContext();
@@ -27,7 +27,7 @@ export const LoginFormContext = ({ showPassword, togglePassword }) => {
           value={values.email}
           title={UI_MSGS.INPUT_EMAIL_TITLE}
         />
-        {touched.email && errors.email && dirty &&  (
+        {touched.email && errors.email && dirty && (
           <ErrorMessage
             name="email"
             render={msg => {
@@ -59,7 +59,7 @@ export const LoginFormContext = ({ showPassword, togglePassword }) => {
             </Icon>
           </IconBtn>
         </Wrap>
-        {touched.password && errors.password && dirty &&  (
+        {touched.password && errors.password && dirty && (
           <ErrorMessage
             name="password"
             render={msg => {
@@ -68,10 +68,15 @@ export const LoginFormContext = ({ showPassword, togglePassword }) => {
           />
         )}
       </Label>
+      <ButtonAuth
+        title="Log In Now"
+        type="submit"
+        disabled={!dirty || !isValid}
+      ></ButtonAuth>
 
-      <Button type="submit" disabled={!dirty || !isValid} aria-label="Submit">
+      {/* <Button type="submit" disabled={!dirty || !isValid} aria-label="Submit">
         Log In Now
-      </Button>
+      </Button> */}
     </FormikForm>
   );
 };
