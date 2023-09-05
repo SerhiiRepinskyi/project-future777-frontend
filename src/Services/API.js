@@ -21,7 +21,7 @@ import {
   useUpdateCardByIdMutation,
   useDeleteCardByIdMutation,
   useUpdateCardColumnByIdMutation,
-  useRegisterGoogleMutation,
+  useLoginGoogleUserMutation
 } from './API_Component';
 
 export const API = {
@@ -47,5 +47,5 @@ export const API = {
   useUpdateCardByIdMutation,
   useDeleteCardByIdMutation,
   useUpdateCardColumnByIdMutation,
-  useRegisterGoogleMutation
+  useLoginGoogleUserMutation
 };
