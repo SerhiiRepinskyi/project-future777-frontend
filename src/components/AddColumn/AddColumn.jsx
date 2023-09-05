@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { API } from 'Services/API';
 import { ErrorMessage, useFormik } from 'formik';
 import * as Yup from 'yup';
@@ -15,7 +15,6 @@ const AddColumn = ({
   columnId,
   titleValue,
 }) => {
-  const [columnTitle, setColumnTitle] = useState(titleValue);
   const [addColumn] = API.useAddColumnMutation();
   const [updateColumn] = API.useUpdateColumnByIdMutation();
 
@@ -26,7 +25,7 @@ const AddColumn = ({
   });
 
   const formikTitle =
-    modalType === 'Add column' ? { title: '' } : { title: columnTitle };
+    modalType === 'Add column' ? { title: '' } : { title: titleValue };
 
   const {
     values,
@@ -42,6 +41,7 @@ const AddColumn = ({
     initialValues: formikTitle,
     onSubmit: title => handleColumnSubmit(title),
     validationSchema,
+    enableReinitialize: true,
   });
 
   const handleColumnSubmit = async title => {
@@ -57,7 +57,7 @@ const AddColumn = ({
       if (title.title === titleValue) {
         return Notiflix.Notify.failure('Nothing changed');
       }
-      setColumnTitle('');
+      
       try {
         await updateColumn({ columnId, title });
         Notiflix.Notify.success('Your column successfully updated');
