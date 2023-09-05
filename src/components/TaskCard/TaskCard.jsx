@@ -41,16 +41,10 @@ function TaskCard({
 }) {
   const [anchorEl, setAnchorEl] = useState(null);
 
-  // const [updateCardById] = API.useUpdateCardByIdMutation();
   const [deleteCardById] = API.useDeleteCardByIdMutation();
 
   const [isAddCardOpen, setIsAddCardOpen] = useState(false);
-  // const [updatedData, setUpdatedData] = useState({
-  //   title,
-  //   description,
-  //   priority,
-  //   deadline,
-  // });
+
   const dispatch = useDispatch();
 
   const closeAddCard = () => setIsAddCardOpen(false);
@@ -77,24 +71,6 @@ function TaskCard({
     }
   };
 
-  // const handleUpdateCard = async () => {
-  //   try {
-  //     const updatedData = {
-  //       title,
-  //       description,
-  //       priority,
-  //       deadline,
-
-  //       /* об'єкт з оновленими даними картки */
-  //     };
-  //     const response = await updateCardById({ id, updatedData });
-  //     dispatch(setCardData(response));
-  //     handleClick();
-  //   } catch (error) {
-  //     console.error('Error updating card:', error);
-  //   }
-  // };
-
   const date = new Date(`${deadline}`);
   const formattedDate = format(date, 'dd/MM/yyyy');
 
@@ -112,7 +88,7 @@ function TaskCard({
       </CardContent>
       <CardActions sx={CardActionsStyled}>
         <Box sx={ActionsBox}>
-          <Typography sx={TypographyStylesPriority} variant="body2">
+          <Box sx={TypographyStylesPriority} variant="body2">
             Priority:
             <Box sx={{ display: 'flex', gap: '4px', alignItems: 'center' }}>
               <Circle priority={priority} />
@@ -120,8 +96,8 @@ function TaskCard({
                 {getPriorityText(priority)}
               </TypographyText>
             </Box>
-          </Typography>
-          <Typography sx={TypographyStylesPriority} variant="body2">
+          </Box>
+          <Box sx={TypographyStylesPriority} variant="body2">
             Deadline:
             <Box
               sx={{
@@ -139,7 +115,7 @@ function TaskCard({
               {' '}
               {formattedDate}
             </Box>
-          </Typography>
+          </Box>
         </Box>
         <Box>
           {isDeadlineToday && (
