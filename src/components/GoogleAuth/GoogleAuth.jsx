@@ -4,6 +4,7 @@ import { useDispatch } from 'react-redux';
 import jwt_decode from "jwt-decode";
 import { API } from 'Services/API';
 import { useNavigate } from 'react-router-dom';
+import { setCredentials } from 'redux/auth/authAPISlice';
 
 // создаем в HTML скрипт, который делает запрос на 'https://accounts.google.com/gsi/client'
 const src = 'https://accounts.google.com/gsi/client'
@@ -21,7 +22,7 @@ new Promise((resolve, reject) => {
 })
 
 const GoogleAuth = () => {
-    const [registerGoogle] = API.useRegisterGoogleMutation();
+    const [LoginGoogle] = API.useLoginGoogleUserMutation();
     const dispatch = useDispatch();
     const navigate = useNavigate()
 
@@ -32,34 +33,33 @@ const GoogleAuth = () => {
 
         loadScript(src)
             .then(() => {
-                /*global google*/
-                google.accounts.id.initialize({ // инициализируемся в гугл на основе объекта конфигурации
-                    client_id: id, // идентификатор клиента приложения, полученный при регистрации console.cloud.google.com
-                    callback: handleCredentialResponse,// функция для обработки токена
-                })
-                google.accounts.id.renderButton( // рендерим кнопку гугла
-                    document.getElementById("signInDiv"),
-                    { theme: 'outline', size: 'large', locale: "en", width: 344, shape: "pill" } 
-                )
+                // /*global google*/
+                if (window.google && window.google.accounts && window.google.accounts.id) {
+                    window.google.accounts.id.initialize({ // инициализируемся в гугл на основе объекта конфигурации
+                        client_id: id, // идентификатор клиента приложения, полученный при регистрации console.cloud.google.com
+                        callback: handleCredentialResponse,// функция для обработки токена
+                    })
+                    window.google.accounts.id.renderButton( // рендерим кнопку гугла
+                        document.getElementById("signInDiv"),
+                        { theme: 'outline', size: 'large', locale: "en", width: 344, shape: "pill" }
+                    )
+                }
             })
             .catch(console.error)
         })
 
-    function handleCredentialResponse(response) {
-    // нам приходит в response.credential токен, вытягиваем из гугла имя и почту
-    // TODO: создать и експортировать функцию loginGoogleUser (она в файле operation) 
-    // TODO: authSlice добавить в слайс auth в builder добавляем .addCase(loginGoogleUser.fulfilled, handleFulfilled)
-
-        console.log("Encoded JWT ID token: " + response.credential);
-        const {email, name} = jwt_decode(response.credential)
-        console.log('name', name)
-        console.log('email', email)
-        
-        dispatch(registerGoogle({email, name}))
-        navigate("/home")
-
+    
+    async function handleCredentialResponse(response) {
+   
+        const { email, name } = jwt_decode(response.credential);
+    
+        const googleResponse = await LoginGoogle({ email, name });
+    
+        if (googleResponse.data && googleResponse.data.token) {
+            dispatch(setCredentials(googleResponse.data));
+            navigate('/home');
+        }
     }
-
 
     return (
 

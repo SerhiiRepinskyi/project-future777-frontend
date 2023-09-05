@@ -19,7 +19,7 @@ export const authAPI = createApi({
                 skipToken: true,
             })
         }),
-        registerGoogle: builder.mutation({
+        loginGoogleUser: builder.mutation({
             query: credentials => ({
                 url: "auth/google",
                 method: "POST",
@@ -27,8 +27,8 @@ export const authAPI = createApi({
                 skipToken: true,
             })
         }),
-  
-    
+
+
         logIn: builder.mutation({
             query: credentials => ({
                 url: "auth/login",
@@ -55,7 +55,7 @@ export const {
   useRegisterMutation,
   useLogInMutation,
   useLogOutMutation,
-  useRegisterGoogleMutation,
+  useLoginGoogleUserMutation
 } = authAPI;
 
 export default authAPI;
