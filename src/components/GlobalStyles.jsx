@@ -69,7 +69,8 @@ export const GlobalStyles = () => {
 
         .MuiButton-contained.Mui-disabled {
           background-color: var(--button-bg-color) !important;
-          cursor: none;
+          cursor: not-allowed;
+          pointer-events: auto;
         }
 
         .dark {

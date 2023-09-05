@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useFormik } from 'formik';
+import { ErrorMessage, useFormik } from 'formik';
 import { format, parseISO } from 'date-fns';
 import * as Yup from 'yup';
 import { API } from 'Services/API';
@@ -85,7 +85,6 @@ const AddCard = ({
 
       try {
         await addCards({ columnId, cardData });
-
         Notiflix.Notify.success('Your card successfully added');
       } catch (error) {
         if (error.status === 400) {
@@ -110,7 +109,7 @@ const AddCard = ({
         if (error.status === 400) {
           return Notiflix.Notify.failure('All field must be filled in');
         } else {
-          console.log('An error occurred:', error.data.message);
+          console.log('An error occurred:', error.message);
         }
       }
     }
@@ -127,8 +126,9 @@ const AddCard = ({
       .strict(true)
       .min(2, 'Must be more then 2 symbols')
       .required('Title is required'),
-    description: Yup.string().min(5, 'Must be more then 2 symbols'),
-    color: Yup.string(),
+    description: Yup.string()
+      .min(5, 'Must be more then 5 symbols')
+      .required('Description is required'),
   });
 
   const cardInitialValues =
@@ -136,13 +136,21 @@ const AddCard = ({
       ? { title: '', description: '' }
       : { title: titleValue, description: descrValue };
 
-  const { values, handleBlur, handleChange, handleReset, handleSubmit } =
-    useFormik({
-      initialValues: cardInitialValues,
-      onSubmit: ({ title, description }) =>
-        handleSubmitForm(title, description),
-      validationSchema,
-    });
+  const {
+    values,
+    errors,
+    touched,
+    handleBlur,
+    handleChange,
+    handleReset,
+    handleSubmit,
+    isValid,
+    dirty,
+  } = useFormik({
+    initialValues: cardInitialValues,
+    onSubmit: ({ title, description }) => handleSubmitForm(title, description),
+    validationSchema,
+  });
 
   useEffect(() => {
     if (modalType === 'Add card') {
@@ -169,7 +177,14 @@ const AddCard = ({
           onBlur={handleBlur}
           value={values.title}
         />
-
+        {touched.title && errors.title && dirty && (
+          <ErrorMessage
+            name="title"
+            render={msg => {
+              Notiflix.Notify.warning(` ${msg}`);
+            }}
+          />
+        )}
         <TextareaStyled
           id="description"
           name="description"
@@ -178,7 +193,14 @@ const AddCard = ({
           onBlur={handleBlur}
           value={values.description}
         />
-
+        {touched.description && errors.description && dirty && (
+          <ErrorMessage
+            name="description"
+            render={msg => {
+              Notiflix.Notify.warning(`${msg}`);
+            }}
+          />
+        )}
         <SubWrapper>
           <SubTitle>Label color</SubTitle>
           <ColorRadioButtons value={color} onColorChange={onColorChange} />
@@ -195,7 +217,7 @@ const AddCard = ({
         <ButtonWithIcon
           title={modalType === 'Add card' ? 'Add' : 'Edit'}
           type={'submit'}
-          disabled={!values.title ? true : false}
+          disabled={!dirty || !isValid}
         />
       </FormStyled>
 
