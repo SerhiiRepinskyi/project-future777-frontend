@@ -18,7 +18,7 @@ export const boardsAPI = createApi({
         url: `boards/${id}/content`,
         params: { priority: filter },
       }),
-      providesTags: ['boards', 'cards'],
+      providesTags: ['boards', 'cards','columns'],
     }),
 
     getBoardById: builder.query({
@@ -60,7 +60,7 @@ export const boardsAPI = createApi({
         method: 'POST',
         body: title,
       }),
-      invalidatesTags: ['boards'],
+      invalidatesTags: ['columns'],
     }),
 
     updateColumnById: builder.mutation({
@@ -69,7 +69,7 @@ export const boardsAPI = createApi({
         method: 'PATCH',
         body: title,
       }),
-      invalidatesTags: ['boards'],
+      invalidatesTags: ['columns'],
     }),
 
     deleteColumnById: builder.mutation({
@@ -77,7 +77,7 @@ export const boardsAPI = createApi({
         url: `/columns/${columnId}`,
         method: 'DELETE',
       }),
-      invalidatesTags: ['boards'],
+      invalidatesTags: ['columns'],
     }),
 
     getAllCards: builder.query({
@@ -92,7 +92,7 @@ export const boardsAPI = createApi({
         url: `columns/${columnId}/cards `,
         method: 'GET',
       }),
-      providesTags: ['columns'],
+      providesTags: ['cards'],
     }),
 
     getAllFillteredCardsByColumnId: builder.query({
@@ -100,7 +100,7 @@ export const boardsAPI = createApi({
         url: `columns/${columnId}/cards?f=${priority} `,
         method: 'GET',
       }),
-      providesTags: ['columns'],
+      providesTags: ['cards'],
     }),
 
     addCard: builder.mutation({

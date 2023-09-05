@@ -15,6 +15,7 @@ const authPersistConfig = {
 const boardsPersistConfig = {
   key: 'boards' ,
   storage,
+   whitelist: ['boardId', 'filter']
 };
 
 const persistedReducer = persistReducer(authPersistConfig, authAPISlice);
