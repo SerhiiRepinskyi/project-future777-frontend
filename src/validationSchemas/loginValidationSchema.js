@@ -14,7 +14,7 @@ export const loginValidationSchema = yup.object().shape({
   password: yup
     .string()
     .required(UI_MSGS.YUP_PWD_REQ)
-    .min(8, UI_MSGS.YUP_PWD_MIN_ERR)
+    .min(8, /* UI_MSGS.YUP_PWD_MIN_ERR */)
     .max(64, UI_MSGS.YUP_PWD_MAX_ERR)
     .matches(NO_SPACE_REGEXP, UI_MSGS.YUP_PWD_SPACE_ERR)
     .matches(PASSWORD_REGEXP, UI_MSGS.YUP_PWD_REGEXP_ERR),

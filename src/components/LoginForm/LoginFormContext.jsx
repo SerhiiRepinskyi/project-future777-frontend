@@ -14,7 +14,7 @@ import { notifyInit } from 'helpers/notifyInit';
 import { Notify } from 'notiflix';
 
 export const LoginFormContext = ({ showPassword, togglePassword }) => {
-  const { values, dirty, touched, errors, handleSubmit } = useFormikContext();
+  const { values, dirty, isValid, touched, errors, handleSubmit } = useFormikContext();
 
   return (
     <FormikForm onSubmit={handleSubmit}>
@@ -27,11 +27,11 @@ export const LoginFormContext = ({ showPassword, togglePassword }) => {
           value={values.email}
           title={UI_MSGS.INPUT_EMAIL_TITLE}
         />
-        {touched.email && errors.email && (
+        {touched.email && errors.email && dirty &&  (
           <ErrorMessage
             name="email"
             render={msg => {
-              Notify.failure(` ${msg}`, notifyInit);
+              Notify.warning(` ${msg}`, notifyInit);
             }}
           />
         )}
@@ -59,17 +59,17 @@ export const LoginFormContext = ({ showPassword, togglePassword }) => {
             </Icon>
           </IconBtn>
         </Wrap>
-        {touched.password && errors.password && (
+        {touched.password && errors.password && dirty &&  (
           <ErrorMessage
             name="password"
             render={msg => {
-              Notify.failure(` ${msg}`, notifyInit);
+              Notify.warning(` ${msg}`, notifyInit);
             }}
           />
         )}
       </Label>
 
-      <Button type="submit" disabled={!dirty} aria-label="Submit">
+      <Button type="submit" disabled={!dirty || !isValid} aria-label="Submit">
         Log In Now
       </Button>
     </FormikForm>

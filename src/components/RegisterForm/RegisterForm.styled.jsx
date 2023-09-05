@@ -93,6 +93,7 @@ export const FormikInput = styled(Field)`
     -webkit-box-shadow: 0 0 0px 1000px #1f1f1f inset !important;
     background-color: #1f1f1f !important;
     -webkit-text-fill-color: rgba(255, 255, 255, 1);
+    caret-color: #fff; !important;
   
   opacity: 0.4;
   border: 1px solid rgba(190, 219, 176, 1);
@@ -102,6 +103,7 @@ export const FormikInput = styled(Field)`
     background-color: #151515;
     // opacity: 1;
      -webkit-text-fill-color: #fff;!important;
+     caret-color: #fff; !important;
   }
 
   &:focus {

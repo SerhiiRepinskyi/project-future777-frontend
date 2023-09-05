@@ -42,7 +42,7 @@ export const LoginForm = () => {
         dispatch(setCredentials(response.data));
         dispatch(setIsLoggedIn(true));
 
-        Report.success('Login successful', 'Welcome back!', 'Okay');
+        // Report.success('Login successful', 'Welcome back!', 'Okay');
         navigate('/home');
         resetForm();
       }
@@ -52,11 +52,12 @@ export const LoginForm = () => {
           Report.failure('Error!', 'Email or password is wrong', 'Okay');
         }
         if (response.error.status === 401) {
-          Report.failure(
-            'Error!',
-            'User with the provided credentials does not exist. Please double-check your information or consider registering if you are a new user.',
-            'Okay'
-          );
+          Report.failure('Error!', 'Email or password is wrong', 'Okay');
+          // Report.failure(
+          //   'Error!',
+          //   'User with the provided credentials does not exist. Please double-check your information or consider registering if you are a new user.',
+          //   'Okay'
+          // );
         }
 
         dispatch(setError(response.error));

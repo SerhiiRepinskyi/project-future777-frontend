@@ -269,7 +269,7 @@ export const GlobalStyles = () => {
           --icon-add-avatar: rgba(22, 22, 22, 1); // black
           --input-border-color: rgba(82, 85, 188, 1); //purple
           --input-bcg-color: rgba(252, 252, 252, 1);
-          --btn-text-color: rgba(255, 255, 255, 1); //white
+          --btn-text-color: rgba(255, 255, 255, 1); 
           --bcg-modal-color: rgba(252, 252, 252, 1);
 
           --cards-bg-color: #fff;

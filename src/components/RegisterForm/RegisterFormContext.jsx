@@ -38,11 +38,11 @@ export const RegisterFormContext = ({ showPassword, togglePassword }) => {
           onChange={handleChange}
           title={UI_MSGS.INPUT_NAME_TITLE}
         />
-        {touched.name && errors.name && (
+        {touched.name && errors.name && dirty &&(
           <ErrorMessage
             name="name"
             render={msg => {
-              Notify.failure(` ${msg}`, notifyInit);
+              Notify.warning(` ${msg}`, notifyInit);
             }}
           />
         )}
@@ -59,11 +59,11 @@ export const RegisterFormContext = ({ showPassword, togglePassword }) => {
           onChange={handleChange}
           title={UI_MSGS.INPUT_EMAIL_TITLE}
         />
-        {touched.email && errors.email && (
+        {touched.email && errors.email && dirty && (
           <ErrorMessage
             name="email"
             render={msg => {
-              Notify.failure(` ${msg}`, notifyInit);
+              Notify.warning(` ${msg}`, notifyInit);
             }}
           />
         )}
@@ -94,11 +94,11 @@ export const RegisterFormContext = ({ showPassword, togglePassword }) => {
           </IconBtn>
         </Wrap>
 
-        {touched.password && errors.password && (
+        {touched.password && errors.password && dirty && (
           <ErrorMessage
             name="password"
             render={msg => {
-              Notify.failure(` ${msg}`, notifyInit);
+              Notify.warning(` ${msg}`, notifyInit);
             }}
           />
         )}
