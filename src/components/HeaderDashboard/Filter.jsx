@@ -1,5 +1,4 @@
 import { Popper, Radio, Typography } from '@mui/material';
-// import ModalLayout from 'components/ModalLayout/ModalLayout';
 import { Formik } from 'formik';
 import { useState } from 'react';
 import {
@@ -49,8 +48,6 @@ export const Filter = ({ filter, open, onClose, anchorEl }) => {
     value: item,
   });
   const handleChange = event => {
-    // const filter = event.target.value;
-    // filter(event.target.value);
     dispatch(setFilter(event.target.value));
     setCurrentPrority(event.target.value);
     setIsShowAllActive(false);
@@ -58,7 +55,6 @@ export const Filter = ({ filter, open, onClose, anchorEl }) => {
 
   const handleShowAll = () => {
     setCurrentPrority('');
-    // dispatch(setFilterCards(''));
     setIsShowAllActive(true);
   };
 
@@ -69,7 +65,12 @@ export const Filter = ({ filter, open, onClose, anchorEl }) => {
   };
 
   return (
-    <Popper open={open} placement={'bottom-end'} anchorEl={anchorEl}>
+    <Popper
+      open={open}
+      placement={'bottom-end'}
+      anchorEl={anchorEl}
+      onClose={onClose}
+    >
       <Formik initialValues={initialValues}>
         <FormPopup onChange={handleChange}>
           <Typography variant="h3" sx={titleStyle}>

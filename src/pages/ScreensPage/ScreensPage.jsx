@@ -36,7 +36,6 @@ const ScreensPage = () => {
   console.log('currentData :>> ', currentData);
   console.log('data :>> ', data);
 
-
   const openAddColumn = () => setIsAddColumnOpen(true);
   const closeAddColumn = () => setIsAddColumnOpen(false);
 
