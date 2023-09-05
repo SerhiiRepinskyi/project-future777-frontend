@@ -15,12 +15,18 @@ import { API } from 'Services/API';
 import ModalBoard from 'components/ModalBoard/ModalBoard';
 import { SidebarBoardItemIcon } from './SidebarBoardItemIcon';
 import { useDispatch } from 'react-redux';
-import { setBoardId } from 'redux/boards/boardsAPISlice';
+import { setBoardId, setBoardsIdArray } from 'redux/boards/boardsAPISlice';
+import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router';
 
 export const SidebarBoardItem = ({ board, current }) => {
   const { _id: id, iconId, title } = board;
 
+  const boardsIdArray = useSelector(state => state.boards.boardsIdArray);
+
   const dispatch = useDispatch();
+
+  const navigate = useNavigate();
 
   const [isHovered, setIsHovered] = useState(false);
   const [titleWidth, setTitleWidth] = useState(0);
@@ -58,7 +64,20 @@ export const SidebarBoardItem = ({ board, current }) => {
 
   const handleDeleteClick = event => {
     event.stopPropagation();
-    dispatch(setBoardId({ boardId: '' }));
+
+    if (boardsIdArray?.length > 1) {
+      const filteredArray = boardsIdArray?.filter(el => el !== id);
+      dispatch(setBoardsIdArray(filteredArray));
+      dispatch(setBoardId({ boardId: filteredArray[0] }));
+      navigate(`/home/${filteredArray[0]}`);
+    } 
+
+    if (boardsIdArray?.length === 1) {
+      dispatch(setBoardsIdArray([]));
+      dispatch(setBoardId({ boardId: '' }));
+      navigate("/home");
+    }
+
     deleteBoard(id);
   };
 
