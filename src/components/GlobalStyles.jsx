@@ -63,9 +63,9 @@ export const GlobalStyles = () => {
           color: var(--secondary-text-color) !important;
         }
 
-        .MuiDateCalendar-root .MuiPickersDay-dayOutsideMonth {
-          color: rgba(0, 0, 0, 0.38) !important;
-        }
+        
+        
+        
 
         .MuiButton-contained.Mui-disabled {
           background-color: var(--button-bg-color) !important;

@@ -10,7 +10,7 @@ export const boardsAPI = createApi({
       query: () => ({
         url: 'boards',
       }),
-      providesTags: ['boards'],
+      providesTags: ['boards', 'columns', 'cards'],
     }),
 
     getBoardContentById: builder.query({
@@ -18,14 +18,14 @@ export const boardsAPI = createApi({
         url: `boards/${id}/content`,
         params: { priority: filter },
       }),
-      providesTags: ['boards', 'cards'],
+      providesTags: ['boards', 'columns', 'cards', "id"],
     }),
 
     getBoardById: builder.query({
       query: id => ({
         url: `boards/${id}`,
       }),
-      providesTags: ['boards'],
+      providesTags: ['boards', 'columns', 'cards'],
     }),
 
     addBoards: builder.mutation({
@@ -34,7 +34,7 @@ export const boardsAPI = createApi({
         method: 'POST',
         body: boardsData,
       }),
-      invalidatesTags: ['boards'],
+      invalidatesTags: ['boards', 'columns', 'cards'],
     }),
 
     deleteBoardById: builder.mutation({
@@ -42,7 +42,7 @@ export const boardsAPI = createApi({
         url: `boards/${id}`,
         method: 'DELETE',
       }),
-      invalidatesTags: ['boards'],
+      invalidatesTags: ['boards', 'columns', 'cards'],
     }),
 
     updateBoardById: builder.mutation({
@@ -51,7 +51,7 @@ export const boardsAPI = createApi({
         method: 'PATCH',
         body: FormData,
       }),
-      invalidatesTags: ['boards'],
+      invalidatesTags: ['boards', 'columns', 'cards'],
     }),
 
     addColumn: builder.mutation({
@@ -60,7 +60,7 @@ export const boardsAPI = createApi({
         method: 'POST',
         body: title,
       }),
-      invalidatesTags: ['boards'],
+      invalidatesTags: ['boards', 'columns', 'cards'],
     }),
 
     updateColumnById: builder.mutation({
@@ -69,7 +69,7 @@ export const boardsAPI = createApi({
         method: 'PATCH',
         body: title,
       }),
-      invalidatesTags: ['boards'],
+      invalidatesTags: ['boards', 'columns', 'cards'],
     }),
 
     deleteColumnById: builder.mutation({
@@ -77,14 +77,14 @@ export const boardsAPI = createApi({
         url: `/columns/${columnId}`,
         method: 'DELETE',
       }),
-      invalidatesTags: ['boards'],
+      invalidatesTags: ['boards', 'columns', 'cards'],
     }),
 
     getAllCards: builder.query({
       query: columnId => ({
         url: `columns/${columnId}/cards`,
       }),
-      providesTags: ['columns'],
+      providesTags: ['boards', 'columns', 'cards'],
     }),
 
     getAllCardsByColumnId: builder.query({
@@ -92,7 +92,7 @@ export const boardsAPI = createApi({
         url: `columns/${columnId}/cards `,
         method: 'GET',
       }),
-      providesTags: ['columns'],
+      providesTags: ['boards', 'columns', 'cards'],
     }),
 
     getAllFillteredCardsByColumnId: builder.query({
@@ -100,7 +100,7 @@ export const boardsAPI = createApi({
         url: `columns/${columnId}/cards?f=${priority} `,
         method: 'GET',
       }),
-      providesTags: ['columns'],
+      providesTags: ['boards', 'columns', 'cards'],
     }),
 
     addCard: builder.mutation({
@@ -109,7 +109,7 @@ export const boardsAPI = createApi({
         method: 'POST',
         body: cardData,
       }),
-      invalidatesTags: ['cards'],
+      invalidatesTags: ['boards', 'columns', 'cards'],
     }),
 
     updateCardById: builder.mutation({
@@ -118,7 +118,7 @@ export const boardsAPI = createApi({
         method: 'PUT',
         body: cardData,
       }),
-      invalidatesTags: ['cards'],
+      invalidatesTags: ['boards', 'columns', 'cards'],
     }),
 
     deleteCardById: builder.mutation({
@@ -126,7 +126,7 @@ export const boardsAPI = createApi({
         url: `/cards/${cardId}`,
         method: 'DELETE',
       }),
-      invalidatesTags: ['cards'],
+      invalidatesTags: ['boards', 'columns', 'cards'],
     }),
 
     updateCardColumnById: builder.mutation({
@@ -134,7 +134,7 @@ export const boardsAPI = createApi({
         url: `/cards/${cardId}`,
         method: 'PATCH',
       }),
-      invalidatesTags: ['cards'],
+      invalidatesTags: ['boards', 'columns', 'cards'],
     }),
   }),
 });

@@ -7,7 +7,9 @@ const DatePickerCmponent = ({ onChange }) => {
       <DateCalendarStyled
         sx={DatePickerStyles}
         onChange={onChange}
+        timezone="UTC"
         format="LL"
+        dayOfWeekFormatter={day => `${day}`}
         disablePast
         showDaysOutsideCurrentMonth
       />

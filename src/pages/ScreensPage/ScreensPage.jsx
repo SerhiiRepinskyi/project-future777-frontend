@@ -16,6 +16,7 @@ import Loader from 'components/Loader';
 const ScreensPage = () => {
   const { boardId } = useParams();
   const [filterValue, setFilterValue] = useState('');
+  const [dataQuery, setDataQuery] = useState([]);
   const stateFilter = useSelector(state => state.boards.filter);
   const dispatch = useDispatch();
 
@@ -25,17 +26,12 @@ const ScreensPage = () => {
   };
   const [isAddColumnOpen, setIsAddColumnOpen] = useState(false);
 
-  const { currentData, data, isFetching } = API.useGetBoardContentByIdQuery(
-    reqData,
-    {
-      refetchOnMountOrArgChange: true,
-      // skip: false,
-    }
-  );
+  const { data, isFetching } = API.useGetBoardContentByIdQuery(reqData, {
+    // refetchOnMountOrArgChange: true,
+  });
+  // setDataQuery(data.content);
 
-  console.log('currentData :>> ', currentData);
   console.log('data :>> ', data);
-
 
   const openAddColumn = () => setIsAddColumnOpen(true);
   const closeAddColumn = () => setIsAddColumnOpen(false);
@@ -48,27 +44,31 @@ const ScreensPage = () => {
     }
   }, [dispatch, stateFilter]);
 
+  useEffect(() => {
+    if (data) {
+      setDataQuery(data);
+    }
+    console.log('setData...:>> ', dataQuery);
+  }, [data, dataQuery]);
+
   return (
-    <MainWrapper index={data?.background}>
+    <MainWrapper index={dataQuery?.background}>
       <MainContainer>
         <HeaderDashboard filter={setFilterValue} title={data?.title} />
 
-        <ColumnsWrapper cols={!data?.content ? 1 : data?.content?.length + 1}>
-          {!isFetching ? (
-            data?.content?.map(
-              ({ _id: columnId, title: columnTitle, cards }, index) => (
-                <Column
-                  isFetching={isFetching}
-                  key={columnId}
-                  columnData={data.content[index]}
-                  columnTitle={columnTitle}
-                  columnId={columnId}
-                  cards={cards}
-                />
-              )
+        <ColumnsWrapper
+          cols={!dataQuery?.content ? 1 : dataQuery?.content?.length + 1}
+        >
+          {dataQuery?.content?.map(
+            ({ _id: columnId, title: columnTitle, cards }, index) => (
+              <Column
+                key={columnId}
+                columnData={dataQuery.content[index]}
+                columnTitle={columnTitle}
+                columnId={columnId}
+                cards={cards}
+              />
             )
-          ) : (
-            <Loader />
           )}
 
           <ButtonAdd onClick={openAddColumn}></ButtonAdd>

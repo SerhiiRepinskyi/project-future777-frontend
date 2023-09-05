@@ -38,6 +38,7 @@ function TaskCard({
   moveCard,
   id,
   columnId,
+  onCardUpdate,
 }) {
   const [anchorEl, setAnchorEl] = useState(null);
 
@@ -174,6 +175,7 @@ function TaskCard({
             descrValue={description}
             priorityValue={priority}
             deadlineValue={deadline}
+            onCardUpdate={onCardUpdate}
           />
           <StyledIconButton onClick={handleDeleteCard} aria-label="remove">
             <svg stroke="var(--cards-icon-color)" width="16" height="16">

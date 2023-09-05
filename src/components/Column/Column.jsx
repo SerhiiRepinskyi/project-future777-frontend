@@ -14,9 +14,12 @@ import {
 import AddColumn from 'components/AddColumn/AddColumn';
 import Loader from 'components/Loader';
 
-const Column = ({ columnTitle, columnId, cards, columnData, isFetching }) => {
+const Column = ({ columnTitle, columnId, cards, columnData }) => {
   const [deleteColumn] = API.useDeleteColumnByIdMutation();
-
+  const [updateCard] = API.useUpdateCardByIdMutation();
+  const { data: cardsData } = API.useGetAllCardsQuery(columnId, {
+    refetchOnMountOrArgChange: true,
+  });
   const [isAddCardOpen, setIsAddCardOpen] = useState(false);
   const [isEditColumnOpen, setIsEditColumnOpen] = useState(false);
 
@@ -37,7 +40,7 @@ const Column = ({ columnTitle, columnId, cards, columnData, isFetching }) => {
   return (
     <ColumnWrapper>
       <ColumnHeader>
-        <ColumnTitle>{!isFetching ? columnTitle : (<Loader/>)}</ColumnTitle>
+        <ColumnTitle>{columnTitle}</ColumnTitle>
         <div>
           <StyledIconButton onClick={openEditColumn} aria-label="edit">
             <svg
@@ -62,18 +65,21 @@ const Column = ({ columnTitle, columnId, cards, columnData, isFetching }) => {
         </div>
       </ColumnHeader>
       <CardsList cols={cards}>
-        {cards?.map(({ title, description, priority, deadline, _id: id }) => {
-          return (
-            <TaskCard
-              key={id}
-              title={title}
-              description={description}
-              priority={priority}
-              deadline={deadline}
-              id={id}
-            />
-          );
-        })}
+        {cardsData?.map(
+          ({ title, description, priority, deadline, _id: id }) => {
+            return (
+              <TaskCard
+                key={id}
+                title={title}
+                description={description}
+                priority={priority}
+                deadline={deadline}
+                onCardUpdate={updateCard}
+                id={id}
+              />
+            );
+          }
+        )}
       </CardsList>
 
       <AddCardButton onClick={handleClick} title={'Add card'} />
@@ -84,6 +90,7 @@ const Column = ({ columnTitle, columnId, cards, columnData, isFetching }) => {
         open={isAddCardOpen}
         handleClose={closeAddCard}
         close={closeAddCard}
+        onCardUpdate={updateCard}
       />
       <AddColumn
         modalType={'Edit column'}

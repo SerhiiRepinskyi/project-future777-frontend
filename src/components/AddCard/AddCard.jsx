@@ -21,6 +21,7 @@ import DropDownIcon from 'components/Icons/DropDownIcon/DropDownIcon';
 import Popup from 'components/Popup/Popup';
 import DatePickerCmponent from 'components/DatePicker/DatePicker';
 import ModalLayout from '../ModalLayout/ModalLayout';
+import { UTCDateMini, UTCDate } from '@date-fns/utc';
 
 Notiflix.Notify.init({
   success: {
@@ -39,8 +40,9 @@ const AddCard = ({
   descrValue = '',
   priorityValue = '0',
   deadlineValue,
+  onCardUpdate,
 }) => {
-  const [date, setDate] = useState('');
+  const [date, setDate] = useState(new UTCDate(new Date()));
   const [dateValue, setDateValue] = useState('');
   const [color, setColor] = useState(priorityValue.toString());
   const [anchorEl, setAnchorEl] = useState(null);
@@ -56,13 +58,13 @@ const AddCard = ({
   const onDateChange = e => {
     const dateFns = format(e, 'LLLL d');
     setDateValue(dateFns);
-    setDate(e);
-    setAnchorEl(null);
+    const utcDate = new UTCDate(e);
+    setDate(utcDate);
     setIsPopupOpen(false);
+    setAnchorEl(null);
   };
 
   const onColorChange = value => {
-    console.log('value :>> ', value);
     setColor(value);
   };
 
@@ -71,9 +73,7 @@ const AddCard = ({
       if (!date) {
         Notiflix.Notify.failure('Please select the date');
       }
-
       const ISODate = formatISO(date, { representation: 'date' });
-      console.log('ISODate :>> ', ISODate);
 
       const cardData = {
         title,
@@ -84,17 +84,18 @@ const AddCard = ({
 
       try {
         await addCards({ columnId, cardData });
-
-        Notiflix.Notify.success('Your card successfully added');
       } catch (error) {
+        console.log('error :>> ', error);
         if (error.status === 400) {
           return Notiflix.Notify.failure('All field must be filled in');
         } else {
           console.log('An error occurred:', error.data.message);
         }
       }
+      Notiflix.Notify.success('Your card successfully added');
     } else {
       const ISODate = formatISO(date, { representation: 'date' });
+
       const cardData = {
         title,
         description,
@@ -103,8 +104,7 @@ const AddCard = ({
       };
 
       try {
-        await updateCard({ cardId, cardData });
-        Notiflix.Notify.success('Your card successfully updated');
+        await onCardUpdate({ cardId, cardData });
       } catch (error) {
         if (error.status === 400) {
           return Notiflix.Notify.failure('All field must be filled in');
@@ -112,6 +112,7 @@ const AddCard = ({
           console.log('An error occurred:', error.data.message);
         }
       }
+      Notiflix.Notify.success('Your card successfully updated');
     }
 
     setDateValue('');
@@ -149,10 +150,10 @@ const AddCard = ({
       setDateValue(currentDate);
     }
     if (modalType === 'Edit card') {
-      console.log('deadlineValue :>> ', deadlineValue);
-      const dateISO = parseISO(deadlineValue, "'Today,' LLLL d");
+      const dateISO = parseISO(deadlineValue);
       setDate(dateISO);
-      const currentDate = format(dateISO, "'Today,' LLLL d");
+      const localDate = new UTCDateMini(dateISO);
+      const currentDate = format(localDate, 'LLLL d');
       setDateValue(currentDate);
     }
   }, [modalType, deadlineValue]);
