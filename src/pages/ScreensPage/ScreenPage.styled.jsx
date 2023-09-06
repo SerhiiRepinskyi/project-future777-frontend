@@ -9,9 +9,16 @@ export const MainWrapper = styled.main`
   background-size: cover;
   padding-bottom: 18px;
   overflow-y: hidden;
+
   @media screen and (min-width: 0px) {
     padding-top: 60px;
     min-height: 100vh;
+    background-image: ${props => {
+      if (props.index === undefined) {
+        return 'none';
+      }
+      return `url(${bgData[2].mobile[2][props.index]})`;
+    }};
     @media (-webkit-min-device-pixel-ratio: 1) {
       background-image: ${props => {
         if (props.index === undefined) {
@@ -41,6 +48,12 @@ export const MainWrapper = styled.main`
   @media screen and (min-width: 767px) {
     padding-top: 68px;
     height: 100vh;
+    background-image: ${props => {
+      if (props.index === undefined) {
+        return 'none';
+      }
+      return `url(${bgData[1].laptop[2][props.index]})`;
+    }};
     @media (-webkit-min-device-pixel-ratio: 1) {
       background-image: ${props => {
         if (props.index === undefined) {
@@ -69,6 +82,12 @@ export const MainWrapper = styled.main`
 
   @media screen and (min-width: 1400px) {
     height: 100vh;
+    background-image: ${props => {
+      if (props.index === undefined) {
+        return 'none';
+      }
+      return `url(${bgData[0].desktop[2][props.index]})`;
+    }};
     @media (-webkit-min-device-pixel-ratio: 1) {
       background-image: ${props => {
         if (props.index === undefined) {
