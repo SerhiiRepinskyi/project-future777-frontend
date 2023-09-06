@@ -31,7 +31,6 @@ const ScreensPage = () => {
       // skip: false,
     }
   );
-console.log('data :>> ', data);
 
   const openAddColumn = () => setIsAddColumnOpen(true);
   const closeAddColumn = () => setIsAddColumnOpen(false);
