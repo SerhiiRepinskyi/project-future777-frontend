@@ -188,7 +188,7 @@ function TaskCard({
         onClose={handleCloseMenu}
         PaperProps={{
           sx: {
-            backgroundColor: '#151515',
+            backgroundColor: 'var(--cards-bg-color)',
             width: '135px',
           },
         }}
