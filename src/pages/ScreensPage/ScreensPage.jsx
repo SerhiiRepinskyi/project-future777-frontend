@@ -38,17 +38,13 @@ const ScreensPage = () => {
 
   useEffect(() => {
     setFilterValue(stateFilter);
-    if (stateFilter === '0') {
-      setFilterValue('');
-    } else {
-      setFilterValue(stateFilter);
-    }
+    
   }, [dispatch, stateFilter]);
 
   return (
     <MainWrapper index={data?.background}>
-      <MainContainer>
         <HeaderDashboard filter={setFilterValue} title={data?.title} />
+      <MainContainer>
 
         <ColumnsWrapper cols={!data?.content ? 1 : data?.content?.length + 1}>
           {data?.content?.map(

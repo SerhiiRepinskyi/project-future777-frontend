@@ -143,6 +143,7 @@ const AddCard = ({
     handleReset,
     handleSubmit,
     isValid,
+    dirty,
   } = useFormik({
     initialValues: cardInitialValues,
     onSubmit: ({ title, description }) => handleSubmitForm(title, description),
@@ -201,7 +202,7 @@ const AddCard = ({
         <ButtonWithIcon
           title={modalType === 'Add card' ? 'Add' : 'Edit'}
           type={'submit'}
-          disabled={!isValid}
+          disabled={!dirty || !isValid}
         />
       </FormStyled>
 

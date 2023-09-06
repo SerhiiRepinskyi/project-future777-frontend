@@ -8,7 +8,9 @@ export const MainWrapper = styled.main`
   background-repeat: no-repeat;
   background-size: cover;
   padding-bottom: 18px;
+  overflow-y: hidden;
   @media screen and (min-width: 0px) {
+    padding-top: 60px;
     min-height: 100vh;
     @media (-webkit-min-device-pixel-ratio: 1) {
       background-image: ${props => {
@@ -37,6 +39,7 @@ export const MainWrapper = styled.main`
   }
 
   @media screen and (min-width: 1400px) {
+    padding-top: 68px;
     height: 100vh;
     @media (-webkit-min-device-pixel-ratio: 1) {
       background-image: ${props => {
@@ -65,6 +68,7 @@ export const MainWrapper = styled.main`
   }
 
   @media screen and (min-width: 767px) {
+    padding-top: 68px;
     height: 100vh;
     @media (-webkit-min-device-pixel-ratio: 1) {
       background-image: ${props => {
@@ -130,7 +134,7 @@ export const MainContainer = styled.div`
   flex-grow: 1;
 
   height: 100vh;
-  padding-top: 78px;
+
   padding-left: 24px;
   padding-right: 24px;
   padding-bottom: 28px;

@@ -55,6 +55,7 @@ export const Filter = ({ filter, open, onClose, anchorEl }) => {
 
   const handleShowAll = () => {
     setCurrentPrority('');
+    dispatch(setFilter(''));
     setIsShowAllActive(true);
   };
 
