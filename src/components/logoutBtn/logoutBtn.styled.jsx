@@ -11,12 +11,11 @@ export const LogOutBtnStyled = styled.button`
   border: none;
   background-color: transparent;
   cursor: pointer;
-
   color: var(--sidebar-icon-logout-color);
+  transition: color 300ms cubic-bezier(0.4, 0, 0.2, 1);
   &:hover,
   &:focus {
-    color: var(--sidebar-icon-logout-color-HOVER-FOCUS);
-    transition: color 300ms cubic-bezier(0.4, 0, 0.2, 1);
+    color: var(--sidebar-icon-logout-color-HOVER-FOCUS);    
   }
 `;
 
@@ -35,5 +34,4 @@ export const Icon = styled.svg`
   height: 32px;
   fill: none;
   stroke: currentColor;
-  transition: stroke 300ms cubic-bezier(0.4, 0, 0.2, 1);
 `;

@@ -25,6 +25,8 @@ export const ButtonClose = styled.button`
   border-radius: 5px;
   cursor: pointer;
 
+  transition: var(--tra);
+
   &:hover,
   &:focus {
     transform: scale(1.2);

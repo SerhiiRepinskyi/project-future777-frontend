@@ -96,10 +96,6 @@ export const HelpText = styled('p')(({ isSidebarShown }) => ({
   color: 'var(--sidebar-primary-text-color)',
   fontFamily: 'Poppins',
   fontWeight: 400,
-  letterSpacing: -0.15,
-  '& span': {
-    color: 'var(--sidebar-taskpro-link-color)',
-  },
 
   transform: 'translateX(-250px)',
   animation: isSidebarShown ? `${slideToRight} 400ms` : 'none',
@@ -136,11 +132,29 @@ export const HelpButton = styled('button')(({ isSidebarShown }) => ({
   animationFillMode: 'forwards',
 }));
 
+export const TaskProButton = styled('button')({
+  padding: 0,
+  margin: 0,
+  color: 'var(--sidebar-taskpro-link-color)',
+  backgroundColor: 'transparent',
+  fontFamily: 'Poppins',
+  fontSize: 'inherit',
+  fontWeight: 500,
+  lineHeight: 1.5,
+  letterSpacing: '-0.24px',
+  border: 'none',
+  cursor: 'pointer',
+
+  '&:hover, &:focus': {
+    textDecoration: 'underline',
+    outline: 'none',
+  },
+});
+
 export const HelpIcon = styled('svg')(({ startAnimation }) => ({
   stroke: 'var(--sidebar-primary-text-color)',
   width: '20px',
   height: '20px',
-
   animation: startAnimation ? `${shakeAnimation} 1s  ease-out` : 'none',
 
   '&:hover, &:focus': {

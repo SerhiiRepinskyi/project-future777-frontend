@@ -23,6 +23,13 @@ export const Container = styled.div`
   //   };
 `;
 
+export const TitleContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+`;
+
 export const TitleDashBoard = styled.p`
   font-size: 18px;
   font-weight: 500;
