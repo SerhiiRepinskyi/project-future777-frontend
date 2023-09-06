@@ -17,11 +17,11 @@ export function getPriorityColor(priority) {
 }
 export function getPriorityText(priority) {
   switch (priority) {
-    case 1:
-      return 'High';
-    case 2:
-      return 'Low';
     case 3:
+      return 'High';
+    case 1:
+      return 'Low';
+    case 2:
       return 'Medium';
     default:
       return 'Without';
