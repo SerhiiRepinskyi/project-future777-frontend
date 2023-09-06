@@ -139,18 +139,22 @@ function TaskCard({
               <use href={sprite + '#icon-pencil'} />
             </svg>
           </StyledIconButton>
-          <AddCard
-            columnId={columnId}
-            cardId={id}
-            modalType={'Edit card'}
-            open={isAddCardOpen}
-            handleClose={closeAddCard}
-            close={closeAddCard}
-            titleValue={title}
-            descrValue={description}
-            priorityValue={priority}
-            deadlineValue={deadline}
-          />
+          {isAddCardOpen ? (
+            <AddCard
+              columnId={columnId}
+              cardId={id}
+              modalType={'Edit card'}
+              open={isAddCardOpen}
+              handleClose={closeAddCard}
+              close={closeAddCard}
+              titleValue={title}
+              descrValue={description}
+              priorityValue={priority}
+              deadlineValue={deadline}
+            />
+          ) : (
+            <></>
+          )}
           <StyledIconButton onClick={handleDeleteCard} aria-label="remove">
             <svg stroke="var(--cards-icon-color)" width="16" height="16">
               <use href={sprite + '#icon-trash'} />

@@ -37,7 +37,7 @@ const Column = ({ columnTitle, columnId, cards, columnData, isFetching }) => {
   return (
     <ColumnWrapper>
       <ColumnHeader>
-        <ColumnTitle>{!isFetching ? columnTitle : (<Loader/>)}</ColumnTitle>
+        <ColumnTitle>{columnTitle}</ColumnTitle>
         <div>
           <StyledIconButton onClick={openEditColumn} aria-label="edit">
             <svg
@@ -78,21 +78,29 @@ const Column = ({ columnTitle, columnId, cards, columnData, isFetching }) => {
 
       <AddCardButton onClick={handleClick} title={'Add card'} />
 
-      <AddCard
-        columnId={columnId}
-        modalType={'Add card'}
-        open={isAddCardOpen}
-        handleClose={closeAddCard}
-        close={closeAddCard}
-      />
-      <AddColumn
-        modalType={'Edit column'}
-        open={isEditColumnOpen}
-        columnId={columnId}
-        close={closeEditColumn}
-        titleValue={columnTitle}
-        column={columnData}
-      />
+      {isAddCardOpen ? (
+        <AddCard
+          columnId={columnId}
+          modalType={'Add card'}
+          open={isAddCardOpen}
+          handleClose={closeAddCard}
+          close={closeAddCard}
+        />
+      ) : (
+        <></>
+      )}
+      {isEditColumnOpen ? (
+        <AddColumn
+          modalType={'Edit column'}
+          open={isEditColumnOpen}
+          columnId={columnId}
+          close={closeEditColumn}
+          titleValue={columnTitle}
+          column={columnData}
+        />
+      ) : (
+        <></>
+      )}
     </ColumnWrapper>
   );
 };
