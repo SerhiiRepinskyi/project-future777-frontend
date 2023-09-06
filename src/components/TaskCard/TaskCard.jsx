@@ -67,8 +67,9 @@ function TaskCard({
       console.error('Error deleting card:', error);
     }
   };
-  const handleMoveCard = async () => {
-    const columnIddata = { newOwnerId: columnId };
+
+  const handleMoveCard = async e => {
+    const columnIddata = { newOwnerId: e.target.id };
     try {
       await updateCardColumnById({ id, columnIddata });
     } catch (error) {
@@ -199,13 +200,14 @@ function TaskCard({
             flexDirection: 'column',
             justifyContent: 'flex-start',
           }}
-          onClick={handleMoveCard}
         >
           {columnArray
             .filter(({ _id }) => _id !== columnId) // Фильтруем элементы по _id
-            .map(({ title }, index) => (
+            .map(({ title, _id: newOwner }, index) => (
               <Box
-                key={index}
+                onClick={handleMoveCard}
+                key={newOwner}
+                id={newOwner}
                 sx={{
                   margin: '8px 0',
                   display: 'flex',
