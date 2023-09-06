@@ -16,7 +16,7 @@ export const FormPopup = styled.form`
 `;
 
 export const Button = styled.button`
-  color: rgba(255, 255, 255, 0.5);
+  color: var(--secondary-text-color);
   font-size: 12px;
   font-weight: 400;
   letter-spacing: -0.24px;
