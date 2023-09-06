@@ -31,7 +31,7 @@ const ScreensPage = () => {
       // skip: false,
     }
   );
-
+console.log('data :>> ', data);
 
   const openAddColumn = () => setIsAddColumnOpen(true);
   const closeAddColumn = () => setIsAddColumnOpen(false);
@@ -43,9 +43,12 @@ const ScreensPage = () => {
 
   return (
     <MainWrapper index={data?.background}>
-        <HeaderDashboard filter={setFilterValue} title={data?.title} />
+      <HeaderDashboard
+        iconId={data?.iconId}
+        filter={setFilterValue}
+        title={data?.title}
+      />
       <MainContainer>
-
         <ColumnsWrapper cols={!data?.content ? 1 : data?.content?.length + 1}>
           {data?.content?.map(
             ({ _id: columnId, title: columnTitle, cards }, index) => (
@@ -63,12 +66,16 @@ const ScreensPage = () => {
           <ButtonAdd onClick={openAddColumn}></ButtonAdd>
         </ColumnsWrapper>
 
-        {isAddColumnOpen ? (<AddColumn
-          modalType={'Add column'}
-          open={isAddColumnOpen}
-          boardId={boardId}
-          close={closeAddColumn}
-        />) : <></>}
+        {isAddColumnOpen ? (
+          <AddColumn
+            modalType={'Add column'}
+            open={isAddColumnOpen}
+            boardId={boardId}
+            close={closeAddColumn}
+          />
+        ) : (
+          <></>
+        )}
       </MainContainer>
     </MainWrapper>
   );

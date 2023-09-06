@@ -1,14 +1,16 @@
 import sprite from '../../assets/images/sprite.svg';
 import { useEffect, useState } from 'react';
 import { Filter } from './Filter';
+import { SidebarBoardItemIcon } from 'components/Sidebar/SidebarBoardItemIcon';
 
 const {
   Container,
   TitleDashBoard,
   FilterButton,
   TitleFilter,
+  TitleContainer,
 } = require('./HeaderDashboard.styled');
-export const HeaderDashboard = ({ title, filter }) => {
+export const HeaderDashboard = ({ title, filter, iconId }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
 
@@ -37,7 +39,10 @@ export const HeaderDashboard = ({ title, filter }) => {
   });
   return (
     <Container>
-      <TitleDashBoard>{title}</TitleDashBoard>
+      <TitleContainer>
+        <SidebarBoardItemIcon current={true } iconId={iconId} />
+        <TitleDashBoard>{title}</TitleDashBoard>
+      </TitleContainer>
       <FilterButton onClick={toggleModal}>
         <svg
           aria-label="filter icon"
