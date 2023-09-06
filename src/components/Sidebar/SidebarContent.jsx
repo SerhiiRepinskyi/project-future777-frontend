@@ -80,7 +80,7 @@ export const SidebarContent = ({ isSidebarShown }) => {
                 lineHeight: { 0: '16px', 768: '20px' },
               }}
             >
-              If you need help with <TaskProButton onClick={modalMembersStateChange}>TaskPro</TaskProButton>, check out our support
+              If you need help with <TaskProButton onClick={modalMembersStateChange}> TaskPro </TaskProButton>, check out our support
               resources or reach out to our customer support team.
             </HelpText>
             <HelpButton
