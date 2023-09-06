@@ -13,7 +13,14 @@ import {
 } from './Column.styled';
 import AddColumn from 'components/AddColumn/AddColumn';
 
-const Column = ({ columnTitle, columnId, cards, columnData, isFetching }) => {
+const Column = ({
+  columnTitle,
+  columnId,
+  cards,
+  columnData,
+  isFetching,
+  columnArray,
+}) => {
   const [deleteColumn] = API.useDeleteColumnByIdMutation();
 
   const [isAddCardOpen, setIsAddCardOpen] = useState(false);
@@ -65,11 +72,14 @@ const Column = ({ columnTitle, columnId, cards, columnData, isFetching }) => {
           return (
             <TaskCard
               key={id}
+              columnTitle={columnTitle}
               title={title}
               description={description}
               priority={priority}
               deadline={deadline}
               id={id}
+              columnArray={columnArray}
+              columnId={columnId}
             />
           );
         })}

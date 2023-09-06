@@ -24,28 +24,22 @@ const ScreensPage = () => {
   };
   const [isAddColumnOpen, setIsAddColumnOpen] = useState(false);
 
-  const {  data, isFetching } = API.useGetBoardContentByIdQuery(
-    reqData,
-    {
-      refetchOnMountOrArgChange: true,
-      // skip: false,
-    }
-  );
-
+  const { data, isFetching } = API.useGetBoardContentByIdQuery(reqData, {
+    refetchOnMountOrArgChange: true,
+    // skip: false,
+  });
 
   const openAddColumn = () => setIsAddColumnOpen(true);
   const closeAddColumn = () => setIsAddColumnOpen(false);
 
   useEffect(() => {
     setFilterValue(stateFilter);
-    
   }, [dispatch, stateFilter]);
 
   return (
     <MainWrapper index={data?.background}>
-        <HeaderDashboard filter={setFilterValue} title={data?.title} />
+      <HeaderDashboard filter={setFilterValue} title={data?.title} />
       <MainContainer>
-
         <ColumnsWrapper cols={!data?.content ? 1 : data?.content?.length + 1}>
           {data?.content?.map(
             ({ _id: columnId, title: columnTitle, cards }, index) => (
@@ -56,6 +50,7 @@ const ScreensPage = () => {
                 columnTitle={columnTitle}
                 columnId={columnId}
                 cards={cards}
+                columnArray={data?.content}
               />
             )
           )}
@@ -63,12 +58,16 @@ const ScreensPage = () => {
           <ButtonAdd onClick={openAddColumn}></ButtonAdd>
         </ColumnsWrapper>
 
-        {isAddColumnOpen ? (<AddColumn
-          modalType={'Add column'}
-          open={isAddColumnOpen}
-          boardId={boardId}
-          close={closeAddColumn}
-        />) : <></>}
+        {isAddColumnOpen ? (
+          <AddColumn
+            modalType={'Add column'}
+            open={isAddColumnOpen}
+            boardId={boardId}
+            close={closeAddColumn}
+          />
+        ) : (
+          <></>
+        )}
       </MainContainer>
     </MainWrapper>
   );
