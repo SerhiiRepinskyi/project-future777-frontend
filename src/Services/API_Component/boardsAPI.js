@@ -18,7 +18,7 @@ export const boardsAPI = createApi({
         url: `boards/${id}/content`,
         params: { priority: filter },
       }),
-      providesTags: ['boards', 'cards','columns'],
+      providesTags: ['boards', 'cards', 'columns'],
     }),
 
     getBoardById: builder.query({
@@ -130,11 +130,12 @@ export const boardsAPI = createApi({
     }),
 
     updateCardColumnById: builder.mutation({
-      query: cardId => ({
-        url: `/cards/${cardId}`,
+      query: ({ id, columnIddata }) => ({
+        url: `/cards/${id}`,
         method: 'PATCH',
+        body: columnIddata,
       }),
-      invalidatesTags: ['cards'],
+      invalidatesTags: ['boards', 'cards', 'columns'],
     }),
   }),
 });
@@ -158,5 +159,4 @@ export const {
   useUpdateCardByIdMutation,
   useDeleteCardByIdMutation,
   useUpdateCardColumnByIdMutation,
-  
 } = boardsAPI;
