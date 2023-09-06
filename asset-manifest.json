@@ -1,12 +1,12 @@
 {
   "files": {
     "main.css": "/project-future777-frontend/static/css/main.d6b35adc.css",
-    "main.js": "/project-future777-frontend/static/js/main.7480b410.js",
+    "main.js": "/project-future777-frontend/static/js/main.5c069078.js",
     "static/js/773.3e1ffef2.chunk.js": "/project-future777-frontend/static/js/773.3e1ffef2.chunk.js",
     "static/css/476.4851a718.chunk.css": "/project-future777-frontend/static/css/476.4851a718.chunk.css",
     "static/js/476.30d610a7.chunk.js": "/project-future777-frontend/static/js/476.30d610a7.chunk.js",
     "static/js/422.5f4adbc0.chunk.js": "/project-future777-frontend/static/js/422.5f4adbc0.chunk.js",
-    "static/js/224.95f39a92.chunk.js": "/project-future777-frontend/static/js/224.95f39a92.chunk.js",
+    "static/js/224.645ca0be.chunk.js": "/project-future777-frontend/static/js/224.645ca0be.chunk.js",
     "static/js/323.980f1692.chunk.js": "/project-future777-frontend/static/js/323.980f1692.chunk.js",
     "static/js/213.e51ba9be.chunk.js": "/project-future777-frontend/static/js/213.e51ba9be.chunk.js",
     "static/js/826.a917ab24.chunk.js": "/project-future777-frontend/static/js/826.a917ab24.chunk.js",
@@ -25,12 +25,12 @@
     "static/media/404.jpg": "/project-future777-frontend/static/media/404.6f8c26e976232930a64f.jpg",
     "index.html": "/project-future777-frontend/index.html",
     "main.d6b35adc.css.map": "/project-future777-frontend/static/css/main.d6b35adc.css.map",
-    "main.7480b410.js.map": "/project-future777-frontend/static/js/main.7480b410.js.map",
+    "main.5c069078.js.map": "/project-future777-frontend/static/js/main.5c069078.js.map",
     "773.3e1ffef2.chunk.js.map": "/project-future777-frontend/static/js/773.3e1ffef2.chunk.js.map",
     "476.4851a718.chunk.css.map": "/project-future777-frontend/static/css/476.4851a718.chunk.css.map",
     "476.30d610a7.chunk.js.map": "/project-future777-frontend/static/js/476.30d610a7.chunk.js.map",
     "422.5f4adbc0.chunk.js.map": "/project-future777-frontend/static/js/422.5f4adbc0.chunk.js.map",
-    "224.95f39a92.chunk.js.map": "/project-future777-frontend/static/js/224.95f39a92.chunk.js.map",
+    "224.645ca0be.chunk.js.map": "/project-future777-frontend/static/js/224.645ca0be.chunk.js.map",
     "323.980f1692.chunk.js.map": "/project-future777-frontend/static/js/323.980f1692.chunk.js.map",
     "213.e51ba9be.chunk.js.map": "/project-future777-frontend/static/js/213.e51ba9be.chunk.js.map",
     "826.a917ab24.chunk.js.map": "/project-future777-frontend/static/js/826.a917ab24.chunk.js.map",
@@ -38,6 +38,6 @@
   },
   "entrypoints": [
     "static/css/main.d6b35adc.css",
-    "static/js/main.7480b410.js"
+    "static/js/main.5c069078.js"
   ]
 }
