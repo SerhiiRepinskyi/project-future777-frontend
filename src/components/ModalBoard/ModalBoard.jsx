@@ -30,7 +30,7 @@ import {
 import { useNavigate } from 'react-router-dom';
 
 const titleStyle = {
-  color: '#FFF',
+  color: 'var(--primary-text-color)',
   fontSize: 14,
   fontStyle: 'normal',
   fontWeight: 500,
@@ -170,8 +170,8 @@ const ModalBoard = ({ board, boardTitle, open, handleClose }) => {
                       style={{
                         stroke:
                           iconId === icon
-                            ? '#FFFFFF'
-                            : 'rgba(255, 255, 255, 0.5)',
+                            ? 'var(--primary-text-color)'
+                            : 'var(--board-modal-icon-color)',
                         transition: 'stroke 0.2s ease',
                       }}
                     />
@@ -202,10 +202,11 @@ const ModalBoard = ({ board, boardTitle, open, handleClose }) => {
                   borderRadius: '6px',
                   border:
                     0 === background
-                      ? '2px solid #ffffff'
+                      ? '2px solid var(--primary-text-color)'
                       : '2px solid transparent',
                   '&:hover, &:focus': {
-                    border: '2px solid #bedbb0',
+                    border:
+                      '2px solid var(--sidebar-icon-plus-bg-color-HOVER-FOCUS)',
                   },
                 }}
               >
@@ -216,7 +217,7 @@ const ModalBoard = ({ board, boardTitle, open, handleClose }) => {
                     alignItems: 'center',
                     width: '100%',
                     height: '100%',
-                    backgroundColor: '#1F1F1F',
+                    backgroundColor: 'var(--primary-bg-color)',
                     borderRadius: '5px',
                     cursor: 'pointer',
                   }}
@@ -225,7 +226,7 @@ const ModalBoard = ({ board, boardTitle, open, handleClose }) => {
                     style={{
                       width: '16px',
                       height: '16px',
-                      stroke: 'rgba(255, 255, 255, 0.10)',
+                      stroke: 'var(--board-modal-icon-color)',
                     }}
                   >
                     <use href={sprite + '#icon-default-background'}></use>
@@ -247,10 +248,11 @@ const ModalBoard = ({ board, boardTitle, open, handleClose }) => {
                       borderRadius: '6px',
                       border:
                         index + 1 === background
-                          ? '2px solid #ffffff'
+                          ? '2px solid var(--primary-text-color)'
                           : '2px solid transparent',
                       '&:hover, &:focus': {
-                        border: '2px solid #bedbb0',
+                        border:
+                          '2px solid var(--sidebar-icon-plus-bg-color-HOVER-FOCUS)',
                       },
                     }}
                   >

@@ -8,7 +8,9 @@ export const MainWrapper = styled.main`
   background-repeat: no-repeat;
   background-size: cover;
   padding-bottom: 18px;
+  overflow-y: hidden;
   @media screen and (min-width: 0px) {
+    padding-top: 60px;
     min-height: 100vh;
     @media (-webkit-min-device-pixel-ratio: 1) {
       background-image: ${props => {
@@ -36,35 +38,8 @@ export const MainWrapper = styled.main`
     }
   }
 
-  @media screen and (min-width: 1400px) {
-    height: 100vh;
-    @media (-webkit-min-device-pixel-ratio: 1) {
-      background-image: ${props => {
-        if (props.index === undefined) {
-          return 'none';
-        }
-        return `url(${bgData[0].desktop[0][props.index]})`;
-      }};
-    }
-    @media (-webkit-min-device-pixel-ratio: 2) {
-      background-image: ${props => {
-        if (props.index === undefined) {
-          return 'none';
-        }
-        return `url(${bgData[0].desktop[1][props.index]})`;
-      }};
-    }
-    @media (-webkit-min-device-pixel-ratio: 3) {
-      background-image: ${props => {
-        if (props.index === undefined) {
-          return 'none';
-        }
-        return `url(${bgData[0].desktop[2][props.index]})`;
-      }};
-    }
-  }
-
   @media screen and (min-width: 767px) {
+    padding-top: 68px;
     height: 100vh;
     @media (-webkit-min-device-pixel-ratio: 1) {
       background-image: ${props => {
@@ -130,7 +105,7 @@ export const MainContainer = styled.div`
   flex-grow: 1;
 
   height: 100vh;
-  padding-top: 78px;
+
   padding-left: 24px;
   padding-right: 24px;
   padding-bottom: 28px;
@@ -181,7 +156,19 @@ export const ColumnsWrapper = styled.div`
     }};
   }
 
-  @media screen and (min-width: 1400px) {
+  @media screen and (min-width: 768px) and (max-width: 1139px) {
+    display: grid;
+    margin-bottom: auto;
+
+    overflow-x: ${props => {
+      if (props.cols > 2) {
+        return 'scroll';
+      }
+      return 'hidden';
+    }};
+  }
+
+  @media screen and (min-width: 1140px) and (max-width: 1400px) {
     display: grid;
     margin-bottom: auto;
 
