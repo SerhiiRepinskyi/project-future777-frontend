@@ -40,11 +40,7 @@ const ScreensPage = () => {
 
   useEffect(() => {
     setFilterValue(stateFilter);
-    if (stateFilter === '0') {
-      setFilterValue('');
-    } else {
-      setFilterValue(stateFilter);
-    }
+    
   }, [dispatch, stateFilter]);
 
   return (
