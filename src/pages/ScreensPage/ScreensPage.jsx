@@ -67,12 +67,12 @@ const ScreensPage = () => {
           <ButtonAdd onClick={openAddColumn}></ButtonAdd>
         </ColumnsWrapper>
 
-        <AddColumn
+        {isAddColumnOpen ? (<AddColumn
           modalType={'Add column'}
           open={isAddColumnOpen}
           boardId={boardId}
           close={closeAddColumn}
-        />
+        />) : <></>}
       </MainContainer>
     </MainWrapper>
   );
