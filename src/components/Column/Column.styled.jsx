@@ -45,12 +45,7 @@ export const ColumnTitle = styled.h2`
 `;
 
 export const CardsList = styled.ul`
-  display: ${props => {
-    if (props.cols.length < 4) {
-      return `flex`;
-    }
-    return `grid`;
-  }};
+  display: grid;
   @media screen and (max-width: 0px) {
     min-width: 280px;
   }
@@ -59,7 +54,8 @@ export const CardsList = styled.ul`
   grid-template-rows: auto;
   width: 100%;
   margin-bottom: 14px;
-  max-height: 60vh;
+  padding: auto;
+  max-height: 57vh;
   gap: 8px;
   border-radius: 8px;
   padding-right: ${props => {
