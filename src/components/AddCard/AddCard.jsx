@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { useFormik } from 'formik';
-import { format, parseISO } from 'date-fns';
+import { format, parseISO} from 'date-fns';
+import formatISO from 'date-fns/formatISO';
 import * as Yup from 'yup';
 import { API } from 'Services/API';
-import formatISO from 'date-fns/formatISO';
+
 import Notiflix from 'notiflix';
 
 import {
@@ -28,6 +29,46 @@ Notiflix.Notify.init({
   },
 });
 
+const validationSchema = Yup.object({
+  title: Yup.string()
+    .trim('The title cannot include leading and trailing spaces')
+    .strict(true)
+    .min(2, 'Must be more then 2 symbols')
+    .required('Title is required'),
+  description: Yup.string()
+    .min(5, 'Must be more then 5 symbols')
+    .required('Description is required'),
+});
+
+
+function getEndOfDate(date) {
+  const val = date ?? new Date();
+  val.setHours(23, 59, 59);
+  val.toISOString();
+  return val;
+}
+
+function getDeadline(isostr) {
+  const d = !!isostr ? parseISO(isostr) : Date.now();
+  console.log("getDeadline>>>", !!isostr, isostr, d);
+  return d;
+}
+
+async function postCard({ func, data }) {
+  try {
+    await func(data);
+    console.info('postCard>>>SUCCESS:', data); //TODO:
+    Notiflix.Notify.success('Your card has been successfully posted');
+    return true;
+  } catch (error) {
+    console.error('postCard>>>ERROR:', error.data.message, error); //TODO:
+    if (error.status === 400) {
+      Notiflix.Notify.failure('All field must be filled in');
+    }
+    return false;
+  }
+}
+
 const AddCard = ({
   modalType,
   close,
@@ -40,96 +81,14 @@ const AddCard = ({
   priorityValue = '0',
   deadlineValue,
 }) => {
-  const [date, setDate] = useState('');
-  const [dateValue, setDateValue] = useState("");
+  const [date, setDate] = useState(''); //FIXME:  getDeadline(deadlineValue)
+  const [dateValue, setDateValue] = useState('');
   const [color, setColor] = useState(priorityValue.toString());
   const [anchorEl, setAnchorEl] = useState(null);
   const [isPopupOpen, setIsPopupOpen] = useState(false);
-  const [addCards] = API.useAddCardMutation();
-  const [updateCard] = API.useUpdateCardByIdMutation();
-
-  const handleDateClick = e => {
-    setAnchorEl(e.currentTarget);
-    setIsPopupOpen(true);
-  };
-
-  const onDateChange = e => {
-    console.log('Data :>> ', e);
-    const dateFns = format(e, 'LLLL d');
-    setDateValue(dateFns);
-    setDate(e);
-    setAnchorEl(null);
-    setIsPopupOpen(false);
-  };
-
-  const onColorChange = value => {
-    console.log('value :>> ', value);
-    setColor(value);
-  };
-
-  const handleSubmitForm = async (title, description) => {
-    if (modalType === 'Add card') {
-      if (!date) {
-        Notiflix.Notify.failure('Please select the date');
-      }
-
-      const ISODate = formatISO(date, { representation: 'date' });
-      console.log('ISODate :>> ', ISODate);
-
-      const cardData = {
-        title,
-        description,
-        priority: color,
-        deadline: ISODate,
-      };
-
-      try {
-        await addCards({ columnId, cardData });
-        Notiflix.Notify.success('Your card successfully added');
-      } catch (error) {
-        if (error.status === 400) {
-          return Notiflix.Notify.failure('All field must be filled in');
-        } else {
-          console.log('An error occurred:', error.data.message);
-        }
-      }
-    } else {
-      const ISODate = formatISO(date, { representation: 'date' });
-      const cardData = {
-        title,
-        description,
-        priority: color,
-        deadline: ISODate,
-      };
-
-      try {
-        await updateCard({ cardId, cardData });
-        Notiflix.Notify.success('Your card successfully updated');
-      } catch (error) {
-        if (error.status === 400) {
-          return Notiflix.Notify.failure('All field must be filled in');
-        } else {
-          console.log('An error occurred:', error.message);
-        }
-      }
-    }
-
-    setDateValue('');
-    setDate('');
-    handleReset();
-    close();
-  };
-
-  const validationSchema = Yup.object({
-    title: Yup.string()
-      .trim('The title cannot include leading and trailing spaces')
-      .strict(true)
-      .min(2, 'Must be more then 2 symbols')
-      .required('Title is required'),
-    description: Yup.string()
-      .min(5, 'Must be more then 5 symbols')
-      .required('Description is required'),
-  });
+  const [addCards, { error: addCardError }] = API.useAddCardMutation(); // FIXME: error object needed
+  const [updateCard, { error: updateCardError }] =
+    API.useUpdateCardByIdMutation(); //FIXME: error object needed
 
   const cardInitialValues =
     modalType === 'Add card'
@@ -151,18 +110,88 @@ const AddCard = ({
   });
 
   useEffect(() => {
-    if (modalType === 'Add card') {
-      const currentDate = format(new Date(), "'Today,' LLLL d");
-      setDateValue(currentDate);
-    }
-    if (modalType === 'Edit card') {
-      console.log('deadlineValue :>> ', deadlineValue);
-      const dateISO = parseISO(deadlineValue, "LLLL d");
-      setDate(dateISO);
-      const currentDate = format(dateISO, "LLLL d");
-      setDateValue(currentDate);
-    }
+    const deadlineDate =
+      modalType === 'Add card' ? new Date() : getDeadline(deadlineValue);
+    const deadlineStr =
+      modalType === 'Add card'
+        ? format(new Date(), "'Today,' LLLL d")
+        : format(Date.parse(deadlineValue), 'LLLL d');
+    setDateValue(deadlineStr);
+    setDate(deadlineDate);
+    console.log(
+      'deadlineStr deadlineDate  :>> ',
+      deadlineStr.length,
+      deadlineDate
+    ); //FIXME: ???
   }, [modalType, deadlineValue]);
+
+  if (true) {
+    console.log('RENDER :>> date', date); //FIXME: ???
+  }
+/*  if (deadlineValue === undefined && modalType !== 'Add card') {
+   console.log('ERROR :>> пропс deadline Value не прокинувся'); //FIXME: ???
+   return <></>;
+ } */
+  if (!isValid) {
+    console.log('useFormik :>> isValid', isValid);
+  } //TODO:
+  if (!!addCardError || !!updateCardError) {
+    console.log(
+      'baseQuery :>> ERROR',
+      addCardError ?? '',
+      updateCardError ?? ''
+    );
+  } //TODO:
+  console.log('deadlineValue>>>>', deadlineValue); //FIXME:  якась вакханалія...
+
+  const handleDateClick = e => {
+    setAnchorEl(e.currentTarget);
+    setIsPopupOpen(true);
+  };
+
+  const onDateChange = e => {
+    const dateFns = format(e, 'LLLL d');
+    setDateValue(dateFns);
+    setDate(getEndOfDate(e));
+    setAnchorEl(null);
+    setIsPopupOpen(false);
+  };
+
+  const onColorChange = value => {
+    setColor(value);
+  };
+
+  const handleSubmitForm = async (title, description) => {
+
+    console.log('DATE FOR formatISO>>>>', !!date,  date??'no date'); //
+
+    const ISODate = formatISO(!!date ? date : getEndOfDate(), //(modalType === 'Add card') ? getEndOfDate(deadlineValue...),
+      {
+      representation: 'complete',
+    });
+
+    console.log('submit>>>>ISODate', ISODate); //TODO:
+
+    const cardData = {
+      title,
+      description,
+      priority: color,
+      deadline: ISODate,
+    };
+
+    await postCard(
+      modalType === 'Add card'
+        ? { func: addCards, data: { columnId, cardData } }
+        : { func: updateCard, data: { cardId, cardData } }
+    );
+
+    setDateValue('');
+    setDate('');
+    handleReset();
+    close();
+  };
+
+  /*  FIXME: конпка: disabled={!isValid}  воно не працює нормально картка дуже часто блокується намертво */
 
   return (
     <ModalLayout title={modalType} open={open} handleClose={handleClose}>
@@ -201,7 +230,6 @@ const AddCard = ({
         <ButtonWithIcon
           title={modalType === 'Add card' ? 'Add' : 'Edit'}
           type={'submit'}
-          disabled={!isValid}
         />
       </FormStyled>
 
