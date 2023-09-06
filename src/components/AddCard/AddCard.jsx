@@ -51,13 +51,11 @@ function getEndOfDate(date) {
   const val = date ?? new Date();
   val.setHours(23, 59, 59);
   val.toISOString();
-  console.log('val :>> ', val);
   return val;
 }
 
 function getDeadline(isostr) {
   const d = !!isostr ? parseISO(isostr) : Date.now();
-  console.log('getDeadline>>>', !!isostr, isostr, d);
   return d;
 }
 
@@ -125,15 +123,9 @@ const AddCard = ({
         : format(Date.parse(deadlineValue), 'LLLL d');
     setDateValue(deadlineStr);
     setDate(deadlineDate);
-    console.log(
-      'deadlineStr deadlineDate  :>> ',
-      deadlineStr.length,
-      deadlineDate
-    ); //FIXME: ???
   }, [modalType, deadlineValue]);
 
   if (true) {
-    console.log('RENDER :>> date', date); //FIXME: ???
   }
   /*  if (deadlineValue === undefined && modalType !== 'Add card') {
    console.log('ERROR :>> пропс deadline Value не прокинувся'); //FIXME: ???
@@ -149,7 +141,6 @@ const AddCard = ({
       updateCardError ?? ''
     );
   } //TODO:
-  console.log('deadlineValue>>>>', deadlineValue); //FIXME:  якась вакханалія...
 
   const handleDateClick = e => {
     setAnchorEl(e.currentTarget);
@@ -169,7 +160,6 @@ const AddCard = ({
   };
 
   const handleSubmitForm = async (title, description) => {
-    console.log('DATE FOR formatISO>>>>', !!date, date ?? 'no date'); //
 
     const ISODate = formatISO(
       !!date ? getEndOfDate(date) : getEndOfDate(), //(modalType === 'Add card') ? getEndOfDate(deadlineValue...),
@@ -177,8 +167,6 @@ const AddCard = ({
         representation: 'complete',
       }
     );
-
-    console.log('submit>>>>ISODate', ISODate); //TODO:
 
     const cardData = {
       title,

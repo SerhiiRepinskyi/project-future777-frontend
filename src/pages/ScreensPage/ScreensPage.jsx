@@ -24,10 +24,13 @@ const ScreensPage = () => {
   };
   const [isAddColumnOpen, setIsAddColumnOpen] = useState(false);
 
-  const { data, isFetching } = API.useGetBoardContentByIdQuery(reqData, {
-    refetchOnMountOrArgChange: true,
-    // skip: false,
-  });
+  const {  data, isFetching } = API.useGetBoardContentByIdQuery(
+    reqData,
+    {
+      refetchOnMountOrArgChange: true,
+      // skip: false,
+    }
+  );
 
   const openAddColumn = () => setIsAddColumnOpen(true);
   const closeAddColumn = () => setIsAddColumnOpen(false);
