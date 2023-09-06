@@ -98,6 +98,7 @@ export const GlobalStyles = () => {
           --sidebar-board-item-bg-color-AFTER: #bedbb0;
           --default-screen-page-link-color: #bedbb0;
           --sidebar-taskpro-link-color: #bedbb0;
+          --board-modal-icon-color: rgba(255, 255, 255, 0.5);
           /* DO NOT TOUCH THIS VARIABLES OR I WILL FIND YOU!!!! */
 
           --header-theme-color: rgba(255, 255, 255, 0.8); //white
@@ -167,6 +168,7 @@ export const GlobalStyles = () => {
           --sidebar-board-item-bg-color-AFTER: #bedbb0;
           --default-screen-page-link-color: #bedbb0;
           --sidebar-taskpro-link-color: #bedbb0;
+          --board-modal-icon-color: rgba(22, 22, 22, 0.5);
           /* DO NOT TOUCH THIS VARIABLES OR I WILL FIND YOU!!!! */
 
           --header-theme-color: rgba(190, 219, 176, 1); //light green
@@ -235,6 +237,7 @@ export const GlobalStyles = () => {
           --sidebar-board-item-bg-color-AFTER: #ffffff;
           --default-screen-page-link-color: #5255bc;
           --sidebar-taskpro-link-color: #5255bc;
+          --board-modal-icon-color: rgba(22, 22, 22, 0.5);
           /* DO NOT TOUCH THIS VARIABLES OR I WILL FIND YOU!!!! */
 
           --header-theme-color: rgba(184, 188, 253, 1); //light violet
