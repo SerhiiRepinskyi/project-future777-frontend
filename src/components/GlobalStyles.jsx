@@ -63,10 +63,6 @@ export const GlobalStyles = () => {
           color: var(--secondary-text-color) !important;
         }
 
-        .MuiDateCalendar-root .MuiPickersDay-dayOutsideMonth {
-          color: rgba(0, 0, 0, 0.38) !important;
-        }
-
         .MuiButton-contained.Mui-disabled {
           background-color: var(--button-bg-color) !important;
           cursor: not-allowed;
@@ -102,6 +98,7 @@ export const GlobalStyles = () => {
           --sidebar-board-item-bg-color-AFTER: #bedbb0;
           --default-screen-page-link-color: #bedbb0;
           --sidebar-taskpro-link-color: #bedbb0;
+          --board-modal-icon-color: rgba(255, 255, 255, 0.5);
           /* DO NOT TOUCH THIS VARIABLES OR I WILL FIND YOU!!!! */
 
           --header-theme-color: rgba(255, 255, 255, 0.8); //white
@@ -138,7 +135,7 @@ export const GlobalStyles = () => {
           --input-bcg-color: rgba(31, 31, 31, 1);
           --btn-text-color: rgba(22, 22, 22, 1); // black
           --bcg-modal-color: rgba(21, 21, 21, 1); //black
-
+          --caret-color: rgba(255, 255, 255, 1);
           //------------------------------------------//
         }
 
@@ -171,6 +168,7 @@ export const GlobalStyles = () => {
           --sidebar-board-item-bg-color-AFTER: #bedbb0;
           --default-screen-page-link-color: #bedbb0;
           --sidebar-taskpro-link-color: #bedbb0;
+          --board-modal-icon-color: rgba(22, 22, 22, 0.5);
           /* DO NOT TOUCH THIS VARIABLES OR I WILL FIND YOU!!!! */
 
           --header-theme-color: rgba(190, 219, 176, 1); //light green
@@ -206,7 +204,7 @@ export const GlobalStyles = () => {
           --input-bcg-color: rgba(252, 252, 252, 1);
           --btn-text-color: rgba(22, 22, 22, 1); // black
           --bcg-modal-color: rgba(252, 252, 252, 1);
-
+          --caret-color: rgba(22, 22, 22, 1);
           //------------------------------------------//
         }
 
@@ -239,6 +237,7 @@ export const GlobalStyles = () => {
           --sidebar-board-item-bg-color-AFTER: #ffffff;
           --default-screen-page-link-color: #5255bc;
           --sidebar-taskpro-link-color: #5255bc;
+          --board-modal-icon-color: rgba(22, 22, 22, 0.5);
           /* DO NOT TOUCH THIS VARIABLES OR I WILL FIND YOU!!!! */
 
           --header-theme-color: rgba(184, 188, 253, 1); //light violet
@@ -276,7 +275,7 @@ export const GlobalStyles = () => {
           --cards-bg-color: #fff;
           --cards-underline: rgba(22, 22, 22, 0.1);
           --cards-icon-color: rgba(22, 22, 22, 0.5);
-
+          --caret-color: rgba(22, 22, 22, 1);
           //------------------------------------------//
         }
       `}

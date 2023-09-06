@@ -22,12 +22,15 @@ import { arrIcons } from './data';
 import { arrBG } from './data';
 import { useDispatch } from 'react-redux';
 import { API } from 'Services/API';
-import { setBoardId, setBoardResponse, setBoardsIdArray } from 'redux/boards/boardsAPISlice';
+import {
+  setBoardId,
+  setBoardResponse,
+  setBoardsIdArrayByPushToStart,
+} from 'redux/boards/boardsAPISlice';
 import { useNavigate } from 'react-router-dom';
-import { useSelector } from 'react-redux';
 
 const titleStyle = {
-  color: '#FFF',
+  color: 'var(--primary-text-color)',
   fontSize: 14,
   fontStyle: 'normal',
   fontWeight: 500,
@@ -37,7 +40,6 @@ const titleStyle = {
 };
 const ModalBoard = ({ board, boardTitle, open, handleClose }) => {
   const dispatch = useDispatch();
-  const boardsIdArray = useSelector(state => state.boards.boardsIdArray);
 
   const [inputValue, setInputValue] = useState(board?.title || '');
   const [iconId, setIconId] = useState(board?.iconId || arrIcons[0]);
@@ -59,10 +61,12 @@ const ModalBoard = ({ board, boardTitle, open, handleClose }) => {
       if (boardTitle === 'New board') {
         const response = await addBoard(FormData);
         dispatch(setBoardResponse(response));
-        const newBoardId = response.data._id;
-        dispatch(setBoardId({boardId:newBoardId}));
-        dispatch(setBoardsIdArray([...boardsIdArray, newBoardId]))
-        navigate(`/home/${newBoardId}`);
+
+        dispatch(setBoardId({ boardId: response.data._id }));
+
+        dispatch(setBoardsIdArrayByPushToStart(response.data._id));
+
+        navigate(`/home/${response.data._id}`);
         setInputValue('');
         setIconId(arrIcons[0]);
         setBackground(0);
@@ -166,8 +170,8 @@ const ModalBoard = ({ board, boardTitle, open, handleClose }) => {
                       style={{
                         stroke:
                           iconId === icon
-                            ? '#FFFFFF'
-                            : 'rgba(255, 255, 255, 0.5)',
+                            ? 'var(--primary-text-color)'
+                            : 'var(--board-modal-icon-color)',
                         transition: 'stroke 0.2s ease',
                       }}
                     />
@@ -198,10 +202,11 @@ const ModalBoard = ({ board, boardTitle, open, handleClose }) => {
                   borderRadius: '6px',
                   border:
                     0 === background
-                      ? '2px solid #ffffff'
+                      ? '2px solid var(--primary-text-color)'
                       : '2px solid transparent',
                   '&:hover, &:focus': {
-                    border: '2px solid #bedbb0',
+                    border:
+                      '2px solid var(--sidebar-icon-plus-bg-color-HOVER-FOCUS)',
                   },
                 }}
               >
@@ -212,7 +217,7 @@ const ModalBoard = ({ board, boardTitle, open, handleClose }) => {
                     alignItems: 'center',
                     width: '100%',
                     height: '100%',
-                    backgroundColor: '#1F1F1F',
+                    backgroundColor: 'var(--primary-bg-color)',
                     borderRadius: '5px',
                     cursor: 'pointer',
                   }}
@@ -221,7 +226,7 @@ const ModalBoard = ({ board, boardTitle, open, handleClose }) => {
                     style={{
                       width: '16px',
                       height: '16px',
-                      stroke: 'rgba(255, 255, 255, 0.10)',
+                      stroke: 'var(--board-modal-icon-color)',
                     }}
                   >
                     <use href={sprite + '#icon-default-background'}></use>
@@ -243,10 +248,11 @@ const ModalBoard = ({ board, boardTitle, open, handleClose }) => {
                       borderRadius: '6px',
                       border:
                         index + 1 === background
-                          ? '2px solid #ffffff'
+                          ? '2px solid var(--primary-text-color)'
                           : '2px solid transparent',
                       '&:hover, &:focus': {
-                        border: '2px solid #bedbb0',
+                        border:
+                          '2px solid var(--sidebar-icon-plus-bg-color-HOVER-FOCUS)',
                       },
                     }}
                   >

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { ErrorMessage, useFormik } from 'formik';
+import { useFormik } from 'formik';
 import { format, parseISO } from 'date-fns';
 import * as Yup from 'yup';
 import { API } from 'Services/API';
@@ -41,7 +41,7 @@ const AddCard = ({
   deadlineValue,
 }) => {
   const [date, setDate] = useState('');
-  const [dateValue, setDateValue] = useState('');
+  const [dateValue, setDateValue] = useState("");
   const [color, setColor] = useState(priorityValue.toString());
   const [anchorEl, setAnchorEl] = useState(null);
   const [isPopupOpen, setIsPopupOpen] = useState(false);
@@ -138,8 +138,6 @@ const AddCard = ({
 
   const {
     values,
-    errors,
-    touched,
     handleBlur,
     handleChange,
     handleReset,
@@ -150,6 +148,7 @@ const AddCard = ({
     initialValues: cardInitialValues,
     onSubmit: ({ title, description }) => handleSubmitForm(title, description),
     validationSchema,
+    enableReinitialize: true,
   });
 
   useEffect(() => {
@@ -159,9 +158,9 @@ const AddCard = ({
     }
     if (modalType === 'Edit card') {
       console.log('deadlineValue :>> ', deadlineValue);
-      const dateISO = parseISO(deadlineValue, "'Today,' LLLL d");
+      const dateISO = parseISO(deadlineValue, "LLLL d");
       setDate(dateISO);
-      const currentDate = format(dateISO, "'Today,' LLLL d");
+      const currentDate = format(dateISO, "LLLL d");
       setDateValue(currentDate);
     }
   }, [modalType, deadlineValue]);
@@ -177,14 +176,7 @@ const AddCard = ({
           onBlur={handleBlur}
           value={values.title}
         />
-        {touched.title && errors.title && dirty && (
-          <ErrorMessage
-            name="title"
-            render={msg => {
-              Notiflix.Notify.warning(` ${msg}`);
-            }}
-          />
-        )}
+
         <TextareaStyled
           id="description"
           name="description"
@@ -193,14 +185,7 @@ const AddCard = ({
           onBlur={handleBlur}
           value={values.description}
         />
-        {touched.description && errors.description && dirty && (
-          <ErrorMessage
-            name="description"
-            render={msg => {
-              Notiflix.Notify.warning(`${msg}`);
-            }}
-          />
-        )}
+
         <SubWrapper>
           <SubTitle>Label color</SubTitle>
           <ColorRadioButtons value={color} onColorChange={onColorChange} />

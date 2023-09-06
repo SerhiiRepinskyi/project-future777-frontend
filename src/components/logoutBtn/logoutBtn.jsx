@@ -20,7 +20,6 @@ const LogoutBtn = () => {
 
   return (
     <>
-      {/* <LogOutBtnStyled onClick={() => dispatch(logOut())}> */}
       <LogOutBtnStyled onClick={handleLogOut}>
         <Icon width="32px" height="32px">
           <use href={`${sprite}#icon-logout`} />

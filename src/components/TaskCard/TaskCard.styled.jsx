@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 import { IconButton } from '@mui/material';
 import { useState } from 'react';
-
+// import EllipsisText from 'react-ellipsis-text';
 import MenuItem from '@mui/material/MenuItem';
 export function getPriorityColor(priority) {
   switch (priority) {
@@ -81,7 +81,7 @@ export const TypographyText = styled.div`
   letter-spacing: -0.2px;
 `;
 export const CardStyles = styled.div`
-  width: 334px;
+  width: 100%;
   height: 154px;
   padding-top: 14px;
   padding-bottom: 14px;
@@ -90,6 +90,7 @@ export const CardStyles = styled.div`
   background-color: var(--cards-bg-color);
   border-radius: 8px;
   border-left: 4px solid ${props => getPriorityColor(props.priority)};
+  overflow: auto;
 `;
 export const StyledIconButton = styled(IconButton)`
   &:hover svg {
@@ -117,7 +118,6 @@ export const ListMenuStyles = styled(MenuItem)`
     transition: stroke 0.3s;
   }
 `;
-
 const TextContainer = styled.div`
   max-height: ${props =>
     props.expanded
@@ -131,7 +131,7 @@ const Text = styled.div`
   color: var(--secondary-text-color);
   font-size: 12px;
   font-weight: 400px;
-  padding-right: 2px;
+  padding-right: 18px;
   line-height: 18px; /* Висота рядка */
 `;
 

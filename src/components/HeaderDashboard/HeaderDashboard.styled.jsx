@@ -4,9 +4,9 @@ export const Container = styled.div`
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  padding-bottom: 15px;
-  // padding: 14px 24px;
-  // background: #1f1f1f;
+  padding: 12px 24px;
+  margin-bottom: 12px;
+  background: rgba(255, 255, 255, 0.2);
   font-family: Poppins;
 
   //   @media (min-width: 1280px) {
