@@ -138,7 +138,7 @@ export const GlobalStyles = () => {
           --input-bcg-color: rgba(31, 31, 31, 1);
           --btn-text-color: rgba(22, 22, 22, 1); // black
           --bcg-modal-color: rgba(21, 21, 21, 1); //black
-
+          --caret-color: rgba(255, 255, 255, 1);
           //------------------------------------------//
         }
 
@@ -206,7 +206,7 @@ export const GlobalStyles = () => {
           --input-bcg-color: rgba(252, 252, 252, 1);
           --btn-text-color: rgba(22, 22, 22, 1); // black
           --bcg-modal-color: rgba(252, 252, 252, 1);
-
+          --caret-color: rgba(22, 22, 22, 1);
           //------------------------------------------//
         }
 
@@ -276,7 +276,7 @@ export const GlobalStyles = () => {
           --cards-bg-color: #fff;
           --cards-underline: rgba(22, 22, 22, 0.1);
           --cards-icon-color: rgba(22, 22, 22, 0.5);
-
+          --caret-color: rgba(22, 22, 22, 1);
           //------------------------------------------//
         }
       `}
