@@ -64,6 +64,7 @@ export const CardActionsStyled = {
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'space-between',
+  paddingRight: '0px',
 };
 export const Circle = styled.div`
   width: 12px;
@@ -94,7 +95,7 @@ export const CardStyles = styled.div`
 `;
 export const StyledIconButton = styled(IconButton)`
   &:hover svg {
-    stroke: var(--default-screen-page-link-color);
+    stroke: #bedbb0;
     stroke-opacity: 1;
     transition: stroke 0.3s;
   }
@@ -108,15 +109,6 @@ export const ListMenuStyles = styled(MenuItem)`
   font-size: 14px;
 
   font-weight: 400px;
-
-  &:hover {
-    color: var(--default-screen-page-link-color);
-  }
-  &:hover svg {
-    stroke: var(--default-screen-page-link-color);
-    stroke-opacity: 1;
-    transition: stroke 0.3s;
-  }
 `;
 const TextContainer = styled.div`
   max-height: ${props =>
@@ -133,6 +125,7 @@ const Text = styled.div`
   font-weight: 400px;
   padding-right: 18px;
   line-height: 18px; /* Висота рядка */
+  font-family: 'Poppins';
 `;
 
 const ReadMore = styled.div`

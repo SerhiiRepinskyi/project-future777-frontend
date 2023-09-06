@@ -48,6 +48,7 @@ export const {
   setSelectedColumnId,
   setError,
   deleteCard,
+  setSelectedCardId,
 } = cardsAPISlice.actions;
 
 export default cardsAPISlice;

@@ -35,14 +35,15 @@ function TaskCard({
   description,
   priority,
   deadline,
-  moveCard,
   id,
   columnId,
+  columnTitle,
+  columnArray,
 }) {
   const [anchorEl, setAnchorEl] = useState(null);
 
   const [deleteCardById] = API.useDeleteCardByIdMutation();
-
+  const [updateCardColumnById] = API.useUpdateCardColumnByIdMutation();
   const [isAddCardOpen, setIsAddCardOpen] = useState(false);
 
   const dispatch = useDispatch();
@@ -58,10 +59,6 @@ function TaskCard({
     setAnchorEl(null);
   };
 
-  const handleMoveCard = newColumn => {
-    handleCloseMenu();
-    moveCard(newColumn);
-  };
   const handleDeleteCard = async () => {
     try {
       const response = await deleteCardById(id);
@@ -71,6 +68,14 @@ function TaskCard({
     }
   };
 
+  const handleMoveCard = async e => {
+    const columnIddata = { newOwnerId: e.target.id };
+    try {
+      await updateCardColumnById({ id, columnIddata });
+    } catch (error) {
+      console.error('Error moving card:', error);
+    }
+  };
   const date = new Date(`${deadline}`);
   const formattedDate = format(date, 'dd/MM/yyyy');
 
@@ -89,7 +94,7 @@ function TaskCard({
       <CardActions sx={CardActionsStyled}>
         <Box sx={ActionsBox}>
           <Box sx={TypographyStylesPriority} variant="body2">
-            Priority:
+            Priority
             <Box sx={{ display: 'flex', gap: '4px', alignItems: 'center' }}>
               <Circle priority={priority} />
               <TypographyText variant="subText">
@@ -98,7 +103,7 @@ function TaskCard({
             </Box>
           </Box>
           <Box sx={TypographyStylesPriority} variant="body2">
-            Deadline:
+            Deadline
             <Box
               sx={{
                 width: '14px',
@@ -120,13 +125,23 @@ function TaskCard({
         <Box>
           {isDeadlineToday && (
             <StyledIconButton aria-label="deadline">
-              <svg stroke="#BEDBB0" width="16" height="16">
+              <svg
+                stroke="var(--primary-text-color)"
+                strokeOpacity="0.5"
+                width="16"
+                height="16"
+              >
                 <use href={sprite + '#icon-bell'} />
               </svg>
             </StyledIconButton>
           )}
           <StyledIconButton onClick={handleOpenMenu} aria-label="next-colomn">
-            <svg stroke="var(--cards-icon-color)" width="16" height="16">
+            <svg
+              stroke="var(--primary-text-color)"
+              strokeOpacity="0.5"
+              width="16"
+              height="16"
+            >
               <use href={sprite + '#icon-active'} />
             </svg>
           </StyledIconButton>
@@ -135,7 +150,12 @@ function TaskCard({
             title={'Edit card'}
             aria-label="edit"
           >
-            <svg stroke="var(--cards-icon-color)" width="16" height="16">
+            <svg
+              stroke="var(--primary-text-color)"
+              strokeOpacity="0.5"
+              width="16"
+              height="16"
+            >
               <use href={sprite + '#icon-pencil'} />
             </svg>
           </StyledIconButton>
@@ -174,24 +194,40 @@ function TaskCard({
         }}
       >
         {/* List of columns to move the card */}
-        <ListMenuStyles onClick={() => handleMoveCard('Column 1')}>
-          {' '}
-          <Box> In progress </Box>
-          <Box>
-            {' '}
-            <svg stroke="var(--cards-icon-color)" width="16" height="16">
-              <use href={sprite + '#icon-active'} />
-            </svg>
-          </Box>
-        </ListMenuStyles>
-        <ListMenuStyles onClick={() => handleMoveCard('Column 2')}>
-          <Box> Done </Box>
-          <Box>
-            {' '}
-            <svg stroke="var(--cards-icon-color)" width="16" height="16">
-              <use href={sprite + '#icon-active'} />
-            </svg>
-          </Box>
+        <ListMenuStyles
+          sx={{
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'flex-start',
+          }}
+        >
+          {columnArray
+            .filter(({ _id }) => _id !== columnId) // Фильтруем элементы по _id
+            .map(({ title, _id: newOwner }, index) => (
+              <Box
+                onClick={handleMoveCard}
+                key={newOwner}
+                id={newOwner}
+                sx={{
+                  margin: '8px 0',
+                  display: 'flex',
+                  gap: '8px',
+                  '&:hover': {
+                    color: 'var(--default-screen-page-link-color)',
+                  },
+                  '&:hover svg': {
+                    stroke: 'var(--default-screen-page-link-color)',
+                    strokeOpacity: 1,
+                    transition: 'stroke 0.3s',
+                  },
+                }}
+              >
+                {title}
+                <svg stroke="var(--cards-icon-color)" width="16" height="16">
+                  <use href={sprite + '#icon-active'} />
+                </svg>
+              </Box>
+            ))}
         </ListMenuStyles>
       </Menu>
     </CardStyles>
