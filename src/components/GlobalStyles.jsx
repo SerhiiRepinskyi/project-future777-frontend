@@ -77,6 +77,7 @@ export const GlobalStyles = () => {
           --secondary-bg-color: rgba(18, 18, 18, 1); //black
 
           /* DO NOT TOUCH THIS VARIABLES OR I WILL FIND YOU!!!! */
+          --tra: 200ms cubic-bezier(0.4, 0, 0.2, 1);
           --sidebar-backdrop-color: rgba(21, 21, 21, 0.5);
           --sidebar-icon-logo-bg-color: rgba(31, 31, 31, 1);
           --sidebar-icon-logo-color: rgba(255, 255, 255, 1);
@@ -146,6 +147,7 @@ export const GlobalStyles = () => {
           --secondary-bg-color: rgba(255, 255, 255, 1); //white
 
           /* DO NOT TOUCH THIS VARIABLES OR I WILL FIND YOU!!!! */
+          --tra: 200ms cubic-bezier(0.4, 0, 0.2, 1);
           --sidebar-backdrop-color: rgba(21, 21, 21, 0.3);
           --sidebar-icon-logo-bg-color: rgba(31, 31, 31, 1);
           --sidebar-icon-logo-color: rgba(255, 255, 255, 1);
@@ -214,6 +216,7 @@ export const GlobalStyles = () => {
           --secondary-bg-color: rgba(255, 255, 255, 1); //white
 
           /* DO NOT TOUCH THIS VARIABLES OR I WILL FIND YOU!!!! */
+          --tra: 200ms cubic-bezier(0.4, 0, 0.2, 1);
           --sidebar-backdrop-color: rgba(21, 21, 21, 0.3);
           --sidebar-icon-logo-bg-color: rgba(236, 237, 253, 1);
           --sidebar-icon-logo-color: rgba(82, 85, 188, 1);
