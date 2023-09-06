@@ -96,7 +96,6 @@ export const HelpText = styled('p')(({ isSidebarShown }) => ({
   color: 'var(--sidebar-primary-text-color)',
   fontFamily: 'Poppins',
   fontWeight: 400,
-  letterSpacing: -0.15,
 
   transform: 'translateX(-250px)',
   animation: isSidebarShown ? `${slideToRight} 400ms` : 'none',
