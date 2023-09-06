@@ -38,35 +38,6 @@ export const MainWrapper = styled.main`
     }
   }
 
-  @media screen and (min-width: 1400px) {
-    padding-top: 68px;
-    height: 100vh;
-    @media (-webkit-min-device-pixel-ratio: 1) {
-      background-image: ${props => {
-        if (props.index === undefined) {
-          return 'none';
-        }
-        return `url(${bgData[0].desktop[0][props.index]})`;
-      }};
-    }
-    @media (-webkit-min-device-pixel-ratio: 2) {
-      background-image: ${props => {
-        if (props.index === undefined) {
-          return 'none';
-        }
-        return `url(${bgData[0].desktop[1][props.index]})`;
-      }};
-    }
-    @media (-webkit-min-device-pixel-ratio: 3) {
-      background-image: ${props => {
-        if (props.index === undefined) {
-          return 'none';
-        }
-        return `url(${bgData[0].desktop[2][props.index]})`;
-      }};
-    }
-  }
-
   @media screen and (min-width: 767px) {
     padding-top: 68px;
     height: 100vh;
@@ -185,7 +156,19 @@ export const ColumnsWrapper = styled.div`
     }};
   }
 
-  @media screen and (min-width: 1400px) {
+  @media screen and (min-width: 768px) and (max-width: 1139px) {
+    display: grid;
+    margin-bottom: auto;
+
+    overflow-x: ${props => {
+      if (props.cols > 2) {
+        return 'scroll';
+      }
+      return 'hidden';
+    }};
+  }
+
+  @media screen and (min-width: 1140px) and (max-width: 1400px) {
     display: grid;
     margin-bottom: auto;
 
