@@ -18,36 +18,29 @@ export const SidebarBoardList = () => {
   const [boardsArray, setBoardsArray] = useState(data || []);
 
   const boardId = useSelector(state => state.boards.boardId);
-  const [currentItemId, setCurrentItemId] = useState(boardId || '');
-
   const boardsIdArray = useSelector(state => state.boards.boardsIdArray);
 
-
   useEffect(() => {
-    if (
-      (boardsIdArray?.length === 0 && data?.length) ||
-      boardsIdArray?.length !== data?.length
-    ) {
+    if (!boardsIdArray && data?.length) {
       dispatch(setBoardsIdArray(data?.map(el => el._id)));
     }
-    
-    let myArray
+
+    let myArray;
     if (boardsIdArray?.length && data?.length) {
       myArray = boardsIdArray.map(el => {
-        return data.find(board => board._id === el)
-      })
+        return data.find(board => board._id === el);
+      });
 
       const newItems = data.filter(board => {
-        return !boardsIdArray.includes(board._id)
-      })
+        return !boardsIdArray.includes(board._id);
+      });
 
-      if (newItems?.length) myArray = [...newItems, ...myArray]
+      if (newItems?.length) myArray = [...newItems, ...myArray];
     }
 
     setBoardsArray(myArray || data);
-    setCurrentItemId(boardId);
-  }, [boardId, boardsIdArray, data, dispatch]);
-
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [data, dispatch]);
 
   const handleOnDragEnd = result => {
     if (!result.destination) return;
@@ -65,11 +58,14 @@ export const SidebarBoardList = () => {
   };
 
   const handleButtonClick = id => {
-    setCurrentItemId(id);
     dispatch(setBoardId({ boardId: id }));
     navigate(`/home/${id}`);
   };
 
+  if (!data || !boardsArray) {
+    // Очікування завантаження даних або boardsArray
+    return <div>Loading...</div>;
+  }
   return (
     <>
       <DragDropContext onDragEnd={handleOnDragEnd}>
@@ -88,8 +84,8 @@ export const SidebarBoardList = () => {
             >
               {boardsArray?.map((board, index) => (
                 <Draggable
-                  key={board._id}
                   draggableId={board._id.toString()}
+                  key={board._id}
                   index={index}
                 >
                   {provided => (
@@ -103,8 +99,6 @@ export const SidebarBoardList = () => {
                         sx={{
                           p: 0,
                           m: 0,
-                          // pointerEvents:
-                          //   currentItemId === board._id ? 'none' : 'auto',
                           '&:hover, &:focus': {
                             backgroundColor:
                               'var(--sidebar-board-item-bg-color-CURRENT)',
@@ -114,7 +108,7 @@ export const SidebarBoardList = () => {
                       >
                         <SidebarBoardItem
                           board={board}
-                          current={currentItemId === board._id}
+                          current={boardId === board._id}
                         />
                       </ListItemButton>
                     </ListItem>

@@ -1,6 +1,6 @@
 import { useDispatch } from 'react-redux';
 import sprite from '../../assets/images/sprite.svg';
-import { Icon, LogOutBtnStyled, SpanStyled } from './LogoutBtn.styled';
+import { Icon, LogOutBtnStyled, SpanStyled } from './logoutBtn.styled';
 import { useLogOutMutation } from 'Services/API_Component/authAPI';
 import { logout, setError, setIsLoggedIn } from 'redux/auth/authAPISlice';
 

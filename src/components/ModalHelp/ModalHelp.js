@@ -55,7 +55,7 @@ const ModalHelp = ({ title, open, handleClose }) => {
     onSubmit: ({ title }) => handleSubmit(title),
     validationSchema,
   });
-console.log(formik.values.email)
+
   return (
     <>
       <ModalLayout title={'Need help'} open={open} handleClose={handleClose}>

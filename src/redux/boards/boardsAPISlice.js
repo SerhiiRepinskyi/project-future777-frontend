@@ -7,20 +7,23 @@ export const initialState = {
   boardId: null,
   boardData: {},
   error: null,
-  filter: "",
+  filter: '',
 };
 
 const boardsAPISlice = createSlice({
   name: 'boards',
   initialState,
   reducers: {
-
     setAllBoards: (state, action) => {
       state.boards = action.payload;
     },
 
     setBoardsIdArray: (state, action) => {
       state.boardsIdArray = action.payload;
+    },
+
+    setBoardsIdArrayByPushToStart: (state, action) => {
+      state.boardsIdArray = [action.payload, ...state.boardsIdArray];
     },
 
     setBoardResponse: (state, action) => {
@@ -53,18 +56,21 @@ const boardsAPISlice = createSlice({
       state.filter = action.payload;
     },
   },
- 
 });
 
-export const { setError,setFilter, clearError, setBoardData, setAllBoards, setBoardsIdArray, setBoardId, setBoardResponse } = boardsAPISlice.actions;
+export const {
+  setError,
+  setFilter,
+  clearError,
+  setBoardData,
+  setAllBoards,
+  setBoardsIdArray,
+  setBoardsIdArrayByPushToStart,
+  setBoardId,
+  setBoardResponse,
+} = boardsAPISlice.actions;
 
 export default boardsAPISlice.reducer;
-
-
-
-
-
-
 
 // const addColumn = async (req, res) => {
 //   const { id: owner } = req.params;
