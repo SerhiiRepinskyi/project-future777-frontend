@@ -99,6 +99,9 @@ export const StyledIconButton = styled(IconButton)`
     stroke-opacity: 1;
     transition: stroke 0.3s;
   }
+  @media screen and (max-width: 365px) {
+    padding: 1px;
+  }
 `;
 export const ListMenuStyles = styled(MenuItem)`
   display: flex;
