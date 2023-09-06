@@ -12,7 +12,6 @@ import {
   StyledIconButton,
 } from './Column.styled';
 import AddColumn from 'components/AddColumn/AddColumn';
-import Loader from 'components/Loader';
 
 const Column = ({ columnTitle, columnId, cards, columnData, isFetching }) => {
   const [deleteColumn] = API.useDeleteColumnByIdMutation();

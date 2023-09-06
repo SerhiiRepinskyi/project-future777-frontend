@@ -49,8 +49,8 @@ const ScreensPage = () => {
 
   return (
     <MainWrapper index={data?.background}>
-      <MainContainer>
         <HeaderDashboard filter={setFilterValue} title={data?.title} />
+      <MainContainer>
 
         <ColumnsWrapper cols={!data?.content ? 1 : data?.content?.length + 1}>
           {data?.content?.map(
