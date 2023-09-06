@@ -24,7 +24,7 @@ const ScreensPage = () => {
   };
   const [isAddColumnOpen, setIsAddColumnOpen] = useState(false);
 
-  const { currentData, data, isFetching } = API.useGetBoardContentByIdQuery(
+  const {  data, isFetching } = API.useGetBoardContentByIdQuery(
     reqData,
     {
       refetchOnMountOrArgChange: true,
@@ -32,8 +32,6 @@ const ScreensPage = () => {
     }
   );
 
-  console.log('currentData :>> ', currentData);
-  console.log('data :>> ', data);
 
   const openAddColumn = () => setIsAddColumnOpen(true);
   const closeAddColumn = () => setIsAddColumnOpen(false);

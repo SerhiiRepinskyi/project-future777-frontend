@@ -22,9 +22,12 @@ import { arrIcons } from './data';
 import { arrBG } from './data';
 import { useDispatch } from 'react-redux';
 import { API } from 'Services/API';
-import { setBoardId, setBoardResponse, setBoardsIdArray } from 'redux/boards/boardsAPISlice';
+import {
+  setBoardId,
+  setBoardResponse,
+  setBoardsIdArrayByPushToStart,
+} from 'redux/boards/boardsAPISlice';
 import { useNavigate } from 'react-router-dom';
-import { useSelector } from 'react-redux';
 
 const titleStyle = {
   color: '#FFF',
@@ -37,7 +40,6 @@ const titleStyle = {
 };
 const ModalBoard = ({ board, boardTitle, open, handleClose }) => {
   const dispatch = useDispatch();
-  const boardsIdArray = useSelector(state => state.boards.boardsIdArray);
 
   const [inputValue, setInputValue] = useState(board?.title || '');
   const [iconId, setIconId] = useState(board?.iconId || arrIcons[0]);
@@ -59,10 +61,12 @@ const ModalBoard = ({ board, boardTitle, open, handleClose }) => {
       if (boardTitle === 'New board') {
         const response = await addBoard(FormData);
         dispatch(setBoardResponse(response));
-        const newBoardId = response.data._id;
-        dispatch(setBoardId({boardId:newBoardId}));
-        dispatch(setBoardsIdArray([...boardsIdArray, newBoardId]))
-        navigate(`/home/${newBoardId}`);
+
+        dispatch(setBoardId({ boardId: response.data._id }));
+
+        dispatch(setBoardsIdArrayByPushToStart(response.data._id));
+
+        navigate(`/home/${response.data._id}`);
         setInputValue('');
         setIconId(arrIcons[0]);
         setBackground(0);
