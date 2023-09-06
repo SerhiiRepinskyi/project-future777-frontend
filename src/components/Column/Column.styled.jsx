@@ -62,7 +62,12 @@ export const CardsList = styled.ul`
   max-height: 60vh;
   gap: 8px;
   border-radius: 8px;
-  padding-right: 8px;
+  padding-right: ${props => {
+    if (props.cols.length < 4) {
+      return `0`;
+    }
+    return `8px`;
+  }};
   overflow-x: hidden;
   overflow-y: ${props => {
     if (props.cols.length < 4) {
