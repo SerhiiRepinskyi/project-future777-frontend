@@ -22,13 +22,16 @@ import LogoutBtn from 'components/logoutBtn/logoutBtn';
 import ModalBoard from 'components/ModalBoard/ModalBoard';
 import ModalHelp from 'components/ModalHelp/ModalHelp';
 import { SidebarHelpIcon } from './SidebarHelpIcon';
+import ModalMembers from 'components/ModalMembers/ModalMembers';
 
 export const SidebarContent = ({ isSidebarShown }) => {
   const [isModalBoardOpen, setIsModalBoardOpen] = useState(false);
   const [isModalHelpOpen, setIsModalHelpOpen] = useState(false);
+  const [isModalMembersOpen, setIsModalMembersOpen] = useState(false);
 
   const modalBoardStateChange = () => setIsModalBoardOpen(!isModalBoardOpen);
   const modalHelpStateChange = () => setIsModalHelpOpen(!isModalHelpOpen);
+  const modalMembersStateChange = () => setIsModalMembersOpen(!isModalMembersOpen);
 
   return (
     <>
@@ -76,7 +79,7 @@ export const SidebarContent = ({ isSidebarShown }) => {
                 lineHeight: { 0: '16px', 768: '20px' },
               }}
             >
-              If you need help with <span>TaskPro</span>, check out our support
+              If you need help with <span onClick={modalMembersStateChange}>TaskPro</span>, check out our support
               resources or reach out to our customer support team.
             </HelpText>
             <HelpButton
@@ -102,6 +105,8 @@ export const SidebarContent = ({ isSidebarShown }) => {
         open={isModalHelpOpen}
         handleClose={modalHelpStateChange}
       />
+
+<ModalMembers open={isModalMembersOpen} handleClose={modalMembersStateChange} title={'OUR TEAM'}/>
     </>
   );
 };
